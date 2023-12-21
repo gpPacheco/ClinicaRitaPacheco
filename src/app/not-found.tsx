@@ -1,8 +1,21 @@
-export default function NotFound(){
-    console.log("not-found")
-    return (
-        <h1>
-            not found
-        </h1>
-    )
+import React from 'react';
+
+export default function NotFound() {
+  console.log("not-found");
+
+  return (
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">Página não encontrada</h1>
+        <p className="text-lg text-gray-600">Desculpe, a página que você está procurando não existe.</p>
+        <p>
+          Clique&nbsp;
+          <a className="hover:text-orange-600 text-zinc-950 font-bold underline" href="/">
+            aqui
+          </a>
+          &nbsp;para ser redirecionado à página inicial!
+        </p>
+      </div>
+    </div>
+  );
 }
