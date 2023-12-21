@@ -1,8 +1,6 @@
 import React from 'react';
 
 export default function NotFound() {
-  console.log("not-found");
-
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="text-center">
