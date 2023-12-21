@@ -8,7 +8,7 @@ export function Rodape() {
         <p>
           Copyright © 2023 Todos os Direitos Reservados&nbsp;|&nbsp;
         </p>
-        <a className="hover:text-orange-600 text-zinc-950" href="https://www.clinicaritapacheco.com.br/index.html"> 
+        <a className="hover:text-orange-600 text-zinc-950 font-bold underline" href="/"> 
           Rita Pacheco 
         </a>
       </div>
