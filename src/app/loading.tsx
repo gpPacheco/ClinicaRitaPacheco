@@ -1,7 +1,28 @@
+import React from "react";
+
 export default function Loading() {
-    return (
-        <h1>
-            loading
-        </h1>
-    )
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <button
+        type="button"
+        className="bg-zinc-500 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-indigo"
+        disabled
+      >
+        <svg
+          className="animate-spin h-5 w-5 mr-3 text-white"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+            fill="none"
+          />
+        </svg>
+      </button>
+    </div>
+  );
 }
