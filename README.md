@@ -44,3 +44,7 @@ ex:
 git commit -m "alterei home para ajustar menu"
 
 git push origin master
+
+--- 
+depois de mergear uma branch
+git fetch --all
