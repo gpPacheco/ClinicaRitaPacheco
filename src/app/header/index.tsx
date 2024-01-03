@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Lks } from "./links";
@@ -25,7 +25,9 @@ export function Header() {
   }
   return (
     <div className="bg-zinc-100/50 flex flex-row gap-10 justify-around fixed w-full h-20 z-50 items-center px-4 font-light">
+      <a href="/" target="_self">
       <img src="/ritapachecointeiro-logo.png" alt="Logo" className="h-fit" />
+      </a>
       {isMobileMenuOpen ? (
         <button
           data-collapse-toggle="navbar-default"
@@ -58,7 +60,7 @@ export function Header() {
           <Lks onClick={() => navigate("/clinica")}>A CLINICA</Lks>
           <Lks onClick={() => navigate("/especialidades")}>ESPECIALIDADES</Lks>
           <Lks onClick={() => navigate("/produtos")}>PRODUTOS</Lks>
-          <Lks onClick={() => navigate("/curiosidades")}>CURIOSIDADES</Lks>
+          <Lks onClick={() => navigate("/mentoria")}>MENTORIAS</Lks>
           <Lks onClick={() => navigate("/contato")}>CONTATO</Lks>
         </>
       )}

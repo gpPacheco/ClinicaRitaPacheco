@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const EmblaCarousel = () => {
   const imgs: { url: string; link: string }[] = [
+    { url: "/main-banner_f.jpg", link: "" },
     { url: "/main-banner_a.jpg", link: "" },
     { url: "/main-banner_b.jpg", link: "" },
     { url: "/main-banner_c.jpg", link: "" },
