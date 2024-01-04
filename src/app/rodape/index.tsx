@@ -1,4 +1,6 @@
 "use client";
+import Image from "next/image"
+
 export function Rodape() {
   return (
     <footer className="bg-gradient-to-r from-gray-100 via-[#dbbeb0] to-gray-100">
@@ -6,7 +8,7 @@ export function Rodape() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <a href="/" target="_self">
-              <img
+              <Image
                 src="/ritapachecointeiro-logo.png"
                 alt="Logo"
                 className="mr-5 h-6 sm:h-16"
