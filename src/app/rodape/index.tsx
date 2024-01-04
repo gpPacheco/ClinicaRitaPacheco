@@ -8,7 +8,7 @@ export function Rodape() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <a href="/" target="_self">
-              <Image
+              <img
                 src="/ritapachecointeiro-logo.png"
                 alt="Logo"
                 className="mr-5 h-6 sm:h-16"
@@ -36,10 +36,10 @@ export function Rodape() {
                 </svg>
               </a>
 
-              <a class="hover:opacity-75" href target="_blank" rel="noreferrer">
-                <span class="sr-only"> Instagram </span>
+              <a className="hover:opacity-75" target="_blank" rel="noreferrer">
+                <span className="sr-only"> Instagram </span>
                 <svg
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -51,10 +51,10 @@ export function Rodape() {
                   />
                 </svg>
               </a>
-              <a class="hover:opacity-75" href target="_blank" rel="noreferrer">
-                <span class="sr-only"> Twitter </span>
+              <a className="hover:opacity-75" target="_blank" rel="noreferrer">
+                <span className="sr-only"> Twitter </span>
                 <svg
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -62,10 +62,10 @@ export function Rodape() {
                   <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                 </svg>
               </a>
-              <a class="hover:opacity-75" href target="_blank" rel="noreferrer">
-                <span class="sr-only"> GitHub </span>
+              <a className="hover:opacity-75" target="_blank" rel="noreferrer">
+                <span className="sr-only"> GitHub </span>
                 <svg
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -77,10 +77,10 @@ export function Rodape() {
                   />
                 </svg>
               </a>
-              <a class="hover:opacity-75" href target="_blank" rel="noreferrer">
-                <span class="sr-only"> Dribbble </span>
+              <a className="hover:opacity-75" target="_blank" rel="noreferrer">
+                <span className="sr-only"> Dribbble </span>
                 <svg
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -94,75 +94,75 @@ export function Rodape() {
               </a>
             </div>
           </div>
-          <div class="grid grid-cols-1 gap-8 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <p class="font-medium">Links Rápidos</p>
-              <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-600">
-                <a class="hover:opacity-75" href>
+              <p className="font-medium">Links Rápidos</p>
+              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-600">
+                <a className="hover:opacity-75">
                   {" "}
                   Sobre{" "}
                 </a>
-                <a class="hover:opacity-75" href>
+                <a className="hover:opacity-75">
                   {" "}
                   História{" "}
                 </a>
-                <a class="hover:opacity-75" href>
+                <a className="hover:opacity-75">
                   {" "}
                   Reportagens{" "}
                 </a>
-                <a class="hover:opacity-75" href>
+                <a className="hover:opacity-75">
                   {" "}
                   Trabalhe Conosco{" "}
                 </a>
               </nav>
             </div>
             <div>
-              <p class="font-medium">Contato</p>
-              <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                <a class="hover:opacity-75" href="https://api.whatsapp.com/send/?phone=5516993108637&text&type=phone_number&app_absent=0">
+              <p className="font-medium">Contato</p>
+              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
+                <a className="hover:opacity-75" href="https://api.whatsapp.com/send/?phone=5516993108637&text&type=phone_number&app_absent=0">
                   {"(16) 99310-8637"}
                 </a>
-                <a class="hover:opacity-75" href>
+                <a className="hover:opacity-75">
                   {"(16) 3720-5691 "}
                 </a>
-                <a class="hover:opacity-75" href>
+                <a className="hover:opacity-75">
                   {" "}
                 </a>
               </nav>
             </div>
             <div>
-              <p class="font-medium">Saiba Mais</p>
-              <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-600">
-                <a class="hover:opacity-75" href>
+              <p className="font-medium">Saiba Mais</p>
+              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-600">
+                <a className="hover:opacity-75">
                   {" "}
                   Mentorias{" "}
                 </a>
-                <a class="hover:opacity-75" href>
+                <a className="hover:opacity-75">
                   {" "}
                   Cursos{" "}
                 </a>
-                <a class="hover:opacity-75" href>
+                <a className="hover:opacity-75">
                   {" "}
                   Avaliações{" "}
                 </a>
               </nav>
             </div>
             <div>
-              <p class="font-medium">Legal</p>
-              <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                <a class="hover:opacity-75" href>
+              <p className="font-medium">Legal</p>
+              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
+                <a className="hover:opacity-75">
                   {" "}
                   Privacy Policy{" "}
                 </a>
-                <a class="hover:opacity-75" href>
+                <a className="hover:opacity-75">
                   {" "}
                   Terms &amp; Conditions{" "}
                 </a>
-                <a class="hover:opacity-75" href>
+                <a className="hover:opacity-75">
                   {" "}
                   Returns Policy{" "}
                 </a>
-                <a class="hover:opacity-75" href>
+                <a className="hover:opacity-75">
                   {" "}
                   Accessibility{" "}
                 </a>
@@ -170,7 +170,7 @@ export function Rodape() {
             </div>
           </div>
         </div>
-        <p class="mt-8 text-xs text-gray-800">© 2023 Todos os Direitos reservados&nbsp;|&nbsp;
+        <p className="mt-8 text-xs text-gray-800">© 2023 Todos os Direitos reservados&nbsp;|&nbsp;
         <a className="hover:text-orange-600 text-zinc-950 text-xs font-bold underline" href="/"> Rita Pacheco </a>
         </p>
       </div>
