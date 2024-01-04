@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Lks } from "./links";
+import Image from "next/image"
 export function Header() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,7 +26,7 @@ export function Header() {
   }
   return (
     <div className="bg-zinc-100/50 flex flex-row gap-10 justify-around fixed w-full h-20 z-50 items-center px-4 font-light">
-      <img src="/ritapachecointeiro-logo.png" alt="Logo" className="h-fit" />
+      <Image src="/ritapachecointeiro-logo.png" alt="Logo" className="h-fit" />
       {isMobileMenuOpen ? (
         <button
           data-collapse-toggle="navbar-default"

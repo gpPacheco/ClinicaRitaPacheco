@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image"
 
 import React, { useState } from "react";
 
@@ -43,9 +44,10 @@ export default function Profissionais() {
                       </div>
                     </div>
                   </div>
-                  <img
+                  <Image
                     src="https://source.unsplash.com/random/400x400/"
                     className="w-full z-0 h-full object-fill example"
+                    alt="Imagem"
                   />
                 </div>
               </a>
