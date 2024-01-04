@@ -15,17 +15,17 @@ export default function Profissionais() {
         <div className="container mx-auto">
           <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl">
             Conheça quem são as{" "}
-            <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-500 lg:inline">
+            <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-800 lg:inline">
               Profissionais
             </span>{" "}
-            da clínica de podologia Rita Pacheco
+            da clínica de podologia Rita Pacheco:
           </h2>
           <p className="mb-20 text-lg text-gray-800">
             A&nbsp;
             <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-500 lg:inline">
               mais
             </span>{" "} 
-            de 14 anos
+            de 15 anos!
           </p>
 
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">

@@ -2,6 +2,6 @@
 
 import React, { useState } from "react";
 
-export default function Curiosidades(){
+export default function Mentoria(){
     
 }

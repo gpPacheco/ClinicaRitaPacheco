@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 export default function Contato(){
-    const [name, setName] = useState('Alex')
+    const [name, setName] = useState('')
     const [idade, setIdade] = useState(18)
-    const [contato, setContato] = useState('981999449')
+    const [contato, setContato] = useState('')
 
     return(
         <div className="flex w-full justify-center bg-rose-400">

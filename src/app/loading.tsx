@@ -5,7 +5,7 @@ export default function Loading() {
     <div className="flex items-center justify-center h-screen">
       <button
         type="button"
-        className="bg-zinc-500 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-indigo"
+        className="bg-zinc-500 text-white px-4 py-2 rounded flex items-center focus:outline-none focus:shadow-outline-indigo"
         disabled
       >
         <svg
@@ -16,12 +16,13 @@ export default function Loading() {
             className="opacity-25"
             cx="12"
             cy="12"
-            r="10"
+            r="8"
             stroke="currentColor"
             strokeWidth="4"
             fill="none"
           />
         </svg>
+        Carregando...
       </button>
     </div>
   );
