@@ -1,6 +1,5 @@
-'use client'
-import Image from "next/image"
-
+"use client";
+import Image from "next/image";
 import React, { useState } from "react";
 
 export default function Profissionais() {
@@ -24,7 +23,7 @@ export default function Profissionais() {
             A&nbsp;
             <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-500 lg:inline">
               mais
-            </span>{" "} 
+            </span>{" "}
             de 15 anos!
           </p>
 
@@ -44,11 +43,16 @@ export default function Profissionais() {
                       </div>
                     </div>
                   </div>
-                  <Image
-                    src="https://source.unsplash.com/random/400x400/"
-                    className="w-full z-0 h-full object-fill example"
-                    alt="Imagem"
-                  />
+                  {profissional.id === 1 && (
+                    <Image
+                      src="/ritapacheco.jpg"
+                      className="w-full z-0 h-full object-fill example"
+                      alt="Imagem"
+                      width={200}
+                      height={200}
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                  )}
                 </div>
               </a>
             ))}
