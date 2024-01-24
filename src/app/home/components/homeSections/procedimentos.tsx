@@ -8,17 +8,17 @@ export function Procedimentos() {
       <div className="flex justify-center items-center space-x-7">
         <Image
           className="w-60 h-40 object-cover"
-          src="/novas_imagens/Biosegurança/foto_a.jpg"
+          src=""
           alt="Imagem 1"
         />
         <Image
           className="w-60 h-40 object-cover"
-          src="/novas_imagens/Biosegurança/foto_b.jpg"
+          src=""
           alt="Imagem 2"
         />
         <Image
           className="w-60 h-40 object-cover"
-          src="/novas_imagens/Podologia_infantil/foto_a.jpg"
+          src=""
           alt="Imagem 3"
         />
       </div>

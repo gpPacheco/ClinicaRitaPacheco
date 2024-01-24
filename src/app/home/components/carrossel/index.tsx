@@ -74,3 +74,4 @@ export const EmblaCarousel = () => {
     </div>
   );
 };
+
