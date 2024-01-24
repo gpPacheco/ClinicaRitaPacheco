@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { useState, useEffect, Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -57,10 +58,11 @@ export function Header() {
                 <div className="flex flex-shrink-0 items-center">
                   <Link legacyBehavior href="/">
                     <a>
-                      <img
+                      <Image
                         className="h-8 w-auto cursor-pointer"
                         src="/logo.png"
                         alt="Clinica Rita Pacheco"
+                        height="500"
                       />
                     </a>
                   </Link>
@@ -92,10 +94,11 @@ export function Header() {
                     <Menu.Button className="relative flex rounded-full bg-zinc-100/50 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">User menu</span>
-                      <img
+                      <Image
                         className="h-8 w-8 rounded-full"
                         src="/marca.png"
                         alt=""
+                        height={500}
                       />
                     </Menu.Button>
                   </div>
