@@ -1,9 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { useState, useEffect, Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import classNames from "classnames";
 import Link from "next/link";
 
@@ -23,7 +22,7 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
-      const headerHeight = 20; // Update with your header height
+      const headerHeight = 20;
       setIsHeaderOpaque(offset < headerHeight);
     };
     window.addEventListener("scroll", handleScroll);
@@ -44,7 +43,7 @@ export function Header() {
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-zinc-100/50 hover:text-gray-600">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Menu</span>
                   {open ? (
@@ -58,11 +57,10 @@ export function Header() {
                 <div className="flex flex-shrink-0 items-center">
                   <Link legacyBehavior href="/">
                     <a>
-                      <Image
+                      <img
                         className="h-8 w-auto cursor-pointer"
                         src="/logo.png"
                         alt="Clinica Rita Pacheco"
-                        height="500"
                       />
                     </a>
                   </Link>
@@ -76,7 +74,7 @@ export function Header() {
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
-                            : "text-gray-900 hover:bg-gray-700 hover:text-white",
+                            : "text-gray-900 hover:bg-gray-600 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -91,14 +89,13 @@ export function Header() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-zinc-100/50 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="relative flex rounded-full bg-zinc-100/50 text-sm focus:outline-none">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">User menu</span>
-                      <Image
-                        className="h-8 w-8 rounded-full"
+                      <img
+                        className="h-10 w-10 rounded-full"
                         src="/marca.png"
-                        alt=""
-                        height={500}
+                        alt="Redes Sociais"
                       />
                     </Menu.Button>
                   </div>
@@ -115,7 +112,7 @@ export function Header() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="/pe-de-risco"
+                            href="https://api.whatsapp.com/send/?phone=5516993108637&text&type=phone_number&app_absent=0"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -128,7 +125,7 @@ export function Header() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="https://www.instagram.com/ritafpacheco/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -141,7 +138,7 @@ export function Header() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="https://www.facebook.com/ritapachecopodologa"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -157,26 +154,37 @@ export function Header() {
               </div>
             </div>
           </div>
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
-            </div>
-          </Disclosure.Panel>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100 transform"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="transition ease-in duration-75 transform"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <Disclosure.Panel className="sm:hidden bg-zinc-100/75 y-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div className="space-y-1 px-2 pb-3 pt-2">
+                {navigation.map((item) => (
+                  <Disclosure.Button
+                    key={item.name}
+                    as="a"
+                    href={item.href}
+                    className={classNames(
+                      item.current
+                        ? "bg-gray-900 text-white"
+                        : "text-black hover:bg-gray-600 hover:text-white",
+                      "block rounded-md px-3 py-2 text-base font-medium"
+                    )}
+                    aria-current={item.current ? "page" : undefined}
+                  >
+                    {item.name}
+                  </Disclosure.Button>
+                ))}
+              </div>
+            </Disclosure.Panel>
+          </Transition>
+
         </>
       )}
     </Disclosure>
