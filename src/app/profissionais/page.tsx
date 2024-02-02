@@ -14,7 +14,7 @@ export default function Profissionais() {
         <div className="container mx-auto">
           <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl">
             Conheça quem são as{" "}
-            <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-800 lg:inline">
+            <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 lg:inline">
               Profissionais
             </span>{" "}
             da clínica de podologia Rita Pacheco:
@@ -48,9 +48,21 @@ export default function Profissionais() {
                       src="/ritapacheco.jpg"
                       className="w-full z-0 h-full object-fill example"
                       alt="Imagem"
-                      width={200}
-                      height={200}
+                      width={500}
+                      height={500}
                       style={{ maxWidth: "100%", height: "auto" }}
+                      loading="lazy"
+                    />
+                  )}
+                  {profissional.id === 2 && (
+                    <Image
+                      src="/ritapacheco.jpg"
+                      className="w-full z-0 h-full object-fill example"
+                      alt="Imagem"
+                      width={500}
+                      height={500}
+                      style={{ maxWidth: "100%", height: "auto" }}
+                      loading="lazy"
                     />
                   )}
                 </div>

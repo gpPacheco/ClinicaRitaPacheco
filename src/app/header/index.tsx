@@ -2,39 +2,58 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect, Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { MenuIcon } from "@heroicons/react/outline";
 import classNames from "classnames";
 import Link from "next/link";
+import Image from 'next/image';
+import DropdownItem from './DropdownItem';
 
 
 const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Profissionais", href: "/profissionais", current: false },
-  { name: "A Clinica", href: "/clinica", current: false },
-  { name: "Especialidades", href: "/especialidades", current: false },
-  { name: "Produtos", href: "produtos", current: false },
-  { name: "Mentorias", href: "mentoria", current: false },
-  { name: "Contato", href: "contato", current: false },
+  { name: 'Home', href: '/', current: true },
+  { name: 'Profissionais', href: '/profissionais', current: false },
+  { name: 'A Clinica', current: false, submenuItems: [
+    { name: 'Subitem 1', href: '/' },
+    { name: 'Subitem 2', href: '/' },
+
+  ] },
+  { name: 'Especialidades', current: false, submenuItems: [
+    { name: 'Subitem 1', href: '/' },
+    { name: 'Subitem 2', href: '/' },
+
+  ] },
+  { name: 'Mentorias', current: false, submenuItems: [
+    { name: 'Subitem 1', href: '/' },
+    { name: 'Subitem 2', href: '/' },
+
+  ] },
+  { name: 'Produtos', href: 'produtos', current: false },
+
+  { name: 'Contato', href: 'contato', current: false },
 ];
+
 export function Header() {
   const router = useRouter();
   const [isHeaderOpaque, setIsHeaderOpaque] = useState(true);
+
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
       const headerHeight = 20;
       setIsHeaderOpaque(offset < headerHeight);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
   return (
     <Disclosure
       as="nav"
-      className={classNames("bg-zinc-100/50 fixed w-full h-20 z-50", {
-        "bg-zinc-100": isHeaderOpaque,
+      className={classNames('bg-zinc-100/50 fixed w-full h-20 z-50', {
+        'bg-zinc-100': isHeaderOpaque,
       })}
     >
       {({ open }) => (
@@ -47,9 +66,12 @@ export function Header() {
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Menu</span>
                   {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+
                   ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
@@ -57,30 +79,40 @@ export function Header() {
                 <div className="flex flex-shrink-0 items-center">
                   <Link legacyBehavior href="/">
                     <a>
-                      <img
+                      <Image
                         className="h-8 w-auto cursor-pointer"
                         src="/logo.png"
                         alt="Clinica Rita Pacheco"
+                        width={500}
+                        height={300}
                       />
                     </a>
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block sm:items-stretch">
-                  <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-900 hover:bg-gray-600 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
+            <div className="flex space-x-4">
+              {navigation.map((item) =>
+                item.submenuItems ? (
+                  <DropdownItem
+                    key={item.name}
+                    name={item.name}
+                    href={item.href}
+                    submenuItems={item.submenuItems}
+                  />
+                ) : (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={classNames(
+                      item.current
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-900 hover:bg-gray-600 hover:text-white ransition duration-300 ease-in-out',
+                      'rounded-md px-3 py-2 text-sm font-medium'
+                    )}
+                    aria-current={item.current ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </a>
                     ))}
                   </div>
                 </div>
@@ -92,10 +124,12 @@ export function Header() {
                     <Menu.Button className="relative flex rounded-full bg-zinc-100/50 text-sm focus:outline-none">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">User menu</span>
-                      <img
+                      <Image
                         className="h-10 w-10 rounded-full"
                         src="/marca.png"
                         alt="Redes Sociais"
+                        width={500}
+                        height={200}
                       />
                     </Menu.Button>
                   </div>
