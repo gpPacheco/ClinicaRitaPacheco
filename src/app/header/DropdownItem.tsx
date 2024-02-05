@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 
-const SubmenuItem = ({ name, href }) => (
+
+interface SubmenuItemProps {
+  name: string;
+  href?: string;
+}
+
+interface Data {
+  name: string;
+  href?: string;
+  submenuItems?: SubmenuItemProps[];
+}
+
+const SubmenuItem: React.FC<SubmenuItemProps> = ({ name, href }) => (
   <a href={href} className="block px-4 py-2 text-gray-700 hover:bg-gray-200">
     {name}
   </a>
 );
 
-const DropdownItem = ({ name, href, submenuItems }) => {
+const DropdownItem: React.FC<Data> = ({ name, href, submenuItems }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSubMenu = () => {
@@ -19,27 +31,31 @@ const DropdownItem = ({ name, href, submenuItems }) => {
       <a
         href={href}
         onClick={toggleSubMenu}
-        className={`flex items-center px-2 py-2 text-sm transition duration-300 ease-in-out rounded-md ${
-          isOpen 
-          ? "bg-gray-900 text-white"
-          : "text-black hover:bg-gray-600 hover:text-white"
+        className={`flex items-center px-2 py-2 text-sm transition duration-200 ease-in-out rounded-md ${
+          isOpen
+            ? 'bg-gray-900 text-white'
+            : 'text-black hover:bg-gray-600 hover:text-white'
         }`}
       >
         <span>{name}</span>
-        {submenuItems && (
+        {submenuItems && submenuItems.length > 0 && (
           <FaAngleDown
-            className={`ml-1 transition-transform duration-300 transform ${
+            className={`ml-1 transition-transform duration-180 transform ${
               isOpen ? 'rotate-180' : 'rotate-0'
             }`}
           />
         )}
       </a>
-      {isOpen && (
-        <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg">
-          {submenuItems.map((item, index) => (
-            <SubmenuItem key={index} name={item.name} href={item.href} />
-          ))}
+      {isOpen && submenuItems && submenuItems.length > 0 && (
+        <div className="absolute z-10 -ml-4 mt-3 transform w-screen max-w-md lg:max-w-2xl">
+        <div className="rounded-lg shadow-lg overflow-hidden">
+          <div className="relative grid gap-6 bg-white p-5 grid-cols-2 sm:gap-8 sm:p-8">
+            {submenuItems.map((item, index) => (
+              <SubmenuItem key={index} name={item.name} href={item.href} />
+            ))}
+          </div>
         </div>
+      </div>
       )}
     </div>
   );

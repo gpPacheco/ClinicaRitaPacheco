@@ -8,25 +8,33 @@ import Link from "next/link";
 import Image from 'next/image';
 import DropdownItem from './DropdownItem';
 
-
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'Profissionais', href: '/profissionais', current: false },
-  { name: 'A Clinica', current: false, submenuItems: [
-    { name: 'Subitem 1', href: '/' },
-    { name: 'Subitem 2', href: '/' },
+  {
+    name: 'A Clinica', current: false, submenuItems: [
+      { name: 'Sobre', href: '/' },
+      { name: 'Spa', href: '/' },
+      { name: 'Biossegurança', href: '/' },
+      { name: 'Esterelização', href: '/' },
+    ]
+  },
+  {
+    name: 'Especialidades', current: false, submenuItems: [
+      { name: 'Pé de Risco: Diabético / Neuro-Vascular', href: '/' },
+      { name: 'Podologia Esportiva', href: '/' },
+      { name: 'Podologia Geriátrica', href: '/' },
+      { name: 'Podologia Hospitalar', href: '/' },
+      { name: 'Podologia Infantil', href: '/' },
+    ]
+  },
+  {
+    name: 'Especializações', current: false, submenuItems: [
+      { name: 'Cursos', href: '/' },
+      { name: 'Mentorias', href: '/' },
 
-  ] },
-  { name: 'Especialidades', current: false, submenuItems: [
-    { name: 'Subitem 1', href: '/' },
-    { name: 'Subitem 2', href: '/' },
-
-  ] },
-  { name: 'Mentorias', current: false, submenuItems: [
-    { name: 'Subitem 1', href: '/' },
-    { name: 'Subitem 2', href: '/' },
-
-  ] },
+    ]
+  },
   { name: 'Produtos', href: 'produtos', current: false },
 
   { name: 'Contato', href: 'contato', current: false },
@@ -52,7 +60,7 @@ export function Header() {
   return (
     <Disclosure
       as="nav"
-      className={classNames('bg-zinc-100/50 fixed w-full h-20 z-50', {
+      className={classNames('bg-zinc-100/60 fixed w-full h-20 z-50', {
         'bg-zinc-100': isHeaderOpaque,
       })}
     >
@@ -90,8 +98,8 @@ export function Header() {
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block sm:items-stretch">
-            <div className="flex space-x-4">
-              {navigation.map((item) =>
+                  <div className="flex space-x-4">
+                  {navigation.map((item) =>
                 item.submenuItems ? (
                   <DropdownItem
                     key={item.name}
@@ -113,7 +121,7 @@ export function Header() {
                   >
                     {item.name}
                   </a>
-                    ))}
+                      ))}
                   </div>
                 </div>
               </div>
