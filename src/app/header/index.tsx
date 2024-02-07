@@ -1,5 +1,4 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { useState, useEffect, Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon } from "@heroicons/react/outline";
@@ -7,6 +6,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import Image from 'next/image';
 import DropdownItem from './DropdownItem';
+import MobileSubmenu from './MobileSubmenu';
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -21,7 +21,8 @@ const navigation = [
   },
   {
     name: 'Especialidades', current: false, submenuItems: [
-      { name: 'Pé de Risco: Diabético / Neuro-Vascular', href: '/' },
+      { name: 'Pé de Risco: Diabético', href: '/' },
+      { name: 'Pé Neuro-Vascular', href: '/' },
       { name: 'Podologia Esportiva', href: '/' },
       { name: 'Podologia Geriátrica', href: '/' },
       { name: 'Podologia Hospitalar', href: '/' },
@@ -41,7 +42,6 @@ const navigation = [
 ];
 
 export function Header() {
-  const router = useRouter();
   const [isHeaderOpaque, setIsHeaderOpaque] = useState(true);
 
   useEffect(() => {
@@ -99,28 +99,28 @@ export function Header() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block sm:items-stretch">
                   <div className="flex space-x-4">
-                  {navigation.map((item) =>
-                item.submenuItems ? (
-                  <DropdownItem
-                    key={item.name}
-                    name={item.name}
-                    href={item.href}
-                    submenuItems={item.submenuItems}
-                  />
-                ) : (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      item.current
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-900 hover:bg-gray-600 hover:text-white ransition duration-300 ease-in-out',
-                      'rounded-md px-3 py-2 text-sm font-medium'
-                    )}
-                    aria-current={item.current ? 'page' : undefined}
-                  >
-                    {item.name}
-                  </a>
+                    {navigation.map((item) =>
+                      item.submenuItems ? (
+                        <DropdownItem
+                          key={item.name}
+                          name={item.name}
+                          href={item.href}
+                          submenuItems={item.submenuItems}
+                        />
+                      ) : (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className={classNames(
+                            item.current
+                              ? 'bg-gray-900 text-white'
+                              : 'text-gray-900 hover:bg-gray-600 hover:text-white ransition duration-300 ease-in-out',
+                            'rounded-md px-3 py-2 text-sm font-medium'
+                          )}
+                          aria-current={item.current ? 'page' : undefined}
+                        >
+                          {item.name}
+                        </a>
                       ))}
                   </div>
                 </div>
@@ -214,19 +214,22 @@ export function Header() {
                     href={item.href}
                     className={classNames(
                       item.current
-                        ? "bg-gray-900 text-white"
-                        : "text-black hover:bg-gray-600 hover:text-white",
-                      "block rounded-md px-3 py-2 text-base font-medium"
+                        ? 'bg-gray-900 text-white'
+                        : 'text-black hover:bg-gray-600 hover:text-white',
+                      'block rounded-md px-3 py-2 text-base font-medium'
                     )}
-                    aria-current={item.current ? "page" : undefined}
+                    aria-current={item.current ? 'page' : undefined}
                   >
                     {item.name}
+                    {/* Verifica se o item possui submenus */}
+                    {item.submenuItems && (
+                      <MobileSubmenu submenuItems={item.submenuItems} title={"-------------------------------------------------------------"} />
+                    )}
                   </Disclosure.Button>
                 ))}
               </div>
             </Disclosure.Panel>
           </Transition>
-
         </>
       )}
     </Disclosure>
