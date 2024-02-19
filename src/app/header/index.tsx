@@ -1,12 +1,12 @@
 "use client";
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment, Key } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon } from "@heroicons/react/outline";
 import classNames from "classnames";
 import Link from "next/link";
 import Image from 'next/image';
-import DropdownItem from './DropdownItem';
-import MobileSubmenu from './MobileSubmenu';
+import { FaAngleDown } from "react-icons/fa";
+import { Transition as ReactTransition } from "react-transition-group";
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -56,6 +56,70 @@ export function Header() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const SubmenuItem = ({ name, href }) => (
+    <a href={href} className="block px-4 py-3 text-gray-700 hover:bg-gray-200">
+      {name}
+    </a>
+  );
+
+  const DropdownItem = ({ name, href, submenuItems }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleSubMenu = (e: { preventDefault: () => void; }) => {
+      e.preventDefault();
+      setIsOpen(!isOpen);
+    };
+
+    return (
+      <div className="relative">
+        <a
+          href={href}
+          onClick={toggleSubMenu}
+          className={classNames(
+            "flex items-center px-2 py-2 text-sm transition duration-200 ease-in-out rounded-md",
+            {
+              "bg-gray-900 text-white": isOpen,
+              "text-black hover:bg-gray-600 hover:text-white": !isOpen,
+            }
+          )}
+        >
+          <span>{name}</span>
+          {submenuItems && submenuItems.length > 0 && (
+            <FaAngleDown
+              className={classNames(
+                "ml-1 transition-transform duration-170 transform",
+                { "rotate-180": isOpen }
+              )}
+            />
+          )}
+        </a>
+        <ReactTransition in={isOpen} timeout={200} unmountOnExit>
+          {(state) => (
+            <div
+              className={classNames(
+                "absolute z-10 transform w-screen max-w-md lg:max-w-2xl transition-opacity",
+                {
+                  "opacity-100": state === "entered",
+                  "opacity-0": state === "exiting",
+                }
+              )}
+              style={{ width: "550px" }}
+            >
+              <div className="rounded-lg shadow-lg overflow-hidden">
+                <div className="relative grid bg-white p-2 grid-cols-2">
+                  {submenuItems &&
+                    submenuItems.map((item: { name: any; href: any; }, index: Key | null | undefined) => (
+                      <SubmenuItem key={index} name={item.name} href={item.href} />
+                    ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </ReactTransition>
+      </div>
+    );
+  };
 
   return (
     <Disclosure
@@ -114,14 +178,15 @@ export function Header() {
                           className={classNames(
                             item.current
                               ? 'bg-gray-900 text-white'
-                              : 'text-gray-900 hover:bg-gray-600 hover:text-white ransition duration-300 ease-in-out',
-                            'rounded-md px-3 py-2 text-sm font-medium'
+                              : 'text-gray-700 hover:bg-gray-200 hover:text-gray-900',
+                            'px-3 py-2 rounded-md text-sm font-medium'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
                           {item.name}
                         </a>
-                      ))}
+                      )
+                    )}
                   </div>
                 </div>
               </div>
@@ -221,10 +286,6 @@ export function Header() {
                     aria-current={item.current ? 'page' : undefined}
                   >
                     {item.name}
-                    {/* Verifica se o item possui submenus */}
-                    {item.submenuItems && (
-                      <MobileSubmenu submenuItems={item.submenuItems} title={"-------------------------------------------------------------"} />
-                    )}
                   </Disclosure.Button>
                 ))}
               </div>
