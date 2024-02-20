@@ -57,13 +57,13 @@ export function Header() {
     };
   }, []);
 
-  const SubmenuItem = ({ name, href }) => (
+  const SubmenuItem = ({ name, href }: { name: string; href:  string}) => (
     <a href={href} className="block px-4 py-3 text-gray-700 hover:bg-gray-200">
       {name}
     </a>
   );
 
-  const DropdownItem = ({ name, href, submenuItems }) => {
+  const DropdownItem = ({ name, href, submenuItems }: { name: string; href: string; submenuItems: { name: string; href: string; }[] }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleSubMenu = (e: { preventDefault: () => void; }) => {
@@ -163,30 +163,31 @@ export function Header() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block sm:items-stretch">
                   <div className="flex space-x-4">
-                    {navigation.map((item) =>
-                      item.submenuItems ? (
-                        <DropdownItem
-                          key={item.name}
-                          name={item.name}
-                          href={item.href}
-                          submenuItems={item.submenuItems}
-                        />
-                      ) : (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'bg-gray-900 text-white'
-                              : 'text-gray-700 hover:bg-gray-200 hover:text-gray-900',
-                            'px-3 py-2 rounded-md text-sm font-medium'
-                          )}
-                          aria-current={item.current ? 'page' : undefined}
-                        >
-                          {item.name}
-                        </a>
-                      )
-                    )}
+                  {navigation.map((item) =>
+  item.submenuItems ? (
+    <DropdownItem
+      key={item.name}
+      name={item.name}
+      href={item.href || '#'} // Defina um valor padrão, como '#', caso href seja undefined
+      submenuItems={item.submenuItems}
+    />
+  ) : (
+    <a
+      key={item.name}
+      href={item.href || '#'} // Defina um valor padrão, como '#', caso href seja undefined
+      className={classNames(
+        item.current
+          ? 'bg-gray-900 text-white'
+          : 'text-gray-700 hover:bg-gray-200 hover:text-gray-900',
+        'px-3 py-2 rounded-md text-sm font-medium'
+      )}
+      aria-current={item.current ? 'page' : undefined}
+    >
+      {item.name}
+    </a>
+  )
+)}
+
                   </div>
                 </div>
               </div>
