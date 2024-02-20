@@ -5,7 +5,7 @@ import { MenuIcon } from "@heroicons/react/outline";
 import classNames from "classnames";
 import Link from "next/link";
 import Image from 'next/image';
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaWhatsapp, FaInstagram, FaFacebook, FaLinkedin, FaTiktok } from "react-icons/fa";
 import { Transition as ReactTransition } from "react-transition-group";
 
 const navigation = [
@@ -33,7 +33,6 @@ const navigation = [
     name: 'Especializações', current: false, submenuItems: [
       { name: 'Cursos', href: '/' },
       { name: 'Mentorias', href: '/' },
-
     ]
   },
   { name: 'Produtos', href: 'produtos', current: false },
@@ -57,7 +56,7 @@ export function Header() {
     };
   }, []);
 
-  const SubmenuItem = ({ name, href }: { name: string; href:  string}) => (
+  const SubmenuItem = ({ name, href }: { name: string; href: string }) => ( //codigo responsavel pela estrutura dos itens do Sub menu
     <a href={href} className="block px-4 py-3 text-gray-700 hover:bg-gray-200">
       {name}
     </a>
@@ -78,7 +77,7 @@ export function Header() {
           onClick={toggleSubMenu}
           className={classNames(
             "flex items-center px-2 py-2 text-sm transition duration-200 ease-in-out rounded-md",
-            {
+            { //coidgo responsavel pelas palavras que tem a funcao de submenu:
               "bg-gray-900 text-white": isOpen,
               "text-black hover:bg-gray-600 hover:text-white": !isOpen,
             }
@@ -163,30 +162,30 @@ export function Header() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block sm:items-stretch">
                   <div className="flex space-x-4">
-                  {navigation.map((item) =>
-  item.submenuItems ? (
-    <DropdownItem
-      key={item.name}
-      name={item.name}
-      href={item.href || '#'} // Defina um valor padrão, como '#', caso href seja undefined
-      submenuItems={item.submenuItems}
-    />
-  ) : (
-    <a
-      key={item.name}
-      href={item.href || '#'} // Defina um valor padrão, como '#', caso href seja undefined
-      className={classNames(
-        item.current
-          ? 'bg-gray-900 text-white'
-          : 'text-gray-700 hover:bg-gray-200 hover:text-gray-900',
-        'px-3 py-2 rounded-md text-sm font-medium'
-      )}
-      aria-current={item.current ? 'page' : undefined}
-    >
-      {item.name}
-    </a>
-  )
-)}
+                    {navigation.map((item) =>
+                      item.submenuItems ? (
+                        <DropdownItem
+                          key={item.name}
+                          name={item.name}
+                          href={item.href || '#'} // Defina um valor padrão, como '#', caso href seja undefined
+                          submenuItems={item.submenuItems}
+                        />
+                      ) : (
+                        <a
+                          key={item.name}
+                          href={item.href || '#'} // Defina um valor padrão, como '#', caso href seja undefined
+                          className={classNames(
+                            item.current
+                              ? 'bg-gray-900 text-white'
+                              : 'text-black hover:bg-gray-600 hover:text-white',
+                            'px-3 py-2 rounded-md text-sm font-medium'
+                          )}
+                          aria-current={item.current ? 'page' : undefined}
+                        >
+                          {item.name}
+                        </a>
+                      )
+                    )}
 
                   </div>
                 </div>
@@ -226,7 +225,9 @@ export function Header() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            WhatsApp
+                            <span className="flex items-center">
+                              <FaWhatsapp className="mr-2" /> WhatsApp
+                            </span>
                           </a>
                         )}
                       </Menu.Item>
@@ -239,7 +240,9 @@ export function Header() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Instagram
+                            <span className="flex items-center">
+                              <FaInstagram className="mr-2" /> Instagram
+                            </span>
                           </a>
                         )}
                       </Menu.Item>
@@ -252,7 +255,39 @@ export function Header() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Facebook
+                            <span className="flex items-center">
+                              <FaFacebook className="mr-2" /> Facebook
+                            </span>
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="https://www.linkedin.com/company/clinica-rita-pacheco/"
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            <span className="flex items-center">
+                              <FaLinkedin className="mr-2" /> LinkedIn
+                            </span>
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="https://www.tiktok.com/@ritafpachecoo"
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            <span className="flex items-center">
+                              <FaTiktok className="mr-2" /> TikTok
+                            </span>
                           </a>
                         )}
                       </Menu.Item>
