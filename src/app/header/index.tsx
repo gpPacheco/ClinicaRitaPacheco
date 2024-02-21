@@ -1,40 +1,130 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment, Key } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { MenuIcon } from "@heroicons/react/outline";
 import classNames from "classnames";
 import Link from "next/link";
-
+import Image from 'next/image';
+import { FaAngleDown, FaWhatsapp, FaInstagram, FaFacebook, FaLinkedin, FaTiktok } from "react-icons/fa";
+import { Transition as ReactTransition } from "react-transition-group";
 
 const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Profissionais", href: "/profissionais", current: false },
-  { name: "A Clinica", href: "/clinica", current: false },
-  { name: "Especialidades", href: "/especialidades", current: false },
-  { name: "Produtos", href: "produtos", current: false },
-  { name: "Mentorias", href: "mentoria", current: false },
-  { name: "Contato", href: "contato", current: false },
+  { name: 'Home', href: '/', current: true },
+  { name: 'Profissionais', href: '/profissionais', current: false },
+  {
+    name: 'A Clinica', current: false, submenuItems: [
+      { name: 'Sobre', href: '/' },
+      { name: 'Spa', href: '/' },
+      { name: 'Biossegurança', href: '/' },
+      { name: 'Esterelização', href: '/' },
+    ]
+  },
+  {
+    name: 'Especialidades', current: false, submenuItems: [
+      { name: 'Pé de Risco: Diabético', href: '/' },
+      { name: 'Pé Neuro-Vascular', href: '/' },
+      { name: 'Podologia Esportiva', href: '/' },
+      { name: 'Podologia Geriátrica', href: '/' },
+      { name: 'Podologia Hospitalar', href: '/' },
+      { name: 'Podologia Infantil', href: '/' },
+    ]
+  },
+  {
+    name: 'Especializações', current: false, submenuItems: [
+      { name: 'Cursos', href: '/' },
+      { name: 'Mentorias', href: '/' },
+    ]
+  },
+  { name: 'Produtos', href: 'produtos', current: false },
+
+  { name: 'Contato', href: 'contato', current: false },
 ];
+
 export function Header() {
-  const router = useRouter();
   const [isHeaderOpaque, setIsHeaderOpaque] = useState(true);
+
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
       const headerHeight = 20;
       setIsHeaderOpaque(offset < headerHeight);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const SubmenuItem = ({ name, href }: { name: string; href: string }) => ( //codigo responsavel pela estrutura dos itens do Sub menu
+    <a href={href} className="block px-4 py-3 text-gray-700 hover:bg-gray-200">
+      {name}
+    </a>
+  );
+
+  const DropdownItem = ({ name, href, submenuItems }: { name: string; href: string; submenuItems: { name: string; href: string; }[] }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleSubMenu = (e: { preventDefault: () => void; }) => {
+      e.preventDefault();
+      setIsOpen(!isOpen);
+    };
+
+    return (
+      <div className="relative">
+        <a
+          href={href}
+          onClick={toggleSubMenu}
+          className={classNames(
+            "flex items-center px-2 py-2 text-sm transition duration-200 ease-in-out rounded-md",
+            { //coidgo responsavel pelas palavras que tem a funcao de submenu:
+              "bg-gray-900 text-white": isOpen,
+              "text-black hover:bg-gray-600 hover:text-white": !isOpen,
+            }
+          )}
+        >
+          <span>{name}</span>
+          {submenuItems && submenuItems.length > 0 && (
+            <FaAngleDown
+              className={classNames(
+                "ml-1 transition-transform duration-170 transform",
+                { "rotate-180": isOpen }
+              )}
+            />
+          )}
+        </a>
+        <ReactTransition in={isOpen} timeout={200} unmountOnExit>
+          {(state) => (
+            <div
+              className={classNames(
+                "absolute z-10 transform w-screen max-w-md lg:max-w-2xl transition-opacity",
+                {
+                  "opacity-100": state === "entered",
+                  "opacity-0": state === "exiting",
+                }
+              )}
+              style={{ width: "550px" }}
+            >
+              <div className="rounded-lg shadow-lg overflow-hidden">
+                <div className="relative grid bg-white p-2 grid-cols-2">
+                  {submenuItems &&
+                    submenuItems.map((item: { name: any; href: any; }, index: Key | null | undefined) => (
+                      <SubmenuItem key={index} name={item.name} href={item.href} />
+                    ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </ReactTransition>
+      </div>
+    );
+  };
+
   return (
     <Disclosure
       as="nav"
-      className={classNames("bg-zinc-100/50 fixed w-full h-20 z-50", {
-        "bg-zinc-100": isHeaderOpaque,
+      className={classNames('bg-zinc-100/60 fixed w-full h-20 z-50', {
+        'bg-zinc-100': isHeaderOpaque,
       })}
     >
       {({ open }) => (
@@ -47,9 +137,12 @@ export function Header() {
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Menu</span>
                   {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+
                   ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
@@ -57,31 +150,43 @@ export function Header() {
                 <div className="flex flex-shrink-0 items-center">
                   <Link legacyBehavior href="/">
                     <a>
-                      <img
+                      <Image
                         className="h-8 w-auto cursor-pointer"
                         src="/logo.png"
                         alt="Clinica Rita Pacheco"
+                        width={500}
+                        height={300}
                       />
                     </a>
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block sm:items-stretch">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-900 hover:bg-gray-600 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                    {navigation.map((item) =>
+                      item.submenuItems ? (
+                        <DropdownItem
+                          key={item.name}
+                          name={item.name}
+                          href={item.href || '#'} // Defina um valor padrão, como '#', caso href seja undefined
+                          submenuItems={item.submenuItems}
+                        />
+                      ) : (
+                        <a
+                          key={item.name}
+                          href={item.href || '#'} // Defina um valor padrão, como '#', caso href seja undefined
+                          className={classNames(
+                            item.current
+                              ? 'bg-gray-900 text-white'
+                              : 'text-black hover:bg-gray-600 hover:text-white',
+                            'px-3 py-2 rounded-md text-sm font-medium'
+                          )}
+                          aria-current={item.current ? 'page' : undefined}
+                        >
+                          {item.name}
+                        </a>
+                      )
+                    )}
+
                   </div>
                 </div>
               </div>
@@ -92,10 +197,12 @@ export function Header() {
                     <Menu.Button className="relative flex rounded-full bg-zinc-100/50 text-sm focus:outline-none">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">User menu</span>
-                      <img
+                      <Image
                         className="h-10 w-10 rounded-full"
                         src="/marca.png"
                         alt="Redes Sociais"
+                        width={500}
+                        height={200}
                       />
                     </Menu.Button>
                   </div>
@@ -118,7 +225,9 @@ export function Header() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            WhatsApp
+                            <span className="flex items-center">
+                              <FaWhatsapp className="mr-2" /> WhatsApp
+                            </span>
                           </a>
                         )}
                       </Menu.Item>
@@ -131,7 +240,9 @@ export function Header() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Instagram
+                            <span className="flex items-center">
+                              <FaInstagram className="mr-2" /> Instagram
+                            </span>
                           </a>
                         )}
                       </Menu.Item>
@@ -144,7 +255,39 @@ export function Header() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Facebook
+                            <span className="flex items-center">
+                              <FaFacebook className="mr-2" /> Facebook
+                            </span>
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="https://www.linkedin.com/company/clinica-rita-pacheco/"
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            <span className="flex items-center">
+                              <FaLinkedin className="mr-2" /> LinkedIn
+                            </span>
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="https://www.tiktok.com/@ritafpachecoo"
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            <span className="flex items-center">
+                              <FaTiktok className="mr-2" /> TikTok
+                            </span>
                           </a>
                         )}
                       </Menu.Item>
@@ -172,11 +315,11 @@ export function Header() {
                     href={item.href}
                     className={classNames(
                       item.current
-                        ? "bg-gray-900 text-white"
-                        : "text-black hover:bg-gray-600 hover:text-white",
-                      "block rounded-md px-3 py-2 text-base font-medium"
+                        ? 'bg-gray-900 text-white'
+                        : 'text-black hover:bg-gray-600 hover:text-white',
+                      'block rounded-md px-3 py-2 text-base font-medium'
                     )}
-                    aria-current={item.current ? "page" : undefined}
+                    aria-current={item.current ? 'page' : undefined}
                   >
                     {item.name}
                   </Disclosure.Button>
@@ -184,7 +327,6 @@ export function Header() {
               </div>
             </Disclosure.Panel>
           </Transition>
-
         </>
       )}
     </Disclosure>

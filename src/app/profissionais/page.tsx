@@ -6,6 +6,8 @@ export default function Profissionais() {
   const [profissionais, setProfissionais] = useState([
     { id: 1, nome: "Rita Fernandes Rosa Pacheco", especialidade: "Podóloga" },
     { id: 2, nome: "Profissional 2", especialidade: "Especialidade 2" },
+    { id: 3, nome: "Profissional 3", especialidade: "Especialidade 3" },
+    { id: 4, nome: "Profissional 4", especialidade: "Especialidade 4" },
   ]);
 
   return (
@@ -14,14 +16,14 @@ export default function Profissionais() {
         <div className="container mx-auto">
           <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl">
             Conheça quem são as{" "}
-            <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-800 lg:inline">
+            <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 lg:inline">
               Profissionais
             </span>{" "}
             da clínica de podologia Rita Pacheco:
           </h2>
           <p className="mb-20 text-lg text-gray-800">
             A&nbsp;
-            <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-500 lg:inline">
+            <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
               mais
             </span>{" "}
             de 15 anos!
@@ -30,8 +32,8 @@ export default function Profissionais() {
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
             {profissionais.map((profissional) => (
               <a key={profissional.id} href="#" className="shadow-2xl relative">
-                <div className="h-full relative shadow-2xl shadow-green-900 overflow-hidden group">
-                  <div className="absolute -bottom-10 group-hover:top-0 left-0 w-full h-full group-hover:bg-green-900 transition-all ease-in-out duration-500">
+                <div className="h-96 relative shadow-2xl shadow-zinc-900 overflow-hidden group">
+                  <div className="absolute -bottom-10 group-hover:top-0 left-0 w-full h-full group-hover:bg-zinc-900/50 transition-all ease-in-out duration-500">
                     <div className="w-full h-full p-5 relative">
                       <div className="absolute bottom-0 group-hover:bottom-24 text-white text-left transition-all ease-in-out duration-500">
                         <h2 className="text-2xl font-bold text-white mb-0 pb-1">
@@ -51,6 +53,40 @@ export default function Profissionais() {
                       width={200}
                       height={200}
                       style={{ maxWidth: "100%", height: "auto" }}
+                      loading="lazy"
+                    />
+                  )}
+                  {profissional.id === 2 && (
+                    <Image
+                      src="/ritapacheco.jpg"
+                      className="w-full z-0 h-full object-fill example"
+                      alt="Imagem"
+                      width={500}
+                      height={500}
+                      style={{ maxWidth: "100%", height: "auto" }}
+                      loading="lazy"
+                    />
+                  )}
+                  {profissional.id === 3 && (
+                    <Image
+                      src="/ritapacheco.jpg"
+                      className="w-full z-0 h-full object-fill example"
+                      alt="Imagem"
+                      width={500}
+                      height={500}
+                      style={{ maxWidth: "100%", height: "auto" }}
+                      loading="lazy"
+                    />
+                  )}
+                  {profissional.id === 4 && (
+                    <Image
+                      src="/ritapacheco.jpg"
+                      className="w-full z-0 h-full object-fill example"
+                      alt="Imagem"
+                      width={500}
+                      height={500}
+                      style={{ maxWidth: "100%", height: "auto" }}
+                      loading="lazy"
                     />
                   )}
                 </div>
