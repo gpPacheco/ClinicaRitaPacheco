@@ -196,7 +196,7 @@ export function Header() {
                   <div>
                     <Menu.Button className="relative flex rounded-full bg-zinc-100/50 text-sm focus:outline-none">
                       <span className="absolute -inset-1.5" />
-                      <span className="sr-only">User menu</span>
+                      <span className="sr-only">Redes Sociais</span>
                       <Image
                         className="h-10 w-10 rounded-full"
                         src="/marca.png"
@@ -308,22 +308,51 @@ export function Header() {
           >
             <Disclosure.Panel className="sm:hidden bg-zinc-100/75 y-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="space-y-1 px-2 pb-3 pt-2">
-                {navigation.map((item) => (
-                  <Disclosure.Button
-                    key={item.name}
-                    as="a"
-                    href={item.href}
-                    className={classNames(
-                      item.current
-                        ? 'bg-gray-900 text-white'
-                        : 'text-black hover:bg-gray-600 hover:text-white',
-                      'block rounded-md px-3 py-2 text-base font-medium'
-                    )}
-                    aria-current={item.current ? 'page' : undefined}
-                  >
-                    {item.name}
-                  </Disclosure.Button>
-                ))}
+                {navigation.map((item) =>
+                  item.submenuItems ? (
+                    // Componente personalizado para itens com submenus
+                    <div key={item.name} className="block">
+                      <Disclosure.Button
+                        as="div"
+                        className="text-black hover:bg-gray-600 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                      >
+                        {item.name}
+                        {/* Adicione um ícone de dropdown aqui se desejar */}
+                      </Disclosure.Button>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100 transform"
+                        enterFrom="opacity-0 scale-95"
+                        enterTo="opacity-100 scale-100"
+                        leave="transition ease-in duration-75 transform"
+                        leaveFrom="opacity-100 scale-100"
+                        leaveTo="opacity-0 scale-95"
+                      >
+                        <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                          {item.submenuItems.map((subItem) => (
+                            <Disclosure.Button
+                              key={subItem.name}
+                              as="a"
+                              href={subItem.href}
+                              className="block px-4 py-2 rounded-md hover:bg-gray-200"
+                            >
+                              {subItem.name}
+                            </Disclosure.Button>
+                          ))}
+                        </Disclosure.Panel>
+                      </Transition>
+                    </div>
+                  ) : (
+                    <Disclosure.Button
+                      key={item.name}
+                      as="a"
+                      href={item.href}
+                      className="text-black hover:bg-white hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                    >
+                      {item.name}
+                    </Disclosure.Button>
+                  )
+                )}
               </div>
             </Disclosure.Panel>
           </Transition>
