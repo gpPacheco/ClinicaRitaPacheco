@@ -91,14 +91,12 @@ export function Rodape() {
             </div>
           </div>
         </div>
-        <p className="mt-8 text-xs text-gray-800">
-          © 2023 Todos os Direitos reservados&nbsp;|&nbsp;
+        <p className="mt-8 text-xs text-zinc-950">
           <a
-            className="hover:text-orange-600 text-zinc-950 text-xs font-bold underline"
+            className="hover:text-orange-600 text-zinc-950 text-ml font-bold underline"
             href="/"
           >
-            {" "}
-            Rita Pacheco{" "}
+           © Clinica Rita Pacheco
           </a>
         </p>
       </div>

@@ -87,13 +87,18 @@ export function Header() {
           {submenuItems && submenuItems.length > 0 && (
             <FaAngleDown
               className={classNames(
-                "ml-1 transition-transform duration-170 transform",
+                "ml-1 transition-transform duration-180 transform",
                 { "rotate-180": isOpen }
               )}
             />
           )}
         </a>
-        <ReactTransition in={isOpen} timeout={200} unmountOnExit>
+        <ReactTransition
+          in={isOpen}
+          timeout={{ enter: 300, exit: 150 }} // Tempo de duração da transição
+          classNames="transition-opacity" // Classe para animação de opacidade
+          unmountOnExit
+        >
           {(state) => (
             <div
               className={classNames(
@@ -116,6 +121,7 @@ export function Header() {
             </div>
           )}
         </ReactTransition>
+
       </div>
     );
   };
@@ -299,33 +305,38 @@ export function Header() {
           </div>
           <Transition
             as={Fragment}
-            enter="transition ease-out duration-100 transform"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
-            leave="transition ease-in duration-75 transform"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
           >
-            <Disclosure.Panel className="sm:hidden bg-zinc-100/75 y-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <div className="space-y-1 px-2 pb-3 pt-2">
-                {navigation.map((item) => (
-                  <Disclosure.Button
-                    key={item.name}
-                    as="a"
-                    href={item.href}
-                    className={classNames(
-                      item.current
-                        ? 'bg-gray-900 text-white'
-                        : 'text-black hover:bg-gray-600 hover:text-white',
-                      'block rounded-md px-3 py-2 text-base font-medium'
-                    )}
-                    aria-current={item.current ? 'page' : undefined}
-                  >
-                    {item.name}
-                  </Disclosure.Button>
-                ))}
-              </div>
-            </Disclosure.Panel>
+            <div>
+              {navigation.map((item) => (
+                <Fragment key={item.name}>
+                  {item.submenuItems ? (
+                    <DropdownItem
+                      name={item.name}
+                      href={item.href || '#'}
+                      submenuItems={item.submenuItems}
+                    />
+                  ) : (
+                    <Disclosure.Button
+                      as="a"
+                      href={item.href}
+                      className={classNames(
+                        item.current ? 'bg-gray-900 text-white' : 'text-black hover:bg-gray-600 hover:text-white',
+                        'block rounded-md px-3 py-2 text-base font-medium'
+                      )}
+                      aria-current={item.current ? 'page' : undefined}
+                    >
+                      {item.name}
+                    </Disclosure.Button>
+                  )}
+                </Fragment>
+              ))}
+            </div>
           </Transition>
         </>
       )}
