@@ -168,6 +168,7 @@ export function Header() {
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block sm:items-stretch">
+                  {/* Desktop menu */}
                   <div className="flex space-x-4">
                     {navigation.map((item) =>
                       item.submenuItems ? (
@@ -313,7 +314,8 @@ export function Header() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <div>
+            {/* menu mobile container */}
+            <div className="bg-white">
               {navigation.map((item) => (
                 <Fragment key={item.name}>
                   {item.submenuItems ? (
