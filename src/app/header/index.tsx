@@ -47,7 +47,7 @@ export function Header() {
     const handleScroll = () => {
       const offset = window.scrollY;
       const headerHeight = 20;
-      setIsHeaderOpaque(offset < headerHeight);
+      setIsHeaderOpaque(offset <= headerHeight);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -56,7 +56,7 @@ export function Header() {
     };
   }, []);
 
-  const SubmenuItem = ({ name, href }: { name: string; href: string }) => ( //codigo responsavel pela estrutura dos itens do Sub menu
+  const SubmenuItem = ({ name, href }: { name: string; href: string }) => (
     <a href={href} className="block px-4 py-3 text-gray-700 hover:bg-gray-200">
       {name}
     </a>
@@ -87,16 +87,17 @@ export function Header() {
           {submenuItems && submenuItems.length > 0 && (
             <FaAngleDown
               className={classNames(
-                "ml-1 transition-transform duration-180 transform",
+                "ml-1 transition-transform duration-275 transform",
                 { "rotate-180": isOpen }
               )}
             />
           )}
         </a>
+
         <ReactTransition
           in={isOpen}
           timeout={{ enter: 300, exit: 150 }} // Tempo de duração da transição
-          classNames="transition-opacity" // Classe para animação de opacidade
+          classNames="transition-opacity transition duration-150 ease-out hover:ease-in" // Classe para animação de opacidade
           unmountOnExit
         >
           {(state) => (
@@ -128,11 +129,11 @@ export function Header() {
 
   return (
     <Disclosure
-      as="nav"
-      className={classNames('bg-zinc-100/60 fixed w-full h-20 z-50', {
-        'bg-zinc-100': isHeaderOpaque,
-      })}
-    >
+    as="nav"
+    className={classNames('bg-white fixed w-full h-20 z-50', {
+      'bg-white': isHeaderOpaque, 
+    })}
+  >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

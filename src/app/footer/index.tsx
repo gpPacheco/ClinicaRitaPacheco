@@ -20,26 +20,30 @@ export function Rodape() {
             <div className="flex mt-8 space-x-6 text-gray-600">
               <a
                 className="hover:opacity-75"
-                href="#"
+                href="https://api.whatsapp.com/send/?phone=5516993108637&text&type=phone_number&app_absent=0"
                 target="_blank"
                 rel="noreferrer"
               >
                 <span className="sr-only"> WhatsApp </span>
                 <FaWhatsapp className="w-6 h-6" />
               </a>
-              <a className="hover:opacity-75" target="_blank" rel="noreferrer">
+              <a className="hover:opacity-75" target="_blank" rel="noreferrer" 
+              href="https://www.instagram.com/ritafpacheco/">
                 <span className="sr-only"> Instagram </span>
                 <FaInstagram className="w-6 h-6" />
               </a>
-              <a className="hover:opacity-75" target="_blank" rel="noreferrer">
+              <a className="hover:opacity-75" target="_blank" rel="noreferrer"
+              href="https://www.facebook.com/ritapachecopodologa">
                 <span className="sr-only"> Facebook </span>
                 <FaFacebook className="w-6 h-6" />
               </a>
-              <a className="hover:opacity-75" target="_blank" rel="noreferrer">
+              <a className="hover:opacity-75" target="_blank" rel="noreferrer"
+              href="https://www.linkedin.com/company/clinica-rita-pacheco/">
                 <span className="sr-only"> LinkedIn </span>
                 <FaLinkedin className="w-6 h-6" />
               </a>
-              <a className="hover:opacity-75" target="_blank" rel="noreferrer">
+              <a className="hover:opacity-75" target="_blank" rel="noreferrer"
+              href="https://www.tiktok.com/@ritafpachecoo">
                 <span className="sr-only"> TikTok </span>
                 <FaTiktok className="w-6 h-6" />
               </a>
@@ -96,7 +100,7 @@ export function Rodape() {
             className="hover:text-orange-600 text-zinc-950 text-ml font-bold underline"
             href="/"
           >
-           © Clinica Rita Pacheco
+            © Clinica Rita Pacheco
           </a>
         </p>
       </div>
