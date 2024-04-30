@@ -30,7 +30,7 @@ const navigation = [
     ]
   },
   {
-    name: 'Especializações', current: false, submenuItems: [
+    name: 'Aprenda conosco', current: false, submenuItems: [
       { name: 'Cursos', href: '/' },
       { name: 'Mentorias', href: '/' },
     ]
@@ -41,18 +41,18 @@ const navigation = [
 ];
 
 export function Header() {
-  const [isHeaderOpaque, setIsHeaderOpaque] = useState(true);
+  const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
-      const headerHeight = 20;
-      setIsHeaderOpaque(offset <= headerHeight);
+      const headerShrinkThreshold = 50; // Altura em pixels em que o header começa a encolher
+      setIsHeaderShrunk(offset > headerShrinkThreshold);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -69,7 +69,6 @@ export function Header() {
       e.preventDefault();
       setIsOpen(!isOpen);
     };
-
     return (
       <div className="relative">
         <a
@@ -122,21 +121,22 @@ export function Header() {
             </div>
           )}
         </ReactTransition>
-
       </div>
     );
   };
 
   return (
     <Disclosure
-    as="nav"
-    className={classNames('bg-white fixed w-full h-20 z-50', {
-      'bg-white': isHeaderOpaque, 
-    })}
-  >
+      as="nav"
+      className={classNames("bg-white shadow-md fixed top-0 left-0 right-0 z-50 transition-all", {
+        "h-20": !isHeaderShrunk, // Altura normal do navbar quando não encolhido
+        "h-15 transition-all duration-300 shadow-md": isHeaderShrunk, // Altura menor e sombra quando encolhido
+        "-translate-y-2": isHeaderShrunk, // Move o navbar para cima quando encolhido
+      })}
+    >
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky top-0"> {/* Adicionando a classe sticky e top-0 */}
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -204,7 +204,7 @@ export function Header() {
                   <div>
                     <Menu.Button className="relative flex rounded-full bg-zinc-100/50 text-sm focus:outline-none">
                       <span className="absolute -inset-1.5" />
-                      <span className="sr-only">User menu</span>
+                      <span className="sr-only"></span>
                       <Image
                         className="h-10 w-10 rounded-full"
                         src="/marca.png"
@@ -315,7 +315,7 @@ export function Header() {
             leaveTo="transform opacity-0 scale-95"
           >
             {/* menu mobile container */}
-            <div className="bg-white">
+            <div className="bg-white shadow-md sm:hidden">
               {navigation.map((item) => (
                 <Fragment key={item.name}>
                   {item.submenuItems ? (

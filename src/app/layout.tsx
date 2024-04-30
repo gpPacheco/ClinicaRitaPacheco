@@ -20,9 +20,10 @@ export default function RootLayout({
     <html lang="pt-br">
       <body className={`${poppins.className} overflow-x-hidden flex flex-col`}>
         <Header />
-        <main className="w-screen h-full">{children}</main>
+        <main className="w-screen h-full pt-20">{children}</main>
         <Rodape />
       </body>
     </html>
   );
 }
+
