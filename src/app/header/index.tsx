@@ -128,11 +128,13 @@ export function Header() {
   return (
     <Disclosure
       as="nav"
-      className={classNames("bg-white shadow-md fixed top-0 left-0 right-0 z-50 transition-all", {
-        "h-20": !isHeaderShrunk, // Altura normal do navbar quando não encolhido
-        "h-15 transition-all duration-300 shadow-md": isHeaderShrunk, // Altura menor e sombra quando encolhido
-        "-translate-y-2": isHeaderShrunk, // Move o navbar para cima quando encolhido
-      })}
+      className={classNames("bg-white shadow-md fixed top-0 left-0 right-0 z-50 transition-all",
+        {
+          "h-20": !isHeaderShrunk, // Altura normal do navbar quando não encolhido
+          "-translate-y-2": isHeaderShrunk, // Move o navbar para cima quando encolhido
+        },
+        "duration-500 ease-in-out" // Adiciona a propriedade transition-timing-function
+      )}
     >
       {({ open }) => (
         <>
@@ -154,11 +156,11 @@ export function Header() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
+              <div className="flex flex-shrink-0 items-center">
                   <Link legacyBehavior href="/">
                     <a>
                       <Image
-                        className="h-8 w-auto cursor-pointer"
+                        className="h-12 w-auto cursor-pointer"
                         src="/logo.png"
                         alt="Clinica Rita Pacheco"
                         width={500}
@@ -167,6 +169,7 @@ export function Header() {
                     </a>
                   </Link>
                 </div>
+
                 <div className="hidden sm:ml-6 sm:block sm:items-stretch">
                   {/* Desktop menu */}
                   <div className="flex space-x-4">
@@ -346,3 +349,9 @@ export function Header() {
     </Disclosure>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o | 
+// |  \/\/  |/ ___\| 
+// |_________/     
+// /_/_/ /_/_/
