@@ -128,12 +128,13 @@ export function Header() {
   return (
     <Disclosure
       as="nav"
-      className={classNames("bg-white shadow-md fixed top-0 left-0 right-0 z-50 transition-all",
+      className={classNames("bg-white shadow-md fixed top-0 left-0 right-0 z-50 transition-all motion-safe",
         {
-          "h-20": !isHeaderShrunk, // Altura normal do navbar quando não encolhido
-          "-translate-y-2": isHeaderShrunk, // Move o navbar para cima quando encolhido
+          "h-20 duration-300 ease-in-out": !isHeaderShrunk, // Altura normal do navbar quando não encolhido
+          "h-16 transition-all motion-safe": isHeaderShrunk, // Altura reduzida do navbar quando encolhido
+          "-translate-y-1.5": isHeaderShrunk, // Move o navbar para cima quando encolhido
         },
-        "duration-500 ease-in-out" // Adiciona a propriedade transition-timing-function
+        "duration-300 ease-in-out" // Adiciona a propriedade transition-timing-function
       )}
     >
       {({ open }) => (

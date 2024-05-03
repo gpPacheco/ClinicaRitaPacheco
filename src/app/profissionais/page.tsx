@@ -23,7 +23,7 @@ export default function Profissionais() {
           </h2>
           <p className="mb-20 text-lg text-gray-800">
             A&nbsp;
-            <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
+            <span className="block w-full font-light bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
               mais
             </span>{" "}
             de 15 anos!
