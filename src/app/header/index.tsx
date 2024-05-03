@@ -161,7 +161,7 @@ export function Header() {
                   <Link legacyBehavior href="/">
                     <a>
                       <Image
-                        className="h-12 w-auto cursor-pointer"
+                        className={isHeaderShrunk ? "h-10 w-auto cursor-pointer transition-all motion-safe" : "h-12 w-auto cursor-pointer transition-all motion-safe"}
                         src="/logo.png"
                         alt="Clinica Rita Pacheco"
                         width={500}
