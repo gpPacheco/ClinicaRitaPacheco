@@ -223,27 +223,13 @@ export function Header() {
               {/* Mobile menu button*/}
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
 
-                <Disclosure.Button as={BurgerButton} isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} className="relative inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-zinc-100/50 hover:text-gray-600">
+                <Disclosure.Button
+                  as={BurgerButton}
+                  isOpen={isOpen}
+                  onClick={() => setIsOpen(!isOpen)}
+                >
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Menu</span>
-                  {open ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18 18 6M6 6l12 12"
-                      />
-                    </svg>
-                  ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                  )}
                 </Disclosure.Button>
               </div>
 
