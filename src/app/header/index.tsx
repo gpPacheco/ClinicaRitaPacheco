@@ -222,12 +222,8 @@ export function Header() {
 
               {/* Mobile menu button*/}
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                <BurgerButton
-                  isOpen={isOpen}
-                  onClick={() => setIsOpen(!isOpen)}
-                />
 
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-zinc-100/50 hover:text-gray-600">
+                <Disclosure.Button as={BurgerButton} isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} className="relative inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-zinc-100/50 hover:text-gray-600">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Menu</span>
                   {open ? (
