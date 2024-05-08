@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect, Fragment, Key } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { MenuIcon } from "@heroicons/react/outline";
 import classNames from "classnames";
 import Link from "next/link";
 import Image from "next/image";
@@ -93,7 +92,7 @@ export function Header() {
   }, []);
 
   const SubmenuItem = ({ name, href }: { name: string; href: string }) => (
-    <a href={href} className="block px-4 py-3 text-gray-700 hover:bg-gray-200">
+    <a href={href} className="block px-4 py-3 font-medium text-gray-700 hover:bg-gray-200">
       {name}
     </a>
   );
@@ -121,7 +120,7 @@ export function Header() {
           href={href}
           onClick={toggleSubMenu}
           className={classNames(
-            "flex items-center px-2 py-2 text-sm transition duration-200 ease-in-out rounded-md",
+            "flex items-center px-3 py-2 text-sm font-medium transition duration-200 ease-in-out rounded-md",
             {
               //coidgo responsavel pelas palavras que tem a funcao de submenu:
               "bg-gray-900 text-white": isOpen,
@@ -129,6 +128,7 @@ export function Header() {
             }
           )}
         >
+          {/* código responsável pela animação da seta do submenu */}
           <span>{name}</span>
           {submenuItems && submenuItems.length > 0 && (
             <FaAngleDown
@@ -418,5 +418,5 @@ export function Header() {
 //   ______    ____
 //  /\    /\  | "o |
 // |  \/\/  |/ ___\|
-// |_________/
+// |gpPacheco_/
 // /_/_/ /_/_/
