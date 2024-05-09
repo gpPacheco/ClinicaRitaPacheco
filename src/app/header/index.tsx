@@ -91,25 +91,27 @@ export function Header() {
     };
   }, []);
 
+  // reponsavel pela posicao das palavras de submenu
   const SubmenuItem = ({ name, href }: { name: string; href: string }) => (
-    <a href={href} className="block px-4 py-3 font-medium text-gray-700 hover:bg-gray-200">
+    <a href={href} 
+       className="block px-2 py-3 font-medium text-center rounded text-gray-700 hover:bg-gray-200">
       {name}
     </a>
   );
 
-  //código responsavel pela animação de abertura dos botões
+  //opcoes de submenu e transicoes de submenu
   const DropdownItem = ({
     name,
     href,
     submenuItems,
-  }: {
+   }: {
     name: string;
     href: string;
     submenuItems: { name: string; href: string }[];
-  }) => {
+   }) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    // código responsável pelas palavras que tem submenu
+    // código responsável pelas palavras que tem opcao submenu
     const toggleSubMenu = (e: { preventDefault: () => void }) => {
       e.preventDefault();
       setIsOpen(!isOpen);
@@ -122,7 +124,7 @@ export function Header() {
           className={classNames(
             "flex items-center px-3 py-2 text-sm font-medium transition duration-200 ease-in-out rounded-md",
             {
-              //coidgo responsavel pelas palavras que tem a funcao de submenu:
+              //coidgo responsavel pelas palavras que tem a opcao submenu:
               "bg-gray-900 text-white": isOpen,
               "text-black hover:bg-gray-600 hover:text-white": !isOpen,
             }
@@ -148,6 +150,7 @@ export function Header() {
           unmountOnExit
         >
           {(state) => (
+            // caixa de submenu, sem opcoes de navegacao, somente a caixa 
             <div
               className={classNames(
                 "absolute z-10 transform w-screen max-w-md lg:max-w-2xl transition-opacity",
@@ -156,10 +159,10 @@ export function Header() {
                   "opacity-0": state === "exiting",
                 }
               )}
-              style={{ width: "550px" }}
+              style={{ width: "auto" }}
             >
               <div className="rounded-lg shadow-lg overflow-hidden">
-                <div className="relative grid bg-white p-2 grid-cols-2">
+                <div className="relative grid bg-white p-2 px-auto py-auto grid-cols-">
                   {submenuItems &&
                     submenuItems.map(
                       (
@@ -235,7 +238,7 @@ export function Header() {
 
               {/* Desktop menu */}
               <div className="hidden sm:ml-6 sm:block sm:items-stretch">
-                <div className="flex space-x-4">
+                <div className="flex space-x-7">
                   {navigation.map((item) =>
                     item.submenuItems ? (
                       <DropdownItem
