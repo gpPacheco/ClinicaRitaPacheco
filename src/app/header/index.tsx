@@ -49,7 +49,6 @@ type Props = {
   isOpen: boolean;
   onClick: () => void;
 };
-
 const BurgerButton = ({ isOpen, onClick }: Props) => (
   <button className="h-5 w-5" onClick={onClick}>
     <div className="sr-only">{isOpen ? "Fechar menu" : "Abrir menu"}</div>
@@ -94,12 +93,12 @@ export function Header() {
   // reponsavel pela posicao das palavras de submenu
   const SubmenuItem = ({ name, href }: { name: string; href: string }) => (
     <a href={href} 
-       className="block px-2 py-3 font-medium text-center rounded text-gray-700 hover:bg-gray-200">
+       className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200">
       {name}
     </a>
   );
 
-  //opcoes de submenu e transicoes de submenu
+  //codigo responsavel pelas palavras com opcoes de submenu e transicoes de submenu
   const DropdownItem = ({
     name,
     href,
@@ -153,13 +152,12 @@ export function Header() {
             // caixa de submenu, sem opcoes de navegacao, somente a caixa 
             <div
               className={classNames(
-                "absolute z-10 transform w-screen max-w-md lg:max-w-2xl transition-opacity",
+                "absolute z-10 transform w-auto max-w-md lg:max-w-2xl transition-opacity text-nowrap",
                 {
                   "opacity-100": state === "entered",
                   "opacity-0": state === "exiting",
                 }
               )}
-              style={{ width: "auto" }}
             >
               <div className="rounded-lg shadow-lg overflow-hidden">
                 <div className="relative grid bg-white p-2 px-auto py-auto grid-cols-">
