@@ -4,7 +4,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
 import Link from "next/link";
 import Image from "next/image";
-import {FaAngleDown,FaWhatsapp,FaInstagram,FaFacebook,FaLinkedin,FaTiktok,} from "react-icons/fa";
+import {FaAngleDown,FaWhatsapp,FaInstagram,FaFacebook,FaLinkedin,FaTiktok, FaShareAlt} from "react-icons/fa";
 import { Transition as ReactTransition } from "react-transition-group";
 
 const navigation = [
@@ -265,18 +265,14 @@ export function Header() {
               </div>
 
               {/* Profile dropdown */}
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="absolute inset-y-0 right-6 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-zinc-100/50 text-sm focus:outline-none">
+                    <Menu.Button className="relative flex rounded-full bg-zinc-100/50 focus:outline-none">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only"></span>
-                      <Image
-                        className="h-10 w-10 rounded-full"
-                        src="/marca.png"
-                        alt="Redes Sociais"
-                        width={500}
-                        height={200}
+                      <FaShareAlt
+                        className="h-5 w-5"
                       />
                     </Menu.Button>
                   </div>
