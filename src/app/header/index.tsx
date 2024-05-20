@@ -4,7 +4,15 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
 import Link from "next/link";
 import Image from "next/image";
-import {FaAngleDown,FaWhatsapp,FaInstagram,FaFacebook,FaLinkedin,FaTiktok, FaShareAlt} from "react-icons/fa";
+import {
+  FaAngleDown,
+  FaWhatsapp,
+  FaInstagram,
+  FaFacebook,
+  FaLinkedin,
+  FaTiktok,
+  FaShareAlt,
+} from "react-icons/fa";
 import { Transition as ReactTransition } from "react-transition-group";
 
 const navigation = [
@@ -90,10 +98,12 @@ export function Header() {
     };
   }, []);
 
-  // reponsavel pela posicao das palavras de submenu
+  // reponsavel pela posicao das palavras dos submenus
   const SubmenuItem = ({ name, href }: { name: string; href: string }) => (
-    <a href={href} 
-       className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200">
+    <a
+      href={href}
+      className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200"
+    >
       {name}
     </a>
   );
@@ -103,11 +113,11 @@ export function Header() {
     name,
     href,
     submenuItems,
-   }: {
+  }: {
     name: string;
     href: string;
     submenuItems: { name: string; href: string }[];
-   }) => {
+  }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     // código responsável pelas palavras que tem opcao submenu
@@ -149,7 +159,7 @@ export function Header() {
           unmountOnExit
         >
           {(state) => (
-            // caixa de submenu, sem opcoes de navegacao, somente a caixa 
+            // caixa de submenu, sem opcoes de navegacao, somente a caixa
             <div
               className={classNames(
                 "absolute z-10 transform w-auto max-w-md lg:max-w-2xl transition-opacity text-nowrap",
@@ -162,15 +172,8 @@ export function Header() {
               <div className="rounded-lg shadow-lg overflow-hidden">
                 <div className="relative grid bg-white p-2 px-auto py-auto grid-cols-">
                   {submenuItems &&
-                    submenuItems.map(
-                      (
-                        item: { name: any; href: any },
-                        index: Key | null | undefined
-                      ) => (
-                        <SubmenuItem
-                          key={index}
-                          name={item.name}
-                          href={item.href}
+                    submenuItems.map((item, index) => (
+                        <SubmenuItem key={index} name={item.name} href={item.href}
                         />
                       )
                     )}
@@ -223,7 +226,6 @@ export function Header() {
 
               {/* Mobile menu button*/}
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-
                 <Disclosure.Button
                   as={BurgerButton}
                   isOpen={isOpen}
@@ -235,20 +237,20 @@ export function Header() {
               </div>
 
               {/* Desktop menu */}
-              <div className="hidden sm:ml-6 sm:block sm:items-stretch">
-                <div className="flex space-x-7">
-                  {navigation.map((item) =>
+              <div className="hidden sm:ml-6 sm:block">
+                <div className="flex flex-wrap justify-between items-center space-x-7">
+                  {navigation.map((item, index) =>
                     item.submenuItems ? (
                       <DropdownItem
-                        key={item.name}
+                        key={index}
                         name={item.name}
-                        href={item.href || "#"} // Defina um valor padrão, como '#', caso href seja undefined
+                        href={item.href || "#"}
                         submenuItems={item.submenuItems}
                       />
                     ) : (
                       <a
-                        key={item.name}
-                        href={item.href || "#"} // Defina um valor padrão, como '#', caso href seja undefined
+                        key={index}
+                        href={item.href || "#"}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
@@ -264,16 +266,14 @@ export function Header() {
                 </div>
               </div>
 
-              {/* Profile dropdown */}
+              {/* Redes sociais */}
               <div className="absolute inset-y-0 right-6 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-zinc-100/50 focus:outline-none">
+                    <Menu.Button className="relative flex rounded-full px-1.5 py-1.5 text-gray-900 hover:bg-gray-600 hover:text-white focus:outline-none">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only"></span>
-                      <FaShareAlt
-                        className="h-5 w-5"
-                      />
+                      <FaShareAlt className="h-5 w-5" />
                     </Menu.Button>
                   </div>
                   <Transition
@@ -367,7 +367,7 @@ export function Header() {
               </div>
             </div>
           </div>
-          
+
           {/* menu mobile container */}
           <Transition
             as={Fragment}
