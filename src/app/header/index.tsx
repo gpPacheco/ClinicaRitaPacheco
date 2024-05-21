@@ -204,7 +204,7 @@ export function Header() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky top-0">
             <div className="relative flex h-16 items-center justify-between">
               {/* logo*/}
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:flex">
                 <div className="flex flex-shrink-0 items-center">
                   <Link legacyBehavior href="/">
                     <a>
@@ -225,7 +225,7 @@ export function Header() {
               </div>
 
               {/* Mobile menu button*/}
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                 <Disclosure.Button
                   as={BurgerButton}
                   isOpen={isOpen}
@@ -237,8 +237,8 @@ export function Header() {
               </div>
 
               {/* Desktop menu */}
-              <div className="hidden sm:ml-6 sm:block">
-                <div className="flex flex-wrap justify-between items-center space-x-7">
+              <div className="hidden lg:ml-6 lg:flex">
+                <div className="flex justify-between items-center space-x-flex lg:flex">
                   {navigation.map((item, index) =>
                     item.submenuItems ? (
                       <DropdownItem
@@ -267,7 +267,7 @@ export function Header() {
               </div>
 
               {/* Redes sociais */}
-              <div className="absolute inset-y-0 right-6 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="relative flex rounded-full px-1.5 py-1.5 text-gray-900 hover:bg-gray-600 hover:text-white focus:outline-none">
@@ -378,7 +378,7 @@ export function Header() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <div className="bg-white shadow-md sm:hidden">
+            <div className="bg-white shadow-md lg:hidden">
               {navigation.map((item) => (
                 <Fragment key={item.name}>
                   {item.submenuItems ? (
