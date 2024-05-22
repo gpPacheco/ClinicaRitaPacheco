@@ -204,7 +204,7 @@ export function Header() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky top-0">
             <div className="relative flex h-16 items-center justify-between">
               {/* logo*/}
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:flex">
+              <div className="flex flex-1 items-center justify-center sm:items-stretch lg:block">
                 <div className="flex flex-shrink-0 items-center">
                   <Link legacyBehavior href="/">
                     <a>
@@ -237,8 +237,8 @@ export function Header() {
               </div>
 
               {/* Desktop menu */}
-              <div className="hidden lg:ml-6 lg:flex">
-                <div className="flex justify-between items-center space-x-flex lg:flex">
+              <div className="hidden lg:ml-6 lg:block">
+                <div className="flex justify-between items-center space-x-6 lg:flex">
                   {navigation.map((item, index) =>
                     item.submenuItems ? (
                       <DropdownItem
