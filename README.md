@@ -12,4 +12,4 @@ Este projeto consiste na criação de um website para a conceituada Clínica de 
 ## Deploy na Vercel
 
 Acompanhe o desenvolvimento:
-## clinica-rita-pacheco.vercel.app
+(clinica-rita-pacheco.vercel.app)
