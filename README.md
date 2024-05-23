@@ -1,50 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Clinica Rita Pacheco
 
-## Getting Started
+Este projeto consiste na criação de um website para a conceituada Clínica de Podologia Rita Pacheco. Implementando novas tecnologias e inovações, mantendo a clínica como uma referência em seu segmento. O site proporcionará uma experiência de navegação moderna e intuitiva. Através deste projeto, buscamos fortalecer a presença online da clínica, facilitando o acesso a informações e serviços para os pacientes.
 
-First, run the development server:
+## Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- NextJs;
+- TailwindCSS;
+- FrameWorks e Bibliotecas relacionadas.
 
 
+## Deploy na Vercel
 
---------
-git add .
-git commit -m "colocar o que tu fez"
-ex:
-git commit -m "alterei home para ajustar menu"
-
-git push origin master
-
---- 
-depois de mergear uma branch
-git fetch --all
+Acompanhe o desenvolvimento:
+## clinica-rita-pacheco.vercel.app
