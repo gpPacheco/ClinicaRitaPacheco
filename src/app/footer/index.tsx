@@ -86,11 +86,11 @@ export function Rodape() {
               </nav>
             </div>
             <div>
-              <p className="font-medium">Legal</p>
+              <p className="font-medium">Localização</p>
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                <a className="hover:opacity-75"> Política de Privacidade </a>
-                <a className="hover:opacity-75"> Termos &amp; Condições </a>
-                <a className="hover:opacity-75"> Acessibilidade </a>
+                <a className="hover:opacity-75"> Av. 7 de Setembro, Nº 650 Sala 01 e 02 </a>
+                <a className="hover:opacity-75"> Bairro São José 14401-278</a>
+                <a className="hover:opacity-75"> Franca - SP </a>
               </nav>
             </div>
           </div>
