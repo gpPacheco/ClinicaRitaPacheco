@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, Fragment, Key, useRef } from "react";
+import { useState, useEffect, Fragment, useRef } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
 import Link from "next/link";
@@ -14,7 +14,6 @@ import {
   FaShareAlt,
 } from "react-icons/fa";
 import { Transition as ReactTransition } from "react-transition-group";
-
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -121,32 +120,35 @@ export function Header() {
   }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
-  
+
     // Função para alternar o submenu
     const toggleSubMenu = (e: React.MouseEvent) => {
       e.preventDefault();
       setIsOpen(!isOpen);
     };
-  
+
     // Efeito para fechar o submenu ao clicar fora
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(event.target as Node)
+        ) {
           setIsOpen(false);
         }
       };
-  
+
       if (isOpen) {
         document.addEventListener("mousedown", handleClickOutside);
       } else {
         document.removeEventListener("mousedown", handleClickOutside);
       }
-  
+
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }, [isOpen]);
-  
+
     return (
       <div ref={dropdownRef} className="relative">
         <a
@@ -170,7 +172,7 @@ export function Header() {
             />
           )}
         </a>
-  
+
         <ReactTransition
           in={isOpen}
           timeout={{ enter: 300, exit: 150 }}
@@ -191,7 +193,11 @@ export function Header() {
                 <div className="relative grid bg-white p-2 px-auto py-auto">
                   {submenuItems &&
                     submenuItems.map((item, index) => (
-                      <SubmenuItem key={index} name={item.name} href={item.href} />
+                      <SubmenuItem
+                        key={index}
+                        name={item.name}
+                        href={item.href}
+                      />
                     ))}
                 </div>
               </div>
@@ -310,6 +316,8 @@ export function Header() {
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
+                            target="_blank"
+                            rel="noreferrer"
                           >
                             <span className="flex items-center">
                               <FaWhatsapp className="mr-2" /> WhatsApp
@@ -325,6 +333,8 @@ export function Header() {
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
+                            target="_blank"
+                            rel="noreferrer"
                           >
                             <span className="flex items-center">
                               <FaInstagram className="mr-2" /> Instagram
@@ -340,6 +350,8 @@ export function Header() {
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
+                            target="_blank"
+                            rel="noreferrer"
                           >
                             <span className="flex items-center">
                               <FaFacebook className="mr-2" /> Facebook
@@ -355,6 +367,8 @@ export function Header() {
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
+                            target="_blank"
+                            rel="noreferrer"
                           >
                             <span className="flex items-center">
                               <FaLinkedin className="mr-2" /> LinkedIn
@@ -370,6 +384,8 @@ export function Header() {
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
+                            target="_blank"
+                            rel="noreferrer"
                           >
                             <span className="flex items-center">
                               <FaTiktok className="mr-2" /> TikTok
