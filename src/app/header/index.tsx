@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, Fragment, Key } from "react";
+import { useState, useEffect, Fragment, Key, useRef } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
 import Link from "next/link";
@@ -14,6 +14,7 @@ import {
   FaShareAlt,
 } from "react-icons/fa";
 import { Transition as ReactTransition } from "react-transition-group";
+
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -119,27 +120,46 @@ export function Header() {
     submenuItems: { name: string; href: string }[];
   }) => {
     const [isOpen, setIsOpen] = useState(false);
-
-    // código responsável pelas palavras que tem opcao submenu
-    const toggleSubMenu = (e: { preventDefault: () => void }) => {
+    const dropdownRef = useRef<HTMLDivElement>(null);
+  
+    // Função para alternar o submenu
+    const toggleSubMenu = (e: React.MouseEvent) => {
       e.preventDefault();
       setIsOpen(!isOpen);
     };
+  
+    // Efeito para fechar o submenu ao clicar fora
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+          setIsOpen(false);
+        }
+      };
+  
+      if (isOpen) {
+        document.addEventListener("mousedown", handleClickOutside);
+      } else {
+        document.removeEventListener("mousedown", handleClickOutside);
+      }
+  
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [isOpen]);
+  
     return (
-      <div className="relative">
+      <div ref={dropdownRef} className="relative">
         <a
           href={href}
           onClick={toggleSubMenu}
           className={classNames(
             "flex items-center px-3 py-2 text-sm font-medium transition duration-200 ease-in-out rounded-md",
             {
-              //coidgo responsavel pelas palavras que tem a opcao submenu:
               "bg-gray-900 text-white": isOpen,
               "text-black hover:bg-gray-600 hover:text-white": !isOpen,
             }
           )}
         >
-          {/* código responsável pela animação da seta do submenu */}
           <span>{name}</span>
           {submenuItems && submenuItems.length > 0 && (
             <FaAngleDown
@@ -150,19 +170,17 @@ export function Header() {
             />
           )}
         </a>
-
+  
         <ReactTransition
-          // transição responsavel pelo abertura e fechamento das palavras que tem submenus ('a clinica','especialidades', 'aprenda conosco')
           in={isOpen}
-          timeout={{ enter: 300, exit: 150 }} // Tempo de duração da transição
-          classNames="transition-opacity transition duration-150 ease-out hover:ease-in" // Classe para animação de opacidade
+          timeout={{ enter: 300, exit: 150 }}
+          classNames="transition-opacity"
           unmountOnExit
         >
           {(state) => (
-            // caixa de submenu, sem opcoes de navegacao, somente a caixa
             <div
               className={classNames(
-                "absolute z-10 transform w-auto max-w-md lg:max-w-2xl transition-opacity text-nowrap",
+                "absolute z-10 transform w-auto max-w-md lg:max-w-2xl transition-opacity",
                 {
                   "opacity-100": state === "entered",
                   "opacity-0": state === "exiting",
@@ -170,13 +188,11 @@ export function Header() {
               )}
             >
               <div className="rounded-lg shadow-lg overflow-hidden">
-                <div className="relative grid bg-white p-2 px-auto py-auto grid-cols-">
+                <div className="relative grid bg-white p-2 px-auto py-auto">
                   {submenuItems &&
                     submenuItems.map((item, index) => (
-                        <SubmenuItem key={index} name={item.name} href={item.href}
-                        />
-                      )
-                    )}
+                      <SubmenuItem key={index} name={item.name} href={item.href} />
+                    ))}
                 </div>
               </div>
             </div>
