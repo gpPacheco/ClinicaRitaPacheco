@@ -1,12 +1,20 @@
 .embla {
   overflow: hidden;
+  position: relative;
 }
 .embla__container {
   display: flex;
+  height: 100%;
+  width: 100%;
 }
 .embla__slide {
   flex: 0 0 100%;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
-  min-width: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }

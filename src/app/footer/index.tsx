@@ -12,7 +12,7 @@ import { FaLocationDot } from "react-icons/fa6";
 
 export function Rodape() {
   return (
-    <footer className="bg-gradient-to-r from-gray-100 via-[#dbbeb0] to-gray-100">
+    <footer className="bg-gradient-to-r from-[#f7f0ea] via-[#dbbeb0] to-[#f7f0ea]">
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
@@ -122,12 +122,11 @@ export function Rodape() {
                 >
                   <span className="flex items-center underline">
                     <FaLocationDot className="mr-1" />
-                    Clique aqui para ver a melhor rota
+                    Onde estamos
                   </span>
                 </a>
                 <a className="hover:opacity-75">
-                  {" "}
-                  Av. 7 de Setembro, Nº | 650 Sala 01 e 02{" "}
+                  Av. 7 de Setembro, Nº | 650 Sala 01 e 02
                 </a>
                 <a className="hover:opacity-75"> Bairro São José | 14401-278</a>
                 <a className="hover:opacity-75"> Franca - SP </a>

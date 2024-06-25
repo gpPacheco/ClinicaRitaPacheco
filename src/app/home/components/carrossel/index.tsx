@@ -46,18 +46,18 @@ export const EmblaCarousel = () => {
 
   return (
     <div className="embla h-screen w-screen" ref={emblaRef}>
-      <div className="embla__container h-full w-full">
+      <div className="embla__container">
         {imgs.map((item, index) => (
           <button
             onClick={() => navigate(item.link)}
             key={index}
-            className="embla__slide h-full w-full"
-            style={{ backgroundImage: `url(${item.url})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+            className="embla__slide"
+            style={{ backgroundImage: `url(${item.url})` }}
           ></button>
         ))}
       </div>
       <button
-        className="absolute bottom-0 left-0 z-[1] flex w-[15%] h-full items-center justify-center border-0 bg-none p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-black hover:no-underline hover:opacity-90 hover: focus:text-black focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+        className="absolute bottom-0 left-0 z-[1] flex w-[15%] h-full items-center justify-center bg-transparent text-white transition-opacity duration-150 ease-in-out hover:text-black hover:opacity-90 focus:text-black focus:opacity-90"
         type="button"
         onClick={goToPrevSlide}
       >
@@ -65,7 +65,7 @@ export const EmblaCarousel = () => {
       </button>
 
       <button
-        className="absolute bottom-0 right-0 z-[1] flex w-[15%] h-full items-center justify-center border-0 bg-none p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-black hover:no-underline hover:opacity-90 hover: focus:text-black focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+        className="absolute bottom-0 right-0 z-[1] flex w-[15%] h-full items-center justify-center bg-transparent text-white transition-opacity duration-150 ease-in-out hover:text-black hover:opacity-90 focus:text-black focus:opacity-90"
         type="button"
         onClick={goToNextSlide}
       >
