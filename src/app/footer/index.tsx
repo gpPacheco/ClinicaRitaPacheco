@@ -18,11 +18,11 @@ export function Rodape() {
           <div>
             <a href="/" target="_self">
               <Image
-                src="/logo.png"
+                src="/marca.png"
                 alt="Logo"
-                width={200}
-                height={200}
-                style={{ maxWidth: "100%", height: "auto" }}
+                width={150}
+                height={150}
+                style={{ maxWidth: "100%", height: "auto", marginLeft: "32px" }}
               />
             </a>
             <div className="flex mt-8 space-x-6 text-gray-600">
@@ -134,7 +134,7 @@ export function Rodape() {
             </div>
           </div>
         </div>
-        <p className="mt-8 text-xs text-zinc-950">
+        <p className="mt-8 text-xs text-zinc-950 text-center">
           <a
             className="hover:text-gray-600 text-zinc-950 text-ml font-bold underline"
             href="/"
