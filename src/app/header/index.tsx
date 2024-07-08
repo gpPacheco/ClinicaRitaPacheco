@@ -1,17 +1,17 @@
 "use client";
-import { useState, useEffect, Fragment, useRef } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { Fragment, useEffect, useRef, useState } from "react";
 import {
   FaAngleDown,
-  FaWhatsapp,
-  FaInstagram,
   FaFacebook,
+  FaInstagram,
   FaLinkedin,
-  FaTiktok,
   FaShareAlt,
+  FaTiktok,
+  FaWhatsapp,
 } from "react-icons/fa";
 import { Transition as ReactTransition } from "react-transition-group";
 
@@ -57,6 +57,7 @@ type Props = {
   isOpen: boolean;
   onClick: () => void;
 };
+
 const BurgerButton = ({ isOpen, onClick }: Props) => (
   <button className="h-5 w-5" onClick={onClick}>
     <div className="sr-only">{isOpen ? "Fechar menu" : "Abrir menu"}</div>
@@ -221,7 +222,7 @@ export function Header() {
         "duration-300 ease-in-out"
       )}
     >
-      {({ open }) => (
+      {({ }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky top-0">
             <div className="relative flex h-16 items-center justify-between">
