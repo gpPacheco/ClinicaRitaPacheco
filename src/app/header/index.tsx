@@ -215,7 +215,7 @@ export function Header() {
       className={classNames(
         "bg-[#f7f0ea] shadow-md fixed top-0 left-0 right-0 z-50 transition-all motion-safe",
         {
-          "h-22 duration-300 ease-in-out": !isHeaderShrunk,
+          "h-20 duration-300 ease-in-out": !isHeaderShrunk,
           "h-16 transition-all motion-safe": isHeaderShrunk,
           "-translate-y-1.5": isHeaderShrunk,
         },
