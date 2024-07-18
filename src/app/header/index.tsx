@@ -182,27 +182,30 @@ export function Header() {
         >
           {(state) => (
             <div
-              className={classNames(
-                "absolute z-10 transform w-auto max-w-md lg:max-w-2xl transition-opacity",
-                {
-                  "opacity-100": state === "entered",
-                  "opacity-0": state === "exiting",
-                }
-              )}
-            >
-              <div className="rounded-lg shadow-lg overflow-hidden">
-                <div className="relative grid bg-white p-2 px-auto py-auto">
-                  {submenuItems &&
-                    submenuItems.map((item, index) => (
-                      <SubmenuItem
-                        key={index}
-                        name={item.name}
-                        href={item.href}
-                      />
-                    ))}
-                </div>
+            className={classNames(
+              "absolute z-10 transform w-auto max-w-md lg:max-w-2xl transition-opacity",
+              {
+                "opacity-100": state === "entered",
+                "opacity-0": state === "exiting",
+              }
+            )}
+          >
+            <div className="rounded-lg shadow-lg overflow-hidden">
+              <div className="relative bg-white p-2">
+                {submenuItems &&
+                  submenuItems.map((item, index) => (
+                    <a
+                      key={index}
+                      href={item.href}
+                      className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200 whitespace-nowrap"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
               </div>
             </div>
+          </div>
+          
           )}
         </ReactTransition>
       </div>
@@ -227,20 +230,21 @@ export function Header() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky top-0">
             <div className="relative flex h-16 items-center justify-between">
               {/* logo*/}
-              <div className="flex flex-1 items-center justify-center lg:items-stretch lg:block">
-                <div className="flex flex-shrink-0 items-center">
+              <div className="flex flex-1 items-center justify-center lg:jsutify-start">
+                <div className="flex-shrink-0 ">
                   <Link legacyBehavior href="/">
-                    <a>
+                    <a >
                       <Image
                         className={
                           isHeaderShrunk
-                            ? "h-10 w-auto cursor-pointer transition-all motion-safe"
-                            : "h-12 w-auto cursor-pointer transition-all motion-safe"
+                            ? "max-h-16 h-full w-auto cursor-pointer transition-all motion-safe"
+                            : "max-h-20 h-full w-auto cursor-pointer transition-all motion-safe"
                         }
-                        src="/logo.png"
+                        src="/logoRp.png"
                         alt="Clinica Rita Pacheco"
                         width={500}
                         height={300}
+                        priority
                       />
                     </a>
                   </Link>
