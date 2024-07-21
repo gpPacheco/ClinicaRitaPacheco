@@ -230,8 +230,8 @@ export function Header() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky top-0">
             <div className="relative flex h-16 items-center justify-between">
               {/* logo*/}
-              <div className="flex flex-1 items-center justify-center lg:jsutify-start">
-                <div className="flex-shrink-0 ">
+              <div className="flex flex-1 items-center justify-center ">
+                <div className="flex-shrink-0 mt-4 ">
                   <Link legacyBehavior href="/">
                     <a >
                       <Image
