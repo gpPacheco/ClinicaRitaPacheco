@@ -219,7 +219,7 @@ export function Header() {
         "bg-[#f7f0ea] shadow-md fixed top-0 left-0 right-0 z-50 transition-all motion-safe",
         {
           "h-20 duration-300 ease-in-out": !isHeaderShrunk,
-          "h-16 transition-all motion-safe": isHeaderShrunk,
+          "h-18 transition-all motion-safe": isHeaderShrunk,
           "-translate-y-1.5": isHeaderShrunk,
         },
         "duration-300 ease-in-out"
@@ -227,23 +227,23 @@ export function Header() {
     >
       {({ }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky top-0">
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky mt-1.5">
             <div className="relative flex h-16 items-center justify-between">
               {/* logo*/}
               <div className="flex flex-1 items-center justify-center ">
-                <div className="flex-shrink-0 mt-4 ">
+                <div className="flex-shrink-0">
                   <Link legacyBehavior href="/">
                     <a >
                       <Image
                         className={
                           isHeaderShrunk
-                            ? "max-h-16 h-full w-auto cursor-pointer transition-all motion-safe"
-                            : "max-h-20 h-full w-auto cursor-pointer transition-all motion-safe"
+                            ? "max-h-14 h-full w-auto cursor-pointer transition-all motion-safe "
+                            : "max-h-16 h-full w-auto cursor-pointer transition-all motion-safe "
                         }
-                        src="/logoRp.png"
+                        src="/logo.png"
                         alt="Clinica Rita Pacheco"
-                        width={500}
-                        height={300}
+                        width={300}
+                        height={200}
                         priority
                       />
                     </a>
@@ -252,7 +252,7 @@ export function Header() {
               </div>
 
               {/* Mobile menu button*/}
-              <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
+              <div className="absolute inset-y-0 left-0 flex items-center">
                 <Disclosure.Button
                   as={BurgerButton}
                   isOpen={isOpen}
@@ -264,8 +264,8 @@ export function Header() {
               </div>
 
               {/* Desktop menu */}
-              <div className="hidden lg:ml-6 lg:flex">
-                <div className="flex justify-between items-center xl:space-x-6 lg:space-x-5 md:space-x-4 sm:space-x-2 xs:space-x-1">
+              {/* <div className="hidden lg:ml-auto lg:flex">
+                <div className="flex justify-between items-center space-x-2.5">
                   {navigation.map((item, index) =>
                     item.submenuItems ? (
                       <DropdownItem
@@ -291,7 +291,7 @@ export function Header() {
                     )
                   )}
                 </div>
-              </div>
+              </div> */}
 
               {/* Redes sociais */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -415,7 +415,7 @@ export function Header() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <div className="bg-white shadow-md lg:hidden">
+            <div className="bg-white shadow-md">
               {navigation.map((item) => (
                 <Fragment key={item.name}>
                   {item.submenuItems ? (
