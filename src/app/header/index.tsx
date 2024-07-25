@@ -85,12 +85,18 @@ const BurgerButton = ({ isOpen, onClick }: Props) => (
 export function Header() {
   const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [logoSrc, setLogoSrc] = useState('/marca2.png');
+  const [isSpinning, setIsSpinning] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY;
-      const headerShrinkThreshold = 50; // Altura em pixels em que o header começa a encolher
-      setIsHeaderShrunk(offset > headerShrinkThreshold);
+      if (window.scrollY > 0) {
+        setIsHeaderShrunk(true);
+        setLogoSrc('/logoRp.png');
+      } else {
+        setIsHeaderShrunk(false);
+        setLogoSrc('/marca2.png');
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -216,13 +222,13 @@ export function Header() {
     <Disclosure
       as="nav"
       className={classNames(
-        "bg-[#f7f0ea] shadow-md fixed top-0 left-0 right-0 z-50 transition-all motion-safe",
+        "bg-white shadow-md fixed top-0 left-0 right-0 z-50 transition-all motion-safe",
         {
           "h-20 duration-300 ease-in-out": !isHeaderShrunk,
           "h-18 transition-all motion-safe": isHeaderShrunk,
           "-translate-y-1.5": isHeaderShrunk,
         },
-        "duration-300 ease-in-out"
+        "duration-500 ease-in-out"
       )}
     >
       {({ }) => (
@@ -237,10 +243,10 @@ export function Header() {
                       <Image
                         className={
                           isHeaderShrunk
-                            ? "max-h-14 h-full w-auto cursor-pointer transition-all motion-safe "
-                            : "max-h-16 h-full w-auto cursor-pointer transition-all motion-safe "
+                            ? "max-h-16 h-full w-auto cursor-pointer transition-all motion-safe "
+                            : "max-h-18 h-full w-auto cursor-pointer transition-all motion-safe "
                         }
-                        src="/logo.png"
+                        src={logoSrc}
                         alt="Clinica Rita Pacheco"
                         width={300}
                         height={200}
