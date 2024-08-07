@@ -8,7 +8,7 @@ export function Procedimentos() {
       <div className="flex justify-center items-center space-x-7">
         <Image
           className="w-60 h-40 object-cover"
-          src="/biosseguranca/foto_a.jpg"
+          src=""
           alt="Imagem 1"
           width={200}
           height={100}

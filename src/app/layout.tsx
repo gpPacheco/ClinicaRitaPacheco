@@ -18,6 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
+      <head>
+        <link rel="icon" href="/marca-dagua-cor.png" />
+      </head>
       <body className={`${poppins.className} overflow-x-hidden flex flex-col`}>
         <Header />
         <main className="w-screen h-full pt-20">{children}</main>
@@ -26,4 +29,3 @@ export default function RootLayout({
     </html>
   );
 }
-
