@@ -86,7 +86,6 @@ export function Header() {
   const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [logoSrc, setLogoSrc] = useState('/marca2.png');
-  const [isSpinning, setIsSpinning] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {

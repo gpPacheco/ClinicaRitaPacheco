@@ -1,5 +1,5 @@
-"use client";
-import { useEffect } from "react";
+'use client';
+import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import "./carousel.css";
@@ -19,10 +19,11 @@ export const EmblaCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 3000 }),
   ]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
     if (emblaApi) {
-      console.log(emblaApi.slideNodes()); // Access API
+      emblaApi.on("select", () => setSelectedIndex(emblaApi.selectedScrollSnap()));
     }
   }, [emblaApi]);
 
@@ -44,8 +45,14 @@ export const EmblaCarousel = () => {
     }
   };
 
+  const scrollTo = (index: number) => {
+    if (emblaApi) {
+      emblaApi.scrollTo(index);
+    }
+  };
+
   return (
-    <div className="embla h-screen w-screen" ref={emblaRef}>
+    <div className="embla w-full" ref={emblaRef}>
       <div className="embla__container">
         {imgs.map((item, index) => (
           <button
@@ -71,6 +78,19 @@ export const EmblaCarousel = () => {
       >
         <ChevronRight size={50} />
       </button>
+
+      {/* Bolinhas de Navegação */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-[1] flex space-x-2">
+        {imgs.map((_, index) => (
+          <button
+            key={index}
+            className={`w-3 h-3 rounded-full transition-all ${
+              index === selectedIndex ? 'bg-white' : 'bg-gray-400'
+            }`}
+            onClick={() => scrollTo(index)}
+          />
+        ))}
+      </div>
     </div>
   );
 };

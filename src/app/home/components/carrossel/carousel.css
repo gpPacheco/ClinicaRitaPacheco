@@ -1,12 +1,15 @@
 .embla {
   overflow: hidden;
   position: relative;
+  height: 80vh; /* Altura conforme ajustada anteriormente */
 }
+
 .embla__container {
   display: flex;
   height: 100%;
   width: 100%;
 }
+
 .embla__slide {
   flex: 0 0 100%;
   background-repeat: no-repeat;
@@ -17,4 +20,40 @@
   cursor: pointer;
   border: none;
   outline: none;
+}
+
+.embla__dots {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.embla__dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.embla__dot--active {
+  background-color: #fff;
+}
+
+.embla__dot.is-selected {
+  background-color: #000;
+}
+
+@media (max-width: 768px) {
+  .embla {
+    height: 40vh; /* Altura reduzida para telas menores */
+  }
+
+  .embla__slide {
+    background-size: contain;
+  }
 }
