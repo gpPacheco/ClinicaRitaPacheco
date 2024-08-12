@@ -85,16 +85,16 @@ const BurgerButton = ({ isOpen, onClick }: Props) => (
 export function Header() {
   const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [logoSrc, setLogoSrc] = useState('/logoLinear.png');
+  const [logoSrc, setLogoSrc] = useState("/logoLinear.png");
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
         setIsHeaderShrunk(true);
-        setLogoSrc('/logoRp.png');
+        setLogoSrc("/logoRp.png");
       } else {
         setIsHeaderShrunk(false);
-        setLogoSrc('/logoLinear.png');
+        setLogoSrc("/logoLinear.png");
       }
     };
 
@@ -108,7 +108,7 @@ export function Header() {
   const SubmenuItem = ({ name, href }: { name: string; href: string }) => (
     <a
       href={href}
-      className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200"
+      className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200 border-b borde-gray-300 shadow-sm"
     >
       {name}
     </a>
@@ -161,7 +161,7 @@ export function Header() {
           href={href}
           onClick={toggleSubMenu}
           className={classNames(
-            "flex items-center px-3 py-2 text-sm font-medium transition duration-200 ease-in-out rounded-md",
+            "flex items-center px-3 py-2 text-sm font-medium transition duration-200 ease-in-out rounded-md ",
             {
               "bg-gray-900 text-white": isOpen,
               "text-black hover:bg-gray-600 hover:text-white": !isOpen,
@@ -187,30 +187,29 @@ export function Header() {
         >
           {(state) => (
             <div
-            className={classNames(
-              "absolute z-10 transform w-auto max-w-md lg:max-w-2xl transition-opacity",
-              {
-                "opacity-100": state === "entered",
-                "opacity-0": state === "exiting",
-              }
-            )}
-          >
-            <div className="rounded-lg shadow-lg overflow-hidden">
-              <div className="relative bg-white p-2">
-                {submenuItems &&
-                  submenuItems.map((item, index) => (
-                    <a
-                      key={index}
-                      href={item.href}
-                      className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200 whitespace-nowrap"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
+              className={classNames(
+                "absolute z-10 transform w-auto max-w-md lg:max-w-2xl transition-opacity",
+                {
+                  "opacity-100": state === "entered",
+                  "opacity-0": state === "exiting",
+                }
+              )}
+            >
+              <div className="rounded-lg shadow-lg overflow-hidden">
+                <div className="relative bg-[#f7f0ea] p-2 ">
+                  {submenuItems &&
+                    submenuItems.map((item, index) => (
+                      <a
+                        key={index}
+                        href={item.href}
+                        className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200 whitespace-nowrap"
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                </div>
               </div>
             </div>
-          </div>
-          
           )}
         </ReactTransition>
       </div>
@@ -230,7 +229,7 @@ export function Header() {
         "duration-500 ease-in-out"
       )}
     >
-      {({ }) => (
+      {({}) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky mt-1.5">
             <div className="relative flex h-16 items-center justify-between">
@@ -238,7 +237,7 @@ export function Header() {
               <div className="flex flex-1 items-center justify-center ">
                 <div className="flex-shrink-0">
                   <Link legacyBehavior href="/">
-                    <a >
+                    <a>
                       <Image
                         className={
                           isHeaderShrunk
@@ -420,7 +419,7 @@ export function Header() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <div className="bg-gray-50 shadow-md">
+            <div className="bg-white rounded-md shadow-md w-1/2">
               {navigation.map((item) => (
                 <Fragment key={item.name}>
                   {item.submenuItems ? (
@@ -437,7 +436,7 @@ export function Header() {
                         item.current
                           ? "bg-gray-900 text-white"
                           : "text-black hover:bg-gray-600 hover:text-white ",
-                        "block rounded-md px-3 py-2 text-base font-medium"
+                        "block rounded-md px-3 py-2 text-base font-medium "
                       )}
                       aria-current={item.current ? "page" : undefined}
                     >
