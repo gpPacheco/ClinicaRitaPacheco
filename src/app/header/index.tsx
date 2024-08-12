@@ -410,7 +410,7 @@ export function Header() {
             </div>
           </div>
 
-          {/* menu mobile container */}
+          {/* container do menu mobile  */}
           <Transition
             as={Fragment}
             enter="transition ease-out duration-100"
@@ -420,7 +420,7 @@ export function Header() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <div className="bg-white shadow-md">
+            <div className="bg-gray-50 shadow-md">
               {navigation.map((item) => (
                 <Fragment key={item.name}>
                   {item.submenuItems ? (
