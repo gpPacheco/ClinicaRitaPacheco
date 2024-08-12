@@ -7,23 +7,23 @@ export function Procedimentos() {
       <div className="text-xl text-center mb-4">Procedimentos</div>
       <div className="flex justify-center items-center space-x-7">
         <Image
-          className="w-60 h-40 object-cover"
-          src=""
-          alt="Imagem 1"
+          className="w-60 h-40 object-cover rounded-lg shadow-md"
+          src="/images/procedimento1.jpg"
+          alt="Procedimento 1"
           width={200}
           height={100}
         />
         <Image
-          className="w-60 h-40 object-cover"
-          src=""
-          alt="Imagem 2"
+          className="w-60 h-40 object-cover rounded-lg shadow-md"
+          src="/images/procedimento2.jpg"
+          alt="Procedimento 2"
           width={200}
           height={100}
         />
         <Image
-          className="w-60 h-40 object-cover"
-          src=""
-          alt="Imagem 3"
+          className="w-60 h-40 object-cover rounded-lg shadow-md"
+          src="/images/procedimento3.jpg"
+          alt="Procedimento 3"
           width={200}
           height={100}
         />
