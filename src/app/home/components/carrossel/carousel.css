@@ -1,7 +1,7 @@
 .embla {
   overflow: hidden;
   position: relative;
-  height: 80vh; /* Altura conforme ajustada anteriormente */
+  height: 80vh;
 }
 
 .embla__container {
@@ -35,6 +35,7 @@
   height: 12px;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 50%;
+  border: 2px solid black;
   margin: 0 4px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -48,12 +49,24 @@
   background-color: #000;
 }
 
+@media (max-width: 1024px) {
+  .embla {
+    height: 60vh;
+  }
+}
+
 @media (max-width: 768px) {
   .embla {
-    height: 40vh; /* Altura reduzida para telas menores */
+    height: 40vh; 
   }
 
   .embla__slide {
     background-size: contain;
+  }
+}
+
+@media (max-width: 480px) {
+  .embla {
+    height: 30vh; 
   }
 }
