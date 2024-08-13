@@ -8,21 +8,21 @@ export function Procedimentos() {
       <div className="flex justify-center items-center space-x-7">
         <Image
           className="w-60 h-40 object-cover rounded-lg shadow-md"
-          src="/images/procedimento1.jpg"
+          src="/2.jpg"
           alt="Procedimento 1"
           width={200}
           height={100}
         />
         <Image
           className="w-60 h-40 object-cover rounded-lg shadow-md"
-          src="/images/procedimento2.jpg"
+          src="/2.jpg"
           alt="Procedimento 2"
           width={200}
           height={100}
         />
         <Image
           className="w-60 h-40 object-cover rounded-lg shadow-md"
-          src="/images/procedimento3.jpg"
+          src="/2.jpg"
           alt="Procedimento 3"
           width={200}
           height={100}
