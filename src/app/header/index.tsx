@@ -58,35 +58,33 @@ type Props = {
   onClick: () => void;
 };
 
-const BurgerButton = ({ isOpen, onClick }: Props) => (
-  <button className="h-5 w-5" onClick={onClick}>
-    <div className="sr-only">{isOpen ? "Fechar menu" : "Abrir menu"}</div>
-    <div
-      aria-hidden="true"
-      className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
-        isOpen ? "rotate-45" : "-translate-y-1.5"
-      }`}
-    />
-    <div
-      aria-hidden="true"
-      className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
-        isOpen ? "opacity-0" : "opacity-100"
-      }`}
-    />
-    <div
-      aria-hidden="true"
-      className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
-        isOpen ? "-rotate-45" : "translate-y-1.5"
-      }`}
-    />
-  </button>
-);
-
 export function Header() {
   const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [logoSrc, setLogoSrc] = useState("/logoLinear.png");
-
+  const BurgerButton = ({ isOpen, onClick }: Props) => (
+    <button className="h-5 w-5" onClick={onClick}>
+      <div className="sr-only">{isOpen ? "Fechar menu" : "Abrir menu"}</div>
+      <div
+        aria-hidden="true"
+        className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
+          isOpen ? "rotate-45" : "-translate-y-1.5"
+        }`}
+      />
+      <div
+        aria-hidden="true"
+        className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
+          isOpen ? "opacity-0" : "opacity-100"
+        }`}
+      />
+      <div
+        aria-hidden="true"
+        className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
+          isOpen ? "-rotate-45" : "translate-y-1.5"
+        }`}
+      />
+    </button>
+  );
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -256,7 +254,7 @@ export function Header() {
               </div>
 
               {/* Mobile menu button*/}
-              <div className="absolute inset-y-0 left-0 flex items-center">
+              <div className="absolute left-0 inset-y-0 flex items-center">
                 <Disclosure.Button
                   as={BurgerButton}
                   isOpen={isOpen}
@@ -419,32 +417,37 @@ export function Header() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <div className="bg-white rounded-md shadow-md w-1/2">
-              {navigation.map((item) => (
-                <Fragment key={item.name}>
-                  {item.submenuItems ? (
-                    <DropdownItem
-                      name={item.name}
-                      href={item.href || "#"}
-                      submenuItems={item.submenuItems}
-                    />
-                  ) : (
-                    <Disclosure.Button
-                      as="a"
-                      href={item.href}
-                      className={classNames(
-                        item.current
-                          ? "bg-gray-900 text-white"
-                          : "text-black hover:bg-gray-600 hover:text-white ",
-                        "block rounded-md px-3 py-2 text-base font-medium "
-                      )}
-                      aria-current={item.current ? "page" : undefined}
-                    >
-                      {item.name}
-                    </Disclosure.Button>
-                  )}
-                </Fragment>
-              ))}
+            <div
+              className="fixed left-0 w-full h-full bg-black/50"
+              onClick={() => setIsOpen(false)}
+            >
+              <div className="bg-[#f7f0ea] left-0 rounded-md shadow-md w-full">
+                {navigation.map((item) => (
+                  <Fragment key={item.name}>
+                    {item.submenuItems ? (
+                      <DropdownItem
+                        name={item.name}
+                        href={item.href || "#"}
+                        submenuItems={item.submenuItems}
+                      />
+                    ) : (
+                      <Disclosure.Button
+                        as="a"
+                        href={item.href}
+                        className={classNames(
+                          item.current
+                            ? "bg-gray-900 text-white"
+                            : "text-black hover:bg-gray-600 hover:text-white ",
+                          "block rounded-md px-3 py-2 text-base font-medium "
+                        )}
+                        aria-current={item.current ? "page" : undefined}
+                      >
+                        {item.name}
+                      </Disclosure.Button>
+                    )}
+                  </Fragment>
+                ))}
+              </div>
             </div>
           </Transition>
         </>
