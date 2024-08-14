@@ -41,7 +41,7 @@ export default function ContactForm() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Fale Conosco</h1>
-      <p className="mb-8">Envie suas dúvidas, sugestões e críticas</p>
+      <p className="mb-8">Envie suas dúvidas e sugestões</p>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-gray-700 font-bold mb-2">

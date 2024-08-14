@@ -52,7 +52,7 @@ export const EmblaCarousel = () => {
   };
 
   return (
-    <div className="embla w-full" ref={emblaRef}>
+    <div className="embla w-ful shadow-md" ref={emblaRef}>
       <div className="embla__container">
         {imgs.map((item, index) => (
           <button
@@ -94,3 +94,9 @@ export const EmblaCarousel = () => {
     </div>
   );
 };
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/
