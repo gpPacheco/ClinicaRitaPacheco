@@ -12,15 +12,27 @@ import {
   FaShareAlt,
   FaTiktok,
   FaWhatsapp,
+  FaHome,
+  FaUserMd,
+  FaClinicMedical,
+  FaBookOpen,
+  FaShoppingCart,
+  FaPhone,
 } from "react-icons/fa";
 import { Transition as ReactTransition } from "react-transition-group";
 
 const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Profissionais", href: "/profissionais", current: false },
+  { name: "Home", href: "/", current: true, icon: <FaHome /> },
+  {
+    name: "Profissionais",
+    href: "/profissionais",
+    current: false,
+    icon: <FaUserMd />,
+  },
   {
     name: "A Clinica",
     current: false,
+    icon: <FaClinicMedical />,
     submenuItems: [
       { name: "Sobre", href: "/" },
       { name: "Spa", href: "/" },
@@ -31,6 +43,7 @@ const navigation = [
   {
     name: "Especialidades",
     current: false,
+    icon: <FaClinicMedical />,
     submenuItems: [
       { name: "Pé de Risco: Diabético", href: "/" },
       { name: "Pé Neuro-Vascular", href: "/" },
@@ -43,14 +56,19 @@ const navigation = [
   {
     name: "Aprenda conosco",
     current: false,
+    icon: <FaBookOpen />,
     submenuItems: [
       { name: "Cursos", href: "/" },
       { name: "Mentorias", href: "/" },
     ],
   },
-  { name: "Produtos", href: "produtos", current: false },
-
-  { name: "Contato", href: "contato", current: false },
+  {
+    name: "Produtos",
+    href: "/produtos",
+    current: false,
+    icon: <FaShoppingCart />,
+  },
+  { name: "Contato", href: "/contato", current: false, icon: <FaPhone /> },
 ];
 
 type Props = {
@@ -101,6 +119,24 @@ export function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const MenuItem = ({
+    name,
+    href,
+    icon,
+  }: {
+    name: string;
+    href: string;
+    icon: JSX.Element;
+  }) => (
+    <a
+      href={href}
+      className="flex items-center px-3 py-2 text-sm font-medium text-black hover:bg-gray-600 hover:text-white"
+    >
+      {icon}
+      <span className="ml-2">{name}</span>
+    </a>
+  );
 
   // reponsavel pela posicao das palavras dos submenus
   const SubmenuItem = ({ name, href }: { name: string; href: string }) => (
@@ -254,30 +290,38 @@ export function Header() {
               </div>
 
               {/* Mobile menu button*/}
-                <div className="absolute left-1 inset-x-0 flex items-center">
-                  <Disclosure.Button
-                    as={BurgerButton}
-                    isOpen={isOpen}
-                    onClick={() => setIsOpen(!isOpen)}
-                  >
-                    <span className="absolute -inset-0.5" />
-                    <span className="sr-only">Menu</span>
-                  </Disclosure.Button>
-                </div>
+              <div className="absolute left-1 inset-x-0 flex items-center">
+                <Disclosure.Button
+                  as={BurgerButton}
+                  isOpen={isOpen}
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  <span className="absolute -inset-0.5" />
+                  <span className="sr-only">Menu</span>
+                </Disclosure.Button>
+              </div>
 
-                {/* Container do menu mobile com transição */}
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <div className="absolute top-full left-0 bg-white rounded-md shadow-md w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {navigation.map((item) => (
-                        <Fragment key={item.name}>
+              {/* Container do menu mobile com transição */}
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <div className="absolute top-full left-0 bg-white rounded-md shadow-md w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  {navigation.map((item) => (
+                    <>
+                      <MenuItem
+                        key={item.name}
+                        name={item.name}
+                        href={item.href}
+                        icon={item.icon}
+                      />
+                      <>
+                        <MenuItem key={item.name}>
                           {item.submenuItems ? (
                             <DropdownItem
                               name={item.name}
@@ -299,11 +343,13 @@ export function Header() {
                               {item.name}
                             </Disclosure.Button>
                           )}
-                        </Fragment>
-                      ))}
-                    </div>
-                  </Transition>
-                      
+                        </MenuItem>
+                      </>
+                    </>
+                  ))}
+                </div>
+              </Transition>
+
               {/* Desktop menu */}
               {/* <div className="hidden lg:ml-auto lg:flex">
                 <div className="flex justify-between items-center space-x-2.5">
