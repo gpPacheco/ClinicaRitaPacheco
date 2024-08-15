@@ -254,17 +254,56 @@ export function Header() {
               </div>
 
               {/* Mobile menu button*/}
-              <div className="absolute left-0 inset-y-0 flex items-center">
-                <Disclosure.Button
-                  as={BurgerButton}
-                  isOpen={isOpen}
-                  onClick={() => setIsOpen(!isOpen)}
-                >
-                  <span className="absolute -inset-0.5" />
-                  <span className="sr-only">Menu</span>
-                </Disclosure.Button>
-              </div>
+                <div className="absolute left-1 inset-x-0 flex items-center">
+                  <Disclosure.Button
+                    as={BurgerButton}
+                    isOpen={isOpen}
+                    onClick={() => setIsOpen(!isOpen)}
+                  >
+                    <span className="absolute -inset-0.5" />
+                    <span className="sr-only">Menu</span>
+                  </Disclosure.Button>
+                </div>
 
+                {/* Container do menu mobile com transição */}
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <div className="absolute top-full left-0 bg-white rounded-md shadow-md w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      {navigation.map((item) => (
+                        <Fragment key={item.name}>
+                          {item.submenuItems ? (
+                            <DropdownItem
+                              name={item.name}
+                              href={item.href || "#"}
+                              submenuItems={item.submenuItems}
+                            />
+                          ) : (
+                            <Disclosure.Button
+                              as="a"
+                              href={item.href}
+                              className={classNames(
+                                item.current
+                                  ? "bg-gray-900 text-white"
+                                  : "text-black hover:bg-gray-600 hover:text-white",
+                                "block rounded-md px-3 py-2 text-base font-medium"
+                              )}
+                              aria-current={item.current ? "page" : undefined}
+                            >
+                              {item.name}
+                            </Disclosure.Button>
+                          )}
+                        </Fragment>
+                      ))}
+                    </div>
+                  </Transition>
+                      
               {/* Desktop menu */}
               {/* <div className="hidden lg:ml-auto lg:flex">
                 <div className="flex justify-between items-center space-x-2.5">
@@ -296,10 +335,10 @@ export function Header() {
               </div> */}
 
               {/* Redes sociais */}
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 z-[100]">
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full px-1.5 py-1.5 text-gray-900 hover:bg-gray-600 hover:text-white focus:outline-none">
+                    <Menu.Button className="relative flex rounded-full px-1.5 py-1.5 text-gray-900 hover:bg-gray-600 hover:text-white focus:outline-none z-[101]">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only"></span>
                       <FaShareAlt className="h-5 w-5" />
@@ -314,7 +353,7 @@ export function Header() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-[102] mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a
@@ -406,50 +445,6 @@ export function Header() {
               </div>
             </div>
           </div>
-
-          {/* container do menu mobile  */}
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-          >
-            <div
-              className="fixed left-0 w-full h-full bg-black/50"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="bg-[#f7f0ea] left-0 rounded-md shadow-md w-full">
-                {navigation.map((item) => (
-                  <Fragment key={item.name}>
-                    {item.submenuItems ? (
-                      <DropdownItem
-                        name={item.name}
-                        href={item.href || "#"}
-                        submenuItems={item.submenuItems}
-                      />
-                    ) : (
-                      <Disclosure.Button
-                        as="a"
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-black hover:bg-gray-600 hover:text-white ",
-                          "block rounded-md px-3 py-2 text-base font-medium "
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </Disclosure.Button>
-                    )}
-                  </Fragment>
-                ))}
-              </div>
-            </div>
-          </Transition>
         </>
       )}
     </Disclosure>
