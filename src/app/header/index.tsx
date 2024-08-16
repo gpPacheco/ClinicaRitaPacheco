@@ -313,39 +313,31 @@ export function Header() {
               >
                 <div className="absolute top-full left-0 bg-white rounded-md shadow-md w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
                   {navigation.map((item) => (
-                    <>
+                    <Fragment key={item.name}>
                       <MenuItem
-                        key={item.name}
                         name={item.name}
-                        href={item.href}
+                        href={item.href ?? "#"}
                         icon={item.icon}
                       />
-                      <>
-                        <MenuItem key={item.name}>
-                          {item.submenuItems ? (
-                            <DropdownItem
-                              name={item.name}
-                              href={item.href || "#"}
-                              submenuItems={item.submenuItems}
-                            />
-                          ) : (
-                            <Disclosure.Button
-                              as="a"
-                              href={item.href}
-                              className={classNames(
-                                item.current
-                                  ? "bg-gray-900 text-white"
-                                  : "text-black hover:bg-gray-600 hover:text-white",
-                                "block rounded-md px-3 py-2 text-base font-medium"
-                              )}
-                              aria-current={item.current ? "page" : undefined}
-                            >
-                              {item.name}
-                            </Disclosure.Button>
-                          )}
-                        </MenuItem>
-                      </>
-                    </>
+                      {item.submenuItems && (
+                        <Disclosure>
+                          <Disclosure.Button
+                            as="a"
+                            href={item.href}
+                            className={classNames(
+                              item.current
+                                ? "bg-gray-900 text-white"
+                                : "text-black hover:bg-gray-600 hover:text-white",
+                              "block rounded-md px-3 py-2 text-base font-medium"
+                            )}
+                            aria-current={item.current ? "page" : undefined}
+                          >
+                            {item.name}
+                          </Disclosure.Button>
+                          {/* Renderize os itens do submenu aqui */}
+                        </Disclosure>
+                      )}
+                    </Fragment>
                   ))}
                 </div>
               </Transition>
