@@ -131,14 +131,14 @@ export function Header() {
   }) => (
     <a
       href={href}
-      className="flex items-center px-3 py-2 text-sm font-medium text-black hover:bg-gray-600 hover:text-white"
+      className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-gray-600 hover:text-white"
     >
       {icon}
       <span className="ml-2">{name}</span>
     </a>
   );
 
-  // reponsavel pela posicao das palavras dos submenus
+  // container dos submenus
   const SubmenuItem = ({ name, href }: { name: string; href: string }) => (
     <a
       href={href}
@@ -153,20 +153,22 @@ export function Header() {
     name,
     href,
     submenuItems,
+    icon,
   }: {
     name: string;
     href: string;
+    icon: JSX.Element;
     submenuItems: { name: string; href: string }[];
   }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
-
+  
     // Função para alternar o submenu
     const toggleSubMenu = (e: React.MouseEvent) => {
       e.preventDefault();
       setIsOpen(!isOpen);
     };
-
+  
     // Efeito para fechar o submenu ao clicar fora
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
@@ -177,18 +179,18 @@ export function Header() {
           setIsOpen(false);
         }
       };
-
+  
       if (isOpen) {
         document.addEventListener("mousedown", handleClickOutside);
       } else {
         document.removeEventListener("mousedown", handleClickOutside);
       }
-
+  
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }, [isOpen]);
-
+  
     return (
       <div ref={dropdownRef} className="relative">
         <a
@@ -202,6 +204,7 @@ export function Header() {
             }
           )}
         >
+          {icon && <span className="mr-2">{icon}</span>} {/* Exibindo o ícone */}
           <span>{name}</span>
           {submenuItems && submenuItems.length > 0 && (
             <FaAngleDown
@@ -212,7 +215,7 @@ export function Header() {
             />
           )}
         </a>
-
+  
         <ReactTransition
           in={isOpen}
           timeout={{ enter: 300, exit: 150 }}
@@ -230,7 +233,7 @@ export function Header() {
               )}
             >
               <div className="rounded-lg shadow-lg overflow-hidden">
-                <div className="relative bg-[#f7f0ea] p-2 ">
+                <div className="relative bg-white p-2 ">
                   {submenuItems &&
                     submenuItems.map((item, index) => (
                       <a
@@ -249,6 +252,7 @@ export function Header() {
       </div>
     );
   };
+  
 
   return (
     <Disclosure
@@ -312,33 +316,24 @@ export function Header() {
                 leaveTo="transform opacity-0 scale-95"
               >
                 <div className="absolute top-full left-0 bg-white rounded-md shadow-md w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  {navigation.map((item) => (
-                    <Fragment key={item.name}>
-                      <MenuItem
+                {navigation.map((item) =>
+                    item.submenuItems ? (
+                      <DropdownItem
+                        key={item.name}
                         name={item.name}
                         href={item.href ?? "#"}
                         icon={item.icon}
+                        submenuItems={item.submenuItems}
                       />
-                      {item.submenuItems && (
-                        <Disclosure>
-                          <Disclosure.Button
-                            as="a"
-                            href={item.href}
-                            className={classNames(
-                              item.current
-                                ? "bg-gray-900 text-white"
-                                : "text-black hover:bg-gray-600 hover:text-white",
-                              "block rounded-md px-3 py-2 text-base font-medium"
-                            )}
-                            aria-current={item.current ? "page" : undefined}
-                          >
-                            {item.name}
-                          </Disclosure.Button>
-                          {/* Renderize os itens do submenu aqui */}
-                        </Disclosure>
-                      )}
-                    </Fragment>
-                  ))}
+                    ) : (
+                      <MenuItem
+                        key={item.name}
+                        name={item.name}
+                        href={item.href}
+                        icon={item.icon}
+                      />
+                    )
+                  )}
                 </div>
               </Transition>
 
