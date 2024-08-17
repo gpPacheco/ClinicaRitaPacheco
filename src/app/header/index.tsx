@@ -79,7 +79,25 @@ type Props = {
 export function Header() {
   const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [logoSrc, setLogoSrc] = useState("/logoLinear.png");
+  const [logoSrc, setLogoSrc] = useState("/logLinear.png");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsHeaderShrunk(true);
+        setLogoSrc("/logoRp.png");
+      } else {
+        setIsHeaderShrunk(false);
+        setLogoSrc("/logoRp.png");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
   const BurgerButton = ({ isOpen, onClick }: Props) => (
     <button className="h-5 w-5" onClick={onClick}>
       <div className="sr-only">{isOpen ? "Fechar menu" : "Abrir menu"}</div>
@@ -103,22 +121,6 @@ export function Header() {
       />
     </button>
   );
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsHeaderShrunk(true);
-        setLogoSrc("/logoRp.png");
-      } else {
-        setIsHeaderShrunk(false);
-        setLogoSrc("/logoLinear.png");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   const MenuItem = ({
     name,
@@ -258,7 +260,7 @@ export function Header() {
     <Disclosure
       as="nav"
       className={classNames(
-        "bg-[#f7f0ea] shadow-md fixed top-0 left-0 right-0 z-50 transition-all motion-safe",
+        "bg-gradient-to-r from-[#f7f0ea] via-[#dbbeb0] to-[#f7f0ea] shadow-md fixed top-0 left-0 right-0 z-50 transition-all motion-safe",
         {
           "h-20 duration-300 ease-in-out": !isHeaderShrunk,
           "h-18 transition-all motion-safe": isHeaderShrunk,
@@ -272,7 +274,7 @@ export function Header() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky mt-1.5">
             <div className="relative flex h-16 items-center justify-between">
               {/* logo*/}
-              <div className="flex flex-1 items-center justify-center ">
+              <div className="flex flex-1 items-center justify-center">
                 <div className="flex-shrink-0">
                   <Link legacyBehavior href="/">
                     <a>
@@ -282,9 +284,9 @@ export function Header() {
                             ? "max-h-16 h-full w-auto cursor-pointer transition-all motion-safe "
                             : "max-h-18 h-full w-auto cursor-pointer transition-all motion-safe "
                         }
-                        src={logoSrc}
+                        src="/logoRp.png"
                         alt="Clinica Rita Pacheco"
-                        width={300}
+                        width={65}
                         height={200}
                         priority
                       />
@@ -315,7 +317,7 @@ export function Header() {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <div className="absolute top-full left-0 bg-white rounded-md shadow-md w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="absolute top-full left-0 bg-[#f7f0ea] rounded-md shadow-md w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
                 {navigation.map((item) =>
                     item.submenuItems ? (
                       <DropdownItem

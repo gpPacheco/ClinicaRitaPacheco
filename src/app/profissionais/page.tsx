@@ -25,7 +25,7 @@ export default function Profissionais() {
 
   return (
     <div className="profissionais-container">
-      <section className="py-10 sm:py-16 lg:py-24 z-40 relative">
+      <section className="justify-items-center text-center py-10 sm:py-16 lg:py-24 z-40 relative">
         <div className="container mx-auto">
           <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl">
             Conheça quem são as{" "}
@@ -34,8 +34,8 @@ export default function Profissionais() {
             </span>{" "}
             da clínica de podologia Rita Pacheco:
           </h2>
-          <p className="mb-20 text-lg text-gray-800">
-            A&nbsp;
+          <p className="mb-20 mt-2 text-lg text-gray-800">
+            Há&nbsp;
             <span className="block w-full font-light bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
               mais
             </span>{" "}
