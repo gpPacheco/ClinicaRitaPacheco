@@ -284,9 +284,9 @@ export function Header() {
                             ? "max-h-16 h-full w-auto cursor-pointer transition-all motion-safe "
                             : "max-h-18 h-full w-auto cursor-pointer transition-all motion-safe "
                         }
-                        src="/logoRp.png"
+                        src="/logoLinear.png"
                         alt="Clinica Rita Pacheco"
-                        width={65}
+                        width={300}
                         height={200}
                         priority
                       />
