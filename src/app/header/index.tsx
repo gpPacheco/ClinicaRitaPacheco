@@ -79,25 +79,22 @@ type Props = {
 export function Header() {
   const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [logoSrc, setLogoSrc] = useState("/logLinear.png");
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsHeaderShrunk(true);
+    } else {
+      setIsHeaderShrunk(false);
+    }
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsHeaderShrunk(true);
-        setLogoSrc("/logoRp.png");
-      } else {
-        setIsHeaderShrunk(false);
-        setLogoSrc("/logoRp.png");
-      }
-    };
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
+
   const BurgerButton = ({ isOpen, onClick }: Props) => (
     <button className="h-5 w-5" onClick={onClick}>
       <div className="sr-only">{isOpen ? "Fechar menu" : "Abrir menu"}</div>
@@ -164,13 +161,13 @@ export function Header() {
   }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
-  
+
     // Função para alternar o submenu
     const toggleSubMenu = (e: React.MouseEvent) => {
       e.preventDefault();
       setIsOpen(!isOpen);
     };
-  
+
     // Efeito para fechar o submenu ao clicar fora
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
@@ -181,18 +178,18 @@ export function Header() {
           setIsOpen(false);
         }
       };
-  
+
       if (isOpen) {
         document.addEventListener("mousedown", handleClickOutside);
       } else {
         document.removeEventListener("mousedown", handleClickOutside);
       }
-  
+
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }, [isOpen]);
-  
+
     return (
       <div ref={dropdownRef} className="relative">
         <a
@@ -206,7 +203,8 @@ export function Header() {
             }
           )}
         >
-          {icon && <span className="mr-2">{icon}</span>} {/* Exibindo o ícone */}
+          {icon && <span className="mr-2">{icon}</span>}{" "}
+          {/* Exibindo o ícone */}
           <span>{name}</span>
           {submenuItems && submenuItems.length > 0 && (
             <FaAngleDown
@@ -217,7 +215,7 @@ export function Header() {
             />
           )}
         </a>
-  
+
         <ReactTransition
           in={isOpen}
           timeout={{ enter: 300, exit: 150 }}
@@ -254,7 +252,6 @@ export function Header() {
       </div>
     );
   };
-  
 
   return (
     <Disclosure
@@ -264,7 +261,7 @@ export function Header() {
         {
           "h-20 duration-300 ease-in-out": !isHeaderShrunk,
           "h-18 transition-all motion-safe": isHeaderShrunk,
-          "-translate-y-1.5": isHeaderShrunk,
+          "-translate-y-2": isHeaderShrunk,
         },
         "duration-500 ease-in-out"
       )}
@@ -318,7 +315,7 @@ export function Header() {
                 leaveTo="transform opacity-0 scale-95"
               >
                 <div className="absolute top-full left-0 bg-[#f7f0ea] rounded-md shadow-md w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
-                {navigation.map((item) =>
+                  {navigation.map((item) =>
                     item.submenuItems ? (
                       <DropdownItem
                         key={item.name}
