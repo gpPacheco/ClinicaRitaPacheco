@@ -12,7 +12,7 @@ import { FaLocationDot } from "react-icons/fa6";
 
 export function Rodape() {
   return (
-    <footer className="bg-gradient-to-r from-[#f7f0ea] via-[#dbbeb0] to-[#f7f0ea]">
+    <footer className="bg-gradient-to-r from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0]">
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>

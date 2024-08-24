@@ -257,7 +257,7 @@ export function Header() {
     <Disclosure
       as="nav"
       className={classNames(
-        "bg-gradient-to-r from-[#f7f0ea] via-[#dbbeb0] to-[#f7f0ea] shadow-md fixed top-0 left-0 right-0 z-50 transition-all motion-safe",
+        "bg-gradient-to-r from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0] shadow-md fixed top-0 left-0 right-0 z-50 transition-all motion-safe",
         {
           "h-20 duration-300 ease-in-out": !isHeaderShrunk,
           "h-18 transition-all motion-safe": isHeaderShrunk,
