@@ -11,10 +11,10 @@ export function Depoimentos() {
             key={index}
             className="bg-white border border-gray-200 shadow-md rounded-md p-4 w-64 h-40 transition duration-300 ease-in-out hover:scale-110"
             onMouseEnter={(e) => {
-              e.target.classList.add("scale-110");
+              (e.currentTarget as HTMLElement).classList.add("scale-110");
             }}
             onMouseLeave={(e) => {
-              e.target.classList.remove("scale-110");
+              (e.currentTarget as HTMLElement).classList.remove("scale-110");
             }}
           >
             <h2 className="text-lg font-bold">Depoimento {item}</h2>
