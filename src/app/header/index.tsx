@@ -119,8 +119,6 @@ export function Header() {
     };
   }, []);
 
-  
-
   const MenuItem = ({
     name,
     href,
