@@ -76,26 +76,7 @@ type Props = {
   onClick: () => void;
 };
 
-export function Header() {
-  const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleScroll = () => {
-    if (window.scrollY > 0) {
-      setIsHeaderShrunk(true);
-    } else {
-      setIsHeaderShrunk(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const BurgerButton = ({ isOpen, onClick }: Props) => (
+const BurgerButton = ({ isOpen, onClick }: Props) => (
     <button className="h-5 w-5" onClick={onClick}>
       <div className="sr-only">{isOpen ? "Fechar menu" : "Abrir menu"}</div>
       <div
@@ -119,6 +100,27 @@ export function Header() {
     </button>
   );
 
+export function Header() {
+  const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsHeaderShrunk(true);
+    } else {
+      setIsHeaderShrunk(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  
+
   const MenuItem = ({
     name,
     href,
@@ -130,7 +132,7 @@ export function Header() {
   }) => (
     <a
       href={href}
-      className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-gray-600 hover:text-white"
+      className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-600 hover:text-white"
     >
       {icon}
       <span className="ml-2">{name}</span>
@@ -199,7 +201,7 @@ export function Header() {
             "flex items-center px-3 py-2 text-sm font-medium transition duration-200 ease-in-out rounded-md ",
             {
               "bg-gray-900 text-white": isOpen,
-              "text-black hover:bg-gray-600 hover:text-white": !isOpen,
+              "text-gray-700 hover:bg-gray-600 hover:text-white": !isOpen,
             }
           )}
         >
@@ -233,13 +235,13 @@ export function Header() {
               )}
             >
               <div className="rounded-lg shadow-lg overflow-hidden">
-                <div className="relative bg-white p-2 ">
+                <div className="relative bg-[#f7f0ea] p-2 ">
                   {submenuItems &&
                     submenuItems.map((item, index) => (
                       <a
                         key={index}
                         href={item.href}
-                        className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200 whitespace-nowrap"
+                        className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-600 hover:text-white whitespace-nowrap"
                       >
                         {item.name}
                       </a>
@@ -384,14 +386,14 @@ export function Header() {
                     leave="transition ease-in duration-75"
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-[102] mt-2 w-48 origin-top-right rounded-md bg-[#f7f0ea] py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  > 
+                    <Menu.Items className="absolute right-0 z-[102] mt-2 w-48 p-4 origin-top-right rounded-md transition-transform transform duration-300 ease-in-out bg-[#f7f0ea] py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a
                             href="https://api.whatsapp.com/send/?phone=5516993108637&text&type=phone_number&app_absent=0"
                             className={classNames(
-                              active ? "bg-gray-100" : "",
+                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -408,7 +410,7 @@ export function Header() {
                           <a
                             href="https://www.instagram.com/ritafpacheco/"
                             className={classNames(
-                              active ? "bg-gray-100" : "",
+                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -425,7 +427,7 @@ export function Header() {
                           <a
                             href="https://www.facebook.com/ritapachecopodologa"
                             className={classNames(
-                              active ? "bg-gray-100" : "",
+                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -442,7 +444,7 @@ export function Header() {
                           <a
                             href="https://www.linkedin.com/company/clinica-rita-pacheco/"
                             className={classNames(
-                              active ? "bg-gray-100" : "",
+                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -459,7 +461,7 @@ export function Header() {
                           <a
                             href="https://www.tiktok.com/@ritafpachecoo"
                             className={classNames(
-                              active ? "bg-gray-100" : "",
+                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
