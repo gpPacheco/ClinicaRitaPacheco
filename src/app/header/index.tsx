@@ -271,7 +271,7 @@ export function Header() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky mt-1.5">
             <div className="relative flex h-16 items-center justify-between">
               {/* logo*/}
-              <div className="flex flex-1 items-center justify-center">
+              <div className="flex flex-1 items-center justify-center lg:ml-20 md:ml-20 sm:ml-20">
                 <div className="flex-shrink-0">
                   <Link legacyBehavior href="/">
                     <a>
@@ -293,7 +293,7 @@ export function Header() {
               </div>
 
               {/* Mobile menu button*/}
-              <div className="absolute left-1 inset-x-0 flex items-center">
+              <div className="absolute left-1 inset-x-0 flex">
                 <Disclosure.Button
                   as={BurgerButton}
                   isOpen={isOpen}
@@ -336,10 +336,10 @@ export function Header() {
               </div>
 
               {/* Redes sociais button*/}
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 z-[100]">
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6">
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full px-1.5 py-1.5 text-gray-900 hover:bg-gray-600 hover:text-white focus:outline-none z-[101]">
+                    <Menu.Button className="relative flex rounded-full px-1.5 py-1.5 text-gray-900 hover:bg-gray-600 hover:text-white focus:outline-none">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only"></span>
                       <FaShareAlt className="h-5 w-5" />
