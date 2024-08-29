@@ -3,7 +3,7 @@ import Image from "next/image"
 
 export function Procedimentos() {
   return (
-    <div className="w-full px-4 mb-12">
+    <div className="w-full px-4 mb-12 mt-10">
       <div className="text-xl text-center mb-4">Procedimentos</div>
       <div className="flex justify-center items-center space-x-7">
         <Image

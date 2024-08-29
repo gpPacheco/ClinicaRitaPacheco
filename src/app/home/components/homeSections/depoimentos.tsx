@@ -3,8 +3,9 @@
 export function Depoimentos() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-center">
-      <h1>Depoimentos</h1>
-      <p>Depoimentos de clientes satisfeitos com o serviço prestado</p>
+      <p className="text-lg font-bold text-gray-600 opacity-50 hover:opacity-100 transition duration-300 ease-in-out">
+        O que dizem nossos pacientes
+      </p>
       <div className="container flex flex-wrap justify-center gap-4 mt-8">
         {[1, 2, 3].map((item, index) => (
           <div
@@ -25,3 +26,9 @@ export function Depoimentos() {
     </div>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/

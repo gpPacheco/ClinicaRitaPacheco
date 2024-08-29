@@ -137,16 +137,6 @@ export function Header() {
     </a>
   );
 
-  // container dos submenus
-  const SubmenuItem = ({ name, href }: { name: string; href: string }) => (
-    <a
-      href={href}
-      className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200 border-b borde-gray-300 shadow-sm"
-    >
-      {name}
-    </a>
-  );
-
   //codigo responsavel pelas palavras com opcoes de submenu e transicoes de submenu
   const DropdownItem = ({
     name,
@@ -196,7 +186,7 @@ export function Header() {
           href={href}
           onClick={toggleSubMenu}
           className={classNames(
-            "flex items-center px-3 py-2 text-sm font-medium transition duration-200 ease-in-out rounded-md ",
+            "flex items-center px-3 py-2 text-sm font-medium rounded-md ",
             {
               "bg-gray-900 text-white": isOpen,
               "text-gray-700 hover:bg-gray-600 hover:text-white": !isOpen,
@@ -253,6 +243,16 @@ export function Header() {
     );
   };
 
+  // container dos submenus
+  const SubmenuItem = ({ name, href }: { name: string; href: string }) => (
+    <a
+      href={href}
+      className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200 border-b borde-gray-300 shadow-sm"
+    >
+      {name}
+    </a>
+  );
+
   return (
     <Disclosure
       as="nav"
@@ -302,9 +302,7 @@ export function Header() {
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Menu</span>
                 </Disclosure.Button>
-              </div>
-
-              {/* Container do menu mobile com transição */}
+                {/* Container do menu mobile com transição */}
               <Transition
                 as={Fragment}
                 enter="transition ease-out duration-100"
@@ -314,7 +312,7 @@ export function Header() {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <div className="absolute top-full left-0 bg-[#f7f0ea] rounded-md shadow-md w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="absolute top-full left-0 bg-[#f7f0ea] rounded-md shadow-md mt-3 w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
                   {navigation.map((item) =>
                     item.submenuItems ? (
                       <DropdownItem
@@ -335,38 +333,9 @@ export function Header() {
                   )}
                 </div>
               </Transition>
+              </div>
 
-              {/* Desktop menu */}
-              {/* <div className="hidden lg:ml-auto lg:flex">
-                <div className="flex justify-between items-center space-x-2.5">
-                  {navigation.map((item, index) =>
-                    item.submenuItems ? (
-                      <DropdownItem
-                        key={index}
-                        name={item.name}
-                        href={item.href || "#"}
-                        submenuItems={item.submenuItems}
-                      />
-                    ) : (
-                      <a
-                        key={index}
-                        href={item.href || "#"}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-black hover:bg-gray-600 hover:text-white",
-                          "px-3 py-2 rounded-md text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    )
-                  )}
-                </div>
-              </div> */}
-
-              {/* Redes sociais */}
+              {/* Redes sociais button*/}
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 z-[100]">
                 <Menu as="div" className="relative ml-3">
                   <div>
