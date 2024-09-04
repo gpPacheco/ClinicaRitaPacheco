@@ -2,7 +2,7 @@
 
 export function Depoimentos() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-center">
+    <div className="flex flex-col items-center justify-center py-16 text-center">
       <p className="text-lg font-bold text-gray-600 opacity-50 hover:opacity-100 transition duration-300 ease-in-out">
         O que dizem nossos pacientes
       </p>

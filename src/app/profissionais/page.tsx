@@ -6,14 +6,34 @@ interface Profissional {
   id: number;
   nome: string;
   especialidade: string;
+  descricao: string;
 }
 
 export default function Profissionais() {
   const [profissionais, setProfissionais] = useState<Profissional[]>([
-    { id: 1, nome: "Rita Pacheco", especialidade: "Podóloga" },
-    { id: 2, nome: "Profissional 2", especialidade: "Especialidade 2" },
-    { id: 3, nome: "Profissional 3", especialidade: "Especialidade 3" },
-    { id: 4, nome: "Profissional 4", especialidade: "Especialidade 4" },
+    {
+      id: 1,
+      nome: "Rita Pacheco",
+      especialidade: "Podóloga",
+      descricao: `
+        Resumo
+        Podóloga desde 2010 (Senac Franca)
+
+        Especializações
+        - Diabetes (2015, Senac Aclimação-SP)
+        - Podologia Geriátrica, Esportiva e Laserterapia para Onicomicose
+
+        Experiência
+        - Palestrante em Podologia Gerôntica e Calçado para Diabetes
+        - Participante de congressos, cursos e simpósios de Podologia
+
+        Formação
+        - Pós-graduada em Distúrbio de Linguagem (1995, Cefac SP)
+        - Fonoaudióloga desde 1994 (Univ. Franca-SP)
+      `,
+    },
+    { id: 2, nome: "Profissional 2", especialidade: "Podóloga", descricao: "" },
+    { id: 3, nome: "Profissional 3", especialidade: "Atendimento", descricao: "" },
   ]);
 
   const [selectedProfissional, setSelectedProfissional] =
@@ -21,6 +41,10 @@ export default function Profissionais() {
 
   const handleCardClick = (profissional: Profissional | null) => {
     setSelectedProfissional(profissional);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProfissional(null);
   };
 
   return (
@@ -42,7 +66,7 @@ export default function Profissionais() {
             de 15 anos!
           </p>
 
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
+          <div className="flex flex-col=1 gap-6 lg:grid-cols-3 justify-items-center">
             {profissionais.map((profissional) => (
               <a
                 key={profissional.id}
@@ -81,20 +105,26 @@ export default function Profissionais() {
           </div>
 
           {selectedProfissional && (
-            <div className="text-center fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center">
-              <div className="bg-white p-10 rounded-md shadow-md">
+            <div
+              className="fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center"
+              onClick={handleCloseModal}
+            >
+              <div
+                className="bg-white p-10 rounded-md shadow-md max-w-lg w-full max-h-[90vh] overflow-y-auto text-center"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <h2 className="text-2xl font-bold">
                   {selectedProfissional.nome}
                 </h2>
                 <p className="text-lg">
                   Especialidade: {selectedProfissional.especialidade}
                 </p>
-                <p className="text-lg">
-                  Mais informações sobre {selectedProfissional.nome}...
+                <p className="text-lg whitespace-pre-wrap">
+                  {selectedProfissional.descricao}
                 </p>
                 <button
-                  className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => setSelectedProfissional(null)}
+                  className="mt-4 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={handleCloseModal}
                 >
                   Fechar
                 </button>
@@ -106,9 +136,3 @@ export default function Profissionais() {
     </div>
   );
 }
-
-//   ______    ____
-//  /\    /\  | "o |
-// |  \/\/  |/ ___\|
-// |gpPacheco_/
-// /_/_/ /_/_/
