@@ -45,12 +45,12 @@ const navigation = [
     current: false,
     icon: <FaClinicMedical />,
     submenuItems: [
-      { name: "Pé de Risco: Diabético", href: "/" },
-      { name: "Pé Neuro-Vascular", href: "/" },
-      { name: "Podologia Esportiva", href: "/" },
-      { name: "Podologia Geriátrica", href: "/" },
-      { name: "Podologia Hospitalar", href: "/" },
-      { name: "Podologia Infantil", href: "/" },
+      { name: "Pé de Risco: Diabético", href: "/especialidades" },
+      { name: "Pé Neuro-Vascular", href: "/especialidades" },
+      { name: "Podologia Esportiva", href: "/especialidades" },
+      { name: "Podologia Geriátrica", href: "/especialidades" },
+      { name: "Podologia Hospitalar", href: "/especialidades" },
+      { name: "Podologia Infantil", href: "/especialidades" },
     ],
   },
   {
