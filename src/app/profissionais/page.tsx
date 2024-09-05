@@ -66,7 +66,8 @@ export default function Profissionais() {
             de 15 anos!
           </p>
 
-          <div className="flex flex-col=1 gap-6 lg:grid-cols-3 justify-items-center">
+          {/* Ajuste da margem nos cards para telas pequenas */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:mx-4 lg:mx-0 justify-items-center">
             {profissionais.map((profissional) => (
               <a
                 key={profissional.id}
@@ -110,13 +111,13 @@ export default function Profissionais() {
               onClick={handleCloseModal}
             >
               <div
-                className="bg-white p-10 rounded-md shadow-md max-w-lg w-full max-h-[90vh] overflow-y-auto text-center"
+                className="bg-white p-4 sm:p-6 md:p-10 rounded-md shadow-md max-w-lg w-[90%] sm:w-[80%] md:w-[70%] lg:w-[50%] max-h-[90vh] overflow-y-auto text-center"
                 onClick={(e) => e.stopPropagation()}
               >
-                <h2 className="text-2xl font-bold">
+                <h2 className="text-2xl font-bold mb-4">
                   {selectedProfissional.nome}
                 </h2>
-                <p className="text-lg">
+                <p className="text-lg mb-2">
                   Especialidade: {selectedProfissional.especialidade}
                 </p>
                 <p className="text-lg whitespace-pre-wrap">
