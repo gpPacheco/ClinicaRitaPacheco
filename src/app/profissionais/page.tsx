@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
+import { FaClipboardList, FaAward, FaBriefcase, FaGraduationCap, FaTimes } from "react-icons/fa";
 
 interface Profissional {
   id: number;
@@ -16,24 +17,20 @@ export default function Profissionais() {
       nome: "Rita Pacheco",
       especialidade: "Podóloga",
       descricao: `
-        Resumo
-        Podóloga desde 2010 (Senac Franca)
-
-        Especializações
-        - Diabetes (2015, Senac Aclimação-SP)
-        - Podologia Geriátrica, Esportiva e Laserterapia para Onicomicose
-
-        Experiência
-        - Palestrante em Podologia Gerôntica e Calçado para Diabetes
-        - Participante de congressos, cursos e simpósios de Podologia
-
-        Formação
-        - Pós-graduada em Distúrbio de Linguagem (1995, Cefac SP)
-        - Fonoaudióloga desde 1994 (Univ. Franca-SP)
+      Podóloga desde 2010 (Senac Franca)
+      Palestrante em Podologia Gerôntica e Calçado para Diabetes
+      
+      Especializações:
+      - Diabetes (2015, Senac Aclimação-SP)
+      - Podologia Geriátrica, Esportiva e Laserterapia para Onicomicose
+      Formação:
+      - Pós-graduada em Distúrbio de Linguagem (1995, Cefac SP)
+      - Fonoaudióloga desde 1994 (Univ. Franca-SP)
       `,
     },
-    { id: 2, nome: "Profissional 2", especialidade: "Podóloga", descricao: "" },
-    { id: 3, nome: "Profissional 3", especialidade: "Atendimento", descricao: "" },
+    { id: 2, nome: "Profissional 2", especialidade: "Podóloga", descricao: "Descrição personalizada para Profissional 2." },
+    { id: 3, nome: "Profissional 3", especialidade: "Atendimento", descricao: "Descrição personalizada para Profissional 3." },
+    { id: 4, nome: "Profissional 4", especialidade: "Marketing", descricao: "Descrição personalizada para Profissional 4." },
   ]);
 
   const [selectedProfissional, setSelectedProfissional] =
@@ -66,8 +63,7 @@ export default function Profissionais() {
             de 15 anos!
           </p>
 
-          {/* Ajuste da margem nos cards para telas pequenas */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:mx-4 lg:mx-0 justify-items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:mx-8 lg:mx-0 justify-items-center">
             {profissionais.map((profissional) => (
               <a
                 key={profissional.id}
@@ -107,28 +103,42 @@ export default function Profissionais() {
 
           {selectedProfissional && (
             <div
-              className="fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center"
+              className="fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center z-50"
               onClick={handleCloseModal}
             >
               <div
-                className="bg-white p-4 sm:p-6 md:p-10 rounded-md shadow-md max-w-lg w-[90%] sm:w-[80%] md:w-[70%] lg:w-[50%] max-h-[90vh] overflow-y-auto text-center"
+                className="bg-[#f7f0ea] mt-20 p-4 sm:p-6 sm:ml-2 sm:mr-2 md:p-8 rounded-md shadow-md max-w-xl w-[95%] sm:w-[60%] md:w-[75%] lg:w-[60%] h-auto max-h-[80vh] overflow-y-auto relative"
                 onClick={(e) => e.stopPropagation()}
               >
+                {/* Botão de fechar no canto superior direito */}
+                <button
+                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                  onClick={handleCloseModal}
+                >
+                  <FaTimes className="text-2xl" />
+                </button>
+
                 <h2 className="text-2xl font-bold mb-4">
                   {selectedProfissional.nome}
                 </h2>
                 <p className="text-lg mb-2">
                   Especialidade: {selectedProfissional.especialidade}
                 </p>
-                <p className="text-lg whitespace-pre-wrap">
-                  {selectedProfissional.descricao}
+
+                {/* Descrição com ícones */}
+                <p className="text-lg whitespace-pre-wrap text-center">
+                  <FaClipboardList className="inline-block mr-1" /> <strong>Resumo</strong>:
+                  <br /> {selectedProfissional.descricao.split("\n")[0]}
+                  <br />
+
+                  <FaAward className="inline-block mr-2" /> <strong>Especializações</strong>:
+                  <br /> {selectedProfissional.descricao.split("\n")[2]}
+                  <br />
+
+                  <FaGraduationCap className="inline-block mr-2" /> <strong>Formação</strong>:
+                  <br /> {selectedProfissional.descricao.split("\n")[4]}
+                  <br />
                 </p>
-                <button
-                  className="mt-4 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={handleCloseModal}
-                >
-                  Fechar
-                </button>
               </div>
             </div>
           )}
