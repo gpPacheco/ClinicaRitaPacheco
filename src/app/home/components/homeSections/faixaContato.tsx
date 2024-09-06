@@ -19,7 +19,7 @@ export function FaixaContato() {
   }
 
   function handleWhatsApp() {
-    const whatsappUrl = `https://wa.me/+5516993108637${telefone}?text=${nome}.%20Agendamento%20para%20${dataAgendamento?.toLocaleDateString()}`;
+    const whatsappUrl = `https://wa.me/+5516993108637${telefone}?text=${nome}Oi, vim pelo site e gostaria de um %20agendamento%20para o dia:%20${dataAgendamento?.toLocaleDateString()}`;
     window.open(whatsappUrl, "_blank");
   }
 

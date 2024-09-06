@@ -29,8 +29,6 @@ export default function Profissionais() {
       `,
     },
     { id: 2, nome: "Profissional 2", especialidade: "Podóloga", descricao: "Descrição personalizada para Profissional 2." },
-    { id: 3, nome: "Profissional 3", especialidade: "Atendimento", descricao: "Descrição personalizada para Profissional 3." },
-    { id: 4, nome: "Profissional 4", especialidade: "Marketing", descricao: "Descrição personalizada para Profissional 4." },
   ]);
 
   const [selectedProfissional, setSelectedProfissional] =
