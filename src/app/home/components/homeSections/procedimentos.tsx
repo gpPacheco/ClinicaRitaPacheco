@@ -3,9 +3,9 @@ import Image from "next/image";
 import { SetStateAction, useState } from "react";
 
 export function Procedimentos() {
-  const [selectedProcedure, setSelectedProcedure] = useState(null);
+  const [selectedProcedure, setSelectedProcedure] = useState<string | null>(null);
 
-  const handleProcedureClick = (procedure: string | SetStateAction<null>) => {
+  const handleProcedureClick = (procedure: string) => {
     setSelectedProcedure(procedure);
   };
 

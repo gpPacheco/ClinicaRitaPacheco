@@ -1,6 +1,15 @@
 "use client";
 
+import { useState } from "react";
+
 export function Depoimentos() {
+  const [selectedProcedure, setSelectedProcedure] = useState<string | null>(null);
+
+  // Certifique-se de que o tipo do parâmetro é uma string, não SetStateAction<null>
+  const handleProcedureClick = (procedure: string) => {
+    setSelectedProcedure(procedure); // Define o estado como string
+  };
+
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
       <p className="text-lg font-bold text-gray-600 opacity-50 hover:opacity-100 transition duration-300 ease-in-out">
@@ -11,6 +20,7 @@ export function Depoimentos() {
           <div
             key={index}
             className="bg-white border border-gray-200 shadow-md rounded-md p-4 w-64 h-40 transition duration-300 ease-in-out hover:scale-110"
+            onClick={() => handleProcedureClick(`Depoimento ${item}`)} // Chama o handleProcedureClick
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).classList.add("scale-110");
             }}
@@ -26,9 +36,3 @@ export function Depoimentos() {
     </div>
   );
 }
-
-//   ______    ____
-//  /\    /\  | "o |
-// |  \/\/  |/ ___\|
-// |gpPacheco_/
-// /_/_/ /_/_/
