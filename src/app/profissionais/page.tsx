@@ -61,7 +61,7 @@ export default function Profissionais() {
             de 15 anos!
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:mx-8 lg:mx-0 justify-items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 sm:mx-8 lg:mx-0 justify-items-center">
             {profissionais.map((profissional) => (
               <a
                 key={profissional.id}
@@ -69,7 +69,7 @@ export default function Profissionais() {
                 className="shadow-2xl relative"
                 onClick={() => handleCardClick(profissional)}
               >
-                <div className="h-95 relative shadow-2xl shadow-zinc-900 overflow-hidden group">
+                <div className="h-60 relative shadow-2xl shadow-zinc-900 overflow-hidden group">
                   <div className="absolute bottom-0 group-hover:bottom-0 left-0 w-full h-full group-hover:bg-zinc-900/50 transition-all ease-in-out duration-500 flex justify-center items-end">
                     <div className="w-full p-5 text-center">
                       <div className="transition-all ease-in-out duration-500">
@@ -87,10 +87,10 @@ export default function Profissionais() {
                   </div>
                   <Image
                     src="/2.jpg"
-                    className="w-full z-0 h-full object-fill"
                     alt="Imagem"
                     width={500}
                     height={500}
+                    sizes="100vw"
                     layout="responsive"
                     loading="lazy"
                   />
