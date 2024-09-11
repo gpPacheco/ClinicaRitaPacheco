@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
+import Image from "next/image";
 
 interface Profissional {
   id: number;
@@ -77,15 +78,18 @@ export default function Profissionais() {
         {profissionaisData.map((profissional) => (
           <div
             key={profissional.id}
-            className="relative w-72 h-96 text-center bg-[#f7f0ea] shadow-lg rounded-lg overflow-hidden cursor-pointer transform transition duration-500 hover:scale-105"
+            className="relative w-72 h-96 text-center bg-[#f7f0ea] shadow-xl rounded-lg overflow-hidden cursor-pointer transform transition duration-500 hover:scale-105"
             onClick={() => handleCardClick(profissional)}
           >
             <div className="absolute inset-0 bg-cover bg-center z-0">
-              <img
-                src={`/../ritapacheco${profissional.id}.jpg`}
-                alt={profissional.nome}
-                className="w-full h-full object-cover"
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src={`/public/ritapacheco${profissional.id}.jpg`}
+                  alt={profissional.nome}
+                  className="object-cover"
+                  layout="fill"
+                />
+              </div>
             </div>
             <div className="absolute inset-0 bg-black bg-opacity-50 z-10 flex flex-col justify-end p-5">
               <h2 className="text-2xl font-semibold text-white">
@@ -130,14 +134,20 @@ export default function Profissionais() {
             </p>
             <p className="mt-4 text-gray-700">
               <span className="font-bold">🏅 Especializações:</span> <br />
-              {selectedProfissional.especializacoes.map((especializacao, idx) => (
-                <span key={idx}>- {especializacao} <br /></span>
-              ))}
+              {selectedProfissional.especializacoes.map(
+                (especializacao, idx) => (
+                  <span key={idx}>
+                    - {especializacao} <br />
+                  </span>
+                )
+              )}
             </p>
             <p className="mt-4 text-gray-700">
               <span className="font-bold">🎓 Formação:</span> <br />
               {selectedProfissional.formacao.map((formacao, idx) => (
-                <span key={idx}>- {formacao} <br /></span>
+                <span key={idx}>
+                  - {formacao} <br />
+                </span>
               ))}
             </p>
           </div>
