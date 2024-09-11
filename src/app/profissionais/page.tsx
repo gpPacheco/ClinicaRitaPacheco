@@ -1,7 +1,6 @@
 "use client";
-import Image from "next/image";
 import React, { useState } from "react";
-import { FaClipboardList, FaAward, FaBriefcase, FaGraduationCap, FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
 interface Profissional {
   id: number;
@@ -10,31 +9,28 @@ interface Profissional {
   descricao: string;
 }
 
-export default function Profissionais() {
-  const [profissionais, setProfissionais] = useState<Profissional[]>([
-    {
-      id: 1,
-      nome: "Rita Pacheco",
-      especialidade: "Podóloga",
-      descricao: `
-      Podóloga desde 2010 (Senac Franca)
-      Palestrante em Podologia Gerôntica e Calçado para Diabetes
-      
-      Especializações:
-      - Diabetes (2015, Senac Aclimação-SP)
-      - Podologia Geriátrica, Esportiva e Laserterapia para Onicomicose
-      Formação:
-      - Pós-graduada em Distúrbio de Linguagem (1995, Cefac SP)
-      - Fonoaudióloga desde 1994 (Univ. Franca-SP)
-      `,
-    },
-    { id: 2, nome: "Profissional 2", especialidade: "Podóloga", descricao: "Descrição personalizada para Profissional 2." },
-  ]);
+const profissionaisData: Profissional[] = [
+  {
+    id: 1,
+    nome: "Rita Pacheco",
+    especialidade: "Podóloga",
+    descricao:
+      "Podóloga com mais de 15 anos de experiência, especializada em podologia geriátrica e esportiva.",
+  },
+  {
+    id: 2,
+    nome: "Carlos Silva",
+    especialidade: "Podólogo Esportivo",
+    descricao:
+      "Especialista em podologia esportiva, com foco em tratamentos de atletas de alto rendimento.",
+  },
+];
 
+export default function Profissionais() {
   const [selectedProfissional, setSelectedProfissional] =
     useState<Profissional | null>(null);
 
-  const handleCardClick = (profissional: Profissional | null) => {
+  const handleCardClick = (profissional: Profissional) => {
     setSelectedProfissional(profissional);
   };
 
@@ -43,105 +39,62 @@ export default function Profissionais() {
   };
 
   return (
-    <div className="profissionais-container">
-      <section className="justify-items-center text-center py-10 sm:py-16 lg:py-24 z-40 relative">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl">
-            Conheça quem são as{" "}
-            <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 lg:inline">
-              Profissionais
-            </span>{" "}
-            da clínica de podologia Rita Pacheco:
-          </h2>
-          <p className="mb-20 mt-2 text-lg text-gray-800">
-            Há&nbsp;
-            <span className="block w-full font-light bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
-              mais
-            </span>{" "}
-            de 15 anos!
-          </p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 sm:mx-8 lg:mx-0 justify-items-center">
-            {profissionais.map((profissional) => (
-              <a
-                key={profissional.id}
-                href="javascript:void(0);"
-                className="shadow-2xl relative"
-                onClick={() => handleCardClick(profissional)}
-              >
-                <div className="h-60 relative shadow-2xl shadow-zinc-900 overflow-hidden group">
-                  <div className="absolute bottom-0 group-hover:bottom-0 left-0 w-full h-full group-hover:bg-zinc-900/50 transition-all ease-in-out duration-500 flex justify-center items-end">
-                    <div className="w-full p-5 text-center">
-                      <div className="transition-all ease-in-out duration-500">
-                        <h2 className="text-2xl font-bold text-white mb-0 pb-1">
-                          {profissional.nome}
-                        </h2>
-                        <p className="text-lg font-light text-white">
-                          Especialidade: {profissional.especialidade}
-                        </p>
-                        <p className="text-sm font-light text-white mt-2 underline">
-                          <br /> Saiba mais
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <Image
-                    src="/2.jpg"
-                    alt="Imagem"
-                    width={500}
-                    height={500}
-                    sizes="100vw"
-                    layout="responsive"
-                    loading="lazy"
-                  />
-                </div>
-              </a>
-            ))}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-3xl font-bold text-gray-800 mb-10">
+        Conheça nossos Profissionais
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-items-center">
+        {profissionaisData.map((profissional) => (
+          <div
+            key={profissional.id}
+            className="relative w-72 h-96 bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer transform transition duration-500 hover:scale-105"
+            onClick={() => handleCardClick(profissional)}
+          >
+            <div className="absolute inset-0 bg-cover bg-center z-0">
+              {/* <img
+                src={`/images/profissional-${profissional.id}.jpg`}
+                alt={profissional.nome}
+                className="w-full h-full object-cover"
+              /> */}
+            </div>
+            <div className="absolute inset-0 bg-black bg-opacity-50 z-10 flex flex-col justify-end p-5">
+              <h2 className="text-2xl font-semibold text-white">
+                {profissional.nome}
+              </h2>
+              <p className="text-lg text-gray-300">
+                {profissional.especialidade}
+              </p>
+              <p className="mt-2 text-sm text-white underline">
+                Clique para saber mais
+              </p>
+            </div>
           </div>
+        ))}
+      </div>
 
-          {selectedProfissional && (
-            <div
-              className="fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center z-50"
+      {/* Modal */}
+      {selectedProfissional && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div
+            className="bg-white p-6 rounded-lg shadow-lg relative max-w-md w-full transform transition duration-500 scale-105"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
               onClick={handleCloseModal}
             >
-              <div
-                className="bg-[#f7f0ea] mt-20 p-4 sm:p-6 sm:ml-2 sm:mr-2 md:p-8 rounded-md shadow-md max-w-xl w-[95%] sm:w-[60%] md:w-[75%] lg:w-[60%] h-auto max-h-[80vh] overflow-y-auto relative"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* Botão de fechar no canto superior direito */}
-                <button
-                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-                  onClick={handleCloseModal}
-                >
-                  <FaTimes className="text-2xl" />
-                </button>
-
-                <h2 className="text-2xl font-bold mb-4">
-                  {selectedProfissional.nome}
-                </h2>
-                <p className="text-lg mb-2">
-                  Especialidade: {selectedProfissional.especialidade}
-                </p>
-
-                {/* Descrição com ícones */}
-                <p className="text-lg whitespace-pre-wrap text-center">
-                  <FaClipboardList className="inline-block mr-1" /> <strong>Resumo</strong>:
-                  <br /> {selectedProfissional.descricao.split("\n")[0]}
-                  <br />
-
-                  <FaAward className="inline-block mr-2" /> <strong>Especializações</strong>:
-                  <br /> {selectedProfissional.descricao.split("\n")[2]}
-                  <br />
-
-                  <FaGraduationCap className="inline-block mr-2" /> <strong>Formação</strong>:
-                  <br /> {selectedProfissional.descricao.split("\n")[4]}
-                  <br />
-                </p>
-              </div>
-            </div>
-          )}
+              <FaTimes className="text-xl" />
+            </button>
+            <h2 className="text-2xl font-bold mb-4">
+              {selectedProfissional.nome}
+            </h2>
+            <p className="text-lg font-medium">
+              Especialidade: {selectedProfissional.especialidade}
+            </p>
+            <p className="mt-4 text-gray-700">{selectedProfissional.descricao}</p>
+          </div>
         </div>
-      </section>
+      )}
     </div>
   );
 }
