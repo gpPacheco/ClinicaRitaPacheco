@@ -34,7 +34,7 @@ const navigation = [
     current: false,
     icon: <FaClinicMedical />,
     submenuItems: [
-      { name: "Sobre", href: "pages/sobre" },
+      { name: "Sobre", href: "/clinica/sobre" },
       { name: "Espaço", href: "" },
       { name: "Sala Infantil", href: "" },
       { name: "Spa", href: "/spa" },
