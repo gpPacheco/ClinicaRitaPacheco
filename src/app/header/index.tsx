@@ -34,10 +34,9 @@ const navigation = [
     current: false,
     icon: <FaClinicMedical />,
     submenuItems: [
-      { name: "Sobre", href: "/" },
-      { name: "Spa", href: "/" },
-      { name: "Biossegurança", href: "/" },
-      { name: "Esterelização", href: "/" },
+      { name: "Sobre", href: "pages/sobre" },
+      { name: "Spa", href: "/spa" },
+      { name: "Biossegurança", href: "/biosec" },
     ],
   },
   {
@@ -59,7 +58,7 @@ const navigation = [
     icon: <FaBookOpen />,
     submenuItems: [
       { name: "Cursos", href: "/" },
-      { name: "Mentorias", href: "/" },
+      { name: "Mentorias", href: "/mentoria" },
     ],
   },
   {

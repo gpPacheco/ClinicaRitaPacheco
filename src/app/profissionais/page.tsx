@@ -78,20 +78,20 @@ export default function Profissionais() {
         {profissionaisData.map((profissional) => (
           <div
             key={profissional.id}
-            className="relative w-72 h-96 text-center bg-[#f7f0ea] shadow-xl rounded-lg overflow-hidden cursor-pointer transform transition duration-500 hover:scale-105"
+            className="relative w-72 h-96 text-center shadow-xl rounded-lg overflow-hidden cursor-pointer transform transition duration-500 hover:scale-105"
             onClick={() => handleCardClick(profissional)}
           >
             <div className="absolute inset-0 bg-cover bg-center z-0">
               <div className="relative w-full h-full">
                 <Image
-                  src={`/public/ritapacheco${profissional.id}.jpg`}
+                  src="/2.jpg"
                   alt={profissional.nome}
                   className="object-cover"
                   layout="fill"
                 />
               </div>
             </div>
-            <div className="absolute inset-0 bg-black bg-opacity-50 z-10 flex flex-col justify-end p-5">
+            <div className="absolute inset-0 hover:bg-black/50 transition duration-300 bg-opacity-50 z-10 flex flex-col justify-end p-5">
               <h2 className="text-2xl font-semibold text-white">
                 {profissional.nome}
               </h2>
@@ -113,7 +113,7 @@ export default function Profissionais() {
           onClick={handleCloseModal}
         >
           <div
-            className="bg-[#f7f0ea] p-6 rounded-lg shadow-lg relative max-w-md w-full transform transition duration-500 scale-105 text-center"
+            className="bg-[#f7f0ea] p-6 rounded-lg shadow-lg relative max-w-md w-full transform transition duration-500 scale-105 text-center mr-6 ml-6"
             onClick={(e) => e.stopPropagation()}
           >
             <button
