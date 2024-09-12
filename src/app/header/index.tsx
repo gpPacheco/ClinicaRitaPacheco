@@ -35,6 +35,8 @@ const navigation = [
     icon: <FaClinicMedical />,
     submenuItems: [
       { name: "Sobre", href: "pages/sobre" },
+      { name: "Espaço", href: "" },
+      { name: "Sala Infantil", href: "" },
       { name: "Spa", href: "/spa" },
       { name: "Biossegurança", href: "/biosec" },
     ],
@@ -44,6 +46,7 @@ const navigation = [
     current: false,
     icon: <FaClinicMedical />,
     submenuItems: [
+      { name: "Unhas encravadas", href: "/especialidades" },
       { name: "Pé de Risco: Diabético", href: "/especialidades" },
       { name: "Pé Neuro-Vascular", href: "/especialidades" },
       { name: "Podologia Esportiva", href: "/especialidades" },
