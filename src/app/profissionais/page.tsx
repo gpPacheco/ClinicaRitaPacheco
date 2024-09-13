@@ -28,21 +28,6 @@ const profissionaisData: Profissional[] = [
       "Fonoaudióloga desde 1994 (Univ. Franca-SP)",
     ],
   },
-  {
-    id: 2,
-    nome: "Carlos Silva",
-    especialidade: "Podólogo Esportivo",
-    descricao:
-      "Especialista em podologia esportiva, com foco em tratamentos de atletas de alto rendimento.",
-    especializacoes: [
-      "Ortopodologia",
-      "Laserterapia para Tratamento de Onicomicose",
-    ],
-    formacao: [
-      "Graduação em Podologia (2015)",
-      "Certificação em Podologia Esportiva (2017)",
-    ],
-  },
 ];
 
 export default function Profissionais() {
@@ -74,7 +59,7 @@ export default function Profissionais() {
         de 15 anos!
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-items-center">
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-10 justify-items-center">
         {profissionaisData.map((profissional) => (
           <div
             key={profissional.id}

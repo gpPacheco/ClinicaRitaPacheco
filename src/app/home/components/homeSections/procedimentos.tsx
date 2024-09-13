@@ -35,7 +35,7 @@ export function Procedimentos() {
           alt="Procedimento 3"
           width={240}
           height={160}
-          onClick={() => handleProcedureClick("Pé De Risco")}
+          onClick={() => handleProcedureClick("Micose")}
         />
       </div>
       {selectedProcedure && (
