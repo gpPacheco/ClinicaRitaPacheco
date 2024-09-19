@@ -1,8 +1,12 @@
 "use client";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Calendar as CalendarIcon, X } from "lucide-react";
-import { Calendar } from "react-calendar";
+import { Calendar as CalendarIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, CalendarProps } from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+
+type Value = CalendarProps["value"];
 
 export default function Espaco() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,25 +14,66 @@ export default function Espaco() {
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
   const [dataAgendamento, setDataAgendamento] = useState<Date | null>(new Date());
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
   const handleWhatsApp = () => {
-    const whatsappUrl = `https://wa.me/+5516993108637${telefone}?text=${nome}%20gostaria%20de%20agendar%20consulta%20para%20${dataAgendamento?.toLocaleDateString()}`;
+    const whatsappUrl = `https://wa.me/+5516993108637?text=Olá, meu nome é ${nome}, gostaria de agendar uma consulta no dia: ${dataAgendamento?.toLocaleDateString()}`;
     window.open(whatsappUrl, "_blank");
+  };
+  const handleDateChange = (value: Value) => {
+    if (Array.isArray(value)) {
+      setDataAgendamento(value[0] instanceof Date ? value[0] : null);
+    } else {
+      setDataAgendamento(value as Date | null);
+    }
+  };
+
+  // Fecha o modal ao clicar fora do card
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isOpen && target.closest(".modal-content") === null) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
+  const handleNext = (imagens: string[]) => {
+    setCurrentIndex((prev) => (prev + 1) % imagens.length);
+  };
+
+  const handlePrev = (imagens: string[]) => {
+    setCurrentIndex((prev) => (prev - 1 + imagens.length) % imagens.length);
   };
 
   const renderCarrossel = (imagens: string[], descricao: string) => (
     <div className="relative w-full h-96 overflow-hidden mb-8">
-      <div className="flex transition-all duration-500 ease-in-out">
-        {imagens.map((src, index) => (
-          <Image
+      <Image
+        src={imagens[currentIndex]}
+        alt={descricao}
+        className="w-full object-cover rounded-lg"
+        width={500}
+        height={300}
+      />
+      {/* Setas de navegação */}
+      <button onClick={() => handlePrev(imagens)} className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full">
+        <ChevronLeft size={24} />
+      </button>
+      <button onClick={() => handleNext(imagens)} className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full">
+        <ChevronRight size={24} />
+      </button>
+      {/* Bolinhas indicadoras */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {imagens.map((_, index) => (
+          <span
             key={index}
-            src={src}
-            alt={descricao}
-            className="w-full object-cover rounded-lg"
-            width={500}
-            height={300}
+            className={`h-2 w-2 rounded-full ${currentIndex === index ? 'bg-orange-500' : 'bg-gray-300'}`}
           />
         ))}
       </div>
@@ -58,68 +103,78 @@ export default function Espaco() {
         {renderCarrossel(["/sala-infantil-1.jpg", "/sala-infantil-2.jpg"], "Espaço dedicado às crianças")}
       </section>
 
-      {/* Faixa de Agendamento */}
-      <div className="bg-zinc-100 flex justify-center py-4 px-6 items-center shadow-md rounded-md">
-        <span className="italic text-zinc-700 mr-4">Agende sua consulta:</span>
-        <button
-          onClick={handleOpen}
-          className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 flex items-center rounded shadow"
-        >
-          Agendar
-          <CalendarIcon size={20} className="ml-2" strokeWidth={2} />
-        </button>
-      </div>
-
       {/* Modal de Agendamento */}
+      <div className="flex flex-col items-center justify-center w-full bg-[#f7f0ea] py-6">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+        Agende sua consulta
+      </h2>
+      <button
+        onClick={handleOpen}
+        className="bg-orange-400 text-white px-6 py-2 rounded shadow-md hover:bg-orange-500 transition"
+      >
+        Agendar Consulta
+        <CalendarIcon className="inline ml-2" />
+      </button>
+
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-md w-full max-w-md relative">
-            <button onClick={handleClose} className="absolute top-2 right-2 p-2 text-gray-500 hover:text-gray-800">
+          <div className="modal-content bg-[#f7f0ea] p-4 rounded-md w-full max-w-md relative mx-4">
+            <button onClick={handleClose} className="absolute top-2 right-2">
               <X size={22} />
             </button>
-            <h2 className="text-lg font-bold mb-4">Agende sua consulta</h2>
-            <form>
-              <label className="block mb-2">
-                <span className="text-gray-700">Nome:</span>
-                <input
-                  type="text"
-                  value={nome}
-                  onChange={(e) => setNome(e.target.value)}
-                  className="w-full py-2 px-3 border rounded shadow focus:outline-none"
+            <h2 className="text-xl font-bold mb-4 text-center">
+              Agende sua consulta
+            </h2>
+            <form className="space-y-4">
+              <input
+                type="text"
+                placeholder="Nome"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                className="w-full border p-2 rounded bg-[#f7f0ea] shadow-md"
+                required
+              />
+
+              <div className="p-2 rounde w-full h-full flex justify-center items-center">
+                <Calendar
+                  onChange={handleDateChange}
+                  value={dataAgendamento}
+                  className="w-full h-full rounded-md shadow-sm"
+                  tileClassName={({ activeStartDate, date, view }) =>
+                    date.toDateString() === dataAgendamento?.toDateString()
+                      ? "bg-orange-500 text-white"
+                      : "hover:bg-orange-200"
+                  }
+                  prevLabel={<span className="text-2xl">{"‹"}</span>}
+                  nextLabel={<span className="text-2xl">{"›"}</span>}
+                  prev2Label={<span className="text-2xl">{"«"}</span>}
+                  next2Label={<span className="text-2xl">{"»"}</span>}
                 />
-              </label>
-              <label className="block mb-2">
-                <span className="text-gray-700">E-mail:</span>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full py-2 px-3 border rounded shadow focus:outline-none"
-                />
-              </label>
-              <label className="block mb-2">
-                <span className="text-gray-700">Telefone:</span>
-                <input
-                  type="tel"
-                  value={telefone}
-                  onChange={(e) => setTelefone(e.target.value)}
-                  className="w-full py-2 px-3 border rounded shadow focus:outline-none"
-                />
-              </label>
-              <div className="mb-4">
-                <Calendar onChange={(value) => setDataAgendamento(value as Date)} value={dataAgendamento} />
               </div>
+
               <button
                 type="button"
                 onClick={handleWhatsApp}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded shadow"
+                className={`bg-green-500 text-white w-full py-2 rounded shadow-md ${
+                  !nome ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={!nome}
               >
-                Agendar via WhatsApp
+                {nome
+                  ? "Agendar via WhatsApp"
+                  : "Por favor, digite seu nome para agendar"}
               </button>
             </form>
           </div>
         </div>
       )}
     </div>
+    </div>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/
