@@ -1,143 +1,109 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Calendar as CalendarIcon, X } from "lucide-react";
 import { Calendar } from "react-calendar";
+import { CalendarProps } from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+
+type Value = CalendarProps["value"];
 
 export function FaixaContato() {
   const [isOpen, setIsOpen] = useState(false);
   const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [dataAgendamento, setDataAgendamento] = useState<Date | null>(new Date());
+  const [dataAgendamento, setDataAgendamento] = useState<Date | null>(
+    new Date()
+  );
 
-  function handleOpen() {
-    setIsOpen(true);
-  }
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
 
-  function handleClose() {
-    setIsOpen(false);
-  }
-
-  function handleWhatsApp() {
-    const whatsappUrl = `https://wa.me/+5516993108637${telefone}?text=${nome}Oi, vim pelo site e gostaria de um %20agendamento%20para o dia:%20${dataAgendamento?.toLocaleDateString()}`;
+  const handleWhatsApp = () => {
+    const whatsappUrl = `https://wa.me/+5516993108637?text=Olá, meu nome é ${nome}, gostaria de agendar uma consulta no dia: ${dataAgendamento?.toLocaleDateString()}`;
     window.open(whatsappUrl, "_blank");
-  }
+  };
+
+  const handleDateChange = (value: Value) => {
+    if (Array.isArray(value)) {
+      setDataAgendamento(value[0] instanceof Date ? value[0] : null);
+    } else {
+      setDataAgendamento(value as Date | null);
+    }
+  };
+
+  // Fecha o modal ao clicar fora do card
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isOpen && target.closest(".modal-content") === null) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
-    <div className="bg-zinc-100 flex w-full h-auto justify-center text-lg py-4 px-6 items-center shadow-md rounded-md">
-      <span className="italic text-zinc-700 mr-4 text-center">
-        Agende sua consulta:
-      </span>
-      <div className="flex items-center">
-        <button
-          onClick={handleOpen}
-          className="bg-zinc-200 hover:bg-zinc-300 text-zinc-800 font-semibold py-2 px-6 text-base transition-all flex items-center border border-zinc-300 rounded shadow-sm hover:shadow-lg"
-        >
-          Agendar
-          <CalendarIcon size={20} className="ml-2" strokeWidth={2} />
-        </button>
-      </div>
+    <div className="flex flex-col items-center justify-center w-full bg-[#f7f0ea] py-6">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+        Agende sua consulta
+      </h2>
+      <button
+        onClick={handleOpen}
+        className="bg-orange-400 text-white px-6 py-2 rounded shadow-md hover:bg-orange-500 transition"
+      >
+        Agendar Consulta
+        <CalendarIcon className="inline ml-2" />
+      </button>
 
       {isOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-4 rounded-md w-full max-w-md relative">
-            <button
-              onClick={handleClose}
-              className="absolute top-2.5 right-2 p-2 text-gray-500 hover:text-gray-800"
-            >
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="modal-content bg-[#f7f0ea] p-4 rounded-md w-full max-w-md relative mx-4">
+            <button onClick={handleClose} className="absolute top-2 right-2">
               <X size={22} />
             </button>
-            <h2 className="text-lg font-bold mb-4">Agende sua consulta</h2>
-            <form>
-              <label className="block mb-2">
-                <span className="text-gray-700">Nome:</span>
-                <input
-                  type="text"
-                  value={nome}
-                  onChange={(e) => setNome(e.target.value)}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            <h2 className="text-xl font-bold mb-4 text-center">
+              Agende sua consulta
+            </h2>
+            <form className="space-y-4">
+              <input
+                type="text"
+                placeholder="Nome"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                className="w-full border p-2 rounded bg-[#f7f0ea] shadow-md"
+                required
+              />
+
+              <div className="p-2 rounde w-full h-full flex justify-center items-center">
+                <Calendar
+                  onChange={handleDateChange}
+                  value={dataAgendamento}
+                  className="w-full h-full rounded-md shadow-sm"
+                  tileClassName={({ activeStartDate, date, view }) =>
+                    date.toDateString() === dataAgendamento?.toDateString()
+                      ? "bg-orange-500 text-white"
+                      : "hover:bg-orange-200"
+                  }
+                  prevLabel={<span className="text-2xl">{"‹"}</span>}
+                  nextLabel={<span className="text-2xl">{"›"}</span>}
+                  prev2Label={<span className="text-2xl">{"«"}</span>}
+                  next2Label={<span className="text-2xl">{"»"}</span>}
                 />
-              </label>
-              <label className="block mb-2">
-                <span className="text-gray-700">E-mail:</span>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </label>
-              <label className="block mb-2">
-                <span className="text-gray-700">Telefone:</span>
-                <input
-                  type="tel"
-                  value={telefone}
-                  onChange={(e) => setTelefone(e.target.value)}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </label>
-              <div className="flex justify-center mb-4 border border-gray-300 rounded p-4 shadow-md">
-                <div className="flex flex-col w-full h-full">
-                  <div className="flex justify-between mb-2">
-                    <button
-                      className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded"
-                      onClick={() =>
-                        setDataAgendamento(
-                          new Date(
-                            dataAgendamento?.getFullYear() || new Date().getFullYear(),
-                            (dataAgendamento?.getMonth() || 1) - 1,
-                            1
-                          )
-                        )
-                      }
-                    >
-                      &#x2190;
-                    </button>
-                    <div className="flex items-center">
-                      <span className="text-gray-700 font-bold">
-                        {dataAgendamento?.toLocaleString("default", {
-                          month: "long",
-                        })}{" "}
-                        {dataAgendamento?.getFullYear()}
-                      </span>
-                    </div>
-                    <button
-                      className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded"
-                      onClick={() =>
-                        setDataAgendamento(
-                          new Date(
-                            dataAgendamento?.getFullYear() || new Date().getFullYear(),
-                            (dataAgendamento?.getMonth() || 0) + 1,
-                            1
-                          )
-                        )
-                      }
-                    >
-                      &#x2192;
-                    </button>
-                  </div>
-                  <Calendar
-                    onChange={(value, event) => {
-                      if (value instanceof Date) {
-                        setDataAgendamento(value);
-                      }
-                    }}
-                    value={dataAgendamento}
-                    className="w-full h-full text-gray-700"
-                    tileClassName={({ date, view }) => {
-                      if (view === "month") {
-                        return "border-r border-b border-gray-300";
-                      }
-                      return "";
-                    }}
-                  />
-                </div>
               </div>
+
               <button
+                type="button"
                 onClick={handleWhatsApp}
-                className="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded w-full"
+                className={`bg-green-500 text-white w-full py-2 rounded shadow-md ${
+                  !nome ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={!nome}
               >
-                Agendar
+                {nome
+                  ? "Agendar via WhatsApp"
+                  : "Por favor, digite seu nome para agendar"}
               </button>
             </form>
           </div>
