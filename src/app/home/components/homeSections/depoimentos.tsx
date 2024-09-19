@@ -11,8 +11,8 @@ export function Depoimentos() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-16 text-center">
-      <p className="text-lg font-bold text-gray-600 opacity-50 hover:opacity-100 transition duration-300 ease-in-out">
+    <div className="flex flex-col items-center justify-center py-16 text-center bg-gradient-to-b from-[#dbbeb0] to-[#f7f0ea] shadow-md">
+      <p className="text-lg font-bold text-gray-900 opacity-50 hover:opacity-100 transition duration-300 ease-in-out">
         O que dizem nossos pacientes
       </p>
       <div className="container flex flex-wrap justify-center gap-4 mt-8">
