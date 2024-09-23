@@ -11,10 +11,10 @@ type Value = CalendarProps["value"];
 export default function Espaco() {
   const [isOpen, setIsOpen] = useState(false);
   const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [telefone, setTelefone] = useState("");
   const [dataAgendamento, setDataAgendamento] = useState<Date | null>(new Date());
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [dataInvalida, setDataInvalida] = useState(false);
+
 
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
@@ -23,10 +23,27 @@ export default function Espaco() {
     window.open(whatsappUrl, "_blank");
   };
   const handleDateChange = (value: Value) => {
+    let selectedDate: Date | null = null;
+
     if (Array.isArray(value)) {
-      setDataAgendamento(value[0] instanceof Date ? value[0] : null);
+      selectedDate = value[0] instanceof Date ? value[0] : null;
     } else {
-      setDataAgendamento(value as Date | null);
+      selectedDate = value as Date | null;
+    }
+
+    if (selectedDate) {
+      const today = new Date();
+      // Remove a hora para comparar apenas as datas
+      today.setHours(0, 0, 0, 0);
+      selectedDate.setHours(0, 0, 0, 0);
+
+      // Verifica se a data escolhida é anterior ao dia de hoje
+      if (selectedDate < today) {
+        setDataInvalida(true);
+      } else {
+        setDataInvalida(false);
+        setDataAgendamento(selectedDate);
+      }
     }
   };
 
@@ -103,7 +120,7 @@ export default function Espaco() {
         {renderCarrossel(["/sala-infantil-1.jpg", "/sala-infantil-2.jpg"], "Espaço dedicado às crianças")}
       </section>
 
-      {/* Modal de Agendamento */}
+      {/* Botão de Agendamento */}
       <div className="flex flex-col items-center justify-center w-full bg-[#f7f0ea] py-6">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
         Agende sua consulta
@@ -152,13 +169,20 @@ export default function Espaco() {
                 />
               </div>
 
+              {/* Mensagem de erro para datas inválidas */}
+              {dataInvalida && (
+                <p className="text-red-500 text-sm">
+                  Não é possível agendar uma data no passado.
+                </p>
+              )}
+
               <button
                 type="button"
                 onClick={handleWhatsApp}
                 className={`bg-green-500 text-white w-full py-2 rounded shadow-md ${
-                  !nome ? "opacity-50 cursor-not-allowed" : ""
+                  !nome || dataInvalida ? "opacity-50 cursor-not-allowed" : ""
                 }`}
-                disabled={!nome}
+                disabled={!nome || dataInvalida}
               >
                 {nome
                   ? "Agendar via WhatsApp"
