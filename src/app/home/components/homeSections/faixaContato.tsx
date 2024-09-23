@@ -10,9 +10,8 @@ type Value = CalendarProps["value"];
 export function FaixaContato() {
   const [isOpen, setIsOpen] = useState(false);
   const [nome, setNome] = useState("");
-  const [dataAgendamento, setDataAgendamento] = useState<Date | null>(
-    new Date()
-  );
+  const [dataAgendamento, setDataAgendamento] = useState<Date | null>(new Date());
+  const [dataInvalida, setDataInvalida] = useState(false);
 
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
@@ -23,10 +22,27 @@ export function FaixaContato() {
   };
 
   const handleDateChange = (value: Value) => {
+    let selectedDate: Date | null = null;
+
     if (Array.isArray(value)) {
-      setDataAgendamento(value[0] instanceof Date ? value[0] : null);
+      selectedDate = value[0] instanceof Date ? value[0] : null;
     } else {
-      setDataAgendamento(value as Date | null);
+      selectedDate = value as Date | null;
+    }
+
+    if (selectedDate) {
+      const today = new Date();
+      // Remove a hora para comparar apenas as datas
+      today.setHours(0, 0, 0, 0);
+      selectedDate.setHours(0, 0, 0, 0);
+
+      // Verifica se a data escolhida é anterior ao dia de hoje
+      if (selectedDate < today) {
+        setDataInvalida(true);
+      } else {
+        setDataInvalida(false);
+        setDataAgendamento(selectedDate);
+      }
     }
   };
 
@@ -93,13 +109,20 @@ export function FaixaContato() {
                 />
               </div>
 
+              {/* Mensagem de erro para datas inválidas */}
+              {dataInvalida && (
+                <p className="text-red-500 text-sm">
+                  Não é possível agendar uma data no passado.
+                </p>
+              )}
+
               <button
                 type="button"
                 onClick={handleWhatsApp}
                 className={`bg-green-500 text-white w-full py-2 rounded shadow-md ${
-                  !nome ? "opacity-50 cursor-not-allowed" : ""
+                  !nome || dataInvalida ? "opacity-50 cursor-not-allowed" : ""
                 }`}
-                disabled={!nome}
+                disabled={!nome || dataInvalida}
               >
                 {nome
                   ? "Agendar via WhatsApp"
@@ -112,9 +135,3 @@ export function FaixaContato() {
     </div>
   );
 }
-
-//   ______    ____
-//  /\    /\  | "o |
-// |  \/\/  |/ ___\|
-// |gpPacheco_/
-// /_/_/ /_/_/
