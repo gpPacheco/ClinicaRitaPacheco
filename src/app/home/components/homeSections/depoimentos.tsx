@@ -31,7 +31,7 @@ export function Depoimentos() {
         {/* Botão para ir ao card anterior */}
         <button
           onClick={handlePrev}
-          className="absolute left-0 z-10 bg-gray-200 p-2 rounded-full shadow-lg hover:bg-gray-300 transition"
+          className=" left-0 z-10 bg-gray-200 p-2 rounded-full shadow-lg hover:bg-gray-300 transition"
           disabled={currentIndex === 0}
         >
           <ChevronLeft size={24} />
@@ -48,7 +48,7 @@ export function Depoimentos() {
             {depoimentos.map((item, index) => (
               <div
                 key={index}
-                className="bg-white border border-gray-200 shadow-md rounded-md p-4 w-[calc(100%/2.5)] mx-4 flex-shrink-0"
+                className="bg-white border border-gray-200 shadow-md rounded-md p-4 w-[calc(100%/2.5)] mx-2 flex-shrink-0"
               >
                 <h2 className="text-lg font-bold">Depoimento {item}</h2>
                 <p className="text-gray-600">Texto do depoimento {item}</p>
@@ -60,7 +60,7 @@ export function Depoimentos() {
         {/* Botão para ir ao próximo card */}
         <button
           onClick={handleNext}
-          className="absolute right-0 z-10 bg-gray-200 p-2 rounded-full shadow-lg hover:bg-gray-300 transition"
+          className=" right-0 z-10 bg-gray-200 p-2 rounded-full shadow-lg hover:bg-gray-300 transition"
           disabled={currentIndex === totalItems - 1}
         >
           <ChevronRight size={24} />
