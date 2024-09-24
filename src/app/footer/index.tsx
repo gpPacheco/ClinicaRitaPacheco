@@ -25,7 +25,7 @@ export function Rodape() {
                 style={{ maxWidth: "100%", height: "auto", marginLeft: "32px" }}
               />
             </a>
-            <div className="flex mt-8 space-x-6 text-gray-600">
+            <div className="flex mt-8 space-x-6 text-gray-600 sm:text-center">
               <a
                 className="hover:opacity-75"
                 href="https://api.whatsapp.com/send/?phone=5516993108637&text&type=phone_number&app_absent=0"
@@ -73,10 +73,10 @@ export function Rodape() {
               </a>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-3 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4">
             <div>
               <p className="font-medium">Links Rápidos</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-600">
+              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-800">
                 <a className="hover:opacity-75"> Sobre </a>
                 <a className="hover:opacity-75"> Reportagens </a>
                 <a className="hover:opacity-75"> Trabalhe Conosco </a>
@@ -84,7 +84,7 @@ export function Rodape() {
             </div>
             <div>
               <p className="font-medium">Contato</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
+              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-800">
                 <a
                   className="hover:opacity-75"
                   href="https://api.whatsapp.com/send/?phone=5516993108637&text&type=phone_number&app_absent=0"
@@ -105,7 +105,7 @@ export function Rodape() {
             </div>
             <div>
               <p className="font-medium">Saiba Mais</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-600">
+              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-800">
                 <a className="hover:opacity-75"> Mentorias </a>
                 <a className="hover:opacity-75"> Cursos </a>
                 <a className="hover:opacity-75"> Avaliações </a>
@@ -113,7 +113,7 @@ export function Rodape() {
             </div>
             <div>
               <p className="font-medium">Localização</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
+              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-800">
                 <a
                   className="hover:opacity-75"
                   href="https://maps.app.goo.gl/FejJqAM4TTUXhMLu6"
