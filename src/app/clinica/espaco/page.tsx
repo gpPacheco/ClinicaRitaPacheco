@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Calendar as CalendarIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Calendar as CalendarIcon,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { Calendar, CalendarProps } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
@@ -11,10 +16,11 @@ type Value = CalendarProps["value"];
 export default function Espaco() {
   const [isOpen, setIsOpen] = useState(false);
   const [nome, setNome] = useState("");
-  const [dataAgendamento, setDataAgendamento] = useState<Date | null>(new Date());
+  const [dataAgendamento, setDataAgendamento] = useState<Date | null>(
+    new Date()
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dataInvalida, setDataInvalida] = useState(false);
-
 
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
@@ -79,10 +85,16 @@ export default function Espaco() {
         height={300}
       />
       {/* Setas de navegação */}
-      <button onClick={() => handlePrev(imagens)} className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full">
+      <button
+        onClick={() => handlePrev(imagens)}
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+      >
         <ChevronLeft size={24} />
       </button>
-      <button onClick={() => handleNext(imagens)} className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full">
+      <button
+        onClick={() => handleNext(imagens)}
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+      >
         <ChevronRight size={24} />
       </button>
       {/* Bolinhas indicadoras */}
@@ -90,7 +102,9 @@ export default function Espaco() {
         {imagens.map((_, index) => (
           <span
             key={index}
-            className={`h-2 w-2 rounded-full ${currentIndex === index ? 'bg-orange-500' : 'bg-gray-300'}`}
+            className={`h-2 w-2 rounded-full ${
+              currentIndex === index ? "bg-orange-500" : "bg-gray-300"
+            }`}
           />
         ))}
       </div>
@@ -100,99 +114,116 @@ export default function Espaco() {
 
   return (
     <div className="px-4 py-12 bg-gray-100">
-      <h2 className="text-4xl font-semibold text-center text-orange-600 mb-12">Conheça Nosso Espaço</h2>
+      <h2 className="text-4xl font-semibold text-center text-orange-600 mb-12">
+        Conheça Nosso Espaço
+      </h2>
 
       {/* Seção do Espaço Geral */}
       <section className="mb-16">
-        <h3 className="text-2xl text-center text-gray-800 mb-6">Espaço Geral da Clínica</h3>
-        {renderCarrossel(["/espaco-geral-1.jpg", "/espaco-geral-2.jpg"], "Veja as imagens do espaço geral")}
+        <h3 className="text-2xl text-center text-gray-800 mb-6">
+          Espaço Geral da Clínica
+        </h3>
+        {renderCarrossel(
+          ["/espaco-geral-1.jpg", "/espaco-geral-2.jpg"],
+          "Veja as imagens do espaço geral"
+        )}
       </section>
 
       {/* Seção do SPA */}
       <section className="mb-16">
-        <h3 className="text-2xl text-center text-gray-800 mb-6">SPA da Clínica</h3>
-        {renderCarrossel(["/spa-1.jpg", "/spa-2.jpg"], "Conheça o SPA exclusivo da clínica")}
+        <h3 className="text-2xl text-center text-gray-800 mb-6">
+          SPA da Clínica
+        </h3>
+        {renderCarrossel(
+          ["/spa-1.jpg", "/spa-2.jpg"],
+          "Conheça o SPA exclusivo da clínica"
+        )}
       </section>
 
       {/* Seção da Sala Infantil */}
       <section className="mb-16">
-        <h3 className="text-2xl text-center text-gray-800 mb-6">Sala Infantil</h3>
-        {renderCarrossel(["/sala-infantil-1.jpg", "/sala-infantil-2.jpg"], "Espaço dedicado às crianças")}
+        <h3 className="text-2xl text-center text-gray-800 mb-6">
+          Sala Infantil
+        </h3>
+        {renderCarrossel(
+          ["/sala-infantil-1.jpg", "/sala-infantil-2.jpg"],
+          "Espaço dedicado às crianças"
+        )}
       </section>
 
       {/* Botão de Agendamento */}
-      <div className="flex flex-col items-center justify-center w-full bg-[#f7f0ea] py-6">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        Agende sua consulta
-      </h2>
-      <button
-        onClick={handleOpen}
-        className="bg-orange-400 text-white px-6 py-2 rounded shadow-md hover:bg-orange-500 transition"
-      >
-        Agendar Consulta
-        <CalendarIcon className="inline ml-2" />
-      </button>
+      <div className="flex flex-col items-center justify-center w-full bg-[#f7f0ea] py-6 shadow-md">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          Agende sua consulta
+        </h2>
+        <button
+          onClick={handleOpen}
+          className="bg-orange-400 text-white px-6 py-2 rounded shadow-md hover:bg-orange-500 transition"
+        >
+          Agendar Consulta
+          <CalendarIcon className="inline ml-2" />
+        </button>
 
-      {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="modal-content bg-[#f7f0ea] p-4 rounded-md w-full max-w-md relative mx-4">
-            <button onClick={handleClose} className="absolute top-2 right-2">
-              <X size={22} />
-            </button>
-            <h2 className="text-xl font-bold mb-4 text-center">
-              Agende sua consulta
-            </h2>
-            <form className="space-y-4">
-              <input
-                type="text"
-                placeholder="Nome"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-                className="w-full border p-2 rounded bg-[#f7f0ea] shadow-md"
-                required
-              />
-
-              <div className="p-2 rounde w-full h-full flex justify-center items-center">
-                <Calendar
-                  onChange={handleDateChange}
-                  value={dataAgendamento}
-                  className="w-full h-full rounded-md shadow-sm"
-                  tileClassName={({ activeStartDate, date, view }) =>
-                    date.toDateString() === dataAgendamento?.toDateString()
-                      ? "bg-orange-500 text-white"
-                      : "hover:bg-orange-200"
-                  }
-                  prevLabel={<span className="text-2xl">{"‹"}</span>}
-                  nextLabel={<span className="text-2xl">{"›"}</span>}
-                  prev2Label={<span className="text-2xl">{"«"}</span>}
-                  next2Label={<span className="text-2xl">{"»"}</span>}
-                />
-              </div>
-
-              {/* Mensagem de erro para datas inválidas */}
-              {dataInvalida && (
-                <p className="text-red-500 text-sm">
-                  Não é possível agendar uma data no passado.
-                </p>
-              )}
-
-              <button
-                type="button"
-                onClick={handleWhatsApp}
-                className={`bg-green-500 text-white w-full py-2 rounded shadow-md ${
-                  !nome || dataInvalida ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-                disabled={!nome || dataInvalida}
-              >
-                {nome
-                  ? "Agendar via WhatsApp"
-                  : "Por favor, digite seu nome para agendar"}
+        {isOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div className="modal-content bg-[#f7f0ea] p-4 rounded-md w-full max-w-md relative mx-4">
+              <button onClick={handleClose} className="absolute top-2 right-2">
+                <X size={22} />
               </button>
-            </form>
+              <h2 className="text-xl font-bold mb-4 text-center">
+                Agende sua consulta
+              </h2>
+              <form className="space-y-4">
+                <input
+                  type="text"
+                  placeholder="Nome"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                  className="w-full border p-2 rounded bg-[#f7f0ea] shadow-md"
+                  required
+                />
+
+                <div className="p-2 rounde w-full h-full flex justify-center items-center">
+                  <Calendar
+                    onChange={handleDateChange}
+                    value={dataAgendamento}
+                    className="w-full h-full rounded-md shadow-sm"
+                    tileClassName={({ activeStartDate, date, view }) =>
+                      date.toDateString() === dataAgendamento?.toDateString()
+                        ? "bg-orange-500 text-white"
+                        : "hover:bg-orange-200"
+                    }
+                    prevLabel={<span className="text-2xl">{"‹"}</span>}
+                    nextLabel={<span className="text-2xl">{"›"}</span>}
+                    prev2Label={<span className="text-2xl">{"«"}</span>}
+                    next2Label={<span className="text-2xl">{"»"}</span>}
+                  />
+                </div>
+
+                {/* Mensagem de erro para datas inválidas */}
+                {dataInvalida && (
+                  <p className="text-red-500 text-sm">
+                    Não é possível agendar uma data no passado.
+                  </p>
+                )}
+
+                <button
+                  type="button"
+                  onClick={handleWhatsApp}
+                  className={`bg-green-500 text-white w-full py-2 rounded shadow-md ${
+                    !nome || dataInvalida ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  disabled={!nome || dataInvalida}
+                >
+                  {nome
+                    ? "Agendar via WhatsApp"
+                    : "Por favor, digite seu nome para agendar"}
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
     </div>
   );
 }
