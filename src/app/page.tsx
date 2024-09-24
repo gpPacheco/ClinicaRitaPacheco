@@ -2,6 +2,7 @@ import { EmblaCarousel } from "@/app/home/components/carrossel";
 import { FaixaContato } from "@/app/home/components/homeSections/faixaContato";
 import { Procedimentos } from "@/app/home/components/homeSections/procedimentos";
 import { Depoimentos } from "./home/components/homeSections/depoimentos";
+import { Avaliacoes } from "./home/components/homeSections/avaliacoes";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <FaixaContato />
         <Procedimentos />
         <Depoimentos />
+        <Avaliacoes />
       </div>
     </div>
   );
