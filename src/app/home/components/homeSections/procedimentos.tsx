@@ -10,7 +10,7 @@ export function Procedimentos() {
 
   return (
     <div className="w-full px-4 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] shadow-md">
-      <div className="text-xl text-center mb-4">Nossas especialidades</div>
+      <div className="text-xl text-center font-semibold mb-4">Nossas especialidades</div>
       <div className="flex flex-wrap justify-center items-center gap-4">
         {procedures.map((procedure) => (
           <div key={procedure.title} className="text-center">
