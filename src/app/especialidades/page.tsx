@@ -10,15 +10,52 @@ import "react-calendar/dist/Calendar.css";
 type Value = CalendarProps["value"];
 
 const especialidades = [
-  { name: "Unhas Encravadas", description: "Técnicas especializadas para aliviar a dor causada pelas unhas encravadas, prevenir infecções e promover a saúde dos pés.", icon: <FaBandAid /> },
-  { name: "Pé de Risco: Diabético / Neuro-Vascular", description: "Tratamentos especializados para prevenir, diagnosticar e tratar complicações dos pacientes diabéticos.", icon: <FaHandHoldingMedical /> },
-  { name: "Podologia Geriátrica", description: "Cuidados para prevenir problemas e garantir conforto para os pés dos idosos.", icon: <FaHeartbeat /> },
-  { name: "Podologia Hospitalar", description: "Atendimento de pacientes hospitalizados, focando em patologias diversas como diabetes, neuropatia e hanseníase.", icon: <FaHospital /> },
-  { name: "Podologia Infantil", description: "Cuidar dos pés das crianças, prevenindo e tratando problemas podológicos.", icon: <FaChild /> },
-  { name: "Podologia Esportiva", description: "Prevenção e tratamento de lesões nos pés causadas por atividades físicas.", icon: <FaRunning /> },
-  { name: "Cauterização de Verrugas Plantares", description: "Tratamentos para remoção segura de verrugas plantares.", icon: <FaVial /> },
-  { name: "Outros Serviços", description: "Tratamentos personalizados de acordo com as necessidades específicas de cada paciente.", icon: <FaHandHoldingWater /> },
+  { 
+    name: "Unhas Encravadas", 
+    description: "Técnicas especializadas para aliviar a dor causada pelas unhas encravadas, prevenir infecções e promover a saúde dos pés.", 
+    icon: <FaBandAid /> 
+  },
+  { 
+    name: "Pé de Risco: Diabético / Neuro-Vascular", 
+    description: "Tratamentos especializados para prevenir, diagnosticar e tratar complicações dos pacientes diabéticos.", 
+    icon: <FaHandHoldingMedical /> 
+  },
+  { 
+    name: "Podologia Geriátrica", 
+    description: "Cuidados para prevenir problemas e garantir conforto para os pés dos idosos.", 
+    icon: <FaHeartbeat /> 
+  },
+  { 
+    name: "Podologia Hospitalar", 
+    description: "Atendimento de pacientes hospitalizados, focando em patologias diversas como diabetes, neuropatia e hanseníase.", 
+    icon: <FaHospital /> 
+  },
+  { 
+    name: "Podologia Infantil", 
+    description: "Cuidar dos pés das crianças, prevenindo e tratando problemas podológicos.", 
+    icon: <FaChild /> 
+  },
+  { 
+    name: "Podologia Esportiva", 
+    description: "Prevenção e tratamento de lesões nos pés causadas por atividades físicas.", 
+    icon: <FaRunning /> 
+  },
+  { 
+    name: "Cauterização de Verrugas Plantares", 
+    description: "Tratamentos para remoção segura de verrugas plantares.", 
+    icon: <FaVial /> 
+  },
+  { 
+    name: "Tratamentos Especializados", 
+    description: (
+      <>
+        Tratamentos personalizados para diversas condições podológicas, com destaque especial para a <strong>Micose</strong>, além de outras patologias dos pés.
+      </>
+    ),
+    icon: <FaHandHoldingWater /> 
+  },
 ];
+
 
 export default function Especialidades() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +96,6 @@ export default function Especialidades() {
     }
   };
 
-  // Fecha o modal ao clicar fora do card
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
@@ -73,8 +109,8 @@ export default function Especialidades() {
     };
   }, [isOpen]);
   return (
-    <section className="py-10 sm:py-16 lg:py-24 z-40 relative">
-      <div className="container mx-auto">
+    <section className="py-10 sm:py-16 lg:py-24 z-40 relative bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]" >
+      <div className="container mt-0 mx-auto">
         <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center">
           Especialidades da Clínica
         </h2>
@@ -100,7 +136,7 @@ export default function Especialidades() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center w-full bg-[#f7f0ea] py-6 shadow-md mt-10 rounded-md ml-4 mr-4 ">
+      <div className="flex flex-col items-center justify-center w-full py-6 mt-10">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
         Agende sua consulta
       </h2>
