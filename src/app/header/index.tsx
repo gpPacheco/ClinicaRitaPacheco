@@ -36,8 +36,6 @@ const navigation = [
     submenuItems: [
       { name: "Sobre", href: "/clinica/sobre" },
       { name: "Espaço", href: "/clinica/espaco" },
-      { name: "Sala Infantil", href: "/clinica/espaco" },
-      { name: "Spa", href: "/clinca/espaco" },
       { name: "Biossegurança", href: "/clinica/biosec" },
     ],
   },
@@ -46,14 +44,10 @@ const navigation = [
     current: false,
     icon: <FaClinicMedical />,
     submenuItems: [
-      { name: "Unhas encravadas", href: "/especialidades" },
       { name: "Micose", href: "/especialidades" },
-      { name: "Pé Diabético", href: "/especialidades" },
-      { name: "Pé Neuro-Vascular ", href: "/especialidades" },
-      { name: "Podologia Infantil", href: "/especialidades" },
-      { name: "Podologia Geriátrica", href: "/especialidades" },
-      { name: "Podologia Hospitalar", href: "/especialidades" },
-      { name: "Podologia Esportiva", href: "/especialidades" },
+      { name: "Pé de Risco", href: "/especialidades" },
+      { name: "Unhas Encravadas", href: "/especialidades" },
+      { name: "Outros Cuidados", href: "/especialidades" },
     ],
   },
   {
