@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Calendar as CalendarIcon,
@@ -13,13 +13,66 @@ import "react-calendar/dist/Calendar.css";
 
 type Value = CalendarProps["value"];
 
+type CarrosselProps = {
+  imagens: string[];
+  descricao: string;
+};
+
+function Carrossel({ imagens, descricao }: CarrosselProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % imagens.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + imagens.length) % imagens.length);
+  };
+
+  return (
+    <div className="relative w-full h-96 overflow-hidden mb-8">
+      <Image
+        src={imagens[currentIndex]}
+        alt={descricao}
+        className="w-full object-cover rounded-lg"
+        width={500}
+        height={300}
+      />
+      {/* Setas de navegação */}
+      <button
+        onClick={handlePrev}
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+      >
+        <ChevronLeft size={24} />
+      </button>
+      <button
+        onClick={handleNext}
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+      >
+        <ChevronRight size={24} />
+      </button>
+      {/* Bolinhas indicadoras */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {imagens.map((_, index) => (
+          <span
+            key={index}
+            className={`h-2 w-2 rounded-full ${
+              currentIndex === index ? "bg-orange-500" : "bg-gray-300"
+            }`}
+          />
+        ))}
+      </div>
+      <p className="mt-4 text-center text-lg text-gray-700">{descricao}</p>
+    </div>
+  );
+}
+
 export default function Espaco() {
   const [isOpen, setIsOpen] = useState(false);
   const [nome, setNome] = useState("");
   const [dataAgendamento, setDataAgendamento] = useState<Date | null>(
     new Date()
   );
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [dataInvalida, setDataInvalida] = useState(false);
 
   const handleOpen = () => setIsOpen(true);
@@ -39,11 +92,9 @@ export default function Espaco() {
 
     if (selectedDate) {
       const today = new Date();
-      // Remove a hora para comparar apenas as datas
       today.setHours(0, 0, 0, 0);
       selectedDate.setHours(0, 0, 0, 0);
 
-      // Verifica se a data escolhida é anterior ao dia de hoje
       if (selectedDate < today) {
         setDataInvalida(true);
       } else {
@@ -67,66 +118,24 @@ export default function Espaco() {
     };
   }, [isOpen]);
 
-  const handleNext = (imagens: string[]) => {
-    setCurrentIndex((prev) => (prev + 1) % imagens.length);
-  };
-
-  const handlePrev = (imagens: string[]) => {
-    setCurrentIndex((prev) => (prev - 1 + imagens.length) % imagens.length);
-  };
-
-  const renderCarrossel = (imagens: string[], descricao: string) => (
-    <div className="relative w-full h-96 overflow-hidden mb-8">
-      <Image
-        src={imagens[currentIndex]}
-        alt={descricao}
-        className="w-full object-cover rounded-lg"
-        width={500}
-        height={300}
-      />
-      {/* Setas de navegação */}
-      <button
-        onClick={() => handlePrev(imagens)}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
-      >
-        <ChevronLeft size={24} />
-      </button>
-      <button
-        onClick={() => handleNext(imagens)}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
-      >
-        <ChevronRight size={24} />
-      </button>
-      {/* Bolinhas indicadoras */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {imagens.map((_, index) => (
-          <span
-            key={index}
-            className={`h-2 w-2 rounded-full ${
-              currentIndex === index ? "bg-orange-500" : "bg-gray-300"
-            }`}
-          />
-        ))}
-      </div>
-      <p className="mt-4 text-center text-lg text-gray-700">{descricao}</p>
-    </div>
-  );
-
   return (
-    <div className="px-4 py-12 bg-gray-100">
-      <h2 className="text-4xl font-semibold text-center text-orange-600 mb-12">
-        Conheça Nosso Espaço
-      </h2>
+    <div className="px-4 py-12 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
+      <h1 className="text-4xl font-light text-gray-800 sm:text-5xl lg:text-6xl text-center mb-10">
+        Conheça Nosso{" "}
+        <span className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
+          Espaço
+        </span>
+      </h1>
 
       {/* Seção do Espaço Geral */}
       <section className="mb-16">
         <h3 className="text-2xl text-center text-gray-800 mb-6">
           Espaço Geral da Clínica
         </h3>
-        {renderCarrossel(
-          ["/espaco-geral-1.jpg", "/espaco-geral-2.jpg"],
-          "Veja as imagens do espaço geral"
-        )}
+        <Carrossel
+          imagens={["/main-banner_a.jpg", "/main-banner_b.jpg"]}
+          descricao="Veja as imagens do espaço geral"
+        />
       </section>
 
       {/* Seção do SPA */}
@@ -134,10 +143,10 @@ export default function Espaco() {
         <h3 className="text-2xl text-center text-gray-800 mb-6">
           SPA da Clínica
         </h3>
-        {renderCarrossel(
-          ["/spa-1.jpg", "/spa-2.jpg"],
-          "Conheça o SPA exclusivo da clínica"
-        )}
+        <Carrossel
+          imagens={["/main-banner_c.jpg", "/main-banner_d.jpg"]}
+          descricao="Conheça o SPA exclusivo da clínica"
+        />
       </section>
 
       {/* Seção da Sala Infantil */}
@@ -145,14 +154,14 @@ export default function Espaco() {
         <h3 className="text-2xl text-center text-gray-800 mb-6">
           Sala Infantil
         </h3>
-        {renderCarrossel(
-          ["/sala-infantil-1.jpg", "/sala-infantil-2.jpg"],
-          "Espaço dedicado às crianças"
-        )}
+        <Carrossel
+          imagens={["/main-banner_e.jpg", "/main-banner_f.jpg"]}
+          descricao="Espaço dedicado às crianças"
+        />
       </section>
 
       {/* Botão de Agendamento */}
-      <div className="flex flex-col items-center justify-center w-full bg-[#f7f0ea] py-6 shadow-md">
+      <div className="flex flex-col items-center justify-center w-full">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           Agende sua consulta
         </h2>
@@ -227,9 +236,3 @@ export default function Espaco() {
     </div>
   );
 }
-
-//   ______    ____
-//  /\    /\  | "o |
-// |  \/\/  |/ ___\|
-// |gpPacheco_/
-// /_/_/ /_/_/
