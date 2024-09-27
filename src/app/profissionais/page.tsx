@@ -18,9 +18,9 @@ const profissionaisData: Profissional[] = [
     nome: "Rita Pacheco",
     especialidade: "Podóloga",
     descricao:
-      "Podóloga desde 2010 (Senac Franca). Palestrante em Podologia Gerôntica e Calçado para Diabetes.",
+      "Podóloga desde 2010 (Senac Franca) e palestrante em Podologia Gerôntica e Calçado para Diabetes.",
     especializacoes: [
-      "Diabetes (2015, Senac Aclimação-SP)",
+      "Atendimento ao Portador de Diabetes Miellitus (2015, Senac Aclimação -SP)",
       "Podologia Geriátrica, Esportiva e Laserterapia para Onicomicose",
     ],
     formacao: [
@@ -43,7 +43,7 @@ export default function Profissionais() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
       <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center">
         Conheça quem são as{" "}
         <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 lg:inline">
