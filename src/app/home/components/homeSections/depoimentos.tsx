@@ -18,7 +18,7 @@ export function Depoimentos() {
         <h2 className="text-3xl font-bold text-gray-900 mb-8">
           O que dizem nossos pacientes
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ml-2 mr-2">
           {depoimentos.map((depoimento) => (
             <div
               key={depoimento.id}
