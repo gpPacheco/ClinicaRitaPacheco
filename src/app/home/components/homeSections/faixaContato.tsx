@@ -67,7 +67,7 @@ export function FaixaContato() {
       </h2>
       <button
         onClick={handleOpen}
-        className="bg-orange-400 text-white px-6 py-2 rounded shadow-md hover:bg-orange-500 transition"
+        className="bg-[#F2784B] text-white px-6 py-2 rounded shadow-md hover:bg-orange-500 transition"
       >
         Agendar Consulta
         <CalendarIcon className="inline ml-2" />
