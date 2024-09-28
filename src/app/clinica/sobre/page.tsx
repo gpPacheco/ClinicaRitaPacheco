@@ -14,12 +14,17 @@ export default function Sobre() {
   const [nome, setNome] = useState("");
   const [dataAgendamento, setDataAgendamento] = useState<Date | null>(new Date());
   const [dataInvalida, setDataInvalida] = useState(false);
+  const [hasCadastro, setHasCadastro] = useState<null | boolean>(null); // Estado para verificar se o usuário tem cadastro
 
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
   const handleWhatsApp = () => {
-    const whatsappUrl = `https://wa.me/+5516993108637?text=Olá, meu nome é ${nome}, gostaria de agendar uma consulta no dia: ${dataAgendamento?.toLocaleDateString()}`;
+    const mensagem = hasCadastro
+      ? `Olá, já tenho cadastro e gostaria de agendar uma consulta no dia: ${dataAgendamento?.toLocaleDateString()}`
+      : `Olá, meu nome é ${nome}, gostaria de agendar uma consulta no dia: ${dataAgendamento?.toLocaleDateString()}`;
+
+    const whatsappUrl = `https://wa.me/+5516993108637?text=${encodeURIComponent(mensagem)}`;
     window.open(whatsappUrl, "_blank");
   };
 
@@ -34,11 +39,9 @@ export default function Sobre() {
 
     if (selectedDate) {
       const today = new Date();
-      // Remove a hora para comparar apenas as datas
       today.setHours(0, 0, 0, 0);
       selectedDate.setHours(0, 0, 0, 0);
 
-      // Verifica se a data escolhida é anterior ao dia de hoje
       if (selectedDate < today) {
         setDataInvalida(true);
       } else {
@@ -48,7 +51,6 @@ export default function Sobre() {
     }
   };
 
-  // Fecha o modal ao clicar fora do card
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
@@ -72,7 +74,7 @@ export default function Sobre() {
 
       {/* Seções de Missão, Visão e Valores */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-        <div className="bg-[#f7f0ea] p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-center">
+        <div className="bg-[#dbbeb0] p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-center">
           <FaHandHoldingHeart className="text-4xl text-orange-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Missão</h2>
           <p className="text-gray-700">
@@ -81,7 +83,7 @@ export default function Sobre() {
           </p>
         </div>
 
-        <div className="bg-[#f7f0ea] p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-center">
+        <div className="bg-[#dbbeb0] p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-center">
           <FaRegLightbulb className="text-4xl text-orange-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Visão</h2>
           <p className="text-gray-700">
@@ -90,7 +92,7 @@ export default function Sobre() {
           </p>
         </div>
 
-        <div className="bg-[#f7f0ea] p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-center">
+        <div className="bg-[#dbbeb0] p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-center">
           <FaMedal className="text-4xl text-orange-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Valores</h2>
           <p className="text-gray-700">
@@ -101,7 +103,7 @@ export default function Sobre() {
       </div>
 
       {/* Seção de História da Clínica */}
-      <div className="bg-[#f7f0ea] p-10 rounded-lg mb-10 shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-center max-w-4xl">
+      <div className="bg-[#dbbeb0] p-10 rounded-lg mb-10 shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-center max-w-4xl">
         <h2 className="text-3xl font-bold text-gray-800 mb-6">Nossa História</h2>
         <p className="text-lg text-gray-700">
           Fundada em 2010 pela podóloga Rita Pacheco, nossa clínica vem se
@@ -116,77 +118,129 @@ export default function Sobre() {
 
       {/* Botão de Agendamento */}
       <div className="flex flex-col items-center justify-center w-full">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-          Agende sua consulta
-        </h2>
-        <button
-          onClick={handleOpen}
-          className="bg-orange-400 text-white px-6 py-2 rounded shadow-md hover:bg-orange-500 transition"
-        >
-          Agendar Consulta
-          <CalendarIcon className="inline ml-2" />
-        </button>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Agende sua consulta</h2>
+      <button
+        onClick={handleOpen}
+        className="bg-[#F2784B] text-white px-6 py-2 rounded shadow-md hover:bg-orange-500 transition"
+      >
+        Agendar Consulta
+        <CalendarIcon className="inline ml-2" />
+      </button>
 
-        {isOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="modal-content bg-[#f7f0ea] p-4 rounded-md w-full max-w-md relative mx-4">
-              <button onClick={handleClose} className="absolute top-2 right-2">
-                <X size={22} />
-              </button>
-              <h2 className="text-xl font-bold mb-4 text-center">
-                Agende sua consulta
-              </h2>
-              <form className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Nome"
-                  value={nome}
-                  onChange={(e) => setNome(e.target.value)}
-                  className="w-full border p-2 rounded bg-[#f7f0ea] shadow-md"
-                  required
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="modal-content bg-[#f7f0ea] p-4 rounded-md w-full max-w-md relative mx-4">
+            <button onClick={handleClose} className="absolute top-2 right-2">
+              <X size={22} />
+            </button>
+            <h2 className="text-xl font-bold mb-4 text-center">Agende sua consulta</h2>
+
+            <form className="space-y-4">
+              <div className="p-2 rounded w-full h-full flex justify-center items-center">
+                <Calendar
+                  onChange={handleDateChange}
+                  value={dataAgendamento}
+                  className="w-full h-full rounded-md shadow-sm"
+                  tileClassName={({ activeStartDate, date, view }) =>
+                    date.toDateString() === dataAgendamento?.toDateString()
+                      ? "bg-orange-500 text-white"
+                      : "hover:bg-orange-200"
+                  }
+                  prevLabel={<span className="text-2xl">{"‹"}</span>}
+                  nextLabel={<span className="text-2xl">{"›"}</span>}
+                  prev2Label={<span className="text-2xl">{"«"}</span>}
+                  next2Label={<span className="text-2xl">{"»"}</span>}
                 />
+              </div>
 
-                <div className="p-2 rounde w-full h-full flex justify-center items-center">
-                  <Calendar
-                    onChange={handleDateChange}
-                    value={dataAgendamento}
-                    className="w-full h-full rounded-md shadow-sm"
-                    tileClassName={({ activeStartDate, date, view }) =>
-                      date.toDateString() === dataAgendamento?.toDateString()
-                        ? "bg-orange-500 text-white"
-                        : "hover:bg-orange-200"
-                    }
-                    prevLabel={<span className="text-2xl">{"‹"}</span>}
-                    nextLabel={<span className="text-2xl">{"›"}</span>}
-                    prev2Label={<span className="text-2xl">{"«"}</span>}
-                    next2Label={<span className="text-2xl">{"»"}</span>}
-                  />
-                </div>
+              {dataInvalida && (
+                <p className="text-red-500 text-sm">
+                  Não é possível agendar uma data no passado.
+                </p>
+              )}
 
-                {/* Mensagem de erro para datas inválidas */}
-                {dataInvalida && (
-                  <p className="text-red-500 text-sm">
-                    Não é possível agendar uma data no passado.
-                  </p>
-                )}
+              {dataAgendamento && (
+                <>
+                  {hasCadastro === null && (
+                    <div className="flex justify-center space-x-4">
+                      <button
+                        type="button"
+                        onClick={() => setHasCadastro(true)}
+                        className="bg-green-500 text-white w-1/2 py-2 rounded shadow-md"
+                      >
+                        Já tenho cadastro
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setHasCadastro(false)}
+                        className="bg-orange-500 text-white w-1/2 py-2 rounded shadow-md"
+                      >
+                        Não tenho cadastro
+                      </button>
+                    </div>
+                  )}
 
-                <button
-                  type="button"
-                  onClick={handleWhatsApp}
-                  className={`bg-green-500 text-white w-full py-2 rounded shadow-md ${
-                    !nome || dataInvalida ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
-                  disabled={!nome || dataInvalida}
-                >
-                  {nome
-                    ? "Agendar via WhatsApp"
-                    : "Por favor, digite seu nome para agendar"}
-                </button>
-              </form>
-            </div>
+                  {hasCadastro === false && (
+                    <>
+                      <input
+                        type="text"
+                        placeholder="Nome completo"
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
+                        className="w-full border p-2 rounded bg-[#f7f0ea] shadow-md"
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={handleWhatsApp}
+                        className={`bg-green-500 text-white w-full py-2 rounded shadow-md ${
+                          !nome || dataInvalida ? "opacity-50 cursor-not-allowed" : ""
+                        }`}
+                        disabled={!nome || dataInvalida}
+                      >
+                        Agendar via WhatsApp
+                      </button>
+                      <p className="text-sm text-gray-600 mt-2">
+                        Caso tenha cadastro,{" "}
+                        <button
+                          type="button"
+                          onClick={() => setHasCadastro(true)}
+                          className="text-blue-500 underline"
+                        >
+                          clique aqui
+                        </button>
+                      </p>
+                    </>
+                  )}
+
+                  {hasCadastro === true && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={handleWhatsApp}
+                        className="bg-green-500 text-white w-full py-2 rounded shadow-md"
+                      >
+                        Agendar via WhatsApp
+                      </button>
+                      <p className="text-sm text-gray-600 mt-2">
+                        Caso não tenha cadastro,{" "}
+                        <button
+                          type="button"
+                          onClick={() => setHasCadastro(false)}
+                          className="text-blue-500 underline"
+                        >
+                          clique aqui
+                        </button>
+                      </p>
+                    </>
+                  )}
+                </>
+              )}
+            </form>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+    </div>
     </div>
   );
 }
