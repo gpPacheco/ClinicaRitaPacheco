@@ -13,7 +13,7 @@ import { FaLocationDot } from "react-icons/fa6";
 export function Rodape() {
   return (
     <footer className="bg-gradient-to-r from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0]">
-      <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+      <div className="max-w-screen-xl px-4 py-3 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <a href="/" target="_self">
@@ -73,7 +73,7 @@ export function Rodape() {
               </a>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-3 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4 mt-3">
             <div>
               <p className="font-medium">Links Rápidos</p>
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-800">
@@ -134,7 +134,7 @@ export function Rodape() {
             </div>
           </div>
         </div>
-        <p className="mt-8 text-xs text-zinc-950 text-center">
+        <p className="mt-4 text-xs text-zinc-950 text-center">
           <a
             className="hover:text-gray-600 text-zinc-950 text-ml font-bold underline"
             href="/"
