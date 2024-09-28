@@ -6,7 +6,6 @@ import { Calendar as CalendarIcon, X } from "lucide-react";
 import { Calendar, CalendarProps } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Carousel } from "primereact/carousel";
-import { Button } from "primereact/button";
 
 type Value = CalendarProps["value"];
 
