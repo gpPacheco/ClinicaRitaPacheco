@@ -63,19 +63,25 @@ export function Avaliacoes() {
       <div className="text-xl text-center font-semibold mb-4">
         Avaliações dos Clientes
       </div>
-      <div className="flex flex-wrap justify-center items-center gap-4">
-        {avaliacoes.map((avaliacao, index) => (
-          <div
-            key={avaliacao.nome}
-            className={`text-center bg-white p-4 rounded-lg shadow-md w-60 transition-transform duration-500 ${
-              index === currentIndex ? "scale-105" : "scale-95"
-            }`}
-          >
-            <h2 className="text-lg font-semibold">{avaliacao.nome}</h2>
-            <p className="text-yellow-500">{"★".repeat(avaliacao.avaliacao)}</p>
-            <p className="text-gray-600 mt-2">{avaliacao.comentario}</p>
-          </div>
-        ))}
+      <div className="relative overflow-hidden w-full max-w-[400px] mx-auto">
+        <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+          {avaliacoes.map((avaliacao, index) => (
+            <div
+              key={avaliacao.nome}
+              className="flex-shrink-0 w-full p-4"
+            >
+              <div
+                className={`text-center bg-white p-4 rounded-lg shadow-md transition-transform duration-500 ${
+                  index === currentIndex ? "scale-105" : "scale-95 opacity-75"
+                }`}
+              >
+                <h2 className="text-lg font-semibold">{avaliacao.nome}</h2>
+                <p className="text-yellow-500">{"★".repeat(avaliacao.avaliacao)}</p>
+                <p className="text-gray-600 mt-2">{avaliacao.comentario}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
