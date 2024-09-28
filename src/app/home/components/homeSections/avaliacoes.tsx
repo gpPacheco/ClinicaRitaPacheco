@@ -59,7 +59,7 @@ export function Avaliacoes() {
   }, [avaliacoes.length]);
 
   return (
-    <div className="w-full px-4 pb-4 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] min-h-[400px]">
+    <div className="w-full px-4 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] min-h-[250px]">
       <div className="text-xl text-center font-semibold mb-4">
         Avaliações dos Clientes
       </div>
