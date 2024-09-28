@@ -1,27 +1,24 @@
 "use client";
-import Image from "next/image";
+import { FaUserMd, FaChild, FaSyringe } from "react-icons/fa"; // Exemplos de ícones
 
 export function Procedimentos() {
   const procedures = [
-    { title: "Unhas encravadas", image: "/2.jpg" },
-    { title: "Podologia Infantil", image: "/2.jpg" },
-    { title: "Micose", image: "/2.jpg" },
+    { title: "Onicocriptose", icon: <FaUserMd />, description: "Tratamento eficaz para aliviar dores causadas por unhas encravadas." },
+    { title: "Podologia Infantil", icon: <FaChild />, description: "Cuidados especializados para a saúde dos pés das crianças." },
+    { title: "Onicomicose", icon: <FaSyringe />, description: "Tratamento da infecção fúngica das unhas, com resultados seguros." },
   ];
 
   return (
-    <div className="w-full px-4 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] shadow-md">
-      <div className="text-xl text-center font-semibold mb-4">Nossas especialidades</div>
-      <div className="flex flex-wrap justify-center items-center gap-4">
+    <div className="w-full px-4 py-8 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] shadow-lg">
+      <div className="text-xl text-center font-semibold mb-6">
+        Nossas especialidades
+      </div>
+      <div className="flex flex-wrap justify-center items-center gap-6">
         {procedures.map((procedure) => (
-          <div key={procedure.title} className="text-center">
-            <Image
-              className="w-60 h-40 object-cover rounded-lg shadow-md cursor-pointer transition-transform transform hover:scale-105 hover:shadow-lg"
-              src={procedure.image}
-              alt={procedure.title}
-              width={240}
-              height={160}
-            />
-            <h2 className="text-lg font-semibold mt-2">{procedure.title}</h2>
+          <div key={procedure.title} className="bg-[#dbbeb0] w-64 p-6 rounded-lg shadow-md text-center transition-transform transform hover:scale-105 hover:shadow-lg">
+            <div className="text-4xl text-zinc-600 mb-4">{procedure.icon}</div>
+            <h2 className="text-lg font-medium mb-2">{procedure.title}</h2>
+            <p className="text-gray-600 text-sm">{procedure.description}</p>
           </div>
         ))}
       </div>
