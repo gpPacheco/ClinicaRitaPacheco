@@ -1,0 +1,26 @@
+.embla__container {
+    display: flex;
+    user-select: none;
+  }
+  
+  .embla__slide {
+    position: relative;
+    flex: 0 0 80%; /* Define o tamanho da imagem no carrossel */
+    margin-left: 10%;
+    margin-right: 10%;
+    background-size: cover;
+    background-position: center;
+    height: 400px; /* Altura do carrossel */
+  }
+  
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
