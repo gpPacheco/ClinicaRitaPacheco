@@ -9,17 +9,6 @@ import { Carousel } from "primereact/carousel";
 
 type Value = CalendarProps["value"];
 
-type Product = {
-  id: string;
-  image: string;
-  description: string;
-};
-
-type CarrosselProps = {
-  imagens: string[];
-  descricao: string;
-};
-
 export default function Espaco() {
   const [isOpen, setIsOpen] = useState(false);
   const [nome, setNome] = useState("");
@@ -79,28 +68,50 @@ export default function Espaco() {
     };
   }, [isOpen]);
 
-  const productTemplate = (product: Product) => {
+  type CarouselItem = {
+    description: string;
+    id: string;
+    image: string;
+  };
+
+  const carouselTemplate = (carousel: CarouselItem) => {
     return (
-      <div className="product-item">
-        <div className="product-image">
+      <div className="carousel-item">
+        <div className="carousel-image">
           <Image
-            src={product.image}
-            alt={product.description}
+            src={carousel.image}
+            alt={carousel.description}
             width={500}
             height={300}
             className="object-cover rounded-lg"
           />
         </div>
-        <div className="product-detail">
+        <div className="carousel-detail">
           <p className="mt-2 text-center text-lg text-gray-700">
-            {product.description}
+            {carousel.description}
           </p>
         </div>
       </div>
     );
   };
 
-  const products = [
+  const carouselEspacoGeral = [
+    { id: "1", image: "/main-banner_a.jpg" },
+    { id: "2", image: "/main-banner_b.jpg" },
+    { id: "3", image: "/main-banner_c.jpg" },
+    { id: "4", image: "/main-banner_d.jpg" },
+    { id: "5", image: "/main-banner_e.jpg" },
+  ];
+
+  const carouselSpa = [
+    { id: "1", image: "/main-banner_a.jpg" },
+    { id: "2", image: "/main-banner_b.jpg" },
+    { id: "3", image: "/main-banner_c.jpg" },
+    { id: "4", image: "/main-banner_d.jpg" },
+    { id: "5", image: "/main-banner_e.jpg" },
+  ];
+
+  const carouselSalaInfantil = [
     { id: "1", image: "/main-banner_a.jpg" },
     { id: "2", image: "/main-banner_b.jpg" },
     { id: "3", image: "/main-banner_c.jpg" },
@@ -123,12 +134,12 @@ export default function Espaco() {
           Espaço Geral da Clínica
         </h3>
         <Carousel
-          value={products}
+          value={carouselEspacoGeral}
           numVisible={3}
           numScroll={1}
           circular
           autoplayInterval={3000}
-          itemTemplate={productTemplate}
+          itemTemplate={carouselTemplate}
           responsiveOptions={[
             {
               breakpoint: "1024px",
@@ -144,18 +155,16 @@ export default function Espaco() {
         />
       </section>
 
-      {/* Seção do Espaço Geral */}
+      {/* Seção do Spa */}
       <section className="mb-16">
-        <h3 className="text-2xl text-center text-gray-800 mb-6">
-          Spa
-        </h3>
+        <h3 className="text-2xl text-center text-gray-800 mb-6">Spa</h3>
         <Carousel
-          value={products}
+          value={carouselSpa}
           numVisible={3}
           numScroll={1}
           circular
           autoplayInterval={3000}
-          itemTemplate={productTemplate}
+          itemTemplate={carouselTemplate}
           responsiveOptions={[
             {
               breakpoint: "1024px",
@@ -171,18 +180,18 @@ export default function Espaco() {
         />
       </section>
 
-      {/* Seção do Espaço Geral */}
+      {/* Seção da sala Infantil */}
       <section className="mb-16">
         <h3 className="text-2xl text-center text-gray-800 mb-6">
           Sala Infantil
         </h3>
         <Carousel
-          value={products}
+          value={carouselSalaInfantil}
           numVisible={3}
           numScroll={1}
           circular
           autoplayInterval={3000}
-          itemTemplate={productTemplate}
+          itemTemplate={carouselTemplate}
           responsiveOptions={[
             {
               breakpoint: "1024px",
@@ -200,129 +209,135 @@ export default function Espaco() {
 
       {/* Botão de Agendamento */}
       <div className="flex flex-col items-center justify-center w-full">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Agende sua consulta</h2>
-      <button
-        onClick={handleOpen}
-        className="bg-[#F2784B] text-white px-6 py-2 rounded shadow-md hover:bg-orange-500 transition"
-      >
-        Agendar Consulta
-        <CalendarIcon className="inline ml-2" />
-      </button>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          Agende sua consulta
+        </h2>
+        <button
+          onClick={handleOpen}
+          className="bg-[#F2784B] text-white px-6 py-2 rounded shadow-md hover:bg-orange-500 transition"
+        >
+          Agendar Consulta
+          <CalendarIcon className="inline ml-2" />
+        </button>
 
-      {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="modal-content bg-[#f7f0ea] p-4 rounded-md w-full max-w-md relative mx-4">
-            <button onClick={handleClose} className="absolute top-2 right-2">
-              <X size={22} />
-            </button>
-            <h2 className="text-xl font-bold mb-4 text-center">Agende sua consulta</h2>
+        {isOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div className="modal-content bg-[#f7f0ea] p-4 rounded-md w-full max-w-md relative mx-4">
+              <button onClick={handleClose} className="absolute top-2 right-2">
+                <X size={22} />
+              </button>
+              <h2 className="text-xl font-bold mb-4 text-center">
+                Agende sua consulta
+              </h2>
 
-            <form className="space-y-4">
-              <div className="p-2 rounded w-full h-full flex justify-center items-center">
-                <Calendar
-                  onChange={handleDateChange}
-                  value={dataAgendamento}
-                  className="w-full h-full rounded-md shadow-sm"
-                  tileClassName={({ activeStartDate, date, view }) =>
-                    date.toDateString() === dataAgendamento?.toDateString()
-                      ? "bg-orange-500 text-white"
-                      : "hover:bg-orange-200"
-                  }
-                  prevLabel={<span className="text-2xl">{"‹"}</span>}
-                  nextLabel={<span className="text-2xl">{"›"}</span>}
-                  prev2Label={<span className="text-2xl">{"«"}</span>}
-                  next2Label={<span className="text-2xl">{"»"}</span>}
-                />
-              </div>
+              <form className="space-y-4">
+                <div className="p-2 rounded w-full h-full flex justify-center items-center">
+                  <Calendar
+                    onChange={handleDateChange}
+                    value={dataAgendamento}
+                    className="w-full h-full rounded-md shadow-sm"
+                    tileClassName={({ activeStartDate, date, view }) =>
+                      date.toDateString() === dataAgendamento?.toDateString()
+                        ? "bg-orange-500 text-white"
+                        : "hover:bg-orange-200"
+                    }
+                    prevLabel={<span className="text-2xl">{"‹"}</span>}
+                    nextLabel={<span className="text-2xl">{"›"}</span>}
+                    prev2Label={<span className="text-2xl">{"«"}</span>}
+                    next2Label={<span className="text-2xl">{"»"}</span>}
+                  />
+                </div>
 
-              {dataInvalida && (
-                <p className="text-red-500 text-sm">
-                  Não é possível agendar uma data no passado.
-                </p>
-              )}
+                {dataInvalida && (
+                  <p className="text-red-500 text-sm">
+                    Não é possível agendar uma data no passado.
+                  </p>
+                )}
 
-              {dataAgendamento && (
-                <>
-                  {hasCadastro === null && (
-                    <div className="flex justify-center space-x-4">
-                      <button
-                        type="button"
-                        onClick={() => setHasCadastro(true)}
-                        className="bg-green-500 text-white w-1/2 py-2 rounded shadow-md"
-                      >
-                        Já tenho cadastro
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setHasCadastro(false)}
-                        className="bg-orange-500 text-white w-1/2 py-2 rounded shadow-md"
-                      >
-                        Não tenho cadastro
-                      </button>
-                    </div>
-                  )}
-
-                  {hasCadastro === false && (
-                    <>
-                      <input
-                        type="text"
-                        placeholder="Nome completo"
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)}
-                        className="w-full border p-2 rounded bg-[#f7f0ea] shadow-md"
-                        required
-                      />
-                      <button
-                        type="button"
-                        onClick={handleWhatsApp}
-                        className={`bg-green-500 text-white w-full py-2 rounded shadow-md ${
-                          !nome || dataInvalida ? "opacity-50 cursor-not-allowed" : ""
-                        }`}
-                        disabled={!nome || dataInvalida}
-                      >
-                        Agendar via WhatsApp
-                      </button>
-                      <p className="text-sm text-gray-600 mt-2">
-                        Caso tenha cadastro,{" "}
+                {dataAgendamento && (
+                  <>
+                    {hasCadastro === null && (
+                      <div className="flex justify-center space-x-4">
                         <button
                           type="button"
                           onClick={() => setHasCadastro(true)}
-                          className="text-blue-500 underline"
+                          className="bg-green-500 text-white w-1/2 py-2 rounded shadow-md"
                         >
-                          clique aqui
+                          Já tenho cadastro
                         </button>
-                      </p>
-                    </>
-                  )}
-
-                  {hasCadastro === true && (
-                    <>
-                      <button
-                        type="button"
-                        onClick={handleWhatsApp}
-                        className="bg-green-500 text-white w-full py-2 rounded shadow-md"
-                      >
-                        Agendar via WhatsApp
-                      </button>
-                      <p className="text-sm text-gray-600 mt-2">
-                        Caso não tenha cadastro,{" "}
                         <button
                           type="button"
                           onClick={() => setHasCadastro(false)}
-                          className="text-blue-500 underline"
+                          className="bg-orange-500 text-white w-1/2 py-2 rounded shadow-md"
                         >
-                          clique aqui
+                          Não tenho cadastro
                         </button>
-                      </p>
-                    </>
-                  )}
-                </>
-              )}
-            </form>
+                      </div>
+                    )}
+
+                    {hasCadastro === false && (
+                      <>
+                        <input
+                          type="text"
+                          placeholder="Nome completo"
+                          value={nome}
+                          onChange={(e) => setNome(e.target.value)}
+                          className="w-full border p-2 rounded bg-[#f7f0ea] shadow-md"
+                          required
+                        />
+                        <button
+                          type="button"
+                          onClick={handleWhatsApp}
+                          className={`bg-green-500 text-white w-full py-2 rounded shadow-md ${
+                            !nome || dataInvalida
+                              ? "opacity-50 cursor-not-allowed"
+                              : ""
+                          }`}
+                          disabled={!nome || dataInvalida}
+                        >
+                          Agendar via WhatsApp
+                        </button>
+                        <p className="text-sm text-gray-600 mt-2">
+                          Caso tenha cadastro,{" "}
+                          <button
+                            type="button"
+                            onClick={() => setHasCadastro(true)}
+                            className="text-blue-500 underline"
+                          >
+                            clique aqui
+                          </button>
+                        </p>
+                      </>
+                    )}
+
+                    {hasCadastro === true && (
+                      <>
+                        <button
+                          type="button"
+                          onClick={handleWhatsApp}
+                          className="bg-green-500 text-white w-full py-2 rounded shadow-md"
+                        >
+                          Agendar via WhatsApp
+                        </button>
+                        <p className="text-sm text-gray-600 mt-2">
+                          Caso não tenha cadastro,{" "}
+                          <button
+                            type="button"
+                            onClick={() => setHasCadastro(false)}
+                            className="text-blue-500 underline"
+                          >
+                            clique aqui
+                          </button>
+                        </p>
+                      </>
+                    )}
+                  </>
+                )}
+              </form>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
     </div>
   );
 }
