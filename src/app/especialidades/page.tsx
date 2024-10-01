@@ -141,7 +141,7 @@ export default function Especialidades() {
           Cuidamos da saúde dos seus pés em todas as fases da vida!
         </p>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 justify-items-center mx-2">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 justify-items-center mx-3">
           {especialidades.map((especialidade, index) => (
             <div
               key={index}

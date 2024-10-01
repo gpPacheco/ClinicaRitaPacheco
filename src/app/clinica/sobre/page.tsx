@@ -64,7 +64,7 @@ export default function Sobre() {
     };
   }, [isOpen]);
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] p-3">
       <h1 className="text-4xl font-light text-gray-800 sm:text-5xl lg:text-6xl text-center mb-10">
         Sobre a{" "}
         <span className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
