@@ -3,6 +3,7 @@ import { Procedimentos } from "@/app/home/components/homeSections/procedimentos"
 import { Depoimentos } from "./home/components/homeSections/depoimentos";
 import { Avaliacoes } from "./home/components/homeSections/avaliacoes";
 import { EmblaCarousel } from "./home/components/carrossel";
+import { Experiencia } from "./home/components/homeSections/experiencia";
 
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <div className="min-h-screen">
         <EmblaCarousel />
         <FaixaContato />
+        <Experiencia />
         <Procedimentos />
         <Depoimentos />
         <Avaliacoes />
