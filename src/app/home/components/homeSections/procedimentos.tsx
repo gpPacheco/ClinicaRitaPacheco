@@ -10,7 +10,7 @@ export function Procedimentos() {
 
   return (
     <div className="w-full px-4 py-8 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] shadow-lg p-3">
-      <div className="text-xl text-center font-semibold mb-6">
+      <div className="text-2xl text-center font-semibold mb-6">
         Nossas especialidades
       </div>
       <div className="flex flex-wrap justify-center items-center gap-6">

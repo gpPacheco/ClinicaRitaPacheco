@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function Avaliacoes() {
   const avaliacoes = [
@@ -47,24 +48,48 @@ export function Avaliacoes() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Lógica para alternar o destaque entre as avaliações
+  // Lógica para alternar automaticamente o destaque entre as avaliações
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex === avaliacoes.length - 1 ? 0 : prevIndex + 1
       );
-    }, 4000); 
+    }, 4000); // Troca de avaliação a cada 4 segundos
 
-    return () => clearInterval(intervalId); // Limpa o intervalo quando o componente é desmontado
+    return () => clearInterval(intervalId); // Limpa o intervalo ao desmontar
   }, [avaliacoes.length]);
+
+  // Funções para navegação manual
+  const goToPrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? avaliacoes.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === avaliacoes.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   return (
     <div className="w-full px-4 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] min-h-[250px]">
-      <div className="text-xl text-center font-semibold mb-4">
+      <div className="text-2xl text-center font-semibold mb-4">
         Avaliações dos Clientes
       </div>
       <div className="relative overflow-hidden w-full max-w-[400px] mx-auto">
-        <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+        {/* Botão anterior */}
+        <button
+          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-100 p-2 rounded-full z-10 shadow-lg"
+          onClick={goToPrev}
+        >
+          <ChevronLeft size={24} />
+        </button>
+
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
           {avaliacoes.map((avaliacao, index) => (
             <div
               key={avaliacao.nome}
@@ -82,6 +107,14 @@ export function Avaliacoes() {
             </div>
           ))}
         </div>
+
+        {/* Botão próximo */}
+        <button
+          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-100 p-2 rounded-full z-10 shadow-lg"
+          onClick={goToNext}
+        >
+          <ChevronRight size={24} />
+        </button>
       </div>
     </div>
   );
