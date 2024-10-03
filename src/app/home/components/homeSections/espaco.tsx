@@ -1,105 +1,98 @@
-"use client";
-import { useState, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from 'next/image';
+'use client';
+import { useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useRouter } from "next/navigation";
 
-export function Local() {
-  const imagens = [
-    "/podologia_infantil/foto_a.jpg", 
-    "/podologia_infantil/foto_b.jpg",
-    "/sobre/3.jpg",
-    "/sobre/4.jpg",
+export const Local = () => {
+  const imgs: { url: string; link: string }[] = [
+    { url: "/podologia_infantil/foto_a.jpg", link: "" },
+    { url: "/podologia_infantil/foto_b.jpg", link: "" },
+    { url: "/sobre/3.jpg", link: "" },
+    { url: "/sobre/4.jpg", link: "" },
   ];
 
-  const [indiceAtual, setIndiceAtual] = useState(0);
-  const carrosselRef = useRef(null); // Para referenciar o carrossel
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 3000 }),
+  ]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  // Funções para navegação no carrossel
-  const proximaImagem = () => {
-    setIndiceAtual((prevIndice) =>
-      prevIndice === imagens.length - 1 ? 0 : prevIndice + 1
-    );
-  };
-
-  const imagemAnterior = () => {
-    setIndiceAtual((prevIndice) =>
-      prevIndice === 0 ? imagens.length - 1 : prevIndice - 1
-    );
-  };
-
-  // Detectar início do toque (swipe)
-  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  // Detectar fim do toque e comparar para determinar se foi um swipe
-  const onTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (touchStartX.current - touchEndX.current > 50) {
-      // Swipe para a esquerda (próxima imagem)
-      proximaImagem();
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on("select", () => setSelectedIndex(emblaApi.selectedScrollSnap()));
     }
-    if (touchStartX.current - touchEndX.current < -50) {
-      // Swipe para a direita (imagem anterior)
-      imagemAnterior();
+  }, [emblaApi]);
+
+  const router = useRouter();
+
+  function navigate(link: string) {
+    if (link) {
+      router.push(link);
+    }
+  }
+
+  const goToPrevSlide = () => {
+    if (emblaApi) {
+      emblaApi.scrollPrev();
     }
   };
 
-  // Detectar movimento do toque
-  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchEndX.current = e.touches[0].clientX;
+  const goToNextSlide = () => {
+    if (emblaApi) {
+      emblaApi.scrollNext();
+    }
+  };
+
+  const scrollTo = (index: number) => {
+    if (emblaApi) {
+      emblaApi.scrollTo(index);
+    }
   };
 
   return (
-    <div className="w-full px-4 py-8 bg-gradient-to-b from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0]">
-      <h1 className="text-2xl text-zinc-800 font-semibold text-center mb-4">Conheça nosso espaço</h1>
-      
-      <div
-        className="relative max-w-[600px] mx-auto"
-        ref={carrosselRef}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
-        <div className="overflow-hidden">
-          <Image
-            src={imagens[indiceAtual]}
-            alt={`Imagem ${indiceAtual + 1}`}
-            className="w-full h-auto rounded-lg shadow-lg"
-            width={300}
-            height={300}
-          />
-        </div>
-
-        {/* Botão anterior */}
-        <button
-          className="absolute text-white top-1/2 left-0 transform -translate-y-1/2 p-2"
-          onClick={imagemAnterior}
-        >
-          <ChevronLeft size={24} />
-        </button>
-
-        {/* Botão próximo */}
-        <button
-          className="absolute text-white top-1/2 right-0 transform -translate-y-1/2 p-2"
-          onClick={proximaImagem}
-        >
-          <ChevronRight size={24} />
-        </button>
+    <div className="embla w-full shadow-md" ref={emblaRef}>
+      <div className="embla__container">
+        {imgs.map((item, index) => (
+          <button
+            onClick={() => navigate(item.link)}
+            key={index}
+            className="embla__slide"
+            style={{ backgroundImage: `url(${item.url})` }}
+          ></button>
+        ))}
       </div>
 
-      {/* Indicadores do carrossel */}
-      <div className="flex justify-center mt-4 space-x-2">
-        {imagens.map((_, index) => (
-          <div
+      {/* Botão anterior */}
+      <button
+        className="absolute bottom-0 left-0 z-[1] flex w-[15%] h-full items-center justify-center bg-transparent text-white transition-opacity duration-150 ease-in-out hover:text-black hover:opacity-90 focus:text-black focus:opacity-90"
+        type="button"
+        onClick={goToPrevSlide}
+      >
+        <ChevronLeft size={50} />
+      </button>
+
+      {/* Botão próximo */}
+      <button
+        className="absolute bottom-0 right-0 z-[1] flex w-[15%] h-full items-center justify-center bg-transparent text-white transition-opacity duration-150 ease-in-out hover:text-black hover:opacity-90 focus:text-black focus:opacity-90"
+        type="button"
+        onClick={goToNextSlide}
+      >
+        <ChevronRight size={50} />
+      </button>
+
+      {/* Bolinhas de Navegação */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-[1] flex space-x-2">
+        {imgs.map((_, index) => (
+          <button
             key={index}
-            className={`w-3 h-3 rounded-full ${
-              index === indiceAtual ? 'bg-white' : 'bg-gray-400'
+            className={`w-3 h-3 rounded-full transition-all ${
+              index === selectedIndex ? 'bg-white' : 'bg-gray-400'
             }`}
+            onClick={() => scrollTo(index)}
           />
         ))}
       </div>
     </div>
   );
-}
+};
