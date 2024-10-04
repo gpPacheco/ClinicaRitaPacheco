@@ -51,7 +51,10 @@ export const Local = () => {
   };
 
   return (
-    <div className="embla w-full shadow-md" ref={emblaRef}>
+    <div className="embla w-full shadow-md px-4 bg-gradient-to-b from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0]" ref={emblaRef}>
+      <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+          Conheça nosso espaço
+        </h2>
       <div className="embla__container">
         {imgs.map((item, index) => (
           <button
