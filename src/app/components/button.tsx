@@ -4,7 +4,6 @@ import { Calendar as CalendarIcon, X } from "lucide-react";
 import { Calendar } from "react-calendar";
 import { CalendarProps } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import React from "react";
 
 type Value = CalendarProps["value"];
 

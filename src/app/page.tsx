@@ -1,4 +1,4 @@
-import { FaixaContato } from "@/app/home/components/homeSections/faixaContato";
+import { FaixaContato } from "./components/button";
 import { Procedimentos } from "@/app/home/components/homeSections/procedimentos";
 import { Depoimentos } from "./home/components/homeSections/depoimentos";
 import { Avaliacoes } from "./home/components/homeSections/avaliacoes";
