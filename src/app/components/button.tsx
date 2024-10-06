@@ -63,7 +63,7 @@ export function FaixaContato() {
   }, [isOpen]);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full bg-[#f7f0ea] py-6">
+    <div className="flex flex-col items-center justify-center">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Agende sua consulta</h2>
       <button
         onClick={handleOpen}
