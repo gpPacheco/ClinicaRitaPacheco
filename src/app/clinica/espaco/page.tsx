@@ -3,9 +3,6 @@ import Image from "next/image";
 import { Carousel } from "primereact/carousel";
 import { FaixaContato } from "@/app/components/button";
 
-
-
-
 export default function Espaco() {
 
   type CarouselItem = {
