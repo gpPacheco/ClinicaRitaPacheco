@@ -5,13 +5,14 @@ import { Avaliacoes } from "./home/components/homeSections/avaliacoes";
 import { EmblaCarousel } from "./home/components/carrossel";
 import { Local } from "./home/components/homeSections/espaco";
 
-
 export default function Home() {
   return (
     <div className="w-screen h-full flex flex-col">
       <div className="min-h-screen">
         <EmblaCarousel />
-        <FaixaContato />
+        <div className="w-full bg-[#f7f0ea] py-6">
+          <FaixaContato />
+        </div>
         <Procedimentos />
         <Local />
         <Depoimentos />
