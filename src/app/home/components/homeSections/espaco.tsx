@@ -40,7 +40,7 @@ export function Local() {
 
   return (
     <div className="px-4 bg-gradient-to-b from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0] flex flex-col items-center">
-      <h1 className="text-2xl font-light text-gray-800 sm:text-5xl lg:text-6xl text-center mb-10">
+      <h1 className="text-3xl font-light text-gray-800 text-center mb-5">
         Conheça Nosso{" "}
         <span className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
           Espaço

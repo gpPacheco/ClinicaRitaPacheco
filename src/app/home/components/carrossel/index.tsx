@@ -1,10 +1,10 @@
-'use client';
+"use client";
 import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import "./carousel.css";
 import { useRouter } from "next/navigation";
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export const EmblaCarousel = () => {
   const imgs: { url: string; link: string }[] = [
@@ -23,7 +23,9 @@ export const EmblaCarousel = () => {
 
   useEffect(() => {
     if (emblaApi) {
-      emblaApi.on("select", () => setSelectedIndex(emblaApi.selectedScrollSnap()));
+      emblaApi.on("select", () =>
+        setSelectedIndex(emblaApi.selectedScrollSnap())
+      );
     }
   }, [emblaApi]);
 
@@ -84,8 +86,10 @@ export const EmblaCarousel = () => {
         {imgs.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === selectedIndex ? 'bg-white' : 'bg-gray-400'
+            className={`w-3 h-3 rounded-full border transition-all ${
+              index === selectedIndex
+                ? "bg-white border-white"
+                : "border-white"
             }`}
             onClick={() => scrollTo(index)}
           />
