@@ -20,7 +20,7 @@ export function Procedimentos() {
               <div className="text-4xl text-zinc-600">{procedure.icon}</div>
             </div>
             <h2 className="text-lg font-medium mb-2">{procedure.title}</h2>
-            <p className="text-gray-600 text-sm">{procedure.description}</p>
+            <p className="text-gray-700 text-sm">{procedure.description}</p>
           </div>
         ))}
       </div>
