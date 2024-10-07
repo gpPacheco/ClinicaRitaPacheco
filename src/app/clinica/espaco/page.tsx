@@ -1,10 +1,9 @@
-"use client";
+'use client';
 import Image from "next/image";
 import { Carousel } from "primereact/carousel";
 import { FaixaContato } from "@/app/components/button";
 
 export default function Espaco() {
-
   type CarouselItem = {
     description: string;
     id: string;
@@ -13,18 +12,18 @@ export default function Espaco() {
 
   const carouselTemplate = (carousel: CarouselItem) => {
     return (
-      <div className="carousel-item">
+      <div className="carousel-item flex justify-center">
         <div className="carousel-image">
           <Image
             src={carousel.image}
             alt={carousel.description}
-            width={500}
-            height={300}
-            className="object-cover rounded-lg"
+            width={800} // Definindo um tamanho padrão
+            height={500} // Definindo um tamanho padrão
+            className="object-cover rounded-lg shadow-lg"
           />
         </div>
         <div className="carousel-detail">
-          <p className="mt-2 text-center text-lg text-gray-700">
+          <p className="mt-2 text-center text-base text-gray-700">
             {carousel.description}
           </p>
         </div>
@@ -66,21 +65,22 @@ export default function Espaco() {
       </h1>
 
       {/* Seção do Espaço Geral */}
-      <section className="mb-16">
+      <div className="mb-16">
         <h3 className="text-2xl text-center text-gray-800 mb-6">
           Espaço Geral da Clínica
         </h3>
         <Carousel
           value={carouselEspacoGeral}
-          numVisible={3}
+          numVisible={1}
           numScroll={1}
           circular
           autoplayInterval={3000}
           itemTemplate={carouselTemplate}
+          className="mx-auto max-w-[800px]"
           responsiveOptions={[
             {
               breakpoint: "1024px",
-              numVisible: 2,
+              numVisible: 1,
               numScroll: 1,
             },
             {
@@ -90,22 +90,23 @@ export default function Espaco() {
             },
           ]}
         />
-      </section>
+      </div>
 
       {/* Seção do Spa */}
-      <section className="mb-16">
+      <div className="mb-16">
         <h3 className="text-2xl text-center text-gray-800 mb-6">Spa</h3>
         <Carousel
           value={carouselSpa}
-          numVisible={3}
+          numVisible={1}
           numScroll={1}
           circular
           autoplayInterval={3000}
           itemTemplate={carouselTemplate}
+          className="mx-auto max-w-[800px]"
           responsiveOptions={[
             {
               breakpoint: "1024px",
-              numVisible: 2,
+              numVisible: 1,
               numScroll: 1,
             },
             {
@@ -115,24 +116,25 @@ export default function Espaco() {
             },
           ]}
         />
-      </section>
+      </div>
 
-      {/* Seção da sala Infantil */}
-      <section className="mb-16">
+      {/* Seção da Sala Infantil */}
+      <div className="mb-16">
         <h3 className="text-2xl text-center text-gray-800 mb-6">
           Sala Infantil
         </h3>
         <Carousel
           value={carouselSalaInfantil}
-          numVisible={3}
+          numVisible={1}
           numScroll={1}
           circular
           autoplayInterval={3000}
           itemTemplate={carouselTemplate}
+          className="mx-auto max-w-[800px]"
           responsiveOptions={[
             {
               breakpoint: "1024px",
-              numVisible: 2,
+              numVisible: 1,
               numScroll: 1,
             },
             {
@@ -142,7 +144,7 @@ export default function Espaco() {
             },
           ]}
         />
-      </section>
+      </div>
 
       {/* Botão de Agendamento */}
       <FaixaContato />
