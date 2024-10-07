@@ -48,15 +48,15 @@ export function Local() {
       </h1>
 
       {/* Seção do Espaço Geral */}
-      <section className="w-full max-w-[1200px]">
-        <Carousel
+      <div className="w-full ">
+      <Carousel
           value={carouselEspacoGeral}
-          numVisible={1} 
+          numVisible={1}
           numScroll={1}
           circular
           autoplayInterval={3000}
           itemTemplate={carouselTemplate}
-          className="mx-auto" 
+          className="mx-auto max-w-[800px]"
           responsiveOptions={[
             {
               breakpoint: "1024px",
@@ -70,7 +70,7 @@ export function Local() {
             },
           ]}
         />
-      </section>
+      </div>
     </div>
   );
 }
