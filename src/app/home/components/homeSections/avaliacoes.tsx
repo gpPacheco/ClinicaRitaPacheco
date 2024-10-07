@@ -80,7 +80,7 @@ export function Avaliacoes() {
       <div className="relative overflow-hidden w-full max-w-[400px] mx-auto">
         {/* Botão anterior */}
         <button
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-100 p-2 rounded-full z-10 shadow-lg"
+          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-100 p-1 rounded-full z-10 shadow-lg"
           onClick={goToPrev}
         >
           <ChevronLeft size={24} />
@@ -110,7 +110,7 @@ export function Avaliacoes() {
 
         {/* Botão próximo */}
         <button
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-100 p-2 rounded-full z-10 shadow-lg"
+          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-100 p-1 rounded-full z-10 shadow-lg"
           onClick={goToNext}
         >
           <ChevronRight size={24} />
