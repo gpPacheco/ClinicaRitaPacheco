@@ -11,7 +11,10 @@ export function Procedimentos() {
   return (
     <div className="w-full px-4 py-8 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] shadow-lg p-3">
       <div className="text-3xl font-light text-gray-800 text-center mb-5">
-        Confira nossas especialidades
+        Confira nossas {" "}
+        <a href="/especialidades" className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
+          Especialidades
+        </a>
       </div>
       <div className="flex flex-wrap justify-center items-center gap-6">
         {procedures.map((procedure) => (
@@ -27,3 +30,9 @@ export function Procedimentos() {
     </div>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/
