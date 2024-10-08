@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Carousel } from "primereact/carousel";
 import { FaixaContato } from "@/app/components/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Espaco() {
   type CarouselItem = {
@@ -89,6 +90,20 @@ export default function Espaco() {
               numScroll: 1,
             },
           ]}
+          prevIcon={
+            <ChevronLeft
+              size={40}
+              className="text-zinc-500 hover:text-zinc-700 transition duration-200"
+              style={{ cursor: "pointer" }}
+            />
+          }
+          nextIcon={
+            <ChevronRight
+              size={40}
+              className="text-zinc-500 hover:text-zinc-700 transition duration-200"
+              style={{ cursor: "pointer" }}
+            />
+          }
         />
       </div>
 
@@ -115,6 +130,20 @@ export default function Espaco() {
               numScroll: 1,
             },
           ]}
+          prevIcon={
+            <ChevronLeft
+              size={40}
+              className="text-zinc-500 hover:text-zinc-700 transition duration-200"
+              style={{ cursor: "pointer" }}
+            />
+          }
+          nextIcon={
+            <ChevronRight
+              size={40}
+              className="text-zinc-500 hover:text-zinc-700 transition duration-200"
+              style={{ cursor: "pointer" }}
+            />
+          }
         />
       </div>
 
@@ -143,6 +172,20 @@ export default function Espaco() {
               numScroll: 1,
             },
           ]}
+          prevIcon={
+            <ChevronLeft
+              size={40}
+              className="text-zinc-500 hover:text-zinc-700 transition duration-200"
+              style={{ cursor: "pointer" }}
+            />
+          }
+          nextIcon={
+            <ChevronRight
+              size={40}
+              className="text-zinc-500 hover:text-zinc-700 transition duration-200"
+              style={{ cursor: "pointer" }}
+            />
+          }
         />
       </div>
 

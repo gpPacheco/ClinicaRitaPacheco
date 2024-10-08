@@ -1,6 +1,7 @@
 'use client';
 import Image from "next/image";
 import { Carousel } from "primereact/carousel";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function Local() {
   type CarouselItem = {
@@ -42,14 +43,14 @@ export function Local() {
     <div className="px-4 bg-gradient-to-b from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0] flex flex-col items-center">
       <h1 className="text-3xl font-light text-gray-800 text-center mb-5">
         Conheça Nosso{" "}
-        <span className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
+        <a href="/clinica/espaco" className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
           Espaço
-        </span>
+        </a>
       </h1>
 
       {/* Seção do Espaço Geral */}
       <div className="w-full ">
-      <Carousel
+        <Carousel
           value={carouselEspacoGeral}
           numVisible={1}
           numScroll={1}
@@ -69,6 +70,20 @@ export function Local() {
               numScroll: 1,
             },
           ]}
+          prevIcon={
+            <ChevronLeft
+              size={40}
+              className="text-zinc-500 hover:text-zinc-700 transition duration-200"
+              style={{ cursor: "pointer" }}
+            />
+          }
+          nextIcon={
+            <ChevronRight
+              size={40}
+              className="text-zinc-500 hover:text-zinc-700 transition duration-200"
+              style={{ cursor: "pointer" }}
+            />
+          }
         />
       </div>
     </div>
