@@ -17,8 +17,8 @@ export default function Home() {
         <Procedimentos />
         <Local />
         <Cursos />
-        <Depoimentos />
         <Avaliacoes />
+        <Depoimentos />
       </div>
     </div>
   );
