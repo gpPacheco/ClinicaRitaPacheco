@@ -20,11 +20,11 @@ export default function Espaco() {
             alt={carousel.description}
             width={800} // Definindo um tamanho padrão
             height={500} // Definindo um tamanho padrão
-            className="object-cover rounded-lg shadow-lg"
+            className="object-cover rounded-lg shadow-lg h-48"
           />
         </div>
         <div className="carousel-detail">
-          <p className="mt-2 text-center text-base text-gray-700">
+          <p className="mt-2 text-center text-base text-gray-700 ">
             {carousel.description}
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function Espaco() {
   ];
 
   return (
-    <div className="px-4 py-12 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
+    <div className="px-1 py-12 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] ">
       <h1 className="text-4xl font-light text-gray-800 sm:text-5xl lg:text-6xl text-center mb-10">
         Conheça Nosso{" "}
         <span className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
@@ -78,18 +78,6 @@ export default function Espaco() {
           autoplayInterval={3000}
           itemTemplate={carouselTemplate}
           className="mx-auto max-w-[800px]"
-          responsiveOptions={[
-            {
-              breakpoint: "1024px",
-              numVisible: 1,
-              numScroll: 1,
-            },
-            {
-              breakpoint: "768px",
-              numVisible: 1,
-              numScroll: 1,
-            },
-          ]}
           prevIcon={
             <ChevronLeft
               size={40}
@@ -118,18 +106,6 @@ export default function Espaco() {
           autoplayInterval={3000}
           itemTemplate={carouselTemplate}
           className="mx-auto max-w-[800px]"
-          responsiveOptions={[
-            {
-              breakpoint: "1024px",
-              numVisible: 1,
-              numScroll: 1,
-            },
-            {
-              breakpoint: "768px",
-              numVisible: 1,
-              numScroll: 1,
-            },
-          ]}
           prevIcon={
             <ChevronLeft
               size={40}
@@ -160,18 +136,6 @@ export default function Espaco() {
           autoplayInterval={3000}
           itemTemplate={carouselTemplate}
           className="mx-auto max-w-[800px]"
-          responsiveOptions={[
-            {
-              breakpoint: "1024px",
-              numVisible: 1,
-              numScroll: 1,
-            },
-            {
-              breakpoint: "768px",
-              numVisible: 1,
-              numScroll: 1,
-            },
-          ]}
           prevIcon={
             <ChevronLeft
               size={40}

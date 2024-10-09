@@ -32,15 +32,15 @@ export function Local() {
   };
 
   const carouselEspacoGeral = [
-    { id: "1", image: "/main-banner_a.jpg" },
-    { id: "2", image: "/main-banner_b.jpg" },
-    { id: "3", image: "/main-banner_c.jpg" },
-    { id: "4", image: "/main-banner_d.jpg" },
-    { id: "5", image: "/main-banner_e.jpg" },
+    { id: "1", image: "/sobre/1.jpg" },
+    { id: "2", image: "/spa/foto_b.jpg" },
+    { id: "3", image: "/spa/foto_a.jpg" },
+    { id: "4", image: "/sobre/3.jpg" },
+    { id: "5", image: "/sobre/4.jpg" },
   ];
 
   return (
-    <div className="px-4 bg-gradient-to-b from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0] flex flex-col items-center">
+    <div className="px-1 bg-gradient-to-b from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0] flex flex-col items-center">
       <h1 className="text-3xl font-light text-gray-800 text-center mb-5">
         Conheça Nosso{" "}
         <a href="/clinica/espaco" className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
@@ -49,7 +49,7 @@ export function Local() {
       </h1>
 
       {/* Seção do Espaço Geral */}
-      <div className="w-full ">
+      <div className="w-full">
         <Carousel
           value={carouselEspacoGeral}
           numVisible={1}
@@ -58,28 +58,16 @@ export function Local() {
           autoplayInterval={3000}
           itemTemplate={carouselTemplate}
           className="mx-auto max-w-[800px]"
-          responsiveOptions={[
-            {
-              breakpoint: "1024px",
-              numVisible: 1,
-              numScroll: 1,
-            },
-            {
-              breakpoint: "768px",
-              numVisible: 1,
-              numScroll: 1,
-            },
-          ]}
           prevIcon={
             <ChevronLeft
-              size={40}
+              size={30}
               className="text-zinc-500 hover:text-zinc-700 transition duration-200"
               style={{ cursor: "pointer" }}
             />
           }
           nextIcon={
             <ChevronRight
-              size={40}
+              size={30}
               className="text-zinc-500 hover:text-zinc-700 transition duration-200"
               style={{ cursor: "pointer" }}
             />
