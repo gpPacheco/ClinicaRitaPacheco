@@ -4,6 +4,7 @@ import { Depoimentos } from "./home/components/homeSections/depoimentos";
 import { Avaliacoes } from "./home/components/homeSections/avaliacoes";
 import { EmblaCarousel } from "./home/components/carrossel";
 import { Local } from "./home/components/homeSections/espaco";
+import { Cursos } from "./home/components/homeSections/cursos";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         </div>
         <Procedimentos />
         <Local />
+        <Cursos />
         <Depoimentos />
         <Avaliacoes />
       </div>
