@@ -45,20 +45,21 @@ export default function Profissionais() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
-      <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center">
-        Conheça quem são as{" "}
-        <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 lg:inline">
-          Profissionais
-        </span>{" "}
-        da clínica de podologia Rita Pacheco:
-      </h2>
-      <p className="mb-10 mt-2 text-lg text-gray-800 text-center">
-        Há&nbsp;
-        <span className="block w-full font-light bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
-          mais
-        </span>{" "}
-        de 15 anos!
-      </p>
+  <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center">
+    Conheça a{" "}
+    <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 lg:inline">
+      Profissional
+    </span>{" "}
+    da clínica!
+  </h2>
+  <p className="mb-10 mt-2 text-lg text-gray-800 text-center">
+    Com{" "}
+    <span className="block w-full font-light bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
+      mais de 15 anos
+    </span>{" "}
+    de experiência!
+  </p>
+
 
       <div className="grid grid-cols-1 md:grid-cols-1 gap-10 justify-items-center">
         {profissionaisData.map((profissional) => (
