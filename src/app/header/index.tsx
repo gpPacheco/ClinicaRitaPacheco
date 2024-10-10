@@ -44,9 +44,9 @@ const navigation = [
     current: false,
     icon: <FaClinicMedical />,
     submenuItems: [
-      { name: "Micose", href: "/especialidades" },
+      { name: "Onicomicose", href: "/especialidades" },
       { name: "Pé de Risco", href: "/especialidades" },
-      { name: "Unhas Encravadas", href: "/especialidades" },
+      { name: "Onicocriptose", href: "/especialidades" },
       { name: "Outros Cuidados", href: "/especialidades" },
     ],
   },
