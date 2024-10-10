@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import Image from "next/image";
+import { FaixaContato } from "../components/button";
 
 interface Profissional {
   id: number;
@@ -51,7 +52,7 @@ export default function Profissionais() {
         </span>{" "}
         da clínica de podologia Rita Pacheco:
       </h2>
-      <p className="mb-20 mt-2 text-lg text-gray-800 text-center">
+      <p className="mb-10 mt-2 text-lg text-gray-800 text-center">
         Há&nbsp;
         <span className="block w-full font-light bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
           mais
@@ -69,7 +70,7 @@ export default function Profissionais() {
             <div className="absolute inset-0 bg-cover bg-center z-0">
               <div className="relative w-full h-full">
                 <Image
-                  src="/2.jpg"
+                  src="/biosseguranca/1.png"
                   alt={profissional.nome}
                   className="object-cover"
                   layout="fill"
@@ -98,7 +99,7 @@ export default function Profissionais() {
           onClick={handleCloseModal}
         >
           <div
-            className="bg-[#f7f0ea] p-6 rounded-lg shadow-lg relative max-w-md w-full transform transition duration-500 scale-105 text-center mr-6 ml-6"
+            className="bg-[#f7f0ea] p-3 rounded-lg shadow-lg relative max-w-md w-full transform transition duration-500 scale-105 text-center mr-6 ml-6"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -138,6 +139,10 @@ export default function Profissionais() {
           </div>
         </div>
       )}
+      <div className="my-4">
+      <FaixaContato />
+      </div>
+      
     </div>
   );
 }
