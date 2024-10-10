@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function Avaliacoes() {
-  // Avaliações reais
   const avaliacoes = [
     {
       nome: "João Silva",
@@ -22,14 +21,8 @@ export function Avaliacoes() {
     },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(1);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const extendedAvaliacoes = [
-    avaliacoes[avaliacoes.length - 1],
-    ...avaliacoes,
-    avaliacoes[0],
-  ];
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -42,31 +35,23 @@ export function Avaliacoes() {
   const goToPrev = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentIndex((prevIndex) => prevIndex - 1);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? avaliacoes.length - 1 : prevIndex - 1
+    );
   };
 
   const goToNext = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentIndex((prevIndex) => prevIndex + 1);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === avaliacoes.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   useEffect(() => {
-    // Reseta a transição ao atingir os clones
-    if (currentIndex === 0) {
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(avaliacoes.length);
-      }, 500);
-    } else if (currentIndex === avaliacoes.length + 1) {
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(1);
-      }, 500);
-    } else {
-      setTimeout(() => setIsTransitioning(false), 500);
-    }
-  }, [avaliacoes.length, currentIndex]);
+    const timeout = setTimeout(() => setIsTransitioning(false), 500);
+    return () => clearTimeout(timeout);
+  }, [currentIndex]);
 
   return (
     <div className="w-full px-4 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] min-h-[250px]">
@@ -87,7 +72,7 @@ export function Avaliacoes() {
             transform: `translateX(-${currentIndex * 100}%)`,
           }}
         >
-          {extendedAvaliacoes.map((avaliacao, index) => (
+          {avaliacoes.map((avaliacao, index) => (
             <div key={index} className="flex-shrink-0 w-full p-4">
               <div className="text-center bg-white p-4 rounded-lg shadow-md">
                 <h2 className="text-lg font-semibold">{avaliacao.nome}</h2>
