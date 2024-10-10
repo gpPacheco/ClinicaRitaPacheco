@@ -18,23 +18,26 @@ export default function Espaco() {
           <Image
             src={carousel.image}
             alt={carousel.description}
-            width={800} // Definindo um tamanho padrão
-            height={500} // Definindo um tamanho padrão
-            className="object-cover rounded-lg shadow-lg h-48"
+            width={800}
+            height={500}
+            className="object-cover rounded-lg shadow-lg 
+              h-[300px] sm:h-[200px] md:h-[400px] lg:h-[450px] xl:h-[500px]"
           />
         </div>
         <div className="carousel-detail">
-          <p className="mt-2 text-center text-base text-gray-700 ">
+          <p className="mt-2 text-center text-base text-gray-700">
             {carousel.description}
           </p>
         </div>
       </div>
     );
   };
+  
+  
 
   const carouselEspacoGeral = [
-    { id: "1", image: "/main-banner_a.jpg" },
-    { id: "2", image: "/main-banner_b.jpg" },
+    { id: "1", image: "/spa/foto_a.jpg" },
+    { id: "2", image: "/spa/foto_b.jpg" },
     { id: "3", image: "/main-banner_c.jpg" },
     { id: "4", image: "/main-banner_d.jpg" },
     { id: "5", image: "/main-banner_e.jpg" },
@@ -80,14 +83,14 @@ export default function Espaco() {
           className="mx-auto max-w-[800px]"
           prevIcon={
             <ChevronLeft
-              size={40}
+              size={30}
               className="text-zinc-500 hover:text-zinc-700 transition duration-200"
               style={{ cursor: "pointer" }}
             />
           }
           nextIcon={
             <ChevronRight
-              size={40}
+              size={30}
               className="text-zinc-500 hover:text-zinc-700 transition duration-200"
               style={{ cursor: "pointer" }}
             />
@@ -108,14 +111,14 @@ export default function Espaco() {
           className="mx-auto max-w-[800px]"
           prevIcon={
             <ChevronLeft
-              size={40}
+              size={30}
               className="text-zinc-500 hover:text-zinc-700 transition duration-200"
               style={{ cursor: "pointer" }}
             />
           }
           nextIcon={
             <ChevronRight
-              size={40}
+              size={30}
               className="text-zinc-500 hover:text-zinc-700 transition duration-200"
               style={{ cursor: "pointer" }}
             />
@@ -138,14 +141,14 @@ export default function Espaco() {
           className="mx-auto max-w-[800px]"
           prevIcon={
             <ChevronLeft
-              size={40}
+              size={30}
               className="text-zinc-500 hover:text-zinc-700 transition duration-200"
               style={{ cursor: "pointer" }}
             />
           }
           nextIcon={
             <ChevronRight
-              size={40}
+              size={30}
               className="text-zinc-500 hover:text-zinc-700 transition duration-200"
               style={{ cursor: "pointer" }}
             />
