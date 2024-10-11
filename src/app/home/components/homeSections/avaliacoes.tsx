@@ -54,8 +54,8 @@ export function Avaliacoes() {
   }, [currentIndex]);
 
   return (
-    <div className="w-full px-4 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] min-h-[250px]">
-      <div className="text-3xl font-light text-gray-800 text-center mb-5">
+    <div className="w-full px-1 py-5 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] min-h-[250px]">
+      <div className="text-3xl font-light text-gray-800 text-center mb-2">
         Avaliações dos Clientes
       </div>
       <div className="relative overflow-hidden w-full max-w-[400px] mx-auto">

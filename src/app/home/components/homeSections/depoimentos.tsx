@@ -13,7 +13,7 @@ export function Depoimentos() {
   ]; 
 
   return (
-    <div className="py-16 bg-gradient-to-b from-[#f7f0ea] via-[#dbbeb0] to-[#f7f0ea] p-3">
+    <div className="py-6 bg-gradient-to-b from-[#f7f0ea] via-[#dbbeb0] to-[#f7f0ea] p-3">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-light text-gray-800 text-center mb-5">
           O que dizem nossos pacientes

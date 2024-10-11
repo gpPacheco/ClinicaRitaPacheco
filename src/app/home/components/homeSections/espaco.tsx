@@ -40,7 +40,7 @@ export function Local() {
   ];
 
   return (
-    <div className="px-1 bg-gradient-to-b from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0] flex flex-col items-center">
+    <div className="px-1 py-5 bg-gradient-to-b from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0] flex flex-col items-center">
       <h1 className="text-3xl font-light text-gray-800 text-center mb-5">
         Conheça Nosso{" "}
         <a href="/clinica/espaco" className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">

@@ -23,7 +23,7 @@ export function Procedimentos() {
   ];
 
   return (
-    <div className="w-full px-4 py-8 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] shadow-lg p-3">
+    <div className="w-full px-4 py-5 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] shadow-lg p-3">
       <div className="text-3xl font-light text-gray-800 text-center mb-5">
         Confira nossas{"  "}
         <a

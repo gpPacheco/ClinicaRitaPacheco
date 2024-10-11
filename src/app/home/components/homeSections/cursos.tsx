@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function Cursos() {
   return (
-    <div className="w-full px-4 py-12 flex flex-col items-center bg-gradient-to-b from-[#dbbeb0] to-[#f7f0ea]">
+    <div className="w-full px-4 py-5 flex flex-col items-center bg-gradient-to-b from-[#dbbeb0] to-[#f7f0ea]">
       <h2 className="text-4xl font-light text-transparent text-center bg-clip-text bg-gradient-to-r from-orange-500 to-orange-800 mb-6">
         Cursos & Mentorias
       </h2>

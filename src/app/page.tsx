@@ -11,7 +11,7 @@ export default function Home() {
     <div className="w-screen h-full flex flex-col">
       <div className="min-h-screen">
         <EmblaCarousel />
-        <div className="w-full bg-[#f7f0ea] py-6">
+        <div className="w-full bg-[#f7f0ea] py-5">
           <FaixaContato />
         </div>
         <Procedimentos />
