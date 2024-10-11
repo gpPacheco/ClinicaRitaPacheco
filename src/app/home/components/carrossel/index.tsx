@@ -66,7 +66,7 @@ export const EmblaCarousel = () => {
         ))}
       </div>
       <button
-        className="absolute bottom-0 left-0 z-[1] flex w-[15%] h-full items-center justify-center bg-transparent text-white transition-opacity duration-150 ease-in-out hover:text-black hover:opacity-90 focus:text-black focus:opacity-90"
+        className="absolute bottom-0 left-0 z-[1] flex w-[15%] h-full items-center justify-center bg-transparent text-white transition-opacity duration-150 ease-in-out hover:text-zinc-700 hover:opacity-90 focus:outline-none"
         type="button"
         onClick={goToPrevSlide}
       >
@@ -74,7 +74,7 @@ export const EmblaCarousel = () => {
       </button>
 
       <button
-        className="absolute bottom-0 right-0 z-[1] flex w-[15%] h-full items-center justify-center bg-transparent text-white transition-opacity duration-150 ease-in-out hover:text-black hover:opacity-90 focus:text-black focus:opacity-90"
+        className="absolute bottom-0 right-0 z-[1] flex w-[15%] h-full items-center justify-center bg-transparent text-white transition-opacity duration-150 ease-in-out hover:text-zinc-700 hover:opacity-90 focus:outline-none"
         type="button"
         onClick={goToNextSlide}
       >
@@ -87,9 +87,7 @@ export const EmblaCarousel = () => {
           <button
             key={index}
             className={`w-3 h-3 rounded-full border transition-all ${
-              index === selectedIndex
-                ? "bg-white border-white"
-                : "border-white"
+              index === selectedIndex ? "bg-white border-white" : "border-white"
             }`}
             onClick={() => scrollTo(index)}
           />
