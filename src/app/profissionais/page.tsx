@@ -45,21 +45,20 @@ export default function Profissionais() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
-  <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center">
-    Conheça a{" "}
-    <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 lg:inline">
-      Profissional
-    </span>{" "}
-    da clínica!
-  </h2>
-  <p className="mb-10 mt-2 text-lg text-gray-800 text-center">
-    Com{" "}
-    <span className="block w-full font-light bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
-      mais de 15 anos
-    </span>{" "}
-    de experiência!
-  </p>
-
+      <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center">
+        Conheça a{" "}
+        <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 lg:inline">
+          Profissional
+        </span>{" "}
+        da clínica!
+      </h2>
+      <p className="mb-10 mt-2 text-lg text-gray-800 text-center">
+        Com{" "}
+        <span className="block w-full font-light bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
+          mais de 15 anos
+        </span>{" "}
+        de experiência!
+      </p>
 
       <div className="grid grid-cols-1 md:grid-cols-1 gap-10 justify-items-center">
         {profissionaisData.map((profissional) => (
@@ -95,55 +94,53 @@ export default function Profissionais() {
 
       {/* Modal */}
       {selectedProfissional && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={handleCloseModal}
-        >
-          <div
-            className="bg-[#f7f0ea] p-3 rounded-lg shadow-lg relative max-w-md w-full transform transition duration-500 scale-105 text-center mr-6 ml-6"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-              onClick={handleCloseModal}
-            >
-              <FaTimes className="text-xl" />
-            </button>
-            <h2 className="text-2xl font-bold mb-4 text-center">
-              {selectedProfissional.nome}
-            </h2>
-            <p className="text-lg font-medium text-center">
-              Especialidade: {selectedProfissional.especialidade}
-            </p>
-            <p className="mt-4 text-gray-700">
-              <span className="font-bold">📝 Resumo:</span> <br />
-              {selectedProfissional.descricao}
-            </p>
-            <p className="mt-4 text-gray-700">
-              <span className="font-bold">🏅 Especializações:</span> <br />
-              {selectedProfissional.especializacoes.map(
-                (especializacao, idx) => (
-                  <span key={idx}>
-                    - {especializacao} <br />
-                  </span>
-                )
-              )}
-            </p>
-            <p className="mt-4 text-gray-700">
-              <span className="font-bold">🎓 Formação:</span> <br />
-              {selectedProfissional.formacao.map((formacao, idx) => (
-                <span key={idx}>
-                  - {formacao} <br />
-                </span>
-              ))}
-            </p>
-          </div>
-        </div>
-      )}
-      <div className="my-4">
-      <FaixaContato />
+  <div
+    className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50"
+    onClick={handleCloseModal}
+  >
+    <div
+      className="bg-[#fdf6f1] p-4 rounded-xl shadow-lg relative max-w-md w-full transform transition duration-500 scale-100 text-center mx-4"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+        onClick={handleCloseModal}
+      >
+        <FaTimes className="text-xl" />
+      </button>
+      <h2 className="text-2xl font-semibold mb-3 text-center text-[#7b4f38]">
+        {selectedProfissional.nome}
+      </h2>
+      <p className="text-lg font-medium text-center text-[#a57858]">
+        Especialidade: {selectedProfissional.especialidade}
+      </p>
+      <p className="mt-4 text-[#6f4f3f]">
+        <span className="font-semibold">Resumo:</span> <br />
+        {selectedProfissional.descricao}
+      </p>
+      <p className="mt-4 text-[#6f4f3f]">
+        <span className="font-semibold">Especializações:</span> <br />
+        {selectedProfissional.especializacoes.map((especializacao, idx) => (
+          <span key={idx}>
+            • {especializacao} <br />
+          </span>
+        ))}
+      </p>
+      <p className="mt-4 text-[#6f4f3f]">
+        <span className="font-semibold">Formação:</span> <br />
+        {selectedProfissional.formacao.map((formacao, idx) => (
+          <span key={idx}>
+            • {formacao} <br />
+          </span>
+        ))}
+      </p>
+    </div>
+  </div>
+)}
+
+      <div className="my-4 ">
+        <FaixaContato />
       </div>
-      
     </div>
   );
 }
