@@ -5,6 +5,7 @@ import { Avaliacoes } from "./home/components/homeSections/avaliacoes";
 import { EmblaCarousel } from "./home/components/carrossel";
 import { Local } from "./home/components/homeSections/espaco";
 import { Cursos } from "./home/components/homeSections/cursos";
+import Location from "./components/location";
 
 export default function Home() {
   return (
@@ -19,6 +20,11 @@ export default function Home() {
         <Cursos />
         <Depoimentos />
         <Avaliacoes />
+        <div className="bg-[#dbbeb0]">
+          <div className="mx-4 pb-8 rounded-lg">
+            <Location />
+          </div>
+        </div>
       </div>
     </div>
   );
