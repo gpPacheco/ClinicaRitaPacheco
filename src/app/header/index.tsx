@@ -56,8 +56,8 @@ const navigation = [
     current: false,
     icon: <FaBookOpen />,
     submenuItems: [
-      { name: "Cursos", href: "/cursos" },
-      { name: "Mentoria", href: "/mentoria" }
+      { name: "Cursos", href: "/aprenda" },
+      { name: "Mentoria", href: "/aprenda" }
     ],
   },
   {
