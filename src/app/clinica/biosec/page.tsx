@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export default function Biosec() {
   return (
-    <div className="px-4 py-12 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] text-center">
-      <h2 className="text-4xl font-light text-gray-800 sm:text-5xl lg:text-6xl text-center mb-10">
+    <div className="px-4 py-5 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] text-center">
+      <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center mb-5">
         Biossegurança e{" "}
         <span className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
           Estereliação

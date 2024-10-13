@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Mentoria() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] flex flex-col items-center justify-start py-10">
+    <div className="min-h-screen bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] flex flex-col items-center justify-start py-5">
       <header className="text-center mb-10">
         <h1 className="text-4xl sm:text-5xl font-light text-gray-800">
           Mentoria{" "}

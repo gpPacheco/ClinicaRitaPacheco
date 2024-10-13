@@ -68,10 +68,13 @@ const especialidades = [
 
 export default function Especialidades() {
   return (
-    <section className="py-10 sm:py-16 lg:py-24 z-40 relative bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
-      <div className="container mt-0 mb-6 mx-auto">
-        <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center">
-          Especialidades da Clínica
+    <div className="py-5 z-40 relative bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
+      <div className="container mb-6 mx-auto">
+        <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center mb-5">
+          Especialidades da {" "}
+          <span className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
+          Clínica
+        </span>
         </h2>
         <p className="mt-2 text-lg text-gray-800 text-center mb-12">
           Cuidamos da saúde dos seus pés em todas as fases da vida!
@@ -94,6 +97,6 @@ export default function Especialidades() {
         </div>
       </div>
 
-    </section>
+    </div>
   );
 }

@@ -45,7 +45,7 @@ export default function Profissionais() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
-      <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center">
+      <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center mb-3">
         Conheça a{" "}
         <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 lg:inline">
           Profissional
