@@ -1,6 +1,7 @@
 "use client";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
+import { Target } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
@@ -55,8 +56,8 @@ const navigation = [
     current: false,
     icon: <FaBookOpen />,
     submenuItems: [
-      { name: "Cursos", href: "/" },
-      { name: "Mentorias", href: "/mentoria" },
+      { name: "Cursos", href: "https://chk.eduzz.com/1W3VPGX592", target: "_blank" },
+      { name: "Mentoria", href: "/mentoria" }
     ],
   },
   {
@@ -74,28 +75,28 @@ type Props = {
 };
 
 const BurgerButton = ({ isOpen, onClick }: Props) => (
-    <button className="h-5 w-5" onClick={onClick}>
-      <div className="sr-only">{isOpen ? "Fechar menu" : "Abrir menu"}</div>
-      <div
-        aria-hidden="true"
-        className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
-          isOpen ? "rotate-45" : "-translate-y-1.5"
-        }`}
-      />
-      <div
-        aria-hidden="true"
-        className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
-          isOpen ? "opacity-0" : "opacity-100"
-        }`}
-      />
-      <div
-        aria-hidden="true"
-        className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
-          isOpen ? "-rotate-45" : "translate-y-1.5"
-        }`}
-      />
-    </button>
-  );
+  <button className="h-5 w-5" onClick={onClick}>
+    <div className="sr-only">{isOpen ? "Fechar menu" : "Abrir menu"}</div>
+    <div
+      aria-hidden="true"
+      className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
+        isOpen ? "rotate-45" : "-translate-y-1.5"
+      }`}
+    />
+    <div
+      aria-hidden="true"
+      className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
+        isOpen ? "opacity-0" : "opacity-100"
+      }`}
+    />
+    <div
+      aria-hidden="true"
+      className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
+        isOpen ? "-rotate-45" : "translate-y-1.5"
+      }`}
+    />
+  </button>
+);
 
 export function Header() {
   const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
@@ -300,36 +301,36 @@ export function Header() {
                   <span className="sr-only">Menu</span>
                 </Disclosure.Button>
                 {/* Container do menu mobile com transição */}
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <div className="absolute top-full left-0 bg-[#f7f0ea] rounded-md shadow-md mt-3 w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  {navigation.map((item) =>
-                    item.submenuItems ? (
-                      <DropdownItem
-                        key={item.name}
-                        name={item.name}
-                        href={item.href ?? "#"}
-                        icon={item.icon}
-                        submenuItems={item.submenuItems}
-                      />
-                    ) : (
-                      <MenuItem
-                        key={item.name}
-                        name={item.name}
-                        href={item.href}
-                        icon={item.icon}
-                      />
-                    )
-                  )}
-                </div>
-              </Transition>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <div className="absolute top-full left-0 bg-[#f7f0ea] rounded-md shadow-md mt-3 w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    {navigation.map((item) =>
+                      item.submenuItems ? (
+                        <DropdownItem
+                          key={item.name}
+                          name={item.name}
+                          href={item.href ?? "#"}
+                          icon={item.icon}
+                          submenuItems={item.submenuItems}
+                        />
+                      ) : (
+                        <MenuItem
+                          key={item.name}
+                          name={item.name}
+                          href={item.href}
+                          icon={item.icon}
+                        />
+                      )
+                    )}
+                  </div>
+                </Transition>
               </div>
 
               {/* Redes sociais button*/}
@@ -350,14 +351,16 @@ export function Header() {
                     leave="transition ease-in duration-75"
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
-                  > 
+                  >
                     <Menu.Items className="absolute right-0 z-[102] mt-2 w-48 p-4 origin-top-right rounded-md transition-transform transform duration-300 ease-in-out bg-[#f7f0ea] py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a
                             href="https://api.whatsapp.com/send/?phone=5516993108637&text&type=phone_number&app_absent=0"
                             className={classNames(
-                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
+                              active
+                                ? "bg-gray-600 hover:text-white rounded-md"
+                                : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -374,7 +377,9 @@ export function Header() {
                           <a
                             href="https://www.instagram.com/ritafpacheco/"
                             className={classNames(
-                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
+                              active
+                                ? "bg-gray-600 hover:text-white rounded-md"
+                                : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -391,7 +396,9 @@ export function Header() {
                           <a
                             href="https://www.facebook.com/ritapachecopodologa"
                             className={classNames(
-                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
+                              active
+                                ? "bg-gray-600 hover:text-white rounded-md"
+                                : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -408,7 +415,9 @@ export function Header() {
                           <a
                             href="https://www.linkedin.com/company/clinica-rita-pacheco/"
                             className={classNames(
-                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
+                              active
+                                ? "bg-gray-600 hover:text-white rounded-md"
+                                : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -425,7 +434,9 @@ export function Header() {
                           <a
                             href="https://www.tiktok.com/@ritafpachecoo"
                             className={classNames(
-                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
+                              active
+                                ? "bg-gray-600 hover:text-white rounded-md"
+                                : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
