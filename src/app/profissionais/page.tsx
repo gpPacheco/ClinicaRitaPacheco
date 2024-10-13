@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { FaTimes } from "react-icons/fa";
+import { FaAward, FaGraduationCap, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 import { FaixaContato } from "../components/button";
 
@@ -94,49 +94,59 @@ export default function Profissionais() {
 
       {/* Modal */}
       {selectedProfissional && (
-  <div
-    className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50"
-    onClick={handleCloseModal}
-  >
-    <div
-      className="bg-[#fdf6f1] p-4 rounded-xl shadow-lg relative max-w-md w-full transform transition duration-500 scale-100 text-center mx-4"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <button
-        className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-        onClick={handleCloseModal}
-      >
-        <FaTimes className="text-xl" />
-      </button>
-      <h2 className="text-2xl font-semibold mb-3 text-center text-[#7b4f38]">
-        {selectedProfissional.nome}
-      </h2>
-      <p className="text-lg font-medium text-center text-[#a57858]">
-        Especialidade: {selectedProfissional.especialidade}
-      </p>
-      <p className="mt-4 text-[#6f4f3f]">
-        <span className="font-semibold">Resumo:</span> <br />
-        {selectedProfissional.descricao}
-      </p>
-      <p className="mt-4 text-[#6f4f3f]">
-        <span className="font-semibold">Especializações:</span> <br />
-        {selectedProfissional.especializacoes.map((especializacao, idx) => (
-          <span key={idx}>
-            • {especializacao} <br />
-          </span>
-        ))}
-      </p>
-      <p className="mt-4 text-[#6f4f3f]">
-        <span className="font-semibold">Formação:</span> <br />
-        {selectedProfissional.formacao.map((formacao, idx) => (
-          <span key={idx}>
-            • {formacao} <br />
-          </span>
-        ))}
-      </p>
-    </div>
-  </div>
-)}
+        <div
+          className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50"
+          onClick={handleCloseModal}
+        >
+          <div
+            className="bg-[#fdf6f1] p-4 rounded-xl shadow-lg relative max-w-md w-full transform transition duration-500 scale-100 text-center mx-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              onClick={handleCloseModal}
+            >
+              <FaTimes className="text-xl" />
+            </button>
+            <h2 className="text-2xl font-semibold mb-3 text-center text-[#7b4f38]">
+              {selectedProfissional.nome}
+            </h2>
+            <p className="text-lg font-medium text-center text-[#a57858]">
+              Especialidade: {selectedProfissional.especialidade}
+            </p>
+            <p className="mt-4 text-[#6f4f3f]">
+              {selectedProfissional.descricao}
+            </p>
+            <p className="mt-4 text-[#6f4f3f]">
+              <FaAward
+                className="mr-2 text-[#7b4f38] inline-block align-text-top"
+                style={{ verticalAlign: "middle" }}
+              />
+              <span className="font-semibold">Especializações:</span> <br />
+              {selectedProfissional.especializacoes.map(
+                (especializacao, idx) => (
+                  <span key={idx}>
+                    • {especializacao} <br />
+                  </span>
+                )
+              )}
+            </p>
+
+            <p className="mt-4 text-[#6f4f3f]">
+              <FaGraduationCap
+                className="mr-2 text-[#7b4f38] inline-block align-text-top"
+                style={{ verticalAlign: "middle" }}
+              />
+              <span className="font-semibold">Formação:</span> <br />
+              {selectedProfissional.formacao.map((formacao, idx) => (
+                <span key={idx}>
+                  • {formacao} <br />
+                </span>
+              ))}
+            </p>
+          </div>
+        </div>
+      )}
 
       <div className="my-4 ">
         <FaixaContato />
