@@ -77,9 +77,8 @@ export function Rodape() {
             <div>
               <p className="font-medium">Links Rápidos</p>
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-800">
-                <a className="hover:opacity-75"> Sobre </a>
+                <a className="hover:opacity-75" href="/clinica/sobre"> Sobre </a>
                 <a className="hover:opacity-75"> Reportagens </a>
-                <a className="hover:opacity-75"> Trabalhe Conosco </a>
               </nav>
             </div>
             <div>
@@ -106,9 +105,8 @@ export function Rodape() {
             <div>
               <p className="font-medium">Saiba Mais</p>
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-800">
-                <a className="hover:opacity-75"> Mentorias </a>
-                <a className="hover:opacity-75"> Cursos </a>
-                <a className="hover:opacity-75"> Avaliações </a>
+                <a className="hover:opacity-75" href="/mentoria"> Mentorias </a>
+                <a className="hover:opacity-75" href="/cursos"> Cursos </a>
               </nav>
             </div>
             <div>

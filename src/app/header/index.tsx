@@ -56,7 +56,7 @@ const navigation = [
     current: false,
     icon: <FaBookOpen />,
     submenuItems: [
-      { name: "Cursos", href: "https://chk.eduzz.com/1W3VPGX592", target: "_blank" },
+      { name: "Cursos", href: "/cursos" },
       { name: "Mentoria", href: "/mentoria" }
     ],
   },
