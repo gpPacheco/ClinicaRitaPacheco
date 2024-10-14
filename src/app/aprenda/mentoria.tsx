@@ -1,7 +1,7 @@
 export default function Mentoria() {
   return (
     <div className="max-w-4xl mx-6 my-10 text-center">
-      <h2 className="text-2xl font-semibold text-[#7b4f38] mb-4">
+      <h2 className="text-2xl font-light text-[#7b4f38] mb-4">
         Mentoria Exclusiva
       </h2>
       <p className="text-gray-700 mb-4">
