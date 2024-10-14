@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Cursos() {
   return (
@@ -31,9 +32,11 @@ export function Cursos() {
             cuidados, garantindo a excelência no atendimento e a satisfação dos
             seus clientes.
           </p>
-          <button className="mt-4 w-full bg-[#F2784B] text-white py-2 rounded-lg transition hover:bg-orange-500">
-            Saiba mais
-          </button>
+          <Link href="/aprenda">
+            <button className="mt-4 w-full bg-[#F2784B] text-white py-2 rounded-lg transition hover:bg-orange-500">
+              Saiba mais
+            </button>
+          </Link>
         </div>
 
         {/* Card 2 */}
@@ -52,9 +55,11 @@ export function Cursos() {
             Acelere seu crescimento profissional com uma mentoria individual
             focada nas suas necessidades.
           </p>
-          <button className="mt-4 w-full bg-[#F2784B] text-white py-2 rounded-lg transition hover:bg-orange-500">
-            Saiba mais
-          </button>
+          <Link href="/aprenda">
+            <button className="mt-4 w-full bg-[#F2784B] text-white py-2 rounded-lg transition hover:bg-orange-500">
+              Saiba mais
+            </button>
+          </Link>
         </div>
       </div>
     </div>
