@@ -16,7 +16,7 @@ export function Cursos() {
 
       <div className="flex flex-wrap justify-center gap-8">
         {/* Card 1 */}
-        <div className="max-w-xs bg-white rounded-lg shadow-md transform transition hover:scale-105 hover:shadow-xl duration-300 p-4 flex flex-col">
+        <div className="max-w-xs bg-[#f7f0ea] rounded-lg shadow-md transform transition hover:scale-105 hover:shadow-xl duration-300 p-4 flex flex-col">
           <Image
             src="/sobre/1.jpg"
             alt="Curso 1"
@@ -40,7 +40,7 @@ export function Cursos() {
         </div>
 
         {/* Card 2 */}
-        <div className="max-w-xs bg-white rounded-lg shadow-md transform transition hover:scale-105 hover:shadow-xl duration-300 p-4 flex flex-col">
+        <div className="max-w-xs bg-[#f7f0ea] rounded-lg shadow-md transform transition hover:scale-105 hover:shadow-xl duration-300 p-4 flex flex-col">
           <Image
             src="/sobre/20.jpg"
             alt="Curso 2"
