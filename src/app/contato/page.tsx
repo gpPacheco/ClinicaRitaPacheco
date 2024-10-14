@@ -4,8 +4,8 @@ import Location from "../components/location";
 
 export default function ContactForm() {
   return (
-    <div className="px-4 py-12 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
-      <h1 className="text-4xl font-light text-gray-800 sm:text-5xl lg:text-6xl text-center mb-10">
+    <div className="px-4 py-10 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
+      <h1 className="text-4xl font-light text-gray-800 sm:text-5xl lg:text-6xl text-center mb-5">
         Fale Conosco
       </h1>
       <p className="mb-8 text-center text-lg text-gray-700">
@@ -63,7 +63,7 @@ export default function ContactForm() {
         <FaixaContato />
       </div>
 
-      <div className="mt-4">
+      <div className="mt-5">
         <Location />
       </div>
     </div>
