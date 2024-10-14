@@ -13,8 +13,8 @@ export default function Aprenda() {
             Rita Pacheco
           </span>
         </h1>
-        <p className="mt-4 text-lg text-gray-700 max-w-md mx-auto">
-          Explore nossas mentorias e cursos para aprimorar suas habilidades na área de podologia.
+        <p className="mt-4 text-lg text-gray-700 mx-6">
+          Conheça nossos cursos e mentorias para aprimorar suas habilidades na área de podologia.
         </p>
       </header>
 
