@@ -1,7 +1,6 @@
 "use client";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
-import { Target } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
@@ -19,6 +18,7 @@ import {
   FaBookOpen,
   FaShoppingCart,
   FaPhone,
+  FaBriefcaseMedical,
 } from "react-icons/fa";
 import { Transition as ReactTransition } from "react-transition-group";
 
@@ -42,23 +42,15 @@ const navigation = [
   },
   {
     name: "Especialidades",
+    href: "/especialidades",
     current: false,
-    icon: <FaClinicMedical />,
-    submenuItems: [
-      { name: "Onicomicose", href: "/especialidades" },
-      { name: "Pé de Risco", href: "/especialidades" },
-      { name: "Onicocriptose", href: "/especialidades" },
-      { name: "Outros Cuidados", href: "/especialidades" },
-    ],
+    icon: <FaBriefcaseMedical />,
   },
   {
     name: "Aprenda conosco",
+    href: "/aprenda",
     current: false,
     icon: <FaBookOpen />,
-    submenuItems: [
-      { name: "Cursos", href: "/aprenda" },
-      { name: "Mentoria", href: "/aprenda" }
-    ],
   },
   {
     name: "Produtos",
@@ -242,14 +234,6 @@ export function Header() {
   };
 
   // container dos submenus
-  const SubmenuItem = ({ name, href }: { name: string; href: string }) => (
-    <a
-      href={href}
-      className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-200 border-b borde-gray-300 shadow-sm"
-    >
-      {name}
-    </a>
-  );
 
   return (
     <Disclosure
