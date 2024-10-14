@@ -11,7 +11,7 @@ export default function Cursos() {
       link: "#",
     },
     {
-      titulo: "Workshop de Cuidados com os Pés",
+      titulo: "Cuidados com os Pés Diabéticos",
       descricao:
         "Dicas práticas e cuidados essenciais para manter os pés saudáveis.",
       link: "#",
@@ -20,7 +20,7 @@ export default function Cursos() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 text-center">
-      <h2 className="text-2xl font-semibold text-center text-[#7b4f38] mb-6">
+      <h2 className="text-2xl font-light text-center text-[#7b4f38] mb-6">
         Cursos Disponíveis
       </h2>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
