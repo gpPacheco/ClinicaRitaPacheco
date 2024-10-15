@@ -7,7 +7,7 @@ export default function Location() {
         target="_blank"
         rel="noreferrer"
       >
-        <span className="flex justify-center items-center underline mb-3">
+        <span className="flex justify-center items-center font-light underline mb-3">
           Onde estamos
         </span>
       </a>
