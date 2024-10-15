@@ -12,47 +12,45 @@ export default function ContactForm() {
         Envie suas dúvidas e sugestões. Estamos prontos para ajudar!
       </p>
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 text-center">
-        <div className="mt-8">
-          <h2 className="text-2xl text-gray-800 mb-4">Endereço</h2>
-          <p className="text-lg text-gray-700">
-            Av. 7 de Setembro, 650 | Sala 1
-          </p>
-          <p className="text-lg text-gray-700">Bairro São José | 14401-278</p>
-          <p className="text-lg text-gray-700">Franca/SP</p>
+      <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-4 text-center">
+        <div className="bg-[#dbbeb0] w-80 p-6 mx-auto rounded-lg shadow-md h-auto flex flex-col justify-between">
+          <h2 className="text-2xl text-gray-800">Endereço</h2>
+          <div>
+            <p className="text-lg text-gray-700">
+              Av. 7 de Setembro, 650 | Sala 1
+            </p>
+            <p className="text-lg text-gray-700">Bairro São José | 14401-278</p>
+            <p className="text-lg text-gray-700">Franca/SP</p>
+          </div>
         </div>
 
-        <div className="mt-8">
-          <h2 className="text-2xl text-gray-800 mb-4">
-            Horários de Atendimento
-          </h2>
-          <p className="text-lg text-gray-700">Segunda à Sexta-feira</p>
-          <p className="text-lg text-gray-700">08h00 - 11h30 | 13h30 - 18h00</p>
-          <p className="text-lg text-gray-700 mt-2">
-            Horário especial: (16) 99310-8637
-          </p>
+        <div className="bg-[#dbbeb0] w-80 p-6 mx-auto rounded-lg shadow-md flex-grow flex flex-col justify-between">
+          <h2 className="text-2xl text-gray-800">Horários de Atendimento</h2>
+          <div>
+            <p className="text-lg text-gray-700">Segunda à Sexta-feira</p>
+            <p className="text-lg text-gray-700">08h00 - 11h30 | 13h30 - 18h00</p>
+          </div>
         </div>
 
-        <div className="mt-8">
-          <h2 className="text-2xl text-gray-800 mb-4">Contato</h2>
+        <div className="bg-[#dbbeb0] w-80 p-6 mx-auto rounded-lg shadow-md h-auto flex flex-col justify-between">
+          <h2 className="text-2xl text-gray-800">Contato</h2>
           <ul className="mt-4 space-y-2 text-lg">
             <li>
-              <a href="tel:+551637205691" className="hover:underline">
+              <a href="tel:+551637205691" className="hover:underline text-gray-700">
                 <i className="fas fa-phone-alt"></i> (16) 3720-5691
               </a>
             </li>
             <li>
-              <a href="tel:+5516993108637" className="hover:underline">
+              <a href="tel:+5516993108637" className="hover:underline text-gray-700">
                 <i className="fas fa-mobile-alt"></i> (16) 99310-8637
               </a>
             </li>
             <li>
               <a
                 href="mailto:clinica@clinicaritapacheco.com.br"
-                className="hover:underline"
+                className="hover:underline text-gray-700 text-base"
               >
-                <i className="fas fa-envelope"></i>{" "}
-                clinica@clinicaritapacheco.com.br
+                <i className="fas fa-envelope"></i> clinica@clinicaritapacheco.com.br
               </a>
             </li>
           </ul>
