@@ -1,5 +1,5 @@
 "use client";
-import { FaUserMd, FaChild, FaSyringe } from "react-icons/fa"; // Exemplos de ícones
+import { FaUserMd, FaChild, FaSyringe } from "react-icons/fa"; 
 
 export function Procedimentos() {
   const procedures = [
