@@ -16,13 +16,28 @@
         avaliacao: 5,
       },
       {
-        nome: "Roberta Fuzisawa",
-        comentario: "A onde somos bem recebidas e em qualuer lugar, a ajuda vem. Tratamento incrível aos pés. Lugar de tranquilidade e ótimo atendimento! Parabéns Rita Pacheco e Equipe",
+        nome: "Fernando César Raymundo",
+        comentario: "Eu como médico, cirurgião vascular, não só indico como também confio meus pés à equipe do SPA DOS PÉS RITA PACHECO.",
+        avaliacao: 5,
+      },
+      {
+        nome: "Milena Vieira da Silva",
+        comentario: "Atendimento maravilhoso ! Equipe muito simpática e o trabalho é sensacional!",
         avaliacao: 5,
       },
       {
         nome: "Leticia Serafim",
         comentario: "Excelente atendimento, solucionando o problema de imediato, acompanhando para saber como está se sentindo se houve melhoras.",
+        avaliacao: 5,
+      },
+      {
+        nome: "Ana Elisa Radi",
+        comentario: "Rita foi incrível, super profissional e muito amável com minhas filhas.",
+        avaliacao: 5,
+      },
+      {
+        nome: "Eduardo Miron",
+        comentario: "Clinica excelente , profissionais super qualificados, experiência nota 10",
         avaliacao: 5,
       },
       {
