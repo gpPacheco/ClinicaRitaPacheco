@@ -16,16 +16,16 @@ export function Rodape() {
       <div className="max-w-screen-xl px-4 py-3 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
-            <a href="/" target="_self">
+            <a href="/" target="_self" className="flex justify-center">
               <Image
                 src="/marca.png"
                 alt="Logo"
                 width={150}
                 height={150}
-                style={{ maxWidth: "100%", height: "auto", marginLeft: "32px" }}
+                style={{ maxWidth: "100%", height: "auto" }}
               />
             </a>
-            <div className="flex mt-8 space-x-6 text-gray-600 sm:text-center">
+            <div className="flex mt-8 space-x-6 text-gray-600 justify-center sm:flex sm:items-center">
               <a
                 className="hover:opacity-75"
                 href="https://api.whatsapp.com/send/?phone=5516993108637&text&type=phone_number&app_absent=0"
@@ -76,14 +76,17 @@ export function Rodape() {
           <div className="grid grid-cols-2 gap-3 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4 mt-3">
             <div>
               <p className="font-medium">Links Rápidos</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-800">
-                <a className="hover:opacity-75" href="/clinica/sobre"> Sobre </a>
+              <nav className="flex flex-col mt-2 space-y-2 text-sm text-gray-800">
+                <a className="hover:opacity-75" href="/clinica/sobre">
+                  {" "}
+                  Sobre{" "}
+                </a>
                 <a className="hover:opacity-75"> Reportagens </a>
               </nav>
             </div>
             <div>
               <p className="font-medium">Contato</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-800">
+              <nav className="flex flex-col mt-2 space-y-2 text-sm text-gray-800">
                 <a
                   className="hover:opacity-75"
                   href="https://api.whatsapp.com/send/?phone=5516993108637&text&type=phone_number&app_absent=0"
@@ -104,14 +107,20 @@ export function Rodape() {
             </div>
             <div>
               <p className="font-medium">Saiba Mais</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-800">
-                <a className="hover:opacity-75" href="/mentoria"> Mentorias </a>
-                <a className="hover:opacity-75" href="/cursos"> Cursos </a>
+              <nav className="flex flex-col mt-2 space-y-2 text-sm text-gray-800">
+                <a className="hover:opacity-75" href="/mentoria">
+                  {" "}
+                  Mentorias{" "}
+                </a>
+                <a className="hover:opacity-75" href="/cursos">
+                  {" "}
+                  Cursos{" "}
+                </a>
               </nav>
             </div>
             <div>
               <p className="font-medium">Localização</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-800">
+              <nav className="flex flex-col mt-2 space-y-2 text-sm text-gray-800">
                 <a
                   className="hover:opacity-75"
                   href="https://maps.app.goo.gl/FejJqAM4TTUXhMLu6"
@@ -133,6 +142,13 @@ export function Rodape() {
           </div>
         </div>
         <p className="mt-4 text-xs text-zinc-950 text-center">
+          Desenvolvido por{"  "}
+          <a
+            className="hover:text-gray-600 text-zinc-950 text-ml font-bold underline"
+            href="/https://github.com/gpPacheco"
+          >
+            Gabriel Pacheco |{"  "}
+          </a>
           <a
             className="hover:text-gray-600 text-zinc-950 text-ml font-bold underline"
             href="/"
