@@ -11,7 +11,11 @@ export function Local() {
 
   const carouselTemplate = (carousel: CarouselItem) => {
     return (
-      <div className="carousel-item flex justify-center">
+      <a
+        href="/clinica/espaco"
+        className="carousel-item flex justify-center"
+        key={carousel.id}
+      >
         <div className="carousel-image">
           <Image
             src={carousel.image}
@@ -21,7 +25,7 @@ export function Local() {
             className="object-cover rounded-lg shadow-lg"
           />
         </div>
-      </div>
+      </a>
     );
   };
 
@@ -39,13 +43,12 @@ export function Local() {
         Conheça Nosso{" "}
         <a
           href="/clinica/espaco"
-          className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700"
+          className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 underline hover:text-orange-700 transition-colors duration-300"
         >
           Espaço
         </a>
       </h1>
 
-      {/* Seção do Espaço Geral */}
       <div className="w-full">
         <Carousel
           value={carouselEspacoGeral}
