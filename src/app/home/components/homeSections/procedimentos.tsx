@@ -1,5 +1,5 @@
 "use client";
-import { FaUserMd, FaChild, FaSyringe } from "react-icons/fa"; 
+import { FaUserMd, FaChild, FaSyringe } from "react-icons/fa";
 
 export function Procedimentos() {
   const procedures = [
@@ -28,7 +28,7 @@ export function Procedimentos() {
         Confira nossas{"  "}
         <a
           href="/especialidades"
-          className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700"
+          className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 underline hover:text-orange-700 transition-colors duration-300"
         >
           Especialidades
         </a>
@@ -36,21 +36,23 @@ export function Procedimentos() {
 
       <div className="flex flex-wrap justify-center items-center gap-6">
         {procedures.map((procedure) => (
-          <div
+          <a
+            href="/especialidades"
             key={procedure.title}
-            className="bg-[#dbbeb0] w-64 p-6 rounded-lg shadow-md text-center transition-transform transform hover:scale-105 hover:shadow-lg"
+            className="bg-[#dbbeb0] w-64 p-6 rounded-lg shadow-md text-center transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer"
           >
             <div className="flex justify-center mb-4">
               <div className="text-4xl text-zinc-600">{procedure.icon}</div>
             </div>
             <h2 className="text-lg font-medium mb-2">{procedure.title}</h2>
             <p className="text-gray-700 text-sm">{procedure.description}</p>
-          </div>
+          </a>
         ))}
       </div>
     </div>
   );
 }
+
 
 //   ______    ____
 //  /\    /\  | "o |
