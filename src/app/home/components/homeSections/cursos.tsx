@@ -5,9 +5,13 @@ import Link from "next/link";
 export function Cursos() {
   return (
     <div className="w-full px-4 py-5 flex flex-col items-center bg-gradient-to-b from-[#dbbeb0] to-[#f7f0ea]">
-      <a href="/aprenda" className="text-4xl font-light text-transparent text-center bg-clip-text bg-gradient-to-r from-orange-500 to-orange-800 mb-6">
+      <a
+        href="/aprenda"
+        className="text-4xl font-light text-transparent text-center bg-clip-text bg-gradient-to-r from-orange-500 to-orange-800 mb-6 hover:underline hover:scale-105 transition-transform duration-300"
+      >
         Cursos & Mentorias
       </a>
+
       <p className="text-lg text-gray-700 text-center mb-8 max-w-3xl">
         Desenvolva suas habilidades e avance na sua carreira com nossos cursos e
         mentorias especializados. Criados para oferecer o conhecimento que você
