@@ -145,7 +145,9 @@ export function Rodape() {
           Desenvolvido por{"  "}
           <a
             className="hover:text-gray-600 text-zinc-950 text-ml font-bold underline"
-            href="/https://github.com/gpPacheco"
+            href="https://github.com/gpPacheco"
+            target="_blank"
+            rel="noreferrer"
           >
             Gabriel Pacheco |{"  "}
           </a>
