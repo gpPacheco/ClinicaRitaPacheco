@@ -3,7 +3,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Rodape } from "@/app/footer";
-import PageTransition from "./pageTransition"; // Importando o novo componente
 
 const poppins = Poppins({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
@@ -24,12 +23,6 @@ export default function RootLayout({
       </head>
       <body className={`${poppins.className} overflow-x-hidden flex flex-col`}>
         <Header />
-
-        {/* Usando o componente de transição */}
-        <PageTransition>
-          <main className="w-screen h-full pt-20">{children}</main>
-        </PageTransition>
-
         <Rodape />
       </body>
     </html>
