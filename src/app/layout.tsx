@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Rodape } from "@/app/footer";
+import PageTransition from "./pageTransition"; // Importando o novo componente
 
 const poppins = Poppins({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
@@ -19,16 +20,22 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <head>
-        <link rel="icon" href="/marca-dagua-cor.png" />
+        <link rel="icon" href="/logo-site.png" />
       </head>
       <body className={`${poppins.className} overflow-x-hidden flex flex-col`}>
         <Header />
-        <main className="w-screen h-full pt-20">{children}</main>
+
+        {/* Usando o componente de transição */}
+        <PageTransition>
+          <main className="w-screen h-full pt-20">{children}</main>
+        </PageTransition>
+
         <Rodape />
       </body>
     </html>
   );
 }
+
 
 //   ______    ____
 //  /\    /\  | "o |
