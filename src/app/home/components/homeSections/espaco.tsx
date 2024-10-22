@@ -31,10 +31,13 @@ export function Local() {
 
   const carouselEspacoGeral = [
     { id: "1", image: "/sobre/1.jpg" },
-    { id: "2", image: "/spa/foto_b.jpg" },
-    { id: "3", image: "/spa/foto_a.jpg" },
-    { id: "4", image: "/sobre/3.jpg" },
-    { id: "5", image: "/sobre/4.jpg" },
+    { id: "2", image: "/sobre/3.jpg" },
+    { id: "3", image: "/spa/9.jpg" },
+    { id: "4", image: "/sobre/21.jpg" },
+    { id: "5", image: "/sobre/10.jpg" },
+    { id: "6", image: "/podologia_infantil/1.jpg" },
+    { id: "7", image: "/sobre/10.jpg" },
+    { id: "8", image: "/spa/11.jpg" },
   ];
 
   return (
