@@ -23,12 +23,12 @@ export default function RootLayout({
       </head>
       <body className={`${poppins.className} overflow-x-hidden flex flex-col`}>
         <Header />
+        <main className="w-screen h-full pt-20">{children}</main>
         <Rodape />
       </body>
     </html>
   );
 }
-
 
 //   ______    ____
 //  /\    /\  | "o |
