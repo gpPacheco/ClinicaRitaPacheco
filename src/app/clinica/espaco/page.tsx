@@ -33,34 +33,43 @@ export default function Espaco() {
     );
   };
   
-  
-
   const carouselEspacoGeral = [
-    { id: "1", image: "/spa/foto_a.jpg" },
-    { id: "2", image: "/spa/foto_b.jpg" },
-    { id: "3", image: "/main-banner_c.jpg" },
-    { id: "4", image: "/main-banner_d.jpg" },
-    { id: "5", image: "/main-banner_e.jpg" },
+    { id: "1", image: "/sobre/1.jpg" },
+    { id: "2", image: "/sobre/7.jpg" },
+    { id: "3", image: "/sobre/10.jpg" },
+    { id: "4", image: "/sobre/15.jpg" },
+    { id: "5", image: "/sobre/17.jpg" },
+    { id: "6", image: "/sobre/9.jpg" },
+    { id: "7", image: "/sobre/5.jpg" },
+    { id: "8", image: "/sobre/3.jpg" },
   ];
 
   const carouselSpa = [
-    { id: "1", image: "/main-banner_a.jpg" },
-    { id: "2", image: "/main-banner_b.jpg" },
-    { id: "3", image: "/main-banner_c.jpg" },
-    { id: "4", image: "/main-banner_d.jpg" },
-    { id: "5", image: "/main-banner_e.jpg" },
+    { id: "1", image: "/sobre/21.jpg" },
+    { id: "2", image: "/spa/2.jpg" },
+    { id: "3", image: "/spa/3.jpg" },
+    { id: "4", image: "/spa/4.jpg" },
+    { id: "5", image: "/spa/5.jpg" },
+    { id: "6", image: "/spa/6.jpg" },
+    { id: "7", image: "/spa/7.jpg" },
+    { id: "8", image: "/spa/8.jpg" },
+    { id: "9", image: "/spa/9.jpg" },
+    { id: "10", image: "/spa/11.jpg" },
   ];
 
   const carouselSalaInfantil = [
-    { id: "1", image: "/main-banner_a.jpg" },
-    { id: "2", image: "/main-banner_b.jpg" },
-    { id: "3", image: "/main-banner_c.jpg" },
-    { id: "4", image: "/main-banner_d.jpg" },
-    { id: "5", image: "/main-banner_e.jpg" },
+    { id: "1", image: "/podologia_infantil/2.jpg" },
+    { id: "2", image: "/podologia_infantil/12.jpg" },
+    { id: "3", image: "/podologia_infantil/6.jpg" },
+    { id: "4", image: "/podologia_infantil/10.jpg" },
+    { id: "5", image: "/podologia_infantil/8.jpg" },
+    { id: "6", image: "/podologia_infantil/15.jpg" },
+    { id: "7", image: "/podologia_infantil/19.jpg" },
+
   ];
 
   return (
-    <div className="px-1 py-5 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] ">
+    <div className="px-1 py-5 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
       <h1 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center mb-5">
         Conheça Nosso{" "}
         <span className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
