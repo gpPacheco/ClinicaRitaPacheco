@@ -260,8 +260,8 @@ export function Header() {
                       <Image
                         className={
                           isHeaderShrunk
-                            ? "max-h-16 h-full w-auto cursor-pointer transition-all motion-safe "
-                            : "max-h-18 h-full w-auto cursor-pointer transition-all motion-safe "
+                            ? "max-h-12 h-full w-auto cursor-pointer transition-all motion-safe "
+                            : "max-h-14 h-full w-auto cursor-pointer transition-all motion-safe "
                         }
                         src="/logoLinear.png"
                         alt="Clinica Rita Pacheco"
