@@ -33,11 +33,13 @@ export function Local() {
     { id: "1", image: "/sobre/1.jpg" },
     { id: "2", image: "/sobre/3.jpg" },
     { id: "3", image: "/spa/9.jpg" },
-    { id: "4", image: "/sobre/21.jpg" },
-    { id: "5", image: "/sobre/10.jpg" },
-    { id: "6", image: "/podologia_infantil/1.jpg" },
-    { id: "7", image: "/sobre/10.jpg" },
-    { id: "8", image: "/spa/11.jpg" },
+    { id: "4", image: "/spa/4.jpg" },
+    { id: "5", image: "/sobre/21.jpg" },
+    { id: "6", image: "/sobre/10.jpg" },
+    { id: "7", image: "/podologia_infantil/2.jpg" },
+    { id: "8", image: "/spa/7.jpg" },
+    { id: "9", image: "/spa/11.jpg" },
+    { id: "10", image: "/sobre/9.jpg" },
   ];
 
   return (
