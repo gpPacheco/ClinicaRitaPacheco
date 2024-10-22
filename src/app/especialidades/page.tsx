@@ -10,6 +10,7 @@ import {
   FaHandHoldingWater,
   FaBandAid,
 } from "react-icons/fa";
+import { FaixaContato } from "../components/button";
 
 const especialidades = [
   {
@@ -94,6 +95,9 @@ export default function Especialidades() {
               <p className="text-gray-700 mb-6">{especialidade.description}</p>
             </div>
           ))}
+        </div>
+        <div className="mt-6">
+          <FaixaContato/>
         </div>
       </div>
 
