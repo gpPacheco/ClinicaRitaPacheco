@@ -1,6 +1,4 @@
 "use client";
-import classNames from "classnames";
-import { useState } from "react";
 
 type Props = {
   isOpen: boolean;
