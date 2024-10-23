@@ -4,23 +4,10 @@ import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
-import {
-  FaAngleDown,
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaShareAlt,
-  FaTiktok,
-  FaWhatsapp,
-  FaHome,
-  FaUserMd,
-  FaClinicMedical,
-  FaBookOpen,
-  FaShoppingCart,
-  FaPhone,
-  FaBriefcaseMedical,
-} from "react-icons/fa";
-import { Transition as ReactTransition } from "react-transition-group";
+import { FaAngleDown, FaShareAlt, FaWhatsapp, FaInstagram, FaFacebook, FaLinkedin, FaTiktok, FaBookOpen, FaBriefcaseMedical, FaClinicMedical, FaHome, FaPhone, FaShoppingCart, FaUserMd } from "react-icons/fa";
+import BurgerButton from './burgerButton'; // Importar o BurgerButton
+import MenuItem from './MenuItem'; // Importar o MenuItem
+import DropdownItem from './dropdownItem'; // Importar o DropdownItem
 
 const navigation = [
   { name: "Home", href: "/", current: true, icon: <FaHome /> },
@@ -61,45 +48,12 @@ const navigation = [
   { name: "Contato", href: "/contato", current: false, icon: <FaPhone /> },
 ];
 
-type Props = {
-  isOpen: boolean;
-  onClick: () => void;
-};
-
-const BurgerButton = ({ isOpen, onClick }: Props) => (
-  <button className="h-5 w-5" onClick={onClick}>
-    <div className="sr-only">{isOpen ? "Fechar menu" : "Abrir menu"}</div>
-    <div
-      aria-hidden="true"
-      className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
-        isOpen ? "rotate-45" : "-translate-y-1.5"
-      }`}
-    />
-    <div
-      aria-hidden="true"
-      className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
-        isOpen ? "opacity-0" : "opacity-100"
-      }`}
-    />
-    <div
-      aria-hidden="true"
-      className={`absolute h-0.5 w-5 bg-current transition duration-300 ease-in-out ${
-        isOpen ? "-rotate-45" : "translate-y-1.5"
-      }`}
-    />
-  </button>
-);
-
 export function Header() {
   const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 0) {
-      setIsHeaderShrunk(true);
-    } else {
-      setIsHeaderShrunk(false);
-    }
+    setIsHeaderShrunk(window.scrollY > 0);
   };
 
   useEffect(() => {
@@ -108,132 +62,6 @@ export function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const MenuItem = ({
-    name,
-    href,
-    icon,
-  }: {
-    name: string;
-    href: string;
-    icon: JSX.Element;
-  }) => (
-    <a
-      href={href}
-      className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-600 hover:text-white"
-    >
-      {icon}
-      <span className="ml-2">{name}</span>
-    </a>
-  );
-
-  //codigo responsavel pelas palavras com opcoes de submenu e transicoes de submenu
-  const DropdownItem = ({
-    name,
-    href,
-    submenuItems,
-    icon,
-  }: {
-    name: string;
-    href: string;
-    icon: JSX.Element;
-    submenuItems: { name: string; href: string }[];
-  }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-
-    // Função para alternar o submenu
-    const toggleSubMenu = (e: React.MouseEvent) => {
-      e.preventDefault();
-      setIsOpen(!isOpen);
-    };
-
-    // Efeito para fechar o submenu ao clicar fora
-    useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (
-          dropdownRef.current &&
-          !dropdownRef.current.contains(event.target as Node)
-        ) {
-          setIsOpen(false);
-        }
-      };
-
-      if (isOpen) {
-        document.addEventListener("mousedown", handleClickOutside);
-      } else {
-        document.removeEventListener("mousedown", handleClickOutside);
-      }
-
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [isOpen]);
-
-    return (
-      <div ref={dropdownRef} className="relative">
-        <a
-          href={href}
-          onClick={toggleSubMenu}
-          className={classNames(
-            "flex items-center px-3 py-2 text-sm font-medium rounded-md ",
-            {
-              "bg-gray-900 text-white": isOpen,
-              "text-gray-700 hover:bg-gray-600 hover:text-white": !isOpen,
-            }
-          )}
-        >
-          {icon && <span className="mr-2">{icon}</span>}{" "}
-          {/* Exibindo o ícone */}
-          <span>{name}</span>
-          {submenuItems && submenuItems.length > 0 && (
-            <FaAngleDown
-              className={classNames(
-                "ml-1 transition-transform duration-275 transform",
-                { "rotate-180": isOpen }
-              )}
-            />
-          )}
-        </a>
-
-        <ReactTransition
-          in={isOpen}
-          timeout={{ enter: 300, exit: 150 }}
-          classNames="transition-opacity"
-          unmountOnExit
-        >
-          {(state) => (
-            <div
-              className={classNames(
-                "absolute z-10 transform w-auto max-w-md lg:max-w-2xl transition-opacity",
-                {
-                  "opacity-100": state === "entered",
-                  "opacity-0": state === "exiting",
-                }
-              )}
-            >
-              <div className="rounded-lg shadow-lg overflow-hidden">
-                <div className="relative bg-[#f7f0ea] p-2 ">
-                  {submenuItems &&
-                    submenuItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block px-2 py-3 font-medium rounded text-gray-700 hover:bg-gray-600 hover:text-white whitespace-nowrap"
-                      >
-                        {item.name}
-                      </a>
-                    ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </ReactTransition>
-      </div>
-    );
-  };
-
-  // container dos submenus
 
   return (
     <Disclosure
@@ -252,10 +80,10 @@ export function Header() {
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky mt-1.5">
             <div className="relative flex h-16 items-center justify-between">
-              {/* logo*/}
+              {/* Logo */}
               <div className="flex flex-1 items-center justify-center lg:ml-20 md:ml-20 sm:ml-20">
                 <div className="flex-shrink-0">
-                  <Link legacyBehavior href="/">
+                  <Link href="/" legacyBehavior>
                     <a>
                       <Image
                         className={
@@ -274,17 +102,13 @@ export function Header() {
                 </div>
               </div>
 
-              {/* Mobile menu button*/}
+              {/* Mobile menu button */}
               <div className="absolute left-1 inset-x-0 flex">
                 <Disclosure.Button
                   as={BurgerButton}
                   isOpen={isOpen}
                   onClick={() => setIsOpen(!isOpen)}
-                >
-                  <span className="absolute -inset-0.5" />
-                  <span className="sr-only">Menu</span>
-                </Disclosure.Button>
-                {/* Container do menu mobile com transição */}
+                />
                 <Transition
                   as={Fragment}
                   enter="transition ease-out duration-100"
@@ -317,13 +141,11 @@ export function Header() {
                 </Transition>
               </div>
 
-              {/* Redes sociais button*/}
+              {/* Redes sociais button */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6">
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="relative flex rounded-full px-1.5 py-1.5 text-gray-900 hover:bg-gray-600 hover:text-white focus:outline-none">
-                      <span className="absolute -inset-1.5" />
-                      <span className="sr-only"></span>
                       <FaShareAlt className="h-5 w-5" />
                     </Menu.Button>
                   </div>
@@ -342,9 +164,7 @@ export function Header() {
                           <a
                             href="https://api.whatsapp.com/send/?phone=5516993108637&text&type=phone_number&app_absent=0"
                             className={classNames(
-                              active
-                                ? "bg-gray-600 hover:text-white rounded-md"
-                                : "",
+                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -356,14 +176,13 @@ export function Header() {
                           </a>
                         )}
                       </Menu.Item>
+                      {/* Outros itens de menu social... */}
                       <Menu.Item>
                         {({ active }) => (
                           <a
                             href="https://www.instagram.com/ritafpacheco/"
                             className={classNames(
-                              active
-                                ? "bg-gray-600 hover:text-white rounded-md"
-                                : "",
+                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -380,9 +199,7 @@ export function Header() {
                           <a
                             href="https://www.facebook.com/ritapachecopodologa"
                             className={classNames(
-                              active
-                                ? "bg-gray-600 hover:text-white rounded-md"
-                                : "",
+                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -399,9 +216,7 @@ export function Header() {
                           <a
                             href="https://www.linkedin.com/company/clinica-rita-pacheco/"
                             className={classNames(
-                              active
-                                ? "bg-gray-600 hover:text-white rounded-md"
-                                : "",
+                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -416,11 +231,9 @@ export function Header() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="https://www.tiktok.com/@ritafpachecoo"
+                            href="https://www.tiktok.com/@ritapacheco"
                             className={classNames(
-                              active
-                                ? "bg-gray-600 hover:text-white rounded-md"
-                                : "",
+                              active ? "bg-gray-600 hover:text-white rounded-md" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                             target="_blank"
@@ -443,9 +256,3 @@ export function Header() {
     </Disclosure>
   );
 }
-
-//   ______    ____
-//  /\    /\  | "o |
-// |  \/\/  |/ ___\|
-// |gpPacheco_/
-// /_/_/ /_/_/
