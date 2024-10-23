@@ -66,7 +66,7 @@ export const EmblaCarousel = () => {
         ))}
       </div>
       <button
-        className="absolute bottom-0 left-0 z-[1] flex w-[15%] h-full items-center justify-center bg-transparent text-white transition-opacity duration-150 ease-in-out hover:text-zinc-700 hover:opacity-90 focus:outline-none"
+        className="absolute bottom-0 left-0 z-[1] flex w-[15%] h-full items-center text-white justify-center bg-transparent transform transition-transform duration-150 hover:scale-110 active:scale-90"
         type="button"
         onClick={goToPrevSlide}
       >
@@ -74,7 +74,7 @@ export const EmblaCarousel = () => {
       </button>
 
       <button
-        className="absolute bottom-0 right-0 z-[1] flex w-[15%] h-full items-center justify-center bg-transparent text-white transition-opacity duration-150 ease-in-out hover:text-zinc-700 hover:opacity-90 focus:outline-none"
+        className="absolute bottom-0 right-0 z-[1] flex w-[15%] h-full items-center text-white justify-center bg-transparent transform transition-transform duration-150 hover:scale-110 active:scale-90"
         type="button"
         onClick={goToNextSlide}
       >
