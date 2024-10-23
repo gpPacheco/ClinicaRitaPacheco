@@ -1,6 +1,13 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { FaShareAlt, FaWhatsapp, FaInstagram, FaFacebook, FaLinkedin, FaTiktok } from "react-icons/fa";
+import {
+  FaShareAlt,
+  FaWhatsapp,
+  FaInstagram,
+  FaFacebook,
+  FaLinkedin,
+  FaTiktok,
+} from "react-icons/fa";
 import classNames from "classnames";
 
 const socialLinks = [
@@ -36,10 +43,11 @@ export default function SocialMenu() {
     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6">
       <Menu as="div" className="relative ml-3">
         <div>
-          <Menu.Button className="relative flex rounded-full px-1.5 py-1.5 text-gray-900 hover:bg-gray-600 hover:text-white focus:outline-none">
+          <Menu.Button className="relative flex transform transition-transform duration-150 hover:scale-110 active:scale-90">
             <FaShareAlt className="h-5 w-5" />
           </Menu.Button>
         </div>
+
         <Transition
           as={Fragment}
           enter="transition ease-out duration-100"
