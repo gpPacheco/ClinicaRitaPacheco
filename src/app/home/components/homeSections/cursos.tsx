@@ -46,7 +46,7 @@ export function Cursos() {
         {/* Card 2 */}
         <div className="max-w-xs bg-[#f7f0ea] rounded-lg shadow-md transform transition hover:scale-105 hover:shadow-xl duration-300 p-4 flex flex-col">
           <Image
-            src="/sobre/20.jpg"
+            src="/sobre/21.jpg"
             alt="Curso 2"
             width={400}
             height={250}
