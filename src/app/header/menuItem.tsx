@@ -1,5 +1,4 @@
-import classNames from "classnames";
-
+// itens do menu
 type MenuItemProps = {
   name: string;
   href: string;
