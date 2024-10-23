@@ -4,10 +4,18 @@ import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { FaAngleDown, FaShareAlt, FaWhatsapp, FaInstagram, FaFacebook, FaLinkedin, FaTiktok, FaBookOpen, FaBriefcaseMedical, FaClinicMedical, FaHome, FaPhone, FaShoppingCart, FaUserMd } from "react-icons/fa";
-import BurgerButton from './burgerButton';
-import MenuItem from './menuItem';
-import DropdownItem from './dropdownItem';
+import {
+  FaBookOpen,
+  FaBriefcaseMedical,
+  FaClinicMedical,
+  FaHome,
+  FaPhone,
+  FaShoppingCart,
+  FaUserMd,
+} from "react-icons/fa";
+import BurgerButton from "./burgerButton";
+import MenuItem from "./menuItem";
+import DropdownItem from "./dropdownItem";
 import SocialMenu from "./socialMenu";
 
 const navigation = [
@@ -89,8 +97,8 @@ export function Header() {
                       <Image
                         className={
                           isHeaderShrunk
-                            ? "max-h-12 h-full w-auto cursor-pointer transition-all motion-safe "
-                            : "max-h-14 h-full w-auto cursor-pointer transition-all motion-safe "
+                            ? "max-h-10 h-full w-auto cursor-pointer transition-all motion-safe"
+                            : "max-h-12 h-full w-auto cursor-pointer transition-all motion-safe" // Ajuste para telas pequenas
                         }
                         src="/logoLinear.png"
                         alt="Clinica Rita Pacheco"
