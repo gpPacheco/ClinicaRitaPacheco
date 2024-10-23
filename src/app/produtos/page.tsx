@@ -1,5 +1,4 @@
-'use client';
-
+"use client";
 import React from "react";
 import { useRouter } from "next/navigation";
 
@@ -12,10 +11,11 @@ export default function Produtos() {
         Página em construção 🚧
       </h1>
       <p className="text-lg text-[#6f4f3f] mb-6">
-        Estamos trabalhando para trazer novidades para você. Por favor, volte mais tarde!
+        Estamos trabalhando para trazer novidades para você. Por favor, volte
+        mais tarde!
       </p>
       <button
-        onClick={() => router.push('/')}
+        onClick={() => router.push("/")}
         className="bg-[#F2784B] hover:bg-orange-500 text-white px-6 py-3 rounded-md shadow-md transition-transform transform hover:scale-105"
       >
         Clique aqui para voltar para a página inicial
@@ -23,3 +23,9 @@ export default function Produtos() {
     </div>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/

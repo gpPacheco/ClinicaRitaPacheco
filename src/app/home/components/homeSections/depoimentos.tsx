@@ -10,7 +10,7 @@ export function Depoimentos() {
       id: 2,
       videoUrl: "https://www.youtube.com/embed/9DXSue6Q5MU",
     },
-  ]; 
+  ];
 
   return (
     <div className="py-6 bg-gradient-to-b from-[#f7f0ea] via-[#dbbeb0] to-[#f7f0ea] p-3">
@@ -25,7 +25,7 @@ export function Depoimentos() {
               className="relative rounded-md overflow-hidden shadow-md"
             >
               {/* Relação de Aspecto 16:9 (widescreen) */}
-              <div className="pt-[56.25%]"> 
+              <div className="pt-[56.25%]">
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
                   src={depoimento.videoUrl}
@@ -42,3 +42,9 @@ export function Depoimentos() {
     </div>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import { Calendar as CalendarIcon, X } from "lucide-react";
 import { Calendar } from "react-calendar";
@@ -10,7 +10,9 @@ type Value = CalendarProps["value"];
 export function FaixaContato() {
   const [isOpen, setIsOpen] = useState(false);
   const [nome, setNome] = useState("");
-  const [dataAgendamento, setDataAgendamento] = useState<Date | null>(new Date());
+  const [dataAgendamento, setDataAgendamento] = useState<Date | null>(
+    new Date()
+  );
   const [dataInvalida, setDataInvalida] = useState(false);
   const [hasCadastro, setHasCadastro] = useState<null | boolean>(null); // Estado para verificar se o usuário tem cadastro
 
@@ -22,7 +24,9 @@ export function FaixaContato() {
       ? `Olá, já tenho cadastro e gostaria de agendar uma consulta no dia: ${dataAgendamento?.toLocaleDateString()}`
       : `Olá, meu nome é ${nome}, gostaria de agendar uma consulta no dia: ${dataAgendamento?.toLocaleDateString()}`;
 
-    const whatsappUrl = `https://wa.me/+5516993108637?text=${encodeURIComponent(mensagem)}`;
+    const whatsappUrl = `https://wa.me/+5516993108637?text=${encodeURIComponent(
+      mensagem
+    )}`;
     window.open(whatsappUrl, "_blank");
   };
 
@@ -64,7 +68,9 @@ export function FaixaContato() {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h2 className="text-3xl font-light text-gray-800 text-center mb-5">Agende sua consulta</h2>
+      <h2 className="text-3xl font-light text-gray-800 text-center mb-5">
+        Agende sua consulta
+      </h2>
       <button
         onClick={handleOpen}
         className="bg-[#F2784B] text-white px-6 py-2 rounded shadow-md hover:bg-orange-500 transition"
@@ -79,7 +85,9 @@ export function FaixaContato() {
             <button onClick={handleClose} className="absolute top-2 right-2">
               <X size={22} />
             </button>
-            <h2 className="text-xl font-bold mb-4 text-center">Agende sua consulta</h2>
+            <h2 className="text-xl font-bold mb-4 text-center">
+              Agende sua consulta
+            </h2>
 
             <form className="space-y-4">
               <div className="p-2 rounded w-full h-full flex justify-center items-center">
@@ -140,7 +148,9 @@ export function FaixaContato() {
                         type="button"
                         onClick={handleWhatsApp}
                         className={`bg-green-500 text-white w-full py-2 rounded shadow-md ${
-                          !nome || dataInvalida ? "opacity-50 cursor-not-allowed" : ""
+                          !nome || dataInvalida
+                            ? "opacity-50 cursor-not-allowed"
+                            : ""
                         }`}
                         disabled={!nome || dataInvalida}
                       >
@@ -189,3 +199,9 @@ export function FaixaContato() {
     </div>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/

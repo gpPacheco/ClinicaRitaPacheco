@@ -11,7 +11,12 @@ type DropdownItemProps = {
 };
 
 // submenu item "A clinica"
-const DropdownItem = ({ name, href, icon, submenuItems }: DropdownItemProps) => {
+const DropdownItem = ({
+  name,
+  href,
+  icon,
+  submenuItems,
+}: DropdownItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -22,7 +27,10 @@ const DropdownItem = ({ name, href, icon, submenuItems }: DropdownItemProps) => 
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -55,9 +63,12 @@ const DropdownItem = ({ name, href, icon, submenuItems }: DropdownItemProps) => 
         <span>{name}</span>
         {submenuItems && submenuItems.length > 0 && (
           <FaAngleDown
-            className={classNames("ml-1 transition-transform duration-275 transform", {
-              "rotate-180": isOpen,
-            })}
+            className={classNames(
+              "ml-1 transition-transform duration-275 transform",
+              {
+                "rotate-180": isOpen,
+              }
+            )}
           />
         )}
       </a>
@@ -99,3 +110,9 @@ const DropdownItem = ({ name, href, icon, submenuItems }: DropdownItemProps) => 
 };
 
 export default DropdownItem;
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/

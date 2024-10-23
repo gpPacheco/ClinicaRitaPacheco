@@ -3,7 +3,6 @@ import { FaixaContato } from "@/app/components/button";
 import React from "react";
 import { FaHandHoldingHeart, FaRegLightbulb, FaMedal } from "react-icons/fa";
 
-
 export default function Sobre() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] p-3">
@@ -46,15 +45,16 @@ export default function Sobre() {
 
       {/* Seção de História da Clínica */}
       <div className="bg-[#dbbeb0] p-10 rounded-lg mb-10 shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-center max-w-4xl">
-        <h2 className="text-3xl font-light text-gray-800 mb-6">Nossa História</h2>
+        <h2 className="text-3xl font-light text-gray-800 mb-6">
+          Nossa História
+        </h2>
         <p className="text-lg text-gray-700">
           Fundada em 2010 pela podóloga Rita Pacheco, nossa clínica vem se
           destacando pela excelência no atendimento e nos cuidados com os pés de
           nossos pacientes. Com mais de 15 anos de experiência, Rita se tornou
-          uma referência em tratamentos podológicos, atuando com ética e
-          paixão. A clínica é reconhecida por sua abordagem humanizada e pelos
-          resultados que melhoram a qualidade de vida de todos que nos
-          procuram.
+          uma referência em tratamentos podológicos, atuando com ética e paixão.
+          A clínica é reconhecida por sua abordagem humanizada e pelos
+          resultados que melhoram a qualidade de vida de todos que nos procuram.
         </p>
       </div>
 
@@ -63,3 +63,9 @@ export default function Sobre() {
     </div>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/

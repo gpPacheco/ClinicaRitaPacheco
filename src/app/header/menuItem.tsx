@@ -16,3 +16,9 @@ const MenuItem = ({ name, href, icon }: MenuItemProps) => (
 );
 
 export default MenuItem;
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/

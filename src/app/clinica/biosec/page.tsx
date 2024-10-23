@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 
 export default function Biosec() {
@@ -73,3 +72,9 @@ export default function Biosec() {
     </div>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/

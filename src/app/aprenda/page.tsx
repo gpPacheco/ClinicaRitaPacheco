@@ -14,7 +14,8 @@ export default function Aprenda() {
           </span>
         </h1>
         <p className="mt-4 text-lg text-gray-700 mx-6">
-          Conheça nossos cursos e mentorias para aprimorar suas habilidades na área de podologia.
+          Conheça nossos cursos e mentorias para aprimorar suas habilidades na
+          área de podologia.
         </p>
       </header>
 
@@ -26,3 +27,9 @@ export default function Aprenda() {
     </div>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/

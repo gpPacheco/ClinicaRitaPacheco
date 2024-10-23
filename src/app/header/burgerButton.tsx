@@ -1,5 +1,4 @@
 "use client";
-
 type Props = {
   isOpen: boolean;
   onClick: () => void;
@@ -30,3 +29,9 @@ const BurgerButton = ({ isOpen, onClick }: Props) => (
 );
 
 export default BurgerButton;
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/

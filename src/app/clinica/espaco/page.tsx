@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import Image from "next/image";
 import { Carousel } from "primereact/carousel";
 import { FaixaContato } from "@/app/components/button";
@@ -32,7 +32,7 @@ export default function Espaco() {
       </div>
     );
   };
-  
+
   const carouselEspacoGeral = [
     { id: "1", image: "/sobre/1.jpg" },
     { id: "2", image: "/sobre/7.jpg" },
@@ -65,7 +65,6 @@ export default function Espaco() {
     { id: "5", image: "/podologia_infantil/8.jpg" },
     { id: "6", image: "/podologia_infantil/15.jpg" },
     { id: "7", image: "/podologia_infantil/19.jpg" },
-
   ];
 
   return (
@@ -170,3 +169,9 @@ export default function Espaco() {
     </div>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/

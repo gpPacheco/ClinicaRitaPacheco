@@ -53,7 +53,6 @@ export function Procedimentos() {
   );
 }
 
-
 //   ______    ____
 //  /\    /\  | "o |
 // |  \/\/  |/ ___\|

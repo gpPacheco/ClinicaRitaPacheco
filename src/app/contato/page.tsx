@@ -28,7 +28,9 @@ export default function ContactForm() {
           <h2 className="text-2xl text-gray-800">Horários de Atendimento</h2>
           <div>
             <p className="text-lg text-gray-700">Segunda à Sexta-feira</p>
-            <p className="text-lg text-gray-700">08h00 - 11h30 | 13h30 - 18h00</p>
+            <p className="text-lg text-gray-700">
+              08h00 - 11h30 | 13h30 - 18h00
+            </p>
           </div>
         </div>
 
@@ -36,12 +38,18 @@ export default function ContactForm() {
           <h2 className="text-2xl text-gray-800">Contato</h2>
           <ul className="mt-4 space-y-2 text-lg">
             <li>
-              <a href="tel:+551637205691" className="hover:underline text-gray-700">
+              <a
+                href="tel:+551637205691"
+                className="hover:underline text-gray-700"
+              >
                 <i className="fas fa-phone-alt"></i> (16) 3720-5691
               </a>
             </li>
             <li>
-              <a href="tel:+5516993108637" className="hover:underline text-gray-700">
+              <a
+                href="tel:+5516993108637"
+                className="hover:underline text-gray-700"
+              >
                 <i className="fas fa-mobile-alt"></i> (16) 99310-8637
               </a>
             </li>
@@ -50,7 +58,8 @@ export default function ContactForm() {
                 href="mailto:clinica@clinicaritapacheco.com.br"
                 className="hover:underline text-gray-700 text-base"
               >
-                <i className="fas fa-envelope"></i> clinica@clinicaritapacheco.com.br
+                <i className="fas fa-envelope"></i>{" "}
+                clinica@clinicaritapacheco.com.br
               </a>
             </li>
           </ul>
@@ -67,3 +76,9 @@ export default function ContactForm() {
     </div>
   );
 }
+
+//   ______    ____
+//  /\    /\  | "o |
+// |  \/\/  |/ ___\|
+// |gpPacheco_/
+// /_/_/ /_/_/
