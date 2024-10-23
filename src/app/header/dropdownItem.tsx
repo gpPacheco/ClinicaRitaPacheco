@@ -10,6 +10,7 @@ type DropdownItemProps = {
   submenuItems: { name: string; href: string }[];
 };
 
+// submenu item "A clinica"
 const DropdownItem = ({ name, href, icon, submenuItems }: DropdownItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
