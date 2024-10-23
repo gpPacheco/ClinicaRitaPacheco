@@ -9,11 +9,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export const EmblaCarousel = () => {
   const imgs: { url: string; link: string }[] = [
     { url: "/main-banner_f.jpg", link: "" },
+    { url: "/spa/3.jpg", link: "" },
+    { url: "/spa/2.jpg", link: "" },
+    { url: "/spa/8.jpg", link: "" },
     { url: "/main-banner_a.jpg", link: "" },
-    { url: "/main-banner_b.jpg", link: "" },
-    { url: "/main-banner_c.jpg", link: "" },
     { url: "/main-banner_d.jpg", link: "" },
-    { url: "/main-banner_e.jpg", link: "" },
   ];
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
