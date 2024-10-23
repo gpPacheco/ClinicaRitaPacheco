@@ -54,7 +54,7 @@ export default function Profissionais() {
       </h2>
       <p className="mb-10 mt-2 text-lg text-gray-800 text-center">
         Com{" "}
-        <span className="block w-full font-light bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
+        <span className="w-full font-light bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
           mais de 15 anos
         </span>{" "}
         de experiência!
@@ -70,7 +70,7 @@ export default function Profissionais() {
             <div className="absolute inset-0 bg-cover bg-center z-0">
               <div className="relative w-full h-full">
                 <Image
-                  src="/biosseguranca/1.png"
+                  src="/perfil.jpg"
                   alt={profissional.nome}
                   className="object-cover"
                   layout="fill"
