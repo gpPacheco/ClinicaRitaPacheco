@@ -62,13 +62,6 @@ export const EmblaCarousel = () => {
             key={index}
             className="embla__slide"
           >
-            <Image
-              src={item.url}
-              alt={`Banner ${index + 1}`}
-              layout="responsive"
-              priority={index === 0}
-              loading={index > 0 ? "lazy" : "eager"}
-            />
           </button>
         ))}
       </div>
