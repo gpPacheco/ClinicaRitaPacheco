@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -62,6 +63,16 @@ export const EmblaCarousel = () => {
             key={index}
             className="embla__slide"
           >
+            {/* Adicionando o componente Image */}
+            <Image
+              src={item.url}
+              alt={`Banner ${index + 1}`}
+              width={1200}
+              height={800}
+              layout="responsive"
+              priority={index === 0} // Dando prioridade à primeira imagem
+              loading={index > 0 ? "lazy" : "eager"} // Carregamento preguiçoso para as outras
+            />
           </button>
         ))}
       </div>
@@ -97,6 +108,7 @@ export const EmblaCarousel = () => {
     </div>
   );
 };
+
 
 
 //   ______    ____
