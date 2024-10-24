@@ -65,11 +65,9 @@ export const EmblaCarousel = () => {
             <Image
               src={item.url}
               alt={`Banner ${index + 1}`}
-              width={1200} // Ajuste o valor conforme necessário
-              height={800} // Ajuste o valor conforme necessário
               layout="responsive"
-              priority={index === 0} // Prioriza o carregamento da primeira imagem
-              loading={index > 0 ? "lazy" : "eager"} // Lazy load nas demais
+              priority={index === 0}
+              loading={index > 0 ? "lazy" : "eager"}
             />
           </button>
         ))}
