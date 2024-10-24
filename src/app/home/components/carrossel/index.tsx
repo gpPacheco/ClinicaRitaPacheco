@@ -2,12 +2,13 @@
 import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
 import "./carousel.css";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export const EmblaCarousel = () => {
-  const imgs: { url: string; link: string }[] = [
+  const imgs = [
     { url: "/main-banner-f.jpg", link: "" },
     { url: "/main-banner-g.jpg", link: "" },
     { url: "/banner-podologia-esportiva.jpg", link: "" },
@@ -53,17 +54,27 @@ export const EmblaCarousel = () => {
   };
 
   return (
-    <div className="embla w-ful shadow-md" ref={emblaRef}>
+    <div className="embla w-full shadow-md" ref={emblaRef}>
       <div className="embla__container">
         {imgs.map((item, index) => (
           <button
             onClick={() => navigate(item.link)}
             key={index}
             className="embla__slide"
-            style={{ backgroundImage: `url(${item.url})` }}
-          ></button>
+          >
+            <Image
+              src={item.url}
+              alt={`Banner ${index + 1}`}
+              width={1200} // Ajuste o valor conforme necessário
+              height={800} // Ajuste o valor conforme necessário
+              layout="responsive"
+              priority={index === 0} // Prioriza o carregamento da primeira imagem
+              loading={index > 0 ? "lazy" : "eager"} // Lazy load nas demais
+            />
+          </button>
         ))}
       </div>
+
       <button
         className="absolute bottom-0 left-0 z-[1] flex w-[15%] h-full items-center text-white justify-center bg-transparent transform transition-transform duration-150 hover:scale-110 active:scale-90"
         type="button"
@@ -95,6 +106,7 @@ export const EmblaCarousel = () => {
     </div>
   );
 };
+
 
 //   ______    ____
 //  /\    /\  | "o |
