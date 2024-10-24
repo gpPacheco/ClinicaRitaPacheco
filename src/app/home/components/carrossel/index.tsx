@@ -8,12 +8,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export const EmblaCarousel = () => {
   const imgs: { url: string; link: string }[] = [
-    { url: "/main-banner_f.jpg", link: "" },
-    { url: "/main-banner_g.jpg", link: "" },
-    { url: "/spa/2.jpg", link: "" },
-    { url: "/spa/8.jpg", link: "" },
-    { url: "/main-banner_a.jpg", link: "" },
-    { url: "/main-banner_d.jpg", link: "" },
+    { url: "/main-banner-f.jpg", link: "" },
+    { url: "/main-banner-g.jpg", link: "" },
+    { url: "/banner-podologia-esportiva.jpg", link: "" },
+    { url: "/banner-podologia-geriatrica.jpg", link: "" },
+    { url: "/banner-podologia-infantil.jpg", link: "" },
   ];
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
