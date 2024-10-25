@@ -142,20 +142,20 @@ export function Rodape() {
           </div>
         </div>
         <p className="mt-4 text-xs text-zinc-950 text-center">
-          Desenvolvido por{"  "}
+        <a
+            className="hover:text-gray-600 text-zinc-950 text-ml font-bold underline"
+            href="/"
+          >
+            © Clinica Rita Pacheco{"  "}
+          </a>
+          | Developed by{"  "}
           <a
             className="hover:text-gray-600 text-zinc-950 text-ml font-bold underline"
             href="https://github.com/gpPacheco"
             target="_blank"
             rel="noreferrer"
           >
-            Gabriel Pacheco |{"  "}
-          </a>
-          <a
-            className="hover:text-gray-600 text-zinc-950 text-ml font-bold underline"
-            href="/"
-          >
-            © Clinica Rita Pacheco
+            Gabriel Pacheco
           </a>
         </p>
       </div>
