@@ -60,6 +60,20 @@ const navigation = [
 export function Header() {
   const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Fecha o menu ao clicar fora
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleScroll = () => {
     setIsHeaderShrunk(window.scrollY > 0);
@@ -112,7 +126,7 @@ export function Header() {
               </div>
 
               {/* Mobile menu button */}
-              <div className="absolute left-1 inset-x-0 flex">
+              <div className="absolute left-1 inset-x-0 flex" ref={menuRef}>
                 <Disclosure.Button
                   as={BurgerButton}
                   isOpen={isOpen}
@@ -120,6 +134,7 @@ export function Header() {
                 />
                 <Transition
                   as={Fragment}
+                  show={isOpen}
                   enter="transition ease-out duration-100"
                   enterFrom="transform opacity-0 scale-95"
                   enterTo="transform opacity-100 scale-100"

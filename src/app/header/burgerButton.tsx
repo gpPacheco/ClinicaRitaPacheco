@@ -1,11 +1,14 @@
 "use client";
+import { useEffect, useRef } from "react";
+import { Disclosure, Transition } from "@headlessui/react";
+
 type Props = {
   isOpen: boolean;
   onClick: () => void;
 };
 
 const BurgerButton = ({ isOpen, onClick }: Props) => (
-  <button className="h-5 w-5" onClick={onClick}>
+  <button className="h-5 w-5 relative" onClick={onClick}>
     <div className="sr-only">{isOpen ? "Fechar menu" : "Abrir menu"}</div>
     <div
       aria-hidden="true"
