@@ -53,7 +53,7 @@ export function Cursos() {
             className="object-cover rounded-md"
           />
           <h3 className="text-xl text-center font-semibold text-gray-800 mt-4">
-            Mentoria Personalizada
+            Mentorias
           </h3>
           <p className="text-md text-center text-gray-600 mt-2 flex-1">
             Acelere seu crescimento profissional com uma mentoria individual
