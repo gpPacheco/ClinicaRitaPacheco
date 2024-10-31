@@ -8,17 +8,20 @@ export function Procedimentos() {
       icon: <FaUserMd />,
       description:
         "Tratamento eficaz para aliviar dores causadas por unhas encravadas.",
+      more: "Saiba mais!",
     },
     {
       title: "Podologia Infantil",
       icon: <FaChild />,
       description: "Cuidados especializados para a saúde dos pés das crianças.",
+      more: "Saiba mais!",
     },
     {
       title: "Onicomicose",
       icon: <FaSyringe />,
       description:
         "Tratamento da infecção fúngica das unhas, com resultados seguros.",
+      more: "Saiba mais!",
     },
   ];
 
@@ -45,7 +48,8 @@ export function Procedimentos() {
               <div className="text-4xl text-zinc-600">{procedure.icon}</div>
             </div>
             <h2 className="text-lg font-medium mb-2">{procedure.title}</h2>
-            <p className="text-gray-700 text-sm">{procedure.description}</p>
+            <p className="text-gray-700 text-sm">{procedure.description} </p>
+            <p className="text-gray-700 text-sm underline mt-1">{procedure.more} </p>
           </a>
         ))}
       </div>
