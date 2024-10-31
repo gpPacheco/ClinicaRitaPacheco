@@ -64,7 +64,7 @@ export const EmblaCarousel = () => {
               backgroundImage: `url(${item.url})`,
               backgroundPosition: "center",
               backgroundSize: "cover",
-              transition: "opacity 0.5s ease", // Transição suave
+              transition: "opacity 0.2s ease", // Transição suave
               opacity: 0.8, // Começa com menor opacidade
             }}
             onLoad={() => {
