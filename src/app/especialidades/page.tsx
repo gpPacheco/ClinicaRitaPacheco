@@ -14,7 +14,7 @@ import { FaixaContato } from "../components/button";
 
 const especialidades = [
   {
-    name: "Unhas Encravadas",
+    name: "Onicocriptose: Unha Encravada",
     description:
       "Técnicas especializadas para aliviar a dor causada pelas unhas encravadas, prevenir infecções e promover a saúde dos pés.",
     icon: <FaBandAid />,
