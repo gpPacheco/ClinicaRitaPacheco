@@ -35,7 +35,7 @@ export default function RootLayout({
         />
         <meta
           property="og:description"
-          content="Encontre uma podóloga em Franca especializada em podologia esportiva, geriátrica e infantil. Cuidamos dos seus pés com carinho e profissionalismo."
+          content="Encontre uma podóloga em Franca especializada em unhas encravadas, micose, podologia esportiva, geriátrica e infantil. Cuidamos dos seus pés com carinho e profissionalismo."
         />
         <meta property="og:image" content="/logo-site.png" />
         <meta property="og:image:alt" content="Logo da podóloga em Franca" />
