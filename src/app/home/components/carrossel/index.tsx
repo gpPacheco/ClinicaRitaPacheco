@@ -65,7 +65,7 @@ export const EmblaCarousel = () => {
               backgroundPosition: "center",
               backgroundSize: "cover",
               transition: "opacity 0.2s ease", // Transição suave
-              opacity: 0.8, // Começa com menor opacidade
+              opacity: 0.9, // Começa com menor opacidade
             }}
             onLoad={() => {
               // Torna a imagem completamente visível após o carregamento
