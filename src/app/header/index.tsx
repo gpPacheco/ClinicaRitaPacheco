@@ -101,7 +101,7 @@ export function Header() {
     >
       {({}) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sticky mt-1.5">
+          <div className="mx-auto max-w-7xl px-2 sm:px-8 lg:px-10 sticky mt-1.5">
             <div className="relative flex h-16 items-center justify-between">
               {/* Logo */}
               <div className="flex flex-1 items-center justify-center lg:ml-20 md:ml-20 sm:ml-20">
@@ -112,7 +112,7 @@ export function Header() {
                         className={
                           isHeaderShrunk
                             ? "max-h-10 h-full w-auto cursor-pointer transition-all motion-safe"
-                            : "max-h-12 h-full w-auto cursor-pointer transition-all motion-safe" // Ajuste para telas pequenas
+                            : "max-h-11 h-full w-auto cursor-pointer transition-all motion-safe"
                         }
                         src="/logoLinear.png"
                         alt="Clinica Rita Pacheco"
