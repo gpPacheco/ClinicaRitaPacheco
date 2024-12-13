@@ -89,7 +89,7 @@ const DropdownItem = ({
               }
             )}
           >
-            <div className="rounded-lg shadow-lg overflow-hidden">
+            <div className="rounded-lg shadow-2xl overflow-hidden">
               <div className="relative bg-[#f7f0ea] p-2">
                 {submenuItems.map((item, index) => (
                   <a
