@@ -18,7 +18,7 @@ const socialLinks = [
   },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/ritafpacheco/",
+    href: "https://www.instagram.com/ritapacheco.clinic/",
     icon: <FaInstagram />,
   },
   {

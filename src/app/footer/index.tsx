@@ -39,7 +39,7 @@ export function Rodape() {
                 className="hover:opacity-75"
                 target="_blank"
                 rel="noreferrer"
-                href="https://www.instagram.com/ritafpacheco/"
+                href="https://www.instagram.com/ritapacheco.clinic/"
               >
                 <span className="sr-only"> Instagram </span>
                 <FaInstagram className="w-6 h-6" />
