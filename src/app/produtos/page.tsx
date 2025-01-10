@@ -7,7 +7,7 @@ export default function Produtos() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] text-center">
-      <h1 className="text-4xl font-semibold text-[#7b4f38] mb-4">
+      <h1 className="text-2xl font-semibold text-[#7b4f38] mb-4">
         Página em construção 🚧
       </h1>
       <p className="text-lg text-[#6f4f3f] mb-6">
