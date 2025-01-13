@@ -1,5 +1,5 @@
 import { FaixaContato } from "./components/button";
-import { Procedimentos } from "@/app/home/components/homeSections/procedimentos";
+import { Procedimentos } from "@/app/front-end/home/components/homeSections/procedimentos";
 import { Depoimentos } from "./home/components/homeSections/depoimentos";
 import { Avaliacoes } from "./home/components/homeSections/avaliacoes";
 import { EmblaCarousel } from "./home/components/carrossel";

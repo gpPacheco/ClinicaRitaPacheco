@@ -24,7 +24,6 @@ export function Depoimentos() {
               key={depoimento.id}
               className="relative rounded-md overflow-hidden shadow-md"
             >
-              {/* Relação de Aspecto 16:9 (widescreen) */}
               <div className="pt-[56.25%]">
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"

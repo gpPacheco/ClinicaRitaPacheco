@@ -1,5 +1,5 @@
 "use client";
-import { FaixaContato } from "@/app/components/button";
+import { FaixaContato } from "@/app/front-end/components/button";
 import React from "react";
 import { FaHandHoldingHeart, FaRegLightbulb, FaMedal } from "react-icons/fa";
 

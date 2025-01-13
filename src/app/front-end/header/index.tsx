@@ -17,6 +17,7 @@ import BurgerButton from "./burgerButton";
 import MenuItem from "./menuItem";
 import DropdownItem from "./dropdownItem";
 import SocialMenu from "./socialMenu";
+// import LoginButton from './loginButton';
 
 const navigation = [
   { name: "Home", href: "/", current: true, icon: <FaHome /> },
@@ -166,16 +167,19 @@ export function Header() {
               </div>
 
               {/* Redes sociais button */}
-              <div>
-                <SocialMenu />
-              </div>
+              <div className="flex items-center space-x-4">
+        <SocialMenu />
+        {/* <LoginButton /> */}
+      </div>
             </div>
           </div>
         </>
       )}
     </Disclosure>
   );
+  
 }
+
 
 //   ______    ____
 //  /\    /\  | "o |
