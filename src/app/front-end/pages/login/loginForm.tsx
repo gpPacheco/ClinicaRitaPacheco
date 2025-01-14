@@ -1,0 +1,117 @@
+"use client";
+
+import { useState } from "react";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+
+export function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // Aqui você adicionaria a lógica de autenticação
+    console.log("Login submetido");
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+      <div className="rounded-md shadow-sm -space-y-px">
+
+            {/* E-mail */}
+        <div>
+          <label
+            htmlFor="email"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            E-mail
+          </label>
+          <input
+            id="email-address"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-black-500 focus:border-black-500 focus:z-10 sm:text-sm"
+            placeholder="seu@email.com"
+          />
+        </div>
+    
+            {/* Senha */}
+        <div className="relative">
+          <label
+            htmlFor="password"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Senha
+          </label>
+          <input
+            id="password"
+            name="password"
+            type={showPassword ? "text" : "password"}
+            autoComplete="current-password"
+            required
+            className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-black-500 focus:border-black-500  sm:text-sm"
+            placeholder="Senha"
+          />
+          {/* eye button */}
+          <button
+            type="button"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 mt-6"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? (
+              <EyeOffIcon className="h-5 w-5 text-gray-500" />
+            ) : (
+              <EyeIcon className="h-5 w-5 text-gray-500" />
+            )}
+          </button>
+        </div>
+      </div>
+            {/* Lembrar-me */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          <input
+            id="remember-me"
+            name="remember-me"
+            type="checkbox"
+            className="h-4 w-4 text-black-600 focus:ring-black-500 border-gray-300 rounded"
+          />
+          <label
+            htmlFor="remember-me"
+            className="ml-2 block text-sm text-gray-900"
+          >
+            Lembrar-me
+          </label>
+        </div>
+
+        <div className="text-sm">
+          <a href="#" className="font-medium text-black-600 hover:text-black-500">
+            Esqueceu sua senha?
+          </a>
+        </div>
+      </div>
+
+            {/* Botao de entrar */}
+      <div>
+        <button
+          type="submit"
+          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-zinc-800 hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black-500"
+        >
+          Entrar
+        </button>
+      </div>
+
+            {/* Cadastrar */}
+      <div className="text-center">
+        <p className="mt-2 text-sm text-gray-600">
+          Não tem uma conta?{" "}
+          <a
+            href="front-end/pages/cadastre"
+            className="font-medium text-zinc-900 hover:text-zinc-700"
+          >
+            Cadastre-se
+          </a>
+        </p>
+      </div>
+    </form>
+  );
+}
