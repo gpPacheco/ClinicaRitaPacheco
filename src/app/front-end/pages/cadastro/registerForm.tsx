@@ -45,9 +45,9 @@ export function RegisterForm() {
           onClick={handleTogglePassword}
         >
           {showPassword ? (
-            <EyeIcon className="w-5 h-5 text-gray-700" />
-          ) : (
             <EyeSlashIcon className="w-5 h-5 text-gray-700" />
+          ) : (
+            <EyeIcon className="w-5 h-5 text-gray-700" />
           )}
         </button>
       )}
