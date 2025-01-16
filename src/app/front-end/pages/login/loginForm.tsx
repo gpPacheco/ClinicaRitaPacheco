@@ -84,7 +84,7 @@ export function LoginForm() {
         </div>
 
         <div className="text-sm">
-          <a href="#" className="font-medium text-black-600 hover:text-black-500">
+          <a href="#" className="font-medium text-zinc-800 hover:text-zinc-600">
             Esqueceu sua senha?
           </a>
         </div>
@@ -105,8 +105,8 @@ export function LoginForm() {
         <p className="mt-2 text-sm text-gray-600">
           Não tem uma conta?{" "}
           <a
-            href="front-end/pages/cadastre"
-            className="font-medium text-zinc-900 hover:text-zinc-700"
+            href="./cadastro"
+            className="font-medium text-zinc-900 hover:text-zinc-600"
           >
             Cadastre-se
           </a>
