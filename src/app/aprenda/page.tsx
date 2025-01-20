@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import Cursos from "./cursos";
-import Mentoria from "./mentoria";
+import Cursos from "./components/cursos";
+import Mentoria from "./components/mentoria";
 
 export default function Aprenda() {
   return (
