@@ -1,11 +1,12 @@
-import { Procedimentos } from "@/app/home/components/procedimentos";
-import { Depoimentos } from "./home/components/depoimentos";
-import { Avaliacoes } from "./home/components/avaliacoes";
-import { EmblaCarousel } from "./home/components/carrossel";
-import { Local } from "./home/components/espaco";
-import { Cursos } from "./home/components/cursos";
-import Location from "@/components/location";
 import { FaixaContato } from "@/components/button";
+import { Cursos } from "./home/components/cursos";
+import { EmblaCarousel } from "./home/carrossel";
+import { Avaliacoes } from "./home/components/avaliacoes";
+import { Depoimentos } from "./home/components/depoimentos";
+import { Local } from "./home/components/espaco";
+import { Procedimentos } from "./home/components/procedimentos";
+import Location from "@/components/location";
+
 
 export default function Home() {
   return (
