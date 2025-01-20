@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { FaAward, FaGraduationCap, FaTimes } from "react-icons/fa";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { FaixaContato } from "@/components/button";
 
 interface Profissional {

@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Carousel } from "primereact/carousel";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
