@@ -1,11 +1,11 @@
-import { FaixaContato } from "./front-end/pages/components/button";
-import { Procedimentos } from "@/app/front-end/pages/home/components/homeSections/procedimentos";
-import { Depoimentos } from "./front-end/pages/home/components/homeSections/depoimentos";
-import { Avaliacoes } from "./front-end/pages/home/components/homeSections/avaliacoes";
-import { EmblaCarousel } from "./front-end/pages/home/components/carrossel";
-import { Local } from "./front-end/pages/home/components/homeSections/espaco";
-import { Cursos } from "./front-end/pages/home/components/homeSections/cursos";
-import Location from "./front-end/pages/components/location";
+import { Procedimentos } from "@/app/home/components/procedimentos";
+import { Depoimentos } from "./home/components/depoimentos";
+import { Avaliacoes } from "./home/components/avaliacoes";
+import { EmblaCarousel } from "./home/components/carrossel";
+import { Local } from "./home/components/espaco";
+import { Cursos } from "./home/components/cursos";
+import Location from "@/components/location";
+import { FaixaContato } from "@/components/button";
 
 export default function Home() {
   return (

@@ -1,8 +1,8 @@
-import { Header } from "@/app/front-end/header";
+import { Header } from "@/components/header";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { Rodape } from "@/app/front-end/footer";
+import { Rodape } from "@/components/footer";
 
 const poppins = Poppins({ weight: ["300", "400", "700"], subsets: ["latin"] });
 

@@ -10,7 +10,7 @@ import {
   FaHandHoldingWater,
   FaBandAid,
 } from "react-icons/fa";
-import { FaixaContato } from "../components/button";
+import { FaixaContato } from "@/components/button";
 
 const especialidades = [
   {

@@ -23,7 +23,7 @@ const navigation = [
   { name: "Home", href: "/", current: true, icon: <FaHome /> },
   {
     name: "Profissionais",
-    href: "/front-end/pages/profissionais",
+    href: "../profissionais",
     current: false,
     icon: <FaUserMd />,
   },
@@ -32,30 +32,30 @@ const navigation = [
     current: false,
     icon: <FaClinicMedical />,
     submenuItems: [
-      { name: "Sobre", href: "/front-end/pages/clinica/sobre" },
-      { name: "Espaço", href: "/front-end/pages/clinica/espaco" },
-      { name: "Biossegurança", href: "/front-end/pages/clinica/biosec" },
+      { name: "Sobre", href: "../clinica/sobre" },
+      { name: "Espaço", href: "../clinica/espaco" },
+      { name: "Biossegurança", href: "../clinica/biosec" },
     ],
   },
   {
     name: "Especialidades",
-    href: "/front-end/pages/especialidades",
+    href: "../especialidades",
     current: false,
     icon: <FaBriefcaseMedical />,
   },
   {
     name: "Aprenda conosco",
-    href: "/front-end/pages/aprenda",
+    href: "../aprenda",
     current: false,
     icon: <FaBookOpen />,
   },
   {
     name: "Produtos",
-    href: "/front-end/pages/produtos",
+    href: "../produtos",
     current: false,
     icon: <FaShoppingCart />,
   },
-  { name: "Contato", href: "/front-end/pages/contato", current: false, icon: <FaPhone /> },
+  { name: "Contato", href: "../contato", current: false, icon: <FaPhone /> },
 ];
 
 export function Header() {
