@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Rodape } from "@/components/footer";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
 
 const poppins = Poppins({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
@@ -57,7 +58,9 @@ export default function RootLayout({
         <Header />
         <main className="w-screen h-full pt-20">{children}</main>
         <Rodape />
+        {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
