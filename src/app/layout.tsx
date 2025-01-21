@@ -56,11 +56,12 @@ export default function RootLayout({
 
       <body className={`${poppins.className} overflow-x-hidden flex flex-col`}>
         <Header />
-        <main className="w-screen h-full pt-20">{children}</main>
+        <main className="w-screen h-full pt-20">
+          {children}
+          <SpeedInsights />
+          <Analytics />
+          </main>
         <Rodape />
-        {children}
-        <SpeedInsights />
-        <Analytics />
       </body>
     </html>
   );
