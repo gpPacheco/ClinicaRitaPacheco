@@ -57,6 +57,7 @@ export default function RootLayout({
         <Header />
         <main className="w-screen h-full pt-20">{children}</main>
         <Rodape />
+        <SpeedInsights />
       </body>
     </html>
   );
