@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Rodape } from "@/components/footer";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const poppins = Poppins({ weight: ["300", "400", "700"], subsets: ["latin"] });
 

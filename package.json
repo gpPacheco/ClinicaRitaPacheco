@@ -15,6 +15,7 @@
     "@ionic/core": "^7.6.3",
     "@material-tailwind/react": "^2.1.9",
     "@nextui-org/react": "^2.2.9",
+    "@vercel/speed-insights": "^1.1.0",
     "alpinejs": "^3.13.4",
     "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.2",
