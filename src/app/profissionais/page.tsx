@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { FaAward, FaGraduationCap, FaTimes } from "react-icons/fa";
 import Image from "next/image";
-import { FaixaContato } from "../components/button";
+import { FaixaContato } from "../../components/button";
 
 interface Profissional {
   id: number;
