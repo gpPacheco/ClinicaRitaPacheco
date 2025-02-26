@@ -53,7 +53,7 @@ export const EmblaCarousel = () => {
   };
 
   return (
-    <div className="embla w-ful shadow-md" ref={emblaRef}>
+    <div className="embla w-full h- shadow-md" ref={emblaRef}>
       <div className="embla__container">
         {imgs.map((item, index) => (
           <button
