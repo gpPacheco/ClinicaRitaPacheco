@@ -8,13 +8,13 @@ export function LoginForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Aqui você adicionaria a lógica de autenticação
+    // Adiconar lógica de autenticação
     console.log("Login submetido");
   };
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-      <div className="rounded-md shadow-sm -space-y-px">
+      <div className="rounded-md shadow-sm -space-y-px  bg-[#f9f9f9] p-6">
 
             {/* E-mail */}
         <div>
