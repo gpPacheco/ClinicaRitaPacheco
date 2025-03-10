@@ -1,4 +1,4 @@
-import { FaixaContato } from "@/components/button";
+import { FaixaContato } from "@/components/faixaContato";
 import { Cursos } from "./home/components/cursos";
 import { EmblaCarousel } from "./home/carrossel";
 import { Avaliacoes } from "./home/components/avaliacoes";

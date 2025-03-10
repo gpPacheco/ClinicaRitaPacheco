@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useCallback, memo } from "react";
 import { FaAward, FaGraduationCap, FaTimes } from "react-icons/fa";
 import Image from "next/legacy/image";
-import { FaixaContato } from "@/components/button";
+import { FaixaContato } from "@/components/faixaContato";
 
 interface Profissional {
   id: number;
@@ -31,17 +31,17 @@ const profissionaisData: Profissional[] = [
   },
 ];
 
-export default function Profissionais() {
+const Profissionais = () => {
   const [selectedProfissional, setSelectedProfissional] =
     useState<Profissional | null>(null);
 
-  const handleCardClick = (profissional: Profissional) => {
+  const handleCardClick = useCallback((profissional: Profissional) => {
     setSelectedProfissional(profissional);
-  };
+  }, []);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setSelectedProfissional(null);
-  };
+  }, []);
 
   return (
     <div className="px-4 py-10 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
@@ -74,6 +74,7 @@ export default function Profissionais() {
                   alt={profissional.nome}
                   className="object-cover"
                   layout="fill"
+                  priority
                 />
               </div>
             </div>
@@ -149,11 +150,15 @@ export default function Profissionais() {
       )}
 
       <div className="my-4 ">
-        <FaixaContato />
+        <MemoizedFaixaContato />
       </div>
     </div>
   );
-}
+};
+
+const MemoizedFaixaContato = memo(FaixaContato);
+
+export default Profissionais;
 
 //   ______    ____
 //  /\    /\  | "o |
