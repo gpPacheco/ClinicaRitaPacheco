@@ -14,3 +14,9 @@ Com a implementação de tecnologias inovadoras, o site proporciona agora:
 - **Next.js**
 - **Tailwind CSS**
 - **Outros Frameworks e Bibliotecas**
+
+## Visualização mobile
+<img src="/public/readme1.png">
+
+## Visualização desktop
+<img src="/public/readme2.png">
