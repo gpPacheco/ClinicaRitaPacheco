@@ -1,5 +1,4 @@
-"use client";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import {
   FaWhatsapp,
   FaInstagram,
@@ -15,6 +14,7 @@ export function Rodape() {
     <footer className="bg-gradient-to-r from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0]">
       <div className="max-w-screen-xl px-4 py-3 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+          {/* Logo e Redes Sociais */}
           <div>
             <a href="/" target="_self" className="flex justify-center">
               <Image
@@ -22,6 +22,7 @@ export function Rodape() {
                 alt="Logo"
                 width={150}
                 height={150}
+                priority // Garante que a imagem seja carregada com prioridade
                 style={{ maxWidth: "100%", height: "auto" }}
               />
             </a>
@@ -73,17 +74,21 @@ export function Rodape() {
               </a>
             </div>
           </div>
+
+          {/* Links Rápidos, Contato, Saiba Mais e Localização */}
           <div className="grid grid-cols-2 gap-3 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4 mt-3">
+            {/* Links Rápidos */}
             <div>
               <p className="font-medium">Links Rápidos</p>
               <nav className="flex flex-col mt-2 space-y-2 text-sm text-gray-800">
                 <a className="hover:opacity-75" href="/clinica/sobre">
-                  {" "}
-                  Sobre{" "}
+                  Sobre
                 </a>
                 <a className="hover:opacity-75"> Reportagens </a>
               </nav>
             </div>
+
+            {/* Contato */}
             <div>
               <p className="font-medium">Contato</p>
               <nav className="flex flex-col mt-2 space-y-2 text-sm text-gray-800">
@@ -102,22 +107,23 @@ export function Rodape() {
                     (16) 3720-5691
                   </span>
                 </a>
-                <a className="hover:opacity-75"> </a>
               </nav>
             </div>
+
+            {/* Saiba Mais */}
             <div>
               <p className="font-medium">Saiba Mais</p>
               <nav className="flex flex-col mt-2 space-y-2 text-sm text-gray-800">
                 <a className="hover:opacity-75" href="/mentoria">
-                  {" "}
-                  Mentorias{" "}
+                  Mentorias
                 </a>
                 <a className="hover:opacity-75" href="/cursos">
-                  {" "}
-                  Cursos{" "}
+                  Cursos
                 </a>
               </nav>
             </div>
+
+            {/* Localização */}
             <div>
               <p className="font-medium">Localização</p>
               <nav className="flex flex-col mt-2 space-y-2 text-sm text-gray-800">
@@ -141,8 +147,10 @@ export function Rodape() {
             </div>
           </div>
         </div>
+
+        {/* Créditos */}
         <p className="mt-4 text-xs text-zinc-950 text-center">
-        <a
+          <a
             className="hover:text-gray-600 text-zinc-950 text-ml font-bold underline"
             href="/"
           >
@@ -162,7 +170,6 @@ export function Rodape() {
     </footer>
   );
 }
-
 //   ______    ____
 //  /\    /\  | "o |
 // |  \/\/  |/ ___\|
