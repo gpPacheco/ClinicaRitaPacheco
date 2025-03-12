@@ -10,7 +10,7 @@ import {
   FaClinicMedical,
   FaHome,
   FaPhone,
-  FaShoppingCart,
+  // FaShoppingCart,
   FaUserMd,
 } from "react-icons/fa";
 import BurgerButton from "./burgerButton";
@@ -49,12 +49,12 @@ const navigation = [
     current: false,
     icon: <FaBookOpen />,
   },
-  {
-    name: "Produtos",
-    href: "../produtos",
-    current: false,
-    icon: <FaShoppingCart />,
-  },
+  // {
+  //   name: "Produtos",
+  //   href: "../produtos",
+  //   current: false,
+  //   icon: <FaShoppingCart />,
+  // },
   { name: "Contato", href: "../contato", current: false, icon: <FaPhone /> },
 ];
 
