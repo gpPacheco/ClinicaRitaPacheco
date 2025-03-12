@@ -1,7 +1,7 @@
-"use client";
+"use client"; // Marca o componente como Client Component
 import React, { useState, useCallback, memo } from "react";
 import { FaAward, FaGraduationCap, FaTimes } from "react-icons/fa";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { FaixaContato } from "@/components/faixaContato";
 
 interface Profissional {
@@ -13,6 +13,7 @@ interface Profissional {
   formacao: string[];
 }
 
+// Dados estáticos (pode ser movido para um arquivo JSON ou buscado via API)
 const profissionaisData: Profissional[] = [
   {
     id: 1,
@@ -74,7 +75,7 @@ const Profissionais = () => {
                   alt={profissional.nome}
                   className="object-cover"
                   layout="fill"
-                  priority
+                  priority // Garante que a imagem seja carregada com prioridade
                 />
               </div>
             </div>
@@ -159,7 +160,6 @@ const Profissionais = () => {
 const MemoizedFaixaContato = memo(FaixaContato);
 
 export default Profissionais;
-
 //   ______    ____
 //  /\    /\  | "o |
 // |  \/\/  |/ ___\|
