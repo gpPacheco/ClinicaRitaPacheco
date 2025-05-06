@@ -33,7 +33,7 @@ const socialLinks = [
   },
   {
     name: "TikTok",
-    href: "https://www.tiktok.com/@ritapacheco",
+    href: "https://www.tiktok.com/@ritafpachecoo",
     icon: <FaTiktok />,
   },
 ];
