@@ -38,16 +38,16 @@ export function Local() {
   };
 
   const carouselEspacoGeral = [
-    { id: "1", image: "/sobre/1.jpg", title: "Recepção Aconchegante" },
-    { id: "2", image: "/sobre/3.jpg", title: "Recepção Aconchegante" },
-    { id: "3", image: "/spa/9.jpg", title: "Área de Relaxamento" },
+    { id: "1", image: "/sobre/1.jpg", title: "Recepção" },
+    { id: "2", image: "/sobre/3.jpg", title: "Recepção" },
+    { id: "3", image: "/spa/9.jpg", title: "Relaxamento" },
     { id: "4", image: "/spa/4.jpg", title: "Spa" },
-    { id: "5", image: "/sobre/21.jpg", title: "Spa dos pés" },
-    { id: "6", image: "/sobre/10.jpg", title: "Sala de atendimento"},
-    { id: "7", image: "/podologia_infantil/2.jpg", title: "Sala infantil" },
+    { id: "5", image: "/sobre/21.jpg", title: "Spa dos Pés" },
+    { id: "6", image: "/sobre/10.jpg", title: "Atendimento"},
+    { id: "7", image: "/podologia_infantil/2.jpg", title: "Infantil" },
     { id: "8", image: "/spa/7.jpg", title: "Spa" },
     { id: "9", image: "/spa/11.jpg", title: "Spa" },
-    { id: "10", image: "/sobre/9.jpg", title: "Área de Relaxamento" },
+    { id: "10", image: "/sobre/9.jpg", title: "Relaxamento" },
   ];
 
   return (
@@ -68,7 +68,7 @@ export function Local() {
           </Link>
         </h1>
 
-        <div className="w-full px-4">
+        <div className="w-full px-10">
           <Carousel
             value={carouselEspacoGeral}
             numVisible={1}
@@ -80,13 +80,13 @@ export function Local() {
             prevIcon={
               <ChevronLeft
                 size={40}
-                className="text-white hover:text-orange-300 transition duration-200 bg-black/30 rounded-full p-2"
+                className="text-black/30 hover:text-orange-300 transition duration-200 p-0"
               />
             }
             nextIcon={
               <ChevronRight
                 size={40}
-                className="text-white hover:text-orange-300 transition duration-200 bg-black/30 rounded-full p-2"
+                className="text-black/30 hover:text-orange-300 transition duration-200 p-0"
               />
             }
           />
