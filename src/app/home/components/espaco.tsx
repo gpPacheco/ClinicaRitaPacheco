@@ -25,7 +25,7 @@ export function Local() {
             alt={`Imagem ${carousel.id}`}
             width={800}
             height={500}
-            className="object-cover w-full h-96 transition duration-700 group-hover:scale-105"
+            className="object-cover w-full h-[28rem] md:h-96 transition duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-6">
             <h3 className="text-white text-2xl font-light font-playfair">
@@ -67,8 +67,28 @@ export function Local() {
             espaço
           </Link>
         </h1>
-
-        <div className="w-full px-10">
+  
+        <div className="w-full px-0 sm:px-6 relative">
+          {/* Absolute navs only in mobile */}
+          <div className="absolute inset-y-0 left-0 flex items-center z-10 md:hidden pl-2">
+            <ChevronLeft
+              size={40}
+              className="text-white/70 hover:text-orange-300 transition duration-200"
+              onClick={() =>
+                document.querySelector(".custom-carousel .p-carousel-prev")?.dispatchEvent(new Event("click", { bubbles: true }))
+              }
+            />
+          </div>
+          <div className="absolute inset-y-0 right-0 flex items-center z-10 md:hidden pr-2">
+            <ChevronRight
+              size={40}
+              className="text-white/70 hover:text-orange-300 transition duration-200"
+              onClick={() =>
+                document.querySelector(".custom-carousel .p-carousel-next")?.dispatchEvent(new Event("click", { bubbles: true }))
+              }
+            />
+          </div>
+  
           <Carousel
             value={carouselEspacoGeral}
             numVisible={1}
@@ -80,18 +100,18 @@ export function Local() {
             prevIcon={
               <ChevronLeft
                 size={40}
-                className="text-black/30 hover:text-orange-300 transition duration-200 p-0"
+                className="text-black/30 hover:text-orange-300 transition duration-200 p-0 hidden md:block"
               />
             }
             nextIcon={
               <ChevronRight
                 size={40}
-                className="text-black/30 hover:text-orange-300 transition duration-200 p-0"
+                className="text-black/30 hover:text-orange-300 transition duration-200 p-0 hidden md:block"
               />
             }
           />
         </div>
-
+  
         <motion.div 
           whileHover={{ scale: 1.05 }}
           className="text-center mt-10"
