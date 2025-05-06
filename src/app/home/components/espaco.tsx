@@ -2,89 +2,108 @@
 import Image from "next/legacy/image";
 import { Carousel } from "primereact/carousel";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function Local() {
   type CarouselItem = {
     id: string;
     image: string;
+    title: string;
   };
 
   const carouselTemplate = (carousel: CarouselItem) => {
     return (
-      <a
-        href="/clinica/espaco"
-        className="carousel-item flex justify-center"
+      <motion.div 
+        whileHover={{ scale: 1.02 }}
+        className="carousel-item flex justify-center px-2"
         key={carousel.id}
       >
-        <div className="carousel-image">
+        <div className="relative rounded-xl overflow-hidden shadow-xl group">
           <Image
             src={carousel.image}
             alt={`Imagem ${carousel.id}`}
             width={800}
             height={500}
-            className="object-cover rounded-lg shadow-lg"
+            className="object-cover w-full h-96 transition duration-700 group-hover:scale-105"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-6">
+            <h3 className="text-white text-2xl font-light font-playfair">
+              {carousel.title}
+            </h3>
+          </div>
         </div>
-      </a>
+      </motion.div>
     );
   };
 
   const carouselEspacoGeral = [
-    { id: "1", image: "/sobre/1.jpg" },
-    { id: "2", image: "/sobre/3.jpg" },
-    { id: "3", image: "/spa/9.jpg" },
-    { id: "4", image: "/spa/4.jpg" },
-    { id: "5", image: "/sobre/21.jpg" },
-    { id: "6", image: "/sobre/10.jpg" },
-    { id: "7", image: "/podologia_infantil/2.jpg" },
-    { id: "8", image: "/spa/7.jpg" },
-    { id: "9", image: "/spa/11.jpg" },
-    { id: "10", image: "/sobre/9.jpg" },
+    { id: "1", image: "/sobre/1.jpg", title: "Recepção Aconchegante" },
+    { id: "2", image: "/sobre/3.jpg", title: "Recepção Aconchegante" },
+    { id: "3", image: "/spa/9.jpg", title: "Área de Relaxamento" },
+    { id: "4", image: "/spa/4.jpg", title: "Spa" },
+    { id: "5", image: "/sobre/21.jpg", title: "Spa dos pés" },
+    { id: "6", image: "/sobre/10.jpg", title: "Sala de atendimento"},
+    { id: "7", image: "/podologia_infantil/2.jpg", title: "Sala infantil" },
+    { id: "8", image: "/spa/7.jpg", title: "Spa" },
+    { id: "9", image: "/spa/11.jpg", title: "Spa" },
+    { id: "10", image: "/sobre/9.jpg", title: "Área de Relaxamento" },
   ];
 
   return (
-    <div className="px-1 py-5 bg-gradient-to-b from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0] flex flex-col items-center">
-      <h1 className="text-3xl font-light text-gray-800 text-center mb-5">
-        Conheça Nosso{" "}
-        <a
-          href="/clinica/espaco"
-          className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 underline hover:text-orange-700 transition-colors duration-300"
-        >
-          Espaço
-        </a>
-      </h1>
+    <div className="px-1 py-16 bg-gradient-to-b from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0]">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="container mx-auto"
+      >
+        <h1 className="text-3xl md:text-4xl font-light text-center mb-12 font-playfair text-gray-800">
+          Conheça nosso{" "}
+          <Link
+            href="/clinica/espaco"
+            className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 hover:text-orange-700 transition-colors duration-300"
+          >
+            espaço
+          </Link>
+        </h1>
 
-      <div className="w-full">
-        <Carousel
-          value={carouselEspacoGeral}
-          numVisible={1}
-          numScroll={1}
-          circular
-          autoplayInterval={3000}
-          itemTemplate={carouselTemplate}
-          className="mx-auto max-w-[800px]"
-          prevIcon={
-            <ChevronLeft
-              size={30}
-              className="text-zinc-500 hover:text-zinc-700 transition duration-200"
-              style={{ cursor: "pointer" }}
-            />
-          }
-          nextIcon={
-            <ChevronRight
-              size={30}
-              className="text-zinc-500 hover:text-zinc-700 transition duration-200"
-              style={{ cursor: "pointer" }}
-            />
-          }
-        />
-      </div>
+        <div className="w-full px-4">
+          <Carousel
+            value={carouselEspacoGeral}
+            numVisible={1}
+            numScroll={1}
+            circular
+            autoplayInterval={5000}
+            itemTemplate={carouselTemplate}
+            className="custom-carousel mx-auto"
+            prevIcon={
+              <ChevronLeft
+                size={40}
+                className="text-white hover:text-orange-300 transition duration-200 bg-black/30 rounded-full p-2"
+              />
+            }
+            nextIcon={
+              <ChevronRight
+                size={40}
+                className="text-white hover:text-orange-300 transition duration-200 bg-black/30 rounded-full p-2"
+              />
+            }
+          />
+        </div>
+
+        <motion.div 
+          whileHover={{ scale: 1.05 }}
+          className="text-center mt-10"
+        >
+          <Link
+            href="/clinica/espaco"
+            className="inline-block px-8 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full font-medium font-montserrat shadow-lg hover:shadow-xl transition"
+          >
+            Visite Virtualmente
+          </Link>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
-
-//   ______    ____
-//  /\    /\  | "o |
-// |  \/\/  |/ ___\|
-// |gpPacheco_/
-// /_/_/ /_/_/
