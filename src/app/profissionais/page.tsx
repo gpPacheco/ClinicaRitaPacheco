@@ -1,7 +1,8 @@
-"use client"; // Marca o componente como Client Component
-import React, { useState, useCallback, memo } from "react";
-import { FaAward, FaGraduationCap, FaTimes } from "react-icons/fa";
+"use client";
+import React, { useState, useCallback, memo, useEffect } from "react";
+import { FaAward, FaGraduationCap, FaTimes, FaChevronRight } from "react-icons/fa";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaixaContato } from "@/components/faixaContato";
 
 interface Profissional {
@@ -13,14 +14,12 @@ interface Profissional {
   formacao: string[];
 }
 
-// Dados estáticos (pode ser movido para um arquivo JSON ou buscado via API)
 const profissionaisData: Profissional[] = [
   {
     id: 1,
     nome: "Rita Pacheco",
     especialidade: "Podóloga",
-    descricao:
-      "Podóloga desde 2010 (Senac Franca) e palestrante em Podologia Gerôntica e Calçado para Diabetes.",
+    descricao: "Podóloga desde 2010 (Senac Franca) especialista em: Podologia Gerôntica, Diabetes, Laserterapia, Podologia Pediatrica e Podologia Esportiva",
     especializacoes: [
       "Atendimento ao Portador de Diabetes Miellitus (2015, Senac Aclimação -SP)",
       "Podologia Geriátrica, Esportiva e Laserterapia para Onicomicose",
@@ -33,8 +32,12 @@ const profissionaisData: Profissional[] = [
 ];
 
 const Profissionais = () => {
-  const [selectedProfissional, setSelectedProfissional] =
-    useState<Profissional | null>(null);
+  const [selectedProfissional, setSelectedProfissional] = useState<Profissional | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleCardClick = useCallback((profissional: Profissional) => {
     setSelectedProfissional(profissional);
@@ -44,115 +47,147 @@ const Profissionais = () => {
     setSelectedProfissional(null);
   }, []);
 
-  return (
-    <div className="px-4 py-10 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]">
-      <h2 className="text-3xl font-light text-gray-800 sm:text-4xl lg:text-5xl text-center mb-5">
-        Conheça a{" "}
-        <span className="block w-full font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700 lg:inline">
-          Profissional
-        </span>{" "}
-        da clínica!
-      </h2>
-      <p className="mb-10 mt-2 text-lg text-gray-800 text-center">
-        Com{" "}
-        <span className="w-full font-light bg-clip-text bg-gradient-to-r text-orange-500 lg:inline">
-          mais de 15 anos
-        </span>{" "}
-        de experiência!
-      </p>
+  if (!isMounted) return null;
 
-      <div className="grid grid-cols-1 md:grid-cols-1 gap-10 justify-items-center">
-        {profissionaisData.map((profissional) => (
-          <div
-            key={profissional.id}
-            className="relative w-72 h-96 text-center shadow-xl rounded-lg overflow-hidden cursor-pointer transform transition duration-500 hover:scale-105"
-            onClick={() => handleCardClick(profissional)}
+  return (
+    <div className="px-4 py-12 md:py-16 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] min-h-screen flex flex-col">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="container mx-auto flex-grow flex flex-col items-center justify-center"
+      >
+        <div className="text-center mb-12 w-full">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-4">
+            Conheça a{" "}
+            <span className="font-light text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700">
+              Profissional
+            </span>{" "}
+            da clínica!
+          </h2>
+          <p className="text-lg md:text-xl text-gray-700">
+            Com <span className="font-medium text-orange-600">mais de 15 anos</span> de experiência!
+          </p>
+        </div>
+
+        {/* Container centralizado com apenas um card */}
+        <div className="w-full flex justify-center">
+          <motion.div
+            whileHover={{ y: -10 }}
+            whileTap={{ scale: 0.98 }}
+            className="relative w-full max-w-sm cursor-pointer group"
+            onClick={() => handleCardClick(profissionaisData[0])}
           >
-            <div className="absolute inset-0 bg-cover bg-center z-0">
-              <div className="relative w-full h-full">
-                <Image
-                  src="/perfil.jpg"
-                  alt={profissional.nome}
-                  className="object-cover"
-                  layout="fill"
-                  priority // Garante que a imagem seja carregada com prioridade
-                />
+            <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg relative">
+              <Image
+                src="/perfil.jpg"
+                alt={profissionaisData[0].nome}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover transition duration-500 group-hover:scale-105"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-col justify-end items-center text-center p-6">
+                <h3 className="text-2xl font-medium text-white mb-1">{profissionaisData[0].nome}</h3>
+                <p className="text-orange-200 mb-4">{profissionaisData[0].especialidade}</p>
+                <div className="flex items-center justify-center text-white/90 group-hover:text-white transition-colors">
+                  <span className="mr-2">Ver detalhes</span>
+                  <FaChevronRight className="transition-transform group-hover:translate-x-1" />
+                </div>
               </div>
             </div>
-            <div className="absolute inset-0 hover:bg-black/50 transition duration-300 bg-opacity-50 z-10 flex flex-col justify-end p-5">
-              <h2 className="text-2xl font-semibold text-white">
-                {profissional.nome}
-              </h2>
-              <p className="text-lg text-gray-300">
-                {profissional.especialidade}
-              </p>
-              <p className="mt-2 text-sm text-white underline">
-                Clique para saber mais
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+          </motion.div>
+        </div>
 
-      {/* Modal */}
-      {selectedProfissional && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50"
+<AnimatePresence>
+  {selectedProfissional && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto"
+      onClick={handleCloseModal}
+    >
+      <motion.div
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.9, y: 20 }}
+        className="bg-white rounded-xl shadow-2xl relative max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10 bg-white rounded-full p-1 shadow"
           onClick={handleCloseModal}
         >
-          <div
-            className="bg-[#fdf6f1] p-4 rounded-xl shadow-lg relative max-w-md w-full transform transition duration-500 scale-100 text-center mx-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-              onClick={handleCloseModal}
-            >
-              <FaTimes className="text-xl" />
-            </button>
-            <h2 className="text-2xl font-semibold mb-3 text-center text-[#7b4f38]">
+          <FaTimes className="text-xl" />
+        </button>
+
+        <div className="md:flex">
+          <div className="md:w-1/3 relative h-48 md:h-auto">
+            <Image
+              src="/perfil.jpg"
+              alt={selectedProfissional.nome}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover brightness-90"
+              priority
+            />
+          </div>
+
+          <div className="p-6 md:w-2/3 text-center md:text-left overflow-y-auto">
+            <h2 className="text-2xl md:text-3xl font-medium mb-2 text-[#7b4f38]">
               {selectedProfissional.nome}
             </h2>
-            <p className="text-lg font-medium text-center text-[#a57858]">
-              Especialidade: {selectedProfissional.especialidade}
+            <p className="text-lg font-medium text-orange-600 mb-4">
+              {selectedProfissional.especialidade}
             </p>
-            <p className="mt-4 text-[#6f4f3f]">
-              {selectedProfissional.descricao}
-            </p>
-            <p className="mt-4 text-[#6f4f3f]">
-              <FaAward
-                className="mr-2 text-[#7b4f38] inline-block align-text-top"
-                style={{ verticalAlign: "middle" }}
-              />
-              <span className="font-semibold">Especializações:</span> <br />
-              {selectedProfissional.especializacoes.map(
-                (especializacao, idx) => (
-                  <span key={idx}>
-                    • {especializacao} <br />
-                  </span>
-                )
-              )}
-            </p>
+            <p className="text-gray-700 mb-6">{selectedProfissional.descricao}</p>
 
-            <p className="mt-4 text-[#6f4f3f]">
-              <FaGraduationCap
-                className="mr-2 text-[#7b4f38] inline-block align-text-top"
-                style={{ verticalAlign: "middle" }}
-              />
-              <span className="font-semibold">Formação:</span> <br />
-              {selectedProfissional.formacao.map((formacao, idx) => (
-                <span key={idx}>
-                  • {formacao} <br />
-                </span>
-              ))}
-            </p>
+            <div className="space-y-6">
+              <div>
+                <div className="flex items-center mb-2 justify-center md:justify-start">
+                  <FaAward className="text-orange-500 mr-2" />
+                  <h3 className="font-semibold text-gray-800">Especializações</h3>
+                </div>
+                <ul className="space-y-2 pl-6 md:pl-8 text-left">
+                  {selectedProfissional.especializacoes.map((especializacao, idx) => (
+                    <li key={idx} className="text-gray-700 list-disc">
+                      {especializacao}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <div className="flex items-center mb-2 justify-center md:justify-start">
+                  <FaGraduationCap className="text-orange-500 mr-2" />
+                  <h3 className="font-semibold text-gray-800">Formação</h3>
+                </div>
+                <ul className="space-y-2 pl-6 md:pl-8 text-left">
+                  {selectedProfissional.formacao.map((formacao, idx) => (
+                    <li key={idx} className="text-gray-700 list-disc">
+                      {formacao}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-      )}
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
 
-      <div className="my-4 ">
-        <MemoizedFaixaContato />
-      </div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="mt-16 w-full"
+        >
+          <MemoizedFaixaContato />
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
