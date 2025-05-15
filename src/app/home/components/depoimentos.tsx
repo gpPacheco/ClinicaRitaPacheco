@@ -1,4 +1,7 @@
+"use client"
 import { useState } from "react";
+import LiteYouTubeEmbed from "react-lite-youtube-embed";
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
 export function Depoimentos() {
   const depoimentos = [
@@ -12,6 +15,12 @@ export function Depoimentos() {
     },
   ];
 
+  // Função para extrair o ID do vídeo do YouTube
+  const getYouTubeID = (url: string) => {
+    const match = url.match(/\/embed\/([a-zA-Z0-9_-]{11})/);
+    return match ? match[1] : "";
+  };
+
   return (
     <div className="py-6 bg-gradient-to-b from-[#f7f0ea] via-[#dbbeb0] to-[#f7f0ea] p-3">
       <div className="container mx-auto text-center">
@@ -19,22 +28,22 @@ export function Depoimentos() {
           O que dizem nossos pacientes
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {depoimentos.map((depoimento) => (
-            <div
-              key={depoimento.id}
-              className="relative rounded-md overflow-hidden shadow-md"
-            >
-              <div className="pt-[56.25%]">
-                <iframe loading="lazy"
-                  className="absolute top-0 left-0 w-full h-full"
-                  src={depoimento.videoUrl}
+          {depoimentos.map((depoimento) => {
+            const videoId = getYouTubeID(depoimento.videoUrl);
+            return (
+              <div
+                key={depoimento.id}
+                className="relative rounded-md overflow-hidden shadow-md"
+              >
+                <LiteYouTubeEmbed
+                  id={videoId}
                   title={`Depoimento ${depoimento.id}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                  poster="maxresdefault" // Opcional: define thumbnail de qualidade
+                  wrapperClass="yt-lite w-full aspect-video"
+                />
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

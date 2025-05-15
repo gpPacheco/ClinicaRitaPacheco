@@ -22,7 +22,7 @@ export function Rodape() {
                 alt="Logo"
                 width={150}
                 height={150}
-                priority // Garante que a imagem seja carregada com prioridade
+                // priority // Garante que a imagem seja carregada com prioridade
                 style={{ maxWidth: "100%", height: "auto" }}
               />
             </a>
@@ -84,7 +84,7 @@ export function Rodape() {
                 <a className="hover:opacity-75" href="/clinica/sobre">
                   Sobre
                 </a>
-                <a className="hover:opacity-75"> Reportagens </a>
+                {/* <a className="hover:opacity-75"> Reportagens </a> */}
               </nav>
             </div>
 
@@ -114,10 +114,10 @@ export function Rodape() {
             <div>
               <p className="font-medium">Saiba Mais</p>
               <nav className="flex flex-col mt-2 space-y-2 text-sm text-gray-800">
-                <a className="hover:opacity-75" href="/mentoria">
+                <a className="hover:opacity-75" href="/aprenda">
                   Mentorias
                 </a>
-                <a className="hover:opacity-75" href="/cursos">
+                <a className="hover:opacity-75" href="/aprenda">
                   Cursos
                 </a>
               </nav>
