@@ -5,14 +5,15 @@ import Autoplay from "embla-carousel-autoplay";
 import "./carousel.css";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 export const EmblaCarousel = () => {
   const imgs: { url: string; link: string }[] = [
-    { url: "/main-banner-f.jpg", link: "" },
-    { url: "/main-banner-g.jpg", link: "" },
-    { url: "/banner-podologia-esportiva.jpg", link: "" },
-    { url: "/banner-podologia-geriatrica.jpg", link: "" },
-    { url: "/banner-podologia-infantil.jpg", link: "" },
+    { url: "/main-banner-f.webp", link: "" },
+    { url: "/main-banner-g.webp", link: "" },
+    { url: "/banner-podologia-esportiva.webp", link: "" },
+    { url: "/banner-podologia-geriatrica.webp", link: "" },
+    { url: "/banner-podologia-infantil.webp", link: "" },
   ];
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
@@ -53,30 +54,24 @@ export const EmblaCarousel = () => {
   };
 
   return (
-    <div className="embla w-full h- shadow-md" ref={emblaRef}>
+    <div className="embla w-full h-full shadow-md" ref={emblaRef}>
       <div className="embla__container">
         {imgs.map((item, index) => (
-          <button
-            onClick={() => navigate(item.link)}
-            key={index}
-            className="embla__slide"
-            style={{
-              backgroundImage: `url(${item.url})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              transition: "opacity 0.2s ease", // Transição suave
-              opacity: 0.9, // Começa com menor opacidade
-            }}
-            onLoad={() => {
-              // Torna a imagem completamente visível após o carregamento
-              const imgElement = document.querySelector(
-                `.embla__slide:nth-child(${index + 1})`
-              );
-              if (imgElement) {
-                (imgElement as HTMLElement).style.opacity = "1"; // Opacidade completa ao carregar
-              }
-            }}
-          ></button>
+          <div key={index} className="embla__slide">
+            <button
+              onClick={() => navigate(item.link)}
+              className="w-full h-full relative"
+            >
+              <Image
+                src={item.url}
+                alt={`Banner ${index + 1}`}
+                fill
+                className="object-cover object-center"
+                quality={85}
+                priority={index === 0} // Prioriza o carregamento da primeira imagem
+              />
+            </button>
+          </div>
         ))}
       </div>
       <button
@@ -95,7 +90,6 @@ export const EmblaCarousel = () => {
         <ChevronRight size={50} />
       </button>
 
-      {/* Bolinhas de Navegação */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-[1] flex space-x-2">
         {imgs.map((_, index) => (
           <button
