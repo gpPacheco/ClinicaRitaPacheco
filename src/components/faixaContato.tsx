@@ -127,24 +127,24 @@ export function FaixaContato() {
   return (
     <section className="flex flex-col items-center justify-center py-16" aria-label="Agendamento de consultas">
       <div className="text-center mb-12">
-        <div className="text-5xl md:text-6xl font-bold mb-6 text-blue-600">
+        <div className="text-5xl md:text-6xl font-dancing font-bold mb-6 text-comfort-accent">
           Agende sua consulta
         </div>
-        <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">Cuidado especial para seus pés</h2>
-        <p className="font-light text-gray-600 leading-relaxed text-lg max-w-2xl mx-auto mb-8">
+        <h2 className="text-3xl md:text-4xl font-poppins font-semibold text-comfort-text mb-6">Cuidado especial para seus pés</h2>
+        <p className="font-poppins font-light text-comfort-text-muted leading-relaxed text-lg max-w-2xl mx-auto mb-8">
           Escolha a data ideal para seu atendimento personalizado. Nossa equipe está pronta para oferecer o melhor
           cuidado em um ambiente acolhedor e relaxante.
         </p>
         <div className="flex items-center justify-center gap-2 mb-8">
-          <Heart className="text-blue-600 animate-pulse" size={20} />
-          <span className="font-light text-gray-600">Mais de 1000 clientes satisfeitos</span>
-          <Heart className="text-blue-600 animate-pulse" size={20} />
+          <Heart className="text-comfort-accent animate-pulse" size={20} />
+          <span className="font-poppins font-light text-comfort-text-muted">Mais de 1000 clientes satisfeitos</span>
+          <Heart className="text-comfort-accent animate-pulse" size={20} />
         </div>
       </div>
 
       <button
         onClick={handleOpen}
-        className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-12 py-5 rounded-full font-medium shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-500/30 active:scale-95 text-lg flex items-center gap-4 group"
+  className="bg-gradient-to-r from-comfort-accent to-comfort-warm text-white px-12 py-5 rounded-full font-poppins font-medium shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-comfort-accent/30 active:scale-95 text-lg flex items-center gap-4 group"
         aria-label="Abrir formulário de agendamento"
       >
         <CalendarIcon
@@ -166,18 +166,18 @@ export function FaixaContato() {
           <InteractiveCard className="modal-content w-full max-w-lg relative animate-in fade-in zoom-in duration-500">
             <button
               onClick={handleClose}
-              className="absolute top-6 right-6 p-3 hover:bg-blue-100 rounded-full transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="absolute top-6 right-6 p-3 hover:bg-comfort-pearl rounded-full transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-comfort-accent"
               aria-label="Fechar modal"
             >
-              <X size={24} className="text-gray-800" />
+              <X size={24} className="text-comfort-text" />
             </button>
 
             <div className="p-8">
               <header className="text-center mb-8">
-                <h2 id="modal-title" className="text-3xl font-semibold text-gray-800 mb-4 text-blue-600">
+                <h2 id="modal-title" className="text-3xl font-dancing font-semibold text-comfort-accent mb-4">
                   Agende sua consulta
                 </h2>
-                <div className="h-1 w-20 bg-gradient-to-r from-blue-600 to-blue-800 mx-auto rounded-full"></div>
+                <div className="h-1 w-20 bg-gradient-to-r from-comfort-accent to-comfort-warm mx-auto rounded-full"></div>
               </header>
 
               <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
@@ -190,7 +190,7 @@ export function FaixaContato() {
                       const isSelected = date.toDateString() === formData.dataAgendamento?.toDateString()
                       const isPast = date < today
                       return `
-                        ${isSelected ? "!bg-blue-600 !text-white shadow-lg" : "hover:bg-blue-100"}
+                        ${isSelected ? "!bg-comfort-accent !text-white shadow-lg" : "hover:bg-comfort-pearl"}
                         ${isPast ? "!text-gray-400 !cursor-not-allowed" : ""}
                         transition-all duration-200 rounded-lg
                       `
@@ -215,7 +215,7 @@ export function FaixaContato() {
                   <div className="space-y-6">
                     {formData.hasCadastro === null && (
                       <div className="space-y-4">
-                        <p className="font-light text-gray-600 text-center font-medium">Você já possui cadastro conosco?</p>
+                        <p className="font-light text-gray-600 text-center">Você já possui cadastro conosco?</p>
                         <div className="grid grid-cols-2 gap-4">
                           <button
                             type="button"
@@ -227,7 +227,7 @@ export function FaixaContato() {
                           <button
                             type="button"
                             onClick={() => updateFormData("hasCadastro", false)}
-                            className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-500/30 active:scale-95"
+                            className="bg-gradient-to-r from-comfort-accent to-comfort-warm text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-comfort-accent/30 active:scale-95"
                           >
                             ✨ Não tenho cadastro
                           </button>
@@ -238,7 +238,7 @@ export function FaixaContato() {
                     {formData.hasCadastro === false && (
                       <div className="space-y-6">
                         <div>
-                          <label htmlFor="nome" className="block font-light text-gray-600 font-medium mb-3">
+                          <label htmlFor="nome" className="block font-light text-gray-600 mb-3">
                             Nome completo *
                           </label>
                           <input
@@ -247,7 +247,7 @@ export function FaixaContato() {
                             placeholder="Digite seu nome completo"
                             value={formData.nome}
                             onChange={(e) => updateFormData("nome", e.target.value)}
-                            className="w-full border border-gray-300 p-4 rounded-2xl bg-white/50 backdrop-blur-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 font-light text-gray-600"
+                            className="w-full border border-comfort-pearl p-4 rounded-2xl bg-white/50 backdrop-blur-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-comfort-accent focus:border-comfort-accent transition-all duration-300 font-light text-comfort-text"
                             required
                             autoComplete="name"
                           />
@@ -267,7 +267,7 @@ export function FaixaContato() {
                           <button
                             type="button"
                             onClick={() => updateFormData("hasCadastro", true)}
-                            className="text-blue-600 hover:text-blue-800 underline font-medium transition-colors duration-300"
+                            className="text-comfort-accent hover:text-comfort-warm underline font-medium transition-colors duration-300"
                           >
                             Clique aqui
                           </button>
@@ -290,7 +290,7 @@ export function FaixaContato() {
                           <button
                             type="button"
                             onClick={() => updateFormData("hasCadastro", false)}
-                            className="text-blue-600 hover:text-blue-800 underline font-medium transition-colors duration-300"
+                            className="text-comfort-accent hover:text-comfort-warm underline font-medium transition-colors duration-300"
                           >
                             Clique aqui
                           </button>

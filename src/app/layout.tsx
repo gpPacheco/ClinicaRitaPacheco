@@ -2,16 +2,38 @@ import type React from "react"
 import { Header } from "@/components/header"
 import "./globals.css"
 import type { Metadata } from "next"
-import { Inter } from 'next/font/google'
+import { Poppins, Dancing_Script, Great_Vibes, Lora } from 'next/font/google'
 import { Rodape } from "@/components/footer"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 
-// Fonte principal simplificada
-const inter = Inter({ 
+// Fontes da identidade visual
+const poppins = Poppins({ 
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-poppins",
+  weight: ["300", "400", "500", "600", "700"]
+})
+
+const dancingScript = Dancing_Script({ 
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-dancing-script",
+  weight: ["400", "500", "600", "700"]
+})
+
+const greatVibes = Great_Vibes({ 
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-great-vibes",
+  weight: ["400"]
+})
+
+const lora = Lora({ 
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-lora",
+  weight: ["400", "500", "600", "700"]
 })
 
 export const metadata: Metadata = {
@@ -76,11 +98,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <html lang="pt-BR" className={inter.variable}>
+    <html lang="pt-BR" className={`${poppins.variable} ${dancingScript.variable} ${greatVibes.variable} ${lora.variable}`}>
       <body 
-        className="min-h-screen flex flex-col overflow-x-hidden bg-white"
+        className="min-h-screen flex flex-col overflow-x-hidden bg-comfort-light font-poppins"
         style={{
-          fontFamily: 'var(--font-inter), system-ui, -apple-system, sans-serif'
+          fontFamily: 'var(--font-poppins), system-ui, -apple-system, sans-serif'
         }}
       >
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

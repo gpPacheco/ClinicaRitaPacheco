@@ -10,7 +10,7 @@ const Procedimentos = dynamic(
   {
     loading: () => (
       <div className="h-96 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-comfort-accent"></div>
       </div>
     ),
   }
@@ -19,7 +19,7 @@ const Procedimentos = dynamic(
 const Local = dynamic(() => import("./home/components/espaco").then((mod) => ({ default: mod.Local })), {
   loading: () => (
     <div className="h-96 flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-comfort-accent"></div>
     </div>
   ),
 })
@@ -27,7 +27,7 @@ const Local = dynamic(() => import("./home/components/espaco").then((mod) => ({ 
 const Cursos = dynamic(() => import("./home/components/cursos").then((mod) => ({ default: mod.Cursos })), {
   loading: () => (
     <div className="h-96 flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-comfort-accent"></div>
     </div>
   ),
 })
@@ -35,17 +35,17 @@ const Cursos = dynamic(() => import("./home/components/cursos").then((mod) => ({
 const Avaliacoes = dynamic(() => import("./home/components/avaliacoes").then((mod) => ({ default: mod.Avaliacoes })), {
   loading: () => (
     <div className="h-96 flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-comfort-accent"></div>
     </div>
   ),
 })
 
 const Depoimentos = dynamic(
-  () => import("./home/components/depoimentos").then((mod) => ({ default: mod.Depoimentos })),
+  () => import("./home/components/depoimentos"),
   {
     loading: () => (
       <div className="h-96 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-comfort-accent"></div>
       </div>
     ),
   }
@@ -54,7 +54,7 @@ const Depoimentos = dynamic(
 const Location = dynamic(() => import("@/components/location"), {
   loading: () => (
     <div className="h-96 flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-comfort-accent"></div>
     </div>
   ),
 })

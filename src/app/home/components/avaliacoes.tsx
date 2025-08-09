@@ -64,7 +64,7 @@ export function Avaliacoes() {
                     <header>
                       <h3 className="text-xl font-dancing text-comfort-warm mb-3">{avaliacao.name}</h3>
                       <div className="flex items-center justify-center mb-4">
-                        <FaGoogle className="text-blue-500 mr-3 text-lg" aria-hidden="true" />
+                        <FaGoogle className="text-comfort-accent mr-3 text-lg" aria-hidden="true" />
                         <span className="text-sm font-poppins font-light text-comfort-text-muted">Avaliação Verificada</span>
                       </div>
                       <div

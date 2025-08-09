@@ -21,7 +21,7 @@ const SocialMenu = memo(() => {
       href: "https://facebook.com/ritapachecopodologia",
       icon: FaFacebook,
       label: "Facebook",
-      color: "hover:text-blue-600",
+  color: "hover:text-comfort-accent",
     },
   ]
 

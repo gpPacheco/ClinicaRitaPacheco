@@ -36,12 +36,12 @@ export function Cursos() {
     >
       <div className="w-full max-w-6xl mx-auto">
         <header className="text-center mb-16">
-          <div className="text-5xl md:text-6xl font-bold mb-4 text-blue-600">Educação</div>
+          <div className="text-5xl md:text-6xl font-bold mb-4 text-comfort-accent">Educação</div>
           <Link href="/aprenda" className="group inline-block">
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+            <h2 className="text-3xl md:text-4xl font-semibold text-comfort-text mb-4 group-hover:text-comfort-accent transition-colors duration-300">
               Cursos & Mentorias
             </h2>
-            <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-blue-800 mx-auto rounded-full group-hover:w-32 transition-all duration-300"></div>
+            <div className="h-1 w-24 bg-gradient-to-r from-comfort-accent to-comfort-warm mx-auto rounded-full group-hover:w-32 transition-all duration-300"></div>
           </Link>
         </header>
 
@@ -69,16 +69,16 @@ export function Cursos() {
 
                 <div className="p-8">
                   <header className="mb-6">
-                    <h3 className="text-2xl font-semibold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                    <h3 className="text-2xl font-semibold text-comfort-text mb-3 group-hover:text-comfort-accent transition-colors duration-300">
                       {curso.title}
                     </h3>
-                    <div className="h-0.5 w-16 bg-blue-600 rounded-full group-hover:w-24 group-hover:bg-blue-800 transition-all duration-300"></div>
+                    <div className="h-0.5 w-16 bg-comfort-accent rounded-full group-hover:w-24 group-hover:bg-comfort-warm transition-all duration-300"></div>
                   </header>
 
                   <p className="font-light text-gray-600 leading-relaxed mb-8">{curso.description}</p>
 
                   <Link href="/aprenda" className="inline-block w-full">
-                    <button className="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-500/30 active:scale-95 group-hover:from-blue-800 group-hover:to-blue-600">
+                    <button className="w-full bg-gradient-to-r from-comfort-accent to-comfort-warm text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-comfort-accent/30 active:scale-95 group-hover:from-comfort-warm group-hover:to-comfort-accent">
                       <span className="flex items-center justify-center gap-2">
                         ✨ Saiba mais
                         <svg
@@ -101,7 +101,7 @@ export function Cursos() {
         <div className="text-center mt-16">
           <InteractiveCard className="p-8 max-w-3xl mx-auto" variant="elevated">
             <p className="font-light text-gray-600 leading-relaxed text-lg">
-              <span className="text-4xl text-blue-600 font-bold block mb-4">
+              <span className="text-4xl text-comfort-accent font-bold block mb-4">
                 Transforme sua carreira
               </span>
               Nossos cursos e mentorias são desenvolvidos com base em anos de experiência prática, oferecendo

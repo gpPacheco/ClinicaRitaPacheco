@@ -11,12 +11,17 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "-apple-system", "sans-serif"],
-        inter: ["var(--font-inter)"],
+        sans: ["var(--font-poppins)", "system-ui", "-apple-system", "sans-serif"],
+        poppins: ["var(--font-poppins)", "Poppins", "sans-serif"],
+        dancing: ["var(--font-dancing-script)", "Dancing Script", "cursive"],
+        vibes: ["var(--font-great-vibes)", "Great Vibes", "cursive"],
+        lora: ["var(--font-lora)", "Lora", "serif"],
       },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+  // tons personalizados da identidade visual "comfort"
+  'comfort-light': '#f7f4ef',
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
