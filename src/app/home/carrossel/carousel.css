@@ -1,0 +1,241 @@
+.embla {
+  overflow: hidden;
+  position: relative;
+  height: 88vh;
+  will-change: transform; /* Otimização para animações */
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.embla__container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden; /* Melhora performance de animações */
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: relative;
+  transform: translateZ(0); /* Force hardware acceleration */
+  overflow: hidden;
+}
+
+.embla__slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.embla__slide:hover::before {
+  opacity: 1;
+}
+
+.embla__slide img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.embla__slide:hover img {
+  transform: scale(1.05);
+}
+
+.embla__dots {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  z-index: 10;
+  gap: 8px;
+  animation: slide-in-up 0.6s ease-out forwards;
+  animation-delay: 1s;
+  opacity: 0;
+}
+
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.embla__dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  backdrop-filter: blur(4px);
+  position: relative;
+}
+
+.embla__dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.embla__dot:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.embla__dot:hover::before {
+  width: 20px;
+  height: 20px;
+}
+
+.embla__dot--active {
+  background-color: #fff;
+  border-color: rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+.embla__nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  opacity: 0.8;
+}
+
+.embla__nav-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.15);
+  opacity: 1;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.embla__nav-button:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.embla__nav-button--prev {
+  left: 20px;
+  animation: slide-in-left 0.6s ease-out forwards;
+  animation-delay: 1.2s;
+  opacity: 0;
+}
+
+.embla__nav-button--next {
+  right: 20px;
+  animation: slide-in-right 0.6s ease-out forwards;
+  animation-delay: 1.2s;
+  opacity: 0;
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-20px);
+  }
+  to {
+    opacity: 0.8;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px);
+  }
+  to {
+    opacity: 0.8;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* Responsive breakpoints otimizados */
+@media (max-width: 1024px) {
+  .embla {
+    height: 60vh;
+  }
+
+  .embla__nav-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .embla__nav-button--prev {
+    left: 12px;
+  }
+
+  .embla__nav-button--next {
+    right: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .embla {
+    height: 50vh;
+  }
+
+  .embla__dots {
+    bottom: 12px;
+  }
+
+  .embla__dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .embla {
+    height: 40vh;
+  }
+
+  .embla__nav-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .embla__nav-button--prev {
+    left: 8px;
+  }
+
+  .embla__nav-button--next {
+    right: 8px;
+  }
+}

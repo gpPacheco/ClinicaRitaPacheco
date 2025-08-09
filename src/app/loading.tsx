@@ -1,31 +1,26 @@
-import React from "react";
-
 export default function Loading() {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <button
-        type="button"
-        className="bg-zinc-500 text-white px-4 py-2 rounded flex items-center focus:outline-none focus:shadow-outline-indigo"
-        disabled
-      >
-        <svg
-          className="animate-spin h-5 w-5 mr-3 text-white"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="8"
-            stroke="currentColor"
-            strokeWidth="4"
-            fill="none"
-          />
-        </svg>
-        Carregando...
-      </button>
+    <div
+      className="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0]"
+      role="status"
+      aria-live="polite"
+      aria-label="Carregando conteúdo"
+    >
+      <div className="text-center">
+        <div className="relative">
+          {/* Spinner otimizado */}
+          <div className="w-16 h-16 border-4 border-[#8B4513] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+
+          {/* Pulse effect */}
+          <div className="absolute inset-0 w-16 h-16 border-4 border-[#8B4513] border-opacity-20 rounded-full animate-ping mx-auto"></div>
+        </div>
+
+        <p className="text-lg font-medium text-gray-700 animate-pulse">Carregando...</p>
+
+        <p className="text-sm text-gray-500 mt-2">Preparando o melhor conteúdo para você</p>
+      </div>
     </div>
-  );
+  )
 }
 
 //   ______    ____

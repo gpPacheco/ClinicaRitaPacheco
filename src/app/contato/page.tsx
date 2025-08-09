@@ -1,5 +1,5 @@
 "use client";
-import { FaixaContato } from "../../components/button";
+import { FaixaContato } from "../../components/faixaContato";
 import Location from "../../components/location";
 
 export default function ContactForm() {

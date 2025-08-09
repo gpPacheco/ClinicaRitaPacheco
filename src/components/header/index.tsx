@@ -1,187 +1,225 @@
-"use client";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import classNames from "classnames";
-import Image from "next/image";
-import Link from "next/link";
-import { Fragment, useEffect, useRef, useState } from "react";
-import {
-  FaBookOpen,
-  FaBriefcaseMedical,
-  FaClinicMedical,
-  FaHome,
-  FaPhone,
-  FaShoppingCart,
-  FaUserMd,
-} from "react-icons/fa";
-import BurgerButton from "./burgerButton";
-import MenuItem from "./menuItem";
-import DropdownItem from "./dropdownItem";
-import SocialMenu from "./socialMenu";
-// import LoginButton from "./loginButton";
+"use client"
 
+import { useState, useEffect, memo } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { motion, AnimatePresence } from "framer-motion"
+import BurgerButton from "./burgerButton"
+import MenuItem from "./menuItem"
+import DropdownItem from "./dropdownItem"
+import LoginButton from "./loginButton"
+import SocialMenu from "./socialMenu"
 
-const navigation = [
-  { name: "Home", href: "/", current: true, icon: <FaHome /> },
+const Header = memo(() => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const pathname = usePathname()
 
-  {
-    name: "Profissionais",
-    href: "../profissionais",
-    current: false,
-    icon: <FaUserMd />,
-  },
-  {
-    name: "A Clinica",
-    current: false,
-    icon: <FaClinicMedical />,
-    submenuItems: [
-      { name: "Sobre", href: "../clinica/sobre" },
-      { name: "Espaço", href: "../clinica/espaco" },
-      { name: "Biossegurança", href: "../clinica/biosec" },
-    ],
-  },
-  {
-    name: "Especialidades",
-    href: "../especialidades",
-    current: false,
-    icon: <FaBriefcaseMedical />,
-  },
-  {
-    name: "Aprenda conosco",
-    href: "../aprenda",
-    current: false,
-    icon: <FaBookOpen />,
-  },
-  {
-    name: "Produtos",
-    href: "../produtos",
-    current: false,
-    icon: <FaShoppingCart />,
-  },
-  { name: "Contato", href: "../contato", current: false, icon: <FaPhone /> },
-];
-
-export function Header() {
-  const [isHeaderShrunk, setIsHeaderShrunk] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  // Fecha o menu ao clicar fora
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+    setIsVisible(true)
+    
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const menuItems = [
+    { href: "/", label: "Home" },
+    { href: "/clinica/sobre", label: "Sobre" },
+    { href: "/especialidades", label: "Especialidades" },
+    { href: "/profissionais", label: "Profissionais" },
+    { href: "/aprenda", label: "Aprenda" },
+    { href: "/contato", label: "Contato" },
+  ]
+
+  const headerVariants = {
+    hidden: { y: -100, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        staggerChildren: 0.1
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  }
 
-  const handleScroll = () => {
-    setIsHeaderShrunk(window.scrollY > 0);
-  };
+  const logoVariants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "backOut"
+      }
+    }
+  }
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const menuItemVariants = {
+    hidden: { y: -20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const mobileMenuVariants = {
+    hidden: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    },
+    visible: {
+      opacity: 1,
+      height: "auto",
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+        staggerChildren: 0.05
+      }
+    }
+  }
+
+  const mobileItemVariants = {
+    hidden: { x: -20, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    }
+  }
 
   return (
-    <Disclosure
-      as="nav"
-      className={classNames(
-        "bg-gradient-to-r from-[#dbbeb0] via-[#f7f0ea] to-[#dbbeb0] shadow-md fixed top-0 left-0 right-0 z-50 transition-all motion-safe",
-        {
-          "h-20 duration-300 ease-in-out": !isHeaderShrunk,
-          "h-18 transition-all motion-safe": isHeaderShrunk,
-          "-translate-y-2": isHeaderShrunk,
-        },
-        "duration-500 ease-in-out"
-      )}
+    <motion.header
+      initial="hidden"
+      animate={isVisible ? "visible" : "hidden"}
+      variants={headerVariants}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-sm shadow-lg"
+          : "bg-white/90 backdrop-blur-sm"
+      }`}
     >
-      {({}) => (
-        <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-8 lg:px-10 sticky mt-1.5">
-            <div className="relative flex h-16 items-center justify-between">
-              {/* Logo */}
-              <div className="flex flex-1 items-center justify-center lg:ml-20 md:ml-20 sm:ml-20">
-                <div className="flex-shrink-0">
-                  <Link href="/" legacyBehavior>
-                    <a>
-                      <Image
-                        className={
-                          isHeaderShrunk
-                            ? "max-h-10 h-full w-auto cursor-pointer transition-all motion-safe"
-                            : "max-h-11 h-full w-auto cursor-pointer transition-all motion-safe"
-                        }
-                        src="/logoLinear.png"
-                        alt="Clinica Rita Pacheco"
-                        width={300}
-                        height={200}
-                        priority
-                      />
-                    </a>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Mobile menu button */}
-              <div className="absolute left-1 inset-x-0 flex" ref={menuRef}>
-                <Disclosure.Button
-                  as={BurgerButton}
-                  isOpen={isOpen}
-                  onClick={() => setIsOpen(!isOpen)}
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo */}
+          <motion.div variants={logoVariants}>
+            <Link href="/" className="flex-shrink-0">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <Image
+                  src="/logo-site.png"
+                  alt="Rita Pacheco Podologia"
+                  width={120}
+                  height={60}
+                  className="h-12 w-auto object-contain"
+                  priority
                 />
-                <Transition
-                  as={Fragment}
-                  show={isOpen}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <div className="absolute top-full left-0 bg-[#f7f0ea] rounded-md shadow-md mt-3 w-64 p-4 transition-transform transform duration-300 ease-in-out ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    {navigation.map((item) =>
-                      item.submenuItems ? (
-                        <DropdownItem
-                          key={item.name}
-                          name={item.name}
-                          href={item.href ?? "#"}
-                          icon={item.icon}
-                          submenuItems={item.submenuItems}
-                        />
-                      ) : (
-                        <MenuItem
-                          key={item.name}
-                          name={item.name}
-                          href={item.href}
-                          icon={item.icon}
-                        />
-                      )
-                    )}
-                  </div>
-                </Transition>
+              </motion.div>
+            </Link>
+          </motion.div>
+
+          {/* Desktop Menu */}
+          <motion.div 
+            className="hidden md:flex items-center space-x-8"
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                  delayChildren: 0.3
+                }
+              }
+            }}
+          >
+            {menuItems.map((item, index) => (
+              <motion.div key={item.href} variants={menuItemVariants}>
+                <MenuItem
+                  href={item.href}
+                  label={item.label}
+                  isActive={pathname === item.href}
+                />
+              </motion.div>
+            ))}
+            <motion.div variants={menuItemVariants}>
+              <LoginButton />
+            </motion.div>
+          </motion.div>
+
+          {/* Mobile Menu Button */}
+          <motion.div 
+            className="md:hidden"
+            variants={logoVariants}
+          >
+            <BurgerButton isOpen={isMenuOpen} onClick={toggleMenu} />
+          </motion.div>
+        </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              className="md:hidden overflow-hidden"
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={mobileMenuVariants}
+            >
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 backdrop-blur-sm border-t border-gray-200">
+                {menuItems.map((item, index) => (
+                  <motion.div key={item.href} variants={mobileItemVariants}>
+                    <DropdownItem
+                      href={item.href}
+                      label={item.label}
+                      isActive={pathname === item.href}
+                    />
+                  </motion.div>
+                ))}
+                <motion.div variants={mobileItemVariants} className="pt-4 border-t border-gray-200">
+                  <LoginButton />
+                </motion.div>
+                <motion.div variants={mobileItemVariants} className="pt-4">
+                  <SocialMenu />
+                </motion.div>
               </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </motion.header>
+  )
+})
 
-              {/* Redes sociais button */}
-              <div className="flex items-center space-x-4">
-        <SocialMenu />
-        {/* <LoginButton /> */}
-      </div>
-            </div>
-          </div>
-        </>
-      )}
-    </Disclosure>
-  );
-  
-}
+Header.displayName = "Header"
 
+export { Header }
 
 //   ______    ____
 //  /\    /\  | "o |

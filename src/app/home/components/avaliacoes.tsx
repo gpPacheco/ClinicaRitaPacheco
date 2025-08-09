@@ -1,154 +1,116 @@
-"use client";
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { FaGoogle } from "react-icons/fa";
+"use client"
+
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { FaGoogle } from "react-icons/fa"
+import { useCarousel } from "@/hooks/useCarousel"
+import { TESTIMONIALS } from "@/lib/constants"
+import { InteractiveCard } from "@/components/ui/interactive-card"
 
 export function Avaliacoes() {
-  const avaliacoes = [
-    {
-      nome: "Carla Criss",
-      comentario:
-        "Eu fiquei apaixonada pelo atendimento, além de resolver meu problema. Não tem o que reclamar!",
-      avaliacao: 5,
-    },
-    {
-      nome: "Elaine Nascimento",
-      comentario:
-        "Excelente!! Muito profissional no que faz e no que fala explica antes de fazer o procedimento deixando o paciente tranquilo.",
-      avaliacao: 5,
-    },
-    {
-      nome: "Fernando César Raymundo",
-      comentario:
-        "Eu como médico, cirurgião vascular, não só indico como também confio meus pés à equipe do SPA DOS PÉS RITA PACHECO.",
-      avaliacao: 5,
-    },
-    {
-      nome: "Milena Vieira da Silva",
-      comentario:
-        "Atendimento maravilhoso ! Equipe muito simpática e o trabalho é sensacional!",
-      avaliacao: 5,
-    },
-    {
-      nome: "Leticia Serafim",
-      comentario:
-        "Excelente atendimento, solucionando o problema de imediato, acompanhando para saber como está se sentindo se houve melhoras.",
-      avaliacao: 5,
-    },
-    {
-      nome: "Ana Elisa Radi",
-      comentario:
-        "Rita foi incrível, super profissional e muito amável com minhas filhas.",
-      avaliacao: 5,
-    },
-    {
-      nome: "Eduardo Miron",
-      comentario:
-        "Clinica excelente , profissionais super qualificados, experiência nota 10",
-      avaliacao: 5,
-    },
-    {
-      nome: "Adriana Bassi",
-      comentario:
-        "Atendimento de primeira. Todas as dúvidas são sanadas, muito atenciosa.  Recomendo muito.",
-      avaliacao: 5,
-    },
-    {
-      nome: "Gleice Cristina",
-      comentario:
-        "Uma clínica maravilhosa, e profissionais nota 10 sem comentários....❤️",
-      avaliacao: 5,
-    },
-    {
-      nome: "Elisangela Rosa",
-      comentario:
-        "Excelente profissional, conseguiu resolver o problema da unha do meu bebê de 8 meses, super indico!!!",
-      avaliacao: 5,
-    },
-  ];
+  const { currentIndex, goToPrev, goToNext, goToIndex } = useCarousel(TESTIMONIALS.length, 6000)
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      goToNext();
-    }, 4000);
-
-    return () => clearInterval(intervalId);
-  });
-
-  const goToPrev = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? avaliacoes.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToNext = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === avaliacoes.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsTransitioning(false), 500);
-    return () => clearTimeout(timeout);
-  }, [currentIndex]);
+  const getCardPosition = (index: number) => {
+    const distance = index - currentIndex
+    if (distance > TESTIMONIALS.length / 2) return distance - TESTIMONIALS.length
+    if (distance < -TESTIMONIALS.length / 2) return distance + TESTIMONIALS.length
+    return distance
+  }
 
   return (
-    <div className="w-full px-1 py-5 bg-gradient-to-b from-[#f7f0ea] to-[#dbbeb0] min-h-[250px]">
-      <div className="text-3xl font-light text-gray-800 text-center mb-2">
-        Avaliações dos Clientes
-      </div>
-      <div className="relative overflow-hidden w-full max-w-[400px] mx-auto">
-        <button
-          className="absolute text-zinc-500 hover:text-zinc-700 transition duration-200 top-1/2 left-0 transform -translate-y-1/2 bg-gray-100 p-1 rounded-full z-10"
-          onClick={goToPrev}
-        >
-          <ChevronLeft size={24} />
-        </button>
+    <section
+      className="w-full px-6 py-20 bg-gradient-to-br from-comfort-cream via-comfort-pearl to-comfort-blush min-h-[500px]"
+      aria-label="Avaliações dos clientes"
+    >
+      <div className="container mx-auto">
+        <header className="text-center mb-16">
+          <div className="font-great-vibes text-6xl md:text-7xl mb-4 text-comfort-accent">Depoimentos</div>
+          <h2 className="text-3xl md:text-4xl font-dancing text-comfort-text mb-6">O que nossos clientes dizem</h2>
+          <div className="h-1 w-24 bg-gradient-to-r from-comfort-accent to-comfort-warm mx-auto rounded-full"></div>
+          <p className="font-poppins font-light text-comfort-text-muted leading-relaxed text-lg mt-6 max-w-2xl mx-auto">
+            A satisfação dos nossos clientes é nossa maior conquista. Veja o que eles têm a dizer sobre nossa
+            experiência de cuidado.
+          </p>
+        </header>
 
-        <div
-          className={`flex transition-transform duration-500 ease-in-out ${
-            isTransitioning ? "" : "transition-none"
-          }`}
-          style={{
-            transform: `translateX(-${currentIndex * 100}%)`,
-          }}
-        >
-          {avaliacoes.map((avaliacao, index) => (
-            <div key={index} className="flex-shrink-0 w-full p-4">
-              <div className="text-center bg-white p-4 rounded-lg shadow-md h-64 justify-between">
-                <h2 className="text-lg font-semibold">{avaliacao.nome}</h2>
-                <div className="flex items-center justify-center mb-2">
-                  <FaGoogle className="text-blue-500 mr-2" />
-                  <span className="text-sm text-gray-600">
-                    Avaliação Verificada no Google
-                  </span>
+        <div className="relative w-full max-w-[1000px] mx-auto overflow-hidden px-16">
+          <button
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/90 backdrop-blur-md p-4 rounded-full z-20 shadow-xl hover:shadow-2xl hover:scale-110 text-comfort-text hover:text-comfort-warm transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-comfort-accent/30"
+            onClick={goToPrev}
+            aria-label="Avaliação anterior"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <div className="relative h-[350px] overflow-visible">
+            {TESTIMONIALS.map((avaliacao, index) => {
+              const position = getCardPosition(index)
+              const isActive = position === 0
+              const isVisible = Math.abs(position) <= 1
+
+              if (!isVisible) return null
+
+              return (
+                <div
+                  key={index}
+                  className="absolute top-0 transition-all duration-700 ease-out w-full max-w-[380px]"
+                  style={{
+                    left: "50%",
+                    opacity: isActive ? 1 : 0.5,
+                    zIndex: isActive ? 10 : 5,
+                    transform: `translateX(${isActive ? "-50%" : position < 0 ? "-95%" : "-5%"}) scale(${isActive ? 1 : 0.8})`,
+                  }}
+                >
+                  <InteractiveCard className="p-8 h-80 flex flex-col justify-between mx-3">
+                    <header>
+                      <h3 className="text-xl font-dancing text-comfort-warm mb-3">{avaliacao.name}</h3>
+                      <div className="flex items-center justify-center mb-4">
+                        <FaGoogle className="text-blue-500 mr-3 text-lg" aria-hidden="true" />
+                        <span className="text-sm font-poppins font-light text-comfort-text-muted">Avaliação Verificada</span>
+                      </div>
+                      <div
+                        className="text-yellow-500 text-2xl mb-4 text-center"
+                        aria-label={`${avaliacao.rating} estrelas de 5`}
+                      >
+                        {"★".repeat(avaliacao.rating)}
+                      </div>
+                    </header>
+                    <blockquote className="font-poppins font-light text-comfort-text-muted leading-relaxed text-center flex-grow flex items-center">
+                      <p className="italic">&ldquo;{avaliacao.comment}&rdquo;</p>
+                    </blockquote>
+                  </InteractiveCard>
                 </div>
-                <p className="text-yellow-500">
-                  {"★".repeat(avaliacao.avaliacao)}
-                </p>
-                <p className="text-gray-600 mt-2">{avaliacao.comentario}</p>
-                <p className="text-gray-600 mt-2 line-clamp-3"></p>
-              </div>
-            </div>
-          ))}
-        </div>
+              )
+            })}
+          </div>
 
-        <button
-          className="absolute text-zinc-500 hover:text-zinc-700 transition duration-200 top-1/2 right-0 transform -translate-y-1/2 bg-gray-100 p-1 rounded-full z-10 shadow-lg"
-          onClick={goToNext}
-        >
-          <ChevronRight size={24} />
-        </button>
+          <button
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/90 backdrop-blur-md p-4 rounded-full z-20 shadow-xl hover:shadow-2xl hover:scale-110 text-comfort-text hover:text-comfort-warm transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-comfort-accent/30"
+            onClick={goToNext}
+            aria-label="Próxima avaliação"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          <div className="flex justify-center mt-8 gap-3" role="tablist">
+            {TESTIMONIALS.map((_, index) => (
+              <button
+                key={index}
+                className={`h-3 rounded-full transition-all duration-500 hover:scale-125 ${
+                  index === currentIndex
+                    ? "w-12 bg-comfort-warm shadow-lg"
+                    : "w-3 bg-comfort-accent/50 hover:bg-comfort-accent"
+                }`}
+                onClick={() => goToIndex(index)}
+                aria-label={`Ir para avaliação ${index + 1}`}
+                role="tab"
+                aria-selected={index === currentIndex}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    </section>
+  )
 }
 
 //   ______    ____

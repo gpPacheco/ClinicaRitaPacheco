@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Carousel } from "primereact/carousel";
-import { FaixaContato } from "@/components/button";
+import { FaixaContato } from "@/components/faixaContato";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Espaco() {

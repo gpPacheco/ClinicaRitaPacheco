@@ -1,64 +1,97 @@
-import { Header } from "@/components/header";
-import "./globals.css";
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import { Rodape } from "@/components/footer";
+import type React from "react"
+import { Header } from "@/components/header"
+import "./globals.css"
+import type { Metadata } from "next"
+import { Inter } from 'next/font/google'
+import { Rodape } from "@/components/footer"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
 
-const poppins = Poppins({ weight: ["300", "400", "700"], subsets: ["latin"] });
+// Fonte principal simplificada
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
-  title: "Clinica Rita Pacheco",
-  description: "Clinica de podologia Rita Pacheco",
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="pt-br">
-      <head>
-        <meta
-          name="description"
-          content="Podóloga em Franca, especializada em cuidados dos pés para todas as idades. Encontre serviços de podologia, podologia esportiva, geriátrica e infantil."
-        />
-        <meta
-          name="keywords"
-          content="podóloga, podologia em Franca, podóloga em franca, podologia perto de mim, , podóloga perto de mim, unha encravada, micose, cuidados dos pés, podologia esportiva, podologia geriátrica, podologia infantil, Franca, São Paulo"
-        />
-        <meta name="robots" content="index, follow" />
-
-        <meta
-          property="og:title"
-          content="Podóloga em Franca - Cuidados Completo para Seus Pés"
-        />
-        <meta
-          property="og:description"
-          content="Encontre uma podóloga em Franca especializada em unhas encravadas, micose, podologia esportiva, geriátrica e infantil. Cuidamos dos seus pés com carinho e profissionalismo."
-        />
-        <meta property="og:image" content="/logo-site.png" />
-        <meta property="og:image:alt" content="Logo da podóloga em Franca" />
-        <meta property="og:url" content="https://clinica-rita-pacheco.vercel.app" />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="pt_BR" />
-        <meta name="author" content="Rita Pacheco" />
-        <meta property="og:site_name" content="Podóloga em Franca" />
-
-        <link rel="icon" href="/logo-site.png" />
-      </head>
-
-      <body className={`${poppins.className} overflow-x-hidden flex flex-col`}>
-        <Header />
-        <main className="w-screen h-full pt-20">{children}</main>
-        <Rodape />
-      </body>
-    </html>
-  );
+  title: {
+    default: "Podóloga em Franca - Rita Pacheco | Cuidados Completos para Seus Pés",
+    template: "%s | Rita Pacheco Podologia",
+  },
+  description:
+    "Podóloga em Franca especializada em cuidados dos pés para todas as idades. Serviços de podologia, podologia esportiva, geriátrica e infantil.",
+  keywords: [
+    "podóloga",
+    "podologia em Franca",
+    "unha encravada",
+    "micose",
+    "cuidados dos pés",
+    "podologia esportiva",
+    "podologia geriátrica",
+    "podologia infantil",
+    "Franca",
+    "São Paulo",
+  ],
+  authors: [{ name: "Rita Pacheco" }],
+  robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "https://clinica-rita-pacheco.vercel.app",
+    title: "Podóloga em Franca - Cuidados Completos para Seus Pés",
+    description: "Encontre uma podóloga em Franca especializada em tratamentos completos para seus pés.",
+    siteName: "Rita Pacheco Podologia",
+    images: [{ url: "/logo-site.png", width: 1200, height: 630, alt: "Logo da Clínica Rita Pacheco" }],
+  },
+  icons: { icon: "/logo-site.png" },
+  metadataBase: new URL("https://clinica-rita-pacheco.vercel.app"),
 }
 
-//   ______    ____
-//  /\    /\  | "o |
-// |  \/\/  |/ ___\|
-// |gpPacheco_/
-// /_/_/ /_/_/
+function GlobalLoadingFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
+        <p className="mt-4 text-gray-600">Carregando...</p>
+      </div>
+    </div>
+  )
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    name: "Rita Pacheco Podologia",
+    description: "Clínica de podologia especializada em cuidados dos pés",
+    url: "https://clinica-rita-pacheco.vercel.app",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Av. 7 de Setembro, 650",
+      addressLocality: "Franca",
+      addressRegion: "SP",
+      addressCountry: "BR",
+    },
+  }
+
+  return (
+    <html lang="pt-BR" className={inter.variable}>
+      <body 
+        className="min-h-screen flex flex-col overflow-x-hidden bg-white"
+        style={{
+          fontFamily: 'var(--font-inter), system-ui, -apple-system, sans-serif'
+        }}
+      >
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <Header />
+        <main className="flex-1 pt-20">
+          {children}
+        </main>
+        <Rodape />
+        <SpeedInsights />
+        <Analytics />
+      </body>
+    </html>
+  )
+}
