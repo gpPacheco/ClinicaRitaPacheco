@@ -72,15 +72,15 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="w-full min-h-screen flex flex-col">
+    <div className="w-full min-h-screen flex flex-col overflow-x-hidden">
       {/* Hero Section */}
-      <section aria-label="Apresentação principal">
+      <section aria-label="Apresentação principal" className="overflow-x-hidden">
         <EmblaCarousel />
       </section>
 
       {/* Contact Banner */}
       <section 
-        className="w-full py-16 px-4 bg-gradient-to-br from-comfort-cream via-comfort-pearl to-comfort-blush"
+        className="w-full py-16 px-4 bg-gradient-to-br from-comfort-cream via-comfort-pearl to-comfort-blush overflow-x-hidden"
         aria-label="Informações de contato"
       >
         <FaixaContato />
@@ -109,7 +109,7 @@ export default function Home() {
 
       {/* Location Section */}
       <section 
-        className="px-4 py-16 bg-gradient-to-br from-comfort-blush to-comfort-rose"
+        className="px-4 py-16 bg-gradient-to-br from-comfort-blush to-comfort-rose overflow-x-hidden"
         aria-label="Localização"
       >
         <Suspense fallback={<div className="h-96 animate-pulse bg-gray-300 rounded-lg" />}>

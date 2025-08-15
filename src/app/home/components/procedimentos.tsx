@@ -17,7 +17,7 @@ const iconMap = {
 export function Procedimentos() {
   return (
     <section
-      className="w-full px-6 py-20 bg-gradient-to-br from-comfort-cream via-comfort-pearl to-comfort-blush"
+      className="w-full px-6 py-20 bg-gradient-to-br from-comfort-cream via-comfort-pearl to-comfort-blush overflow-x-hidden"
       aria-label="Especialidades e procedimentos"
     >
       <div className="container mx-auto max-w-6xl">
@@ -41,7 +41,7 @@ export function Procedimentos() {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 overflow-x-hidden">
           {PROCEDURES.map((procedure, index) => {
             const IconComponent = iconMap[procedure.icon as keyof typeof iconMap] || FaUserMd
             return (

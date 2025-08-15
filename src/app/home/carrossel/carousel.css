@@ -4,6 +4,7 @@
   height: 88vh;
   will-change: transform; /* Otimização para animações */
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  max-width: 100vw; /* Evita exceder a viewport em mobile */
 }
 
 .embla__container {
@@ -12,6 +13,7 @@
   width: 100%;
   backface-visibility: hidden; /* Melhora performance de animações */
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  contain: content; /* Minimiza impacto de overflow */
 }
 
 .embla__slide {
@@ -162,6 +164,12 @@
   animation: slide-in-right 0.6s ease-out forwards;
   animation-delay: 1.2s;
   opacity: 0;
+}
+
+/* Garante que botões nunca saiam da viewport em telas muito estreitas */
+@media (max-width: 360px) {
+  .embla__nav-button--prev { left: 8px; }
+  .embla__nav-button--next { right: 8px; }
 }
 
 @keyframes slide-in-left {

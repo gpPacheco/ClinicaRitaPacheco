@@ -59,7 +59,7 @@ export function Local() {
   )
 
   return (
-    <ComfortSection className="px-6 py-20 bg-gradient-to-br from-comfort-blush via-comfort-pearl to-comfort-cream" aria-label="Conheça nosso espaço" animation="fade">
+  <ComfortSection className="px-6 py-20 bg-gradient-to-br from-comfort-blush via-comfort-pearl to-comfort-cream overflow-x-hidden" aria-label="Conheça nosso espaço" animation="fade">
       <div className="container mx-auto max-w-6xl">
         <header className="text-center mb-16">
           <div className="font-great-vibes text-6xl md:text-7xl mb-4 text-comfort-accent floating-animation">Nosso Espaço</div>
@@ -79,7 +79,7 @@ export function Local() {
           </p>
         </header>
 
-        <div className="relative w-full max-w-5xl mx-auto">
+  <div className="relative w-full max-w-5xl mx-auto overflow-x-hidden">
           <InteractiveCard className="relative h-[400px] md:h-[500px] overflow-hidden p-0" variant="elevated">
             <div
               className="flex transition-transform duration-700 ease-out h-full"

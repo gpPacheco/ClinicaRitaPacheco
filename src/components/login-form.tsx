@@ -6,15 +6,45 @@ import { EyeIcon, EyeOffIcon } from "lucide-react"
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // Adicionar lógica de autenticação
-    console.log("Login submetido")
+    setError(null)
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const email = String(formData.get("email") || "").trim()
+    const password = String(formData.get("password") || "")
+
+    try {
+      setSubmitting(true)
+      const res = await fetch("/api/auth/callback/credentials", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          csrfToken: "", // NextAuth vai preencher via página /login usando <SignIn /> se necessário
+          email,
+          password,
+          json: "true",
+        }),
+      })
+      if (res.status === 200) {
+        window.location.href = "/usuario"
+      } else {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data?.message || "Falha no login")
+      }
+    } catch (e: any) {
+      setError(e.message || "Erro inesperado")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+      {error && <p className="text-sm text-red-600 font-poppins">{error}</p>}
       <div className="rounded-md shadow-sm -space-y-px bg-[#f9f9f9] p-6">
         {/* E-mail */}
         <div>
@@ -25,7 +55,7 @@ export function LoginForm() {
             E-mail
           </label>
           <input
-            id="email-address"
+            id="email"
             name="email"
             type="email"
             autoComplete="email"
@@ -95,9 +125,10 @@ export function LoginForm() {
       <div>
         <button
           type="submit"
-          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-comfort-accent hover:bg-comfort-warm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-comfort-accent transition-colors duration-300 font-poppins"
+          disabled={submitting}
+          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-comfort-accent hover:bg-comfort-warm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-comfort-accent transition-colors duration-300 font-poppins disabled:opacity-50"
         >
-          Entrar
+          {submitting ? "Entrando..." : "Entrar"}
         </button>
       </div>
 

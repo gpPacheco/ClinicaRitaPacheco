@@ -101,6 +101,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Evita scroll horizontal em navegadores móveis (iOS/Android) */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Garante que iframes nunca ultrapassem a viewport */
+iframe {
+  max-width: 100%;
+}
+
 /* Prevent flash of unstyled content */
 .fade-in {
   opacity: 0;

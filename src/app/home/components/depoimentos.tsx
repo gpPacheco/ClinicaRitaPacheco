@@ -57,7 +57,7 @@ export default function Depoimentos() {
   }
 
   return (
-    <section className="w-full px-6 py-20 bg-gradient-to-br from-comfort-cream via-comfort-pearl to-comfort-light">
+    <section className="w-full px-6 py-20 bg-gradient-to-br from-comfort-cream via-comfort-pearl to-comfort-light overflow-x-hidden">
       <div className="container mx-auto max-w-7xl">
         <header className="text-center mb-16">
           <div className="text-5xl md:text-6xl font-dancing font-bold mb-4 text-comfort-accent">

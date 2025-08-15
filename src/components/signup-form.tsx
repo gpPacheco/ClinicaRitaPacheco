@@ -8,14 +8,53 @@ import { EyeIcon, EyeOffIcon } from "lucide-react"
 export function SignupForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log("Cadastro submetido")
+    setError(null)
+    setSuccess(null)
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const name = String(formData.get("name") || "").trim()
+    const email = String(formData.get("email") || "").trim()
+    const phone = String(formData.get("phone") || "").trim()
+    const password = String(formData.get("password") || "")
+    const confirmPassword = String(formData.get("confirmPassword") || "")
+
+    if (!name || !email || !password) {
+      setError("Preencha nome, e-mail e senha.")
+      return
+    }
+    if (password !== confirmPassword) {
+      setError("As senhas não conferem.")
+      return
+    }
+
+    setSubmitting(true)
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, password }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.error || "Falha ao cadastrar")
+      setSuccess("Conta criada com sucesso. Você já pode fazer login.")
+      form.reset()
+    } catch (e: any) {
+      setError(e.message || "Erro inesperado")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+      {error && <p className="text-sm text-red-600 font-poppins">{error}</p>}
+      {success && <p className="text-sm text-green-600 font-poppins">{success}</p>}
       <div className="rounded-md shadow-sm -space-y-px bg-[#f9f9f9] p-6">
         {/* Nome Completo */}
         <div>
@@ -156,9 +195,10 @@ export function SignupForm() {
       <div>
         <button
           type="submit"
-          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-comfort-accent hover:bg-comfort-warm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-comfort-accent transition-colors duration-300 font-poppins"
+          disabled={submitting}
+          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-comfort-accent hover:bg-comfort-warm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-comfort-accent transition-colors duration-300 font-poppins disabled:opacity-50"
         >
-          Criar Conta
+          {submitting ? "Cadastrando..." : "Criar Conta"}
         </button>
       </div>
 
