@@ -1,24 +1,24 @@
 import { NextResponse } from "next/server"
-import { collections, ensureIndexes } from "@/lib/db"
-import { hash } from "bcrypt"
+import { createSupabaseServerClient } from "@/lib/supabase/server"
 
+// Cria o registro de cliente após o signUp no cliente (usa sessão atual via cookies)
 export async function POST(req: Request) {
   const body = await req.json()
-  const { name, email, password, phone } = body || {}
-  if (!name || !email || !password) return NextResponse.json({ error: "Dados inválidos" }, { status: 400 })
+  const { name, email, phone } = body || {}
+  if (!name || !email) return NextResponse.json({ error: "Dados inválidos" }, { status: 400 })
 
-  await ensureIndexes()
-  const users = await collections.users()
-  const existing = await users.findOne({ email })
-  if (existing) return NextResponse.json({ error: "E-mail já cadastrado" }, { status: 409 })
+  const supabase = createSupabaseServerClient()
+  const { data: { user }, error: userError } = await supabase.auth.getUser()
+  if (userError || !user) return NextResponse.json({ error: "Não autenticado" }, { status: 401 })
 
-  const passwordHash = await hash(password, 10)
-  const now = new Date().toISOString()
-  const userDoc = { name, email, passwordHash, role: "user", createdAt: now, updatedAt: now }
-  const res = await users.insertOne(userDoc as any)
-
-  const clientes = await collections.clientes()
-  await clientes.insertOne({ userId: String(res.insertedId), name, email, phone, createdAt: now, updatedAt: now } as any)
+  // Insere cliente vinculado ao usuário logado (RLS valida user_id = auth.uid())
+  const { error: insertError } = await supabase.from("clientes").insert({
+    user_id: user.id,
+    name,
+    email,
+    phone,
+  })
+  if (insertError) return NextResponse.json({ error: insertError.message }, { status: 400 })
 
   return NextResponse.json({ ok: true }, { status: 201 })
 }

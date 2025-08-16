@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
+import { createSupabaseBrowserClient } from "@/lib/supabase/client"
 
 export function SignupForm() {
   const [showPassword, setShowPassword] = useState(false)
@@ -35,6 +36,16 @@ export function SignupForm() {
 
     setSubmitting(true)
     try {
+      // Primeiro: cria usuário no Supabase Auth
+      const supabase = createSupabaseBrowserClient()
+      const { data: signUp, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: { data: { name } },
+      })
+      if (signUpError) throw new Error(signUpError.message)
+
+      // Segundo: cria cliente associado via nossa API (vai inserir na tabela clientes)
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -42,8 +53,9 @@ export function SignupForm() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data?.error || "Falha ao cadastrar")
-      setSuccess("Conta criada com sucesso. Você já pode fazer login.")
-      form.reset()
+
+      setSuccess("Conta criada com sucesso. Verifique seu e-mail e faça login.")
+      ;(event.target as HTMLFormElement).reset()
     } catch (e: any) {
       setError(e.message || "Erro inesperado")
     } finally {

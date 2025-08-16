@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0 --turbo",
+  "dev": "next dev -H 0.0.0.0 --turbo",
     "build": "next build",
     "start": "next start -H 0.0.0.0",
-    "lint": "next lint"
+  "lint": "next lint",
+  "db:link": "supabase link",
+  "db:push": "supabase db push",
+  "db:reset": "supabase db reset",
+  "db:migrate": "supabase db push && supabase db remote commit -m auto && supabase db remote push"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
@@ -16,6 +20,8 @@
     "@ionic/core": "^7.6.3",
     "@material-tailwind/react": "^2.1.9",
     "@nextui-org/react": "^2.2.9",
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.55.0",
     "@types/react-calendar": "^3.9.0",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
@@ -55,6 +61,7 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
+    "supabase": "^2.34.3",
     "tailwindcss": "latest",
     "typescript": "latest"
   }

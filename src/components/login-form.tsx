@@ -3,6 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
+import { createSupabaseBrowserClient } from "@/lib/supabase/client"
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
@@ -17,29 +18,17 @@ export function LoginForm() {
     const email = String(formData.get("email") || "").trim()
     const password = String(formData.get("password") || "")
 
-    try {
-      setSubmitting(true)
-      const res = await fetch("/api/auth/callback/credentials", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          csrfToken: "", // NextAuth vai preencher via página /login usando <SignIn /> se necessário
-          email,
-          password,
-          json: "true",
-        }),
-      })
-      if (res.status === 200) {
-        window.location.href = "/usuario"
-      } else {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(data?.message || "Falha no login")
-      }
-    } catch (e: any) {
-      setError(e.message || "Erro inesperado")
-    } finally {
-      setSubmitting(false)
+    const supabase = createSupabaseBrowserClient()
+    setSubmitting(true)
+    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
+    setSubmitting(false)
+
+    if (signInError) {
+      setError(signInError.message)
+      return
     }
+    // Redireciona para dashboard do usuário após login
+    window.location.href = "/usuario"
   }
 
   return (
@@ -55,7 +44,7 @@ export function LoginForm() {
             E-mail
           </label>
           <input
-            id="email"
+            id="email-address"
             name="email"
             type="email"
             autoComplete="email"
@@ -126,7 +115,7 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-comfort-accent hover:bg-comfort-warm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-comfort-accent transition-colors duration-300 font-poppins disabled:opacity-50"
+          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-comfort-accent hover:bg-comfort-warm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-comfort-accent transition-colors duração-300 font-poppins disabled:opacity-50"
         >
           {submitting ? "Entrando..." : "Entrar"}
         </button>
