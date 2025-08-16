@@ -98,7 +98,7 @@ export function Local() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
                     <div className="absolute bottom-8 left-8">
-                      <h3 className="text-white text-3xl font-dancing text-comfort-text drop-shadow-lg">{item.title}</h3>
+                      <h3 className="text-3xl font-dancing text-comfort-text drop-shadow-lg">{item.title}</h3>
                       <div className="h-1 w-16 bg-white/80 rounded-full mt-2"></div>
                     </div>
                   </div>
@@ -142,7 +142,7 @@ export function Local() {
         </div>
 
         <div className="text-center mt-16">
-          <Link href="/clinica/espaco" className="inline-block bg-gradient-to-r from-comfort-accent to-comfort-warm text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-comfort-accent/30 active:scale-95 text-lg px-12 py-5 group">
+          <Link href="/clinica/espaco" className="inline-block bg-gradient-to-r from-comfort-accent to-comfort-warm text-white rounded-full font-medium shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-comfort-accent/30 active:scale-95 text-lg px-12 py-5 group">
             <span className="flex items-center gap-3">
               🏛️ Visite Virtualmente
               <svg
