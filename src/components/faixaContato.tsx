@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback, useMemo } from "react"
+import { useRouter } from "next/navigation"
 import { CalendarIcon, X, Heart } from 'lucide-react'
 import { Calendar } from "react-calendar"
 import type { CalendarProps } from "react-calendar"
@@ -16,6 +17,7 @@ interface FormData {
 }
 
 export function FaixaContato() {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     nome: "",
@@ -41,16 +43,19 @@ export function FaixaContato() {
     setDataInvalida(false)
   }, [])
 
-  const handleWhatsApp = useCallback(() => {
-    if (!formData.dataAgendamento) return
+  // Removido fluxo de WhatsApp: direcionar para Login/Cadastro conforme seleção
 
-    const mensagem = formData.hasCadastro
-      ? `Olá! 💆‍♀️ Já tenho cadastro e gostaria de agendar uma consulta no dia: ${formData.dataAgendamento.toLocaleDateString("pt-BR")}`
-      : `Olá! 💆‍♀️ Meu nome é ${formData.nome}, gostaria de agendar uma consulta no dia: ${formData.dataAgendamento.toLocaleDateString("pt-BR")}`
-
-    const whatsappUrl = `https://wa.me/+5516993108637?text=${encodeURIComponent(mensagem)}`
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer")
-  }, [formData])
+  // CTA: Se o usuário indicar que tem cadastro, enviar para /login; se não, para /cadastro
+  const handlePrimaryCTA = useCallback(() => {
+    if (formData.hasCadastro === true) {
+      router.push("/login")
+    } else if (formData.hasCadastro === false) {
+      router.push("/cadastro")
+    } else {
+      // Se não escolheu ainda, abre o modal para escolher
+      setIsOpen(true)
+    }
+  }, [formData.hasCadastro, router])
 
   const handleDateChange = useCallback(
     (value: Value) => {
@@ -143,7 +148,7 @@ export function FaixaContato() {
       </div>
 
       <button
-        onClick={handleOpen}
+        onClick={handlePrimaryCTA}
   className="bg-gradient-to-r from-comfort-accent to-comfort-warm text-white px-12 py-5 rounded-full font-poppins font-medium shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-comfort-accent/30 active:scale-95 text-lg flex items-center gap-4 group"
         aria-label="Abrir formulário de agendamento"
       >
@@ -195,7 +200,11 @@ export function FaixaContato() {
                         transition-all duration-200 rounded-lg
                       `
                     }}
-                    tileDisabled={({ date }) => date < today}
+                    tileDisabled={({ date }) => {
+                      const isPast = date < today
+                      const isWeekend = [0, 6].includes(date.getDay())
+                      return isPast || isWeekend
+                    }}
                     locale="pt-BR"
                     minDate={today}
                     prevLabel="‹"
@@ -205,9 +214,9 @@ export function FaixaContato() {
                   />
                 </div>
 
-                {dataInvalida && (
+        {dataInvalida && (
                   <div className="bg-red-50 border border-red-200 rounded-2xl p-4">
-                    <p className="text-red-600 text-sm text-center">Não é possível agendar uma data no passado.</p>
+          <p className="text-red-600 text-sm text-center">Não é possível agendar datas no passado ou em fins de semana.</p>
                   </div>
                 )}
 
@@ -252,16 +261,12 @@ export function FaixaContato() {
                             autoComplete="name"
                           />
                         </div>
-
-                        <button
-                          type="button"
-                          onClick={handleWhatsApp}
-                          disabled={!isFormValid}
-                          className="w-full bg-green-500 hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-4 rounded-2xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                        <a
+                          href="/cadastro"
+                          className="w-full inline-flex justify-center bg-comfort-accent hover:bg-comfort-warm text-white py-4 rounded-2xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-comfort-accent"
                         >
-                          💬 Agendar via WhatsApp
-                        </button>
-
+                          Criar cadastro
+                        </a>
                         <p className="text-sm font-light text-gray-600 text-center">
                           Já possui cadastro?{" "}
                           <button
@@ -277,13 +282,12 @@ export function FaixaContato() {
 
                     {formData.hasCadastro === true && (
                       <div className="space-y-6">
-                        <button
-                          type="button"
-                          onClick={handleWhatsApp}
-                          className="w-full bg-green-500 hover:bg-green-600 text-white py-4 rounded-2xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                        <a
+                          href="/login"
+                          className="w-full inline-flex justify-center bg-comfort-accent hover:bg-comfort-warm text-white py-4 rounded-2xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-comfort-accent"
                         >
-                          💬 Agendar via WhatsApp
-                        </button>
+                          Fazer login
+                        </a>
 
                         <p className="text-sm font-light text-gray-600 text-center">
                           Não possui cadastro?{" "}

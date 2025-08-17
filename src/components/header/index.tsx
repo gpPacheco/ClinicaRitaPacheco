@@ -9,6 +9,9 @@ import BurgerButton from "./burgerButton"
 import MenuItem from "./menuItem"
 import DropdownItem from "./dropdownItem"
 import LoginButton from "./loginButton"
+import { LogoutButton } from "@/components/logout-button"
+import { useMemo } from "react"
+import { createSupabaseBrowserClient } from "@/lib/supabase/client"
 import SocialMenu from "./socialMenu"
 
 const Header = memo(() => {
@@ -31,6 +34,15 @@ const Header = memo(() => {
   useEffect(() => {
     setIsMenuOpen(false)
   }, [pathname])
+
+  const [isLogged, setIsLogged] = useState(false)
+
+  useEffect(() => {
+    const supabase = createSupabaseBrowserClient()
+    supabase.auth.getSession().then(({ data }) => setIsLogged(!!data.session))
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => setIsLogged(!!session))
+    return () => sub.subscription.unsubscribe()
+  }, [])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -169,7 +181,14 @@ const Header = memo(() => {
               </motion.div>
             ))}
             <motion.div variants={menuItemVariants}>
-              <LoginButton />
+              {isLogged ? (
+                <div className="flex items-center gap-2">
+                  <LoginButton />
+                  <LogoutButton />
+                </div>
+              ) : (
+                <LoginButton />
+              )}
             </motion.div>
           </motion.div>
 
@@ -203,7 +222,14 @@ const Header = memo(() => {
                   </motion.div>
                 ))}
                 <motion.div variants={mobileItemVariants} className="pt-4 border-t border-gray-200">
-                  <LoginButton />
+                  {isLogged ? (
+                    <div className="flex items-center gap-2">
+                      <LoginButton />
+                      <LogoutButton />
+                    </div>
+                  ) : (
+                    <LoginButton />
+                  )}
                 </motion.div>
                 <motion.div variants={mobileItemVariants} className="pt-4">
                   <SocialMenu />

@@ -164,7 +164,7 @@ export default function Espaco() {
         />
       </div>
 
-      {/* Botão de Agendamento */}
+  {/* Botão de Agendamento (usa FaixaContato global nos locais apropriados) */}
       <FaixaContato />
     </div>
   );
