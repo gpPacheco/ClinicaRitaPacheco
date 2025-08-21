@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev -H 0.0.0.0",
+    "dev": "next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start -H 0.0.0.0",
-  "lint": "next lint",
-  "db:link": "supabase link",
-  "db:push": "supabase db push",
-  "db:reset": "supabase db reset",
-  "db:status": "supabase db status",
-  "db:migrate": "supabase db push && supabase db pull -s public"
+    "lint": "next lint",
+    "db:link": "supabase link",
+    "db:push": "supabase db push",
+    "db:reset": "supabase db reset",
+    "db:status": "supabase db status",
+    "db:migrate": "supabase db push && supabase db pull -s public"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
@@ -46,6 +46,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.21.1",
     "react-transition-group": "^4.4.5",
+    "sharp": "^0.34.3",
     "swiper": "^11.1.12"
   },
   "devDependencies": {

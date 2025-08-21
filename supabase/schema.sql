@@ -32,6 +32,8 @@ create table if not exists public.agendamentos (
   updated_at timestamptz not null default now()
 );
 create index if not exists agendamentos_user_idx on public.agendamentos(user_id, date);
+-- Garantir que não existam dois agendamentos não cancelados no mesmo date+time
+create unique index if not exists agendamentos_date_time_unique on public.agendamentos(date, time) where status <> 'CANCELLED';
 
 -- Tabela consultas
 create table if not exists public.consultas (
