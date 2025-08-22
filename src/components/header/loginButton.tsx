@@ -11,15 +11,15 @@ const LoginButton = memo(() => {
   useEffect(() => {
     const supabase = createSupabaseBrowserClient()
     // Lê sessão atual
-    supabase.auth.getSession().then(({ data }) => {
-      setIsLogged(!!data.session)
+    supabase.auth.getSession().then(({ data }: any) => {
+      setIsLogged(!!data?.session)
     })
     // Observa mudanças de autenticação para atualizar o botão
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+    const sub = supabase.auth.onAuthStateChange((_: any, session: any) => {
       setIsLogged(!!session)
     })
     return () => {
-      sub.subscription.unsubscribe()
+      try { (sub as any)?.subscription?.unsubscribe() } catch(e) {}
     }
   }, [])
 

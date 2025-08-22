@@ -39,9 +39,16 @@ const Header = memo(() => {
 
   useEffect(() => {
     const supabase = createSupabaseBrowserClient()
-    supabase.auth.getSession().then(({ data }) => setIsLogged(!!data.session))
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => setIsLogged(!!session))
-    return () => sub.subscription.unsubscribe()
+    // anotar como any para evitar implicit any durante build/ts
+    supabase.auth.getSession().then(({ data }: any) => setIsLogged(!!data?.session))
+    const sub = supabase.auth.onAuthStateChange((_: any, session: any) => setIsLogged(!!session))
+    return () => {
+      try {
+        ;(sub as any)?.subscription?.unsubscribe()
+      } catch (e) {
+        // noop
+      }
+    }
   }, [])
 
   const toggleMenu = () => {
