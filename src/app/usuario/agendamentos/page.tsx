@@ -3,6 +3,10 @@
 import Link from "next/link"
 import { useEffect, useMemo, useState, useCallback } from "react"
 import { addBusinessDays, todayStart, isWeekend } from "@/lib/date-utils"
+import { Calendar } from "react-calendar"
+import type { CalendarProps } from "react-calendar"
+import "react-calendar/dist/Calendar.css"
+import { InteractiveCard } from "@/components/ui/interactive-card"
 
 type Apt = {
   id: string
@@ -95,9 +99,9 @@ export default function AgendamentosPage() {
     }
     setModal({id, date, time})
     setModalError("")
-  // reset modal availability states
-  setModalBusyTimes([])
-  setModalAvailableTimes([])
+    // reset modal availability states
+    setModalBusyTimes([])
+    setModalAvailableTimes([])
   }
 
   const handleModalSubmit = async () => {
@@ -144,13 +148,27 @@ export default function AgendamentosPage() {
     }
   }
 
-  // Gera slots de 30 minutos no expediente
+  // Gera slots de 30 minutos no expediente: 08:00-12:30 e 13:30-17:30
   const generateSlots = useMemo((): string[] => {
     const slots: string[] = []
     const push = (h:number, m:number)=> slots.push(String(h).padStart(2,'0')+":"+String(m).padStart(2,'0'))
-    for (let h=8; h<=11; h++) { push(h,0); push(h,30) }
-    for (let h=13; h<=18; h++) { push(h,0); if (h !== 18) push(h,30) }
-    return slots
+    // manhã 08:00 até 12:30 (08:00, 08:30, ..., 12:00, 12:30)
+    for (let h=8; h<=11; h++) {
+      push(h,0)
+      push(h,30)
+    }
+    push(12,0)
+    push(12,30)
+
+    // tarde 13:30 até 17:30 (13:30, 14:00, 14:30, ..., 17:30)
+    push(13,30)
+    for (let h=14; h<=17; h++) {
+      push(h,0)
+      push(h,30)
+    }
+
+    // garantir ordenação e remover duplicatas
+    return Array.from(new Set(slots)).sort()
   }, [])
 
   const fetchModalAvailability = useCallback(async (dateStr: string, currentTime?: string) => {
@@ -165,7 +183,25 @@ export default function AgendamentosPage() {
         busy = busy.filter(t => t !== currentTime)
       }
       setModalBusyTimes(busy)
-      const avail = generateSlots.filter(s => !busy.includes(s))
+
+      // filtrar slots pelo expediente e remover ocupados
+      let avail = generateSlots.filter(s => !busy.includes(s))
+
+      // se a data for hoje, remover horários já passados (exceto o horário atual caso exista)
+      const todayIso = todayStart().toISOString().slice(0,10)
+      if (dateStr === todayIso) {
+        const now = new Date()
+        const nowMinutes = now.getHours()*60 + now.getMinutes()
+        const slotToMinutes = (slot: string) => {
+          const [hh, mm] = slot.split(":").map(Number)
+          return hh*60 + mm
+        }
+        avail = avail.filter(s => {
+          if (currentTime && s === currentTime) return true
+          return slotToMinutes(s) > nowMinutes
+        })
+      }
+
       setModalAvailableTimes(avail)
     } catch (e:any) {
       setModalBusyTimes([])
@@ -186,6 +222,41 @@ export default function AgendamentosPage() {
     fetchModalAvailability(modal.date, modal.time)
   },[modal, fetchModalAvailability])
 
+  // Fechar modal ao clicar fora ou pressionar Escape
+  useEffect(() => {
+    if (!modal) return
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (!target.closest('.modal-content')) {
+        setModal(null)
+        setModalBusyTimes([])
+        setModalAvailableTimes([])
+      }
+    }
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setModal(null)
+        setModalBusyTimes([])
+        setModalAvailableTimes([])
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleEscape)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleEscape)
+    }
+  }, [modal])
+
+  // Controlar overflow do body enquanto modal/confirm estiver aberto
+  useEffect(() => {
+    if (modal || confirmCancel) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => { document.body.style.overflow = 'unset' }
+  }, [modal, confirmCancel])
   if (loading) return <div>Carregando…</div>
 
   // Badge de status
@@ -245,42 +316,71 @@ export default function AgendamentosPage() {
       )}
   {/* Modal de remarcação */}
       {modal && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
-            <h2 className="text-lg font-semibold mb-4">Remarcar agendamento</h2>
-            <div className="space-y-3">
-              <div>
-                <label className="block text-sm">Nova data</label>
-                <input type="date" className="w-full border rounded p-2" value={modal.date} min={todayStart().toISOString().slice(0,10)} onChange={e=>{ const newDate = e.target.value; setModal(m=>m?{...m,date:newDate}:m); fetchModalAvailability(newDate, modal.time)}} />
-              </div>
-              <div>
-                <label className="block text-sm">Escolha um horário disponível</label>
-                <div className="mt-2 grid grid-cols-4 gap-2">
-                  {generateSlots.map((s: string) => {
-                    const busy = modalBusyTimes.includes(s)
-                    const selected = modal.time === s
-                    return (
-                      <button
-                        key={s}
-                        type="button"
-                        disabled={busy}
-                        onClick={()=>setModal(m=>m?{...m,time:s}:m)}
-                        className={`px-2 py-1 rounded text-sm border ${busy?"bg-gray-100 text-gray-400 cursor-not-allowed":"bg-white hover:bg-comfort-accent/10"} ${selected?"ring-2 ring-comfort-accent":''}`}
-                      >
-                        {s}
-                      </button>
-                    )
-                  })}
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true">
+            <InteractiveCard className="modal-content w-full max-w-md sm:max-w-lg relative animate-in fade-in zoom-in duration-300 max-h-[90vh] overflow-auto">
+            <button onClick={()=>{ setModal(null); setModalBusyTimes([]); setModalAvailableTimes([]) }} className="absolute top-4 right-4 p-2 rounded-full hover:bg-comfort-pearl focus:outline-none">
+              ✕
+            </button>
+            <div className="p-4 sm:p-6">
+              <header className="text-center mb-4">
+                <h2 className="text-2xl font-poppins font-semibold text-comfort-accent">Remarcar agendamento</h2>
+                <div className="h-1 w-20 bg-gradient-to-r from-comfort-accent to-comfort-warm mx-auto rounded-full mt-2"></div>
+              </header>
+
+              <div className="space-y-4">
+                <div className="bg-white/70 backdrop-blur-md rounded-2xl p-4">
+                  <Calendar
+                    onChange={(value: CalendarProps["value"]) => {
+                      const d = Array.isArray(value) ? value[0] as Date : value as Date
+                      if (!d) return
+                      const iso = new Date(d.getFullYear(), d.getMonth(), d.getDate()).toISOString().slice(0,10)
+                      setModal(m=>m?{...m,date:iso}:m)
+                      fetchModalAvailability(iso, modal?.time)
+                    }}
+                    value={modal ? new Date(modal.date + "T00:00:00") : new Date()}
+                    className="w-full rounded-2xl border-0 shadow-none"
+                    tileClassName={({ date }) => {
+                      const isSelected = modal && date.toDateString() === new Date(modal.date + "T00:00:00").toDateString()
+                      const isPast = date < todayStart()
+                      return ` ${isSelected ? "!bg-comfort-accent !text-white shadow-lg" : "hover:bg-comfort-pearl"} ${isPast ? "!text-gray-400 !cursor-not-allowed" : ""} transition-all duration-150 rounded-lg`
+                    }}
+                    tileDisabled={({ date }) => {
+                      const isPast = date < todayStart()
+                      const weekend = [0,6].includes(date.getDay())
+                      return isPast || weekend
+                    }}
+                    locale="pt-BR"
+                    minDate={todayStart()}
+                    prevLabel="‹"
+                    nextLabel="›"
+                  />
                 </div>
-                {modalBusyTimes.length>0 && <p className="text-xs text-gray-600 mt-2">Horários ocupados: {modalBusyTimes.join(', ')}</p>}
+
+                <div>
+                  <label className="block text-sm mb-2">Horários disponíveis</label>
+                  <select
+                    value={modal.time || ""}
+                    onChange={e=>setModal(m=>m?{...m,time:e.target.value}:m)}
+                    className="w-full border rounded p-2 bg-white"
+                  >
+                    <option value="" disabled>Selecione um horário</option>
+                    {modalAvailableTimes.length===0 && <option value="" disabled>Nenhum horário disponível</option>}
+                    {modalAvailableTimes.map(t => (
+                      <option key={t} value={t}>{t}</option>
+                    ))}
+                  </select>
+                  {modalBusyTimes.length>0 && <p className="text-xs text-gray-600 mt-2">Horários ocupados: {modalBusyTimes.join(', ')}</p>}
+                </div>
+
+                {modalError && <div className="text-red-600 text-sm">{modalError}</div>}
               </div>
-              {modalError && <div className="text-red-600 text-sm">{modalError}</div>}
+
+              <div className="flex gap-2 mt-4 justify-end">
+                <button onClick={handleModalSubmit} disabled={modalLoading} className="bg-comfort-accent text-white px-4 py-2 rounded">Salvar</button>
+                <button onClick={()=>{ setModal(null); setModalBusyTimes([]); setModalAvailableTimes([]) }} className="bg-gray-200 px-4 py-2 rounded">Cancelar</button>
+              </div>
             </div>
-            <div className="flex gap-2 mt-4">
-              <button onClick={handleModalSubmit} disabled={modalLoading} className="bg-comfort-accent text-white px-4 py-2 rounded">Salvar</button>
-              <button onClick={()=>{ setModal(null); setModalBusyTimes([]); setModalAvailableTimes([]) }} className="bg-gray-200 px-4 py-2 rounded">Cancelar</button>
-            </div>
-          </div>
+          </InteractiveCard>
         </div>
       )}
         {/* Modal de confirmação de cancelamento */}
