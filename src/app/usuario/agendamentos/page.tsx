@@ -317,7 +317,7 @@ export default function AgendamentosPage() {
       )}
   {/* Modal de remarcação */}
       {modal && (
-          <div className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true">
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true">
             <InteractiveCard className="modal-content w-full max-w-md sm:max-w-lg relative animate-in fade-in zoom-in duration-300 max-h-[90vh] overflow-auto">
             <button onClick={()=>{ setModal(null); setModalBusyTimes([]); setModalAvailableTimes([]) }} className="absolute top-4 right-4 p-2 rounded-full hover:bg-comfort-pearl focus:outline-none">
               ✕
@@ -330,7 +330,7 @@ export default function AgendamentosPage() {
 
               <div className="space-y-4">
                 <div className="bg-white/70 backdrop-blur-md rounded-2xl p-4 lg:flex lg:justify-center">
-                  <div className="w-full lg:max-w-md lg:flex lg:justify-center md:flex md:justify-center">
+                  <div className="w-full lg:max-w-md flex justify-center">
                   <Calendar
                     onChange={(value: CalendarProps["value"]) => {
                       const d = Array.isArray(value) ? value[0] as Date : value as Date
@@ -372,7 +372,6 @@ export default function AgendamentosPage() {
                       <option key={t} value={t}>{t}</option>
                     ))}
                   </select>
-                  {modalBusyTimes.length>0 && <p className="text-xs text-gray-600 mt-2">Horários ocupados: {modalBusyTimes.join(', ')}</p>}
                 </div>
 
                 {modalError && <div className="text-red-600 text-sm">{modalError}</div>}

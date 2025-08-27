@@ -12,7 +12,10 @@ export async function GET() {
     .from("agendamentos")
     .select("*")
     .eq("user_id", user.id)
-    .order("date", { ascending: true })
+  // ordenar por criação mais recente primeiro, depois por data/hora decrescente
+  .order("created_at", { ascending: false })
+  .order("date", { ascending: false })
+  .order("time", { ascending: false })
     .limit(100)
   if (error) return NextResponse.json({ error: error.message }, { status: 400 })
   return NextResponse.json({ items: data })
