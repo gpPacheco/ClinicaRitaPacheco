@@ -19,3 +19,12 @@ export function todayStart() {
   t.setHours(0, 0, 0, 0)
   return t
 }
+
+export function formatDate(dateLike: string | Date) {
+  const d = typeof dateLike === 'string' ? new Date(dateLike) : new Date(dateLike)
+  if (Number.isNaN(d.getTime())) return String(dateLike)
+  const dd = String(d.getDate()).padStart(2, '0')
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const yyyy = d.getFullYear()
+  return `${dd}-${mm}-${yyyy}`
+}

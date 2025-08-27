@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo, useState, useEffect, useCallback } from "react"
-import { isWeekend, todayStart } from "@/lib/date-utils"
+import { isWeekend, todayStart, formatDate } from "@/lib/date-utils"
 import { useRouter } from "next/navigation"
 import { Calendar } from "react-calendar"
 import type { CalendarProps } from "react-calendar"
@@ -64,7 +64,6 @@ export default function UsuarioAgendarPage() {
   }, [generateSlots])
 
   const [service, setService] = useState("Podologia Geriátrica")
-  const [professional, setProfessional] = useState("Rita Pacheco")
   const [notes, setNotes] = useState("")
   const [submitMsg, setSubmitMsg] = useState<string>("")
   const [submitting, setSubmitting] = useState(false)
@@ -113,12 +112,11 @@ export default function UsuarioAgendarPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          service,
-          professional,
-          date,
-          time,
-          user_notes: notes,
-        }),
+            service,
+            date,
+            time,
+            user_notes: notes,
+          }),
       })
       const json = await res.json()
       if (!res.ok) {
@@ -175,7 +173,7 @@ export default function UsuarioAgendarPage() {
             </header>
 
             <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
                 <div>
                   <label className="block text-sm mb-2">Serviço</label>
                   <select className="mt-1 w-full border rounded-md p-2" value={service} onChange={(e)=>setService(e.target.value)}>
@@ -185,16 +183,9 @@ export default function UsuarioAgendarPage() {
                     <option value="Spa dos pés">Spa dos pés</option>
                   </select>
                 </div>
-                <div>
-                  <label className="block text-sm mb-2">Profissional</label>
-                  <select className="mt-1 w-full border rounded-md p-2" value={professional} onChange={(e)=>setProfessional(e.target.value)}>
-                    <option value="Rita Pacheco">Rita Pacheco</option>
-                    <option value="Equipe">Equipe</option>
-                  </select>
-                </div>
-              </div>
 
-              <div className="bg-white/70 backdrop-blur-md rounded-2xl p-4">
+              <div className="bg-white/70 backdrop-blur-md rounded-2xl p-4 lg:flex lg:justify-center md:flex md:justify-center">
+                <div className="w-full lg:max-w-md flex justify-center">
                 <Calendar
                   onChange={onDateChange}
                   value={new Date(date + "T00:00:00")}
@@ -212,6 +203,7 @@ export default function UsuarioAgendarPage() {
                   locale="pt-BR"
                   minDate={today}
                 />
+                </div>
               </div>
 
               <div>
@@ -223,9 +215,6 @@ export default function UsuarioAgendarPage() {
                     <option key={t} value={t}>{t}</option>
                   ))}
                 </select>
-                {busyTimes.length>0 && date && (
-                  <p className="text-sm text-gray-600 mt-1">Horários já ocupados nesta data: {busyTimes.join(", ")}</p>
-                )}
               </div>
 
               <div>

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useMemo, useState, useCallback } from "react"
-import { addBusinessDays, todayStart, isWeekend } from "@/lib/date-utils"
+import { addBusinessDays, todayStart, isWeekend, formatDate } from "@/lib/date-utils"
 import { Calendar } from "react-calendar"
 import type { CalendarProps } from "react-calendar"
 import "react-calendar/dist/Calendar.css"
@@ -292,9 +292,8 @@ export default function AgendamentosPage() {
             <div className="flex justify-between">
               <div>
                 <p className="font-medium text-comfort-text">{apt.service}</p>
-                <p className="text-sm text-comfort-text-muted">Profissional: {apt.professional || "—"}</p>
                 <p className="text-sm text-comfort-text-muted">
-                  {apt.date} às {apt.time}
+                  {formatDate(apt.date)} às {apt.time}
                 </p>
               </div>
               <div>{statusBadge(apt.status)}</div>
@@ -323,12 +322,13 @@ export default function AgendamentosPage() {
             </button>
             <div className="p-4 sm:p-6">
               <header className="text-center mb-4">
-                <h2 className="text-2xl font-poppins font-semibold text-comfort-accent">Remarcar agendamento</h2>
+                <h2 className="text-2xl font-poppins font-semibold text-comfort-accent">Remarcar consulta</h2>
                 <div className="h-1 w-20 bg-gradient-to-r from-comfort-accent to-comfort-warm mx-auto rounded-full mt-2"></div>
               </header>
 
               <div className="space-y-4">
-                <div className="bg-white/70 backdrop-blur-md rounded-2xl p-4">
+                <div className="bg-white/70 backdrop-blur-md rounded-2xl p-4 lg:flex lg:justify-center">
+                  <div className="w-full lg:max-w-md lg:flex lg:justify-center md:flex md:justify-center">
                   <Calendar
                     onChange={(value: CalendarProps["value"]) => {
                       const d = Array.isArray(value) ? value[0] as Date : value as Date
@@ -354,6 +354,7 @@ export default function AgendamentosPage() {
                     prevLabel="‹"
                     nextLabel="›"
                   />
+                  </div>
                 </div>
 
                 <div>

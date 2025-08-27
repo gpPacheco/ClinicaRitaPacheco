@@ -1,4 +1,5 @@
 import type { Appointment } from "@/types"
+import { formatDate } from "@/lib/date-utils"
 
 // Simula fetch
 async function getAppointment(id: string): Promise<Appointment> {
@@ -32,7 +33,7 @@ export default async function AdminAgendamentoDetalhePage({ params }: { params: 
             <li>Cliente: {apt.userId}</li>
             <li>Serviço: {apt.service}</li>
             <li>Profissional: {apt.professional}</li>
-            <li>Data/Hora: {apt.date} às {apt.time}</li>
+            <li>Data/Hora: {formatDate(apt.date)} às {apt.time}</li>
             <li>Status: {apt.status}</li>
           </ul>
         </div>

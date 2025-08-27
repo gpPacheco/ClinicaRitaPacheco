@@ -1,5 +1,6 @@
 import Link from "next/link"
 import type { Appointment } from "@/types"
+import { formatDate } from "@/lib/date-utils"
 
 const mockAppointments: Appointment[] = [
   {
@@ -35,7 +36,7 @@ export default function AdminAgendamentosPage() {
                 <p className="text-sm text-comfort-text-muted">Cliente: {apt.userId}</p>
                 <p className="text-sm text-comfort-text-muted">Profissional: {apt.professional}</p>
                 <p className="text-sm text-comfort-text-muted">
-                  {apt.date} às {apt.time} • {apt.status}
+                  {formatDate(apt.date)} às {apt.time} • {apt.status}
                 </p>
               </div>
               <Link
