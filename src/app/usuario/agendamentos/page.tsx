@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useMemo, useState, useCallback } from "react"
-import { addBusinessDays, todayStart, isWeekend, formatDate } from "@/lib/date-utils"
+import { addBusinessDays, todayStart, isWeekend, formatDate, parseLocalYYYYMMDD, toLocalYYYYMMDD } from "@/lib/date-utils"
 import { Calendar } from "react-calendar"
 import type { CalendarProps } from "react-calendar"
 import "react-calendar/dist/Calendar.css"
@@ -54,8 +54,9 @@ export default function AgendamentosPage() {
   }, [])
 
   const canCancel = (apt: Apt) => {
-    const d = new Date(apt.date + "T00:00:00")
+    const d = parseLocalYYYYMMDD(apt.date)
     const limit = addBusinessDays(todayStart(), 3)
+    if (!d) return false
     return d >= limit
   }
 
@@ -109,8 +110,9 @@ export default function AgendamentosPage() {
     setModalLoading(true)
     setModalError("")
     // Validação
-    const d = new Date(modal.date + "T00:00:00")
-    if (d < todayStart()) {
+  const d = parseLocalYYYYMMDD(modal.date)
+  if (!d) { setModalError('Data inválida'); setModalLoading(false); return }
+  if (d < todayStart()) {
       setModalError("Não é possível remarcar para datas no passado.")
       setModalLoading(false)
       return
@@ -333,14 +335,14 @@ export default function AgendamentosPage() {
                     onChange={(value: CalendarProps["value"]) => {
                       const d = Array.isArray(value) ? value[0] as Date : value as Date
                       if (!d) return
-                      const iso = new Date(d.getFullYear(), d.getMonth(), d.getDate()).toISOString().slice(0,10)
+                      const iso = toLocalYYYYMMDD(d)
                       setModal(m=>m?{...m,date:iso}:m)
                       fetchModalAvailability(iso, modal?.time)
                     }}
-                    value={modal ? new Date(modal.date + "T00:00:00") : new Date()}
+                    value={modal ? (parseLocalYYYYMMDD(modal.date) as Date) : new Date()}
                     className="w-full rounded-2xl border-0 shadow-none"
                     tileClassName={({ date }) => {
-                      const isSelected = modal && date.toDateString() === new Date(modal.date + "T00:00:00").toDateString()
+                      const isSelected = modal && date.toDateString() === (parseLocalYYYYMMDD(modal.date) || new Date()).toDateString()
                       const isPast = date < todayStart()
                       return ` ${isSelected ? "!bg-comfort-accent !text-white shadow-lg" : "hover:bg-comfort-pearl"} ${isPast ? "!text-gray-400 !cursor-not-allowed" : ""} transition-all duration-150 rounded-lg`
                     }}

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { createSupabaseServerClient } from "@/lib/supabase/server"
+import { parseLocalYYYYMMDD, toLocalYYYYMMDD } from '@/lib/date-utils'
 
 export async function GET(_: Request, { params }: { params: { id: string } }) {
   const supabase = createSupabaseServerClient()
@@ -34,8 +35,8 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   if (existing.status === "CANCELLED") return NextResponse.json({ error: "Agendamento já cancelado e não pode ser alterado." }, { status: 400 })
 
   // Valida data/hora
-  const d = new Date(String(date) + "T00:00:00")
-  d.setHours(0, 0, 0, 0)
+  const d = parseLocalYYYYMMDD(String(date))
+  if (!d) return NextResponse.json({ error: 'Formato de data inválido.' }, { status: 400 })
   const today = new Date()
   today.setHours(0, 0, 0, 0)
   if (d < today) return NextResponse.json({ error: "Não é possível agendar datas no passado." }, { status: 400 })
@@ -53,7 +54,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   const { data: conflict } = await supabase
     .from("agendamentos")
     .select("id")
-    .eq("date", d.toISOString().slice(0,10))
+    .eq("date", toLocalYYYYMMDD(d))
     .eq("time", String(time))
     .neq("id", params.id)
     .neq("status", "CANCELLED")
@@ -62,8 +63,8 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   if (conflict) return NextResponse.json({ error: "Horário já agendado." }, { status: 400 })
 
   const { data, error } = await supabase
-    .from("agendamentos")
-    .update({ date: d.toISOString().slice(0,10), time: String(time) })
+  .from("agendamentos")
+  .update({ date: toLocalYYYYMMDD(d), time: String(time) })
     .eq("id", params.id)
     .eq("user_id", user.id)
     .select("*")

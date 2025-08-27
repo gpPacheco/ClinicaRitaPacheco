@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo, useState, useEffect, useCallback } from "react"
-import { isWeekend, todayStart, formatDate } from "@/lib/date-utils"
+import { isWeekend, todayStart, formatDate, parseLocalYYYYMMDD, toLocalYYYYMMDD } from "@/lib/date-utils"
 import { useRouter } from "next/navigation"
 import { Calendar } from "react-calendar"
 import type { CalendarProps } from "react-calendar"
@@ -16,7 +16,7 @@ export default function UsuarioAgendarPage() {
     return d
   }, [])
 
-  const [date, setDate] = useState<string>(today.toISOString().slice(0,10))
+  const [date, setDate] = useState<string>(toLocalYYYYMMDD(today))
   const [time, setTime] = useState<string>("")
   const [busyTimes, setBusyTimes] = useState<string[]>([])
   const [availableTimes, setAvailableTimes] = useState<string[]>([])
@@ -45,8 +45,8 @@ export default function UsuarioAgendarPage() {
       let avail = generateSlots.filter(s => !busy.includes(s))
 
       // se a data for hoje, remover horários já passados
-      const todayIso = todayStart().toISOString().slice(0,10)
-      if (d === todayIso) {
+      const todayIso = toLocalYYYYMMDD(todayStart())
+        if (d === todayIso) {
         const now = new Date()
         const nowMinutes = now.getHours()*60 + now.getMinutes()
         const slotToMinutes = (slot: string) => {
@@ -70,8 +70,8 @@ export default function UsuarioAgendarPage() {
 
   const validate = (dStr: string): string | null => {
     if (!dStr) return "Escolha uma data."
-    const d = new Date(dStr + "T00:00:00")
-    d.setHours(0, 0, 0, 0)
+  const d = parseLocalYYYYMMDD(dStr)
+  if (!d) return "Formato de data inválido."
     if (d < today) return "Não é possível agendar datas no passado."
     const dow = d.getDay()
     if (dow === 0 || dow === 6) return "Não é possível agendar em sábados ou domingos."
@@ -81,8 +81,8 @@ export default function UsuarioAgendarPage() {
   const onDateChange = (value: CalendarProps["value"]) => {
     const d = Array.isArray(value) ? value[0] as Date : value as Date
     if (!d) return
-    const iso = new Date(d.getFullYear(), d.getMonth(), d.getDate()).toISOString().slice(0,10)
-    setDate(iso)
+  const iso = toLocalYYYYMMDD(d)
+  setDate(iso)
     const msg = validate(iso)
     setError(msg || "")
     if (!msg) fetchBusyTimes(iso)
@@ -91,8 +91,9 @@ export default function UsuarioAgendarPage() {
   const onSubmit = async () => {
     setSubmitMsg("")
     if (error || !date || !time) return
-    const d = new Date(date + "T00:00:00")
-    if (isWeekend(d)) {
+  const d = parseLocalYYYYMMDD(date)
+  if (!d) { setError('Data inválida'); return }
+  if (isWeekend(d)) {
       setError("Não é possível agendar em sábados ou domingos.")
       return
     }
@@ -188,10 +189,11 @@ export default function UsuarioAgendarPage() {
                 <div className="w-full lg:max-w-md flex justify-center">
                 <Calendar
                   onChange={onDateChange}
-                  value={new Date(date + "T00:00:00")}
+                  value={parseLocalYYYYMMDD(date) || new Date()}
                   className="w-full rounded-2xl border-0 shadow-none"
                   tileClassName={({ date: d }) => {
-                    const isSelected = d.toDateString() === new Date(date + "T00:00:00").toDateString()
+                    const selectedDate = parseLocalYYYYMMDD(date) || new Date()
+                    const isSelected = d.toDateString() === selectedDate.toDateString()
                     const isPast = d < today
                     return ` ${isSelected ? "!bg-comfort-accent !text-white shadow-lg" : "hover:bg-comfort-pearl"} ${isPast ? "!text-gray-400 !cursor-not-allowed" : ""} transition-all duration-150 rounded-lg`
                   }}

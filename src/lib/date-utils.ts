@@ -21,10 +21,42 @@ export function todayStart() {
 }
 
 export function formatDate(dateLike: string | Date) {
+  // Se for string no formato 'YYYY-MM-DD', parsear como data local (meia-noite local)
+  if (typeof dateLike === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(dateLike)) {
+    const d = parseLocalYYYYMMDD(dateLike)
+    if (!d) return String(dateLike)
+    const dd = String(d.getDate()).padStart(2, '0')
+    const mm = String(d.getMonth() + 1).padStart(2, '0')
+    const yyyy = d.getFullYear()
+    return `${dd}-${mm}-${yyyy}`
+  }
+
   const d = typeof dateLike === 'string' ? new Date(dateLike) : new Date(dateLike)
   if (Number.isNaN(d.getTime())) return String(dateLike)
   const dd = String(d.getDate()).padStart(2, '0')
   const mm = String(d.getMonth() + 1).padStart(2, '0')
   const yyyy = d.getFullYear()
   return `${dd}-${mm}-${yyyy}`
+}
+
+// Retorna string YYYY-MM-DD representando a data no horário local (sem conversão UTC)
+export function toLocalYYYYMMDD(dateLike: string | Date) {
+  const d = typeof dateLike === 'string' ? new Date(dateLike) : new Date(dateLike)
+  if (Number.isNaN(d.getTime())) return String(dateLike)
+  const dd = String(d.getDate()).padStart(2, '0')
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const yyyy = d.getFullYear()
+  return `${yyyy}-${mm}-${dd}`
+}
+
+// Converte uma string 'YYYY-MM-DD' para um Date configurado no horário local (meia-noite local)
+export function parseLocalYYYYMMDD(dateStr: string) {
+  if (!dateStr || typeof dateStr !== 'string') return null
+  const parts = dateStr.split('-').map(Number)
+  if (parts.length !== 3) return null
+  const [y, m, d] = parts
+  if (!y || !m || !d) return null
+  const dt = new Date(y, m - 1, d)
+  dt.setHours(0, 0, 0, 0)
+  return dt
 }

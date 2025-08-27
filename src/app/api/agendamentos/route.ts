@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { createSupabaseServerClient } from "@/lib/supabase/server"
+import { parseLocalYYYYMMDD, toLocalYYYYMMDD } from '@/lib/date-utils'
 
 // Lista agendamentos do usuário autenticado
 export async function GET() {
@@ -38,8 +39,8 @@ export async function POST(req: Request) {
   }
 
   // Valida data (não passado e não fim de semana)
-  const d = new Date(String(date) + "T00:00:00")
-  d.setHours(0, 0, 0, 0)
+  const d = parseLocalYYYYMMDD(String(date))
+  if (!d) return NextResponse.json({ error: "Formato de data inválido." }, { status: 400 })
   const today = new Date()
   today.setHours(0, 0, 0, 0)
   if (d < today) return NextResponse.json({ error: "Não é possível agendar datas no passado." }, { status: 400 })
@@ -59,7 +60,7 @@ export async function POST(req: Request) {
   const { data: conflict, error: conflictError } = await supabase
     .from("agendamentos")
     .select("id")
-    .eq("date", d.toISOString().slice(0,10))
+  .eq("date", toLocalYYYYMMDD(d))
     .eq("time", String(time))
     .neq("status", "CANCELLED")
     .limit(1)
@@ -74,7 +75,7 @@ export async function POST(req: Request) {
     cliente_id: cliente.id,
     service: String(service),
     professional: professional ? String(professional) : null,
-    date: d.toISOString().slice(0, 10),
+  date: toLocalYYYYMMDD(d),
     time: String(time),
     user_notes: user_notes ? String(user_notes) : null,
   }
