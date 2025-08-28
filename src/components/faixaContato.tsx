@@ -186,7 +186,7 @@ export function FaixaContato() {
               </header>
 
               <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
-                <div className="bg-white/70 backdrop-blur-md rounded-3xl shadow-lg border border-gray-200 transition-all duration-500 hover:shadow-2xl hover:bg-white/80 hover:scale-105 hover:-translate-y-1 p-6">
+                <div className="flex justify-center">
                   <Calendar
                     onChange={handleDateChange}
                     value={formData.dataAgendamento}
